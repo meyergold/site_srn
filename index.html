@@ -1564,7 +1564,7 @@ nav{background:rgba(252,242,246,.72)!important;-webkit-backdrop-filter:saturate(
         <span class="uchip" style="right:9%;bottom:14%;animation-delay:.4s">🔁 Relancer les devis</span>
         <span class="uchip" style="left:44%;top:9%;animation-delay:1.1s">📈 Pics d'activité</span>
       </div>
-      <div class="uly-logo"><img loading="lazy" decoding="async" src="assets/img/img-035-76e5281e2e73.webp" alt="Ulysse"></div>
+      <div class="uly-logo"><img loading="lazy" decoding="async" src="assets/img/img-007-72451de7c2b6.webp" alt="Ulysse"></div>
       <div class="uly-ask"><span class="lab">Vous&nbsp;:</span><span class="q" id="ulyType"></span><span class="uly-caret"></span></div>
     </div>
   </div>
@@ -2040,7 +2040,7 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
       if(el.children.length)return;
       if(el.closest('.pc-num'))return;
       var t=(el.textContent||'').trim();
-      var m=t.match(/^(\+?)(\d{2,4})(\s?%|h|x|×|\smin|\sj)?$/);
+      var m=t.match(/^([+\-−~]?)(\d{2,4})(\s?%|h|x|×|\smin|\sj|\/\d{1,2})?$/);
       if(!m)return;
       var val=parseInt(m[2],10);if(val<10)return;
       if((parseFloat(getComputedStyle(el).fontSize)||0)<22)return;
@@ -2054,4 +2054,179 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
   else document.addEventListener('DOMContentLoaded',boot);
 })();
 </script>
+<!-- ===== SAIREN i18n EN — Phase 1 : accueil + navigation + footer (additif) ===== -->
+<script id="sairen-i18n">
+(function(){
+  var TX = {
+  "Communiquer sur tous les canaux":"Communicate across every channel",
+  "Tâches & communication interne":"Tasks & internal communication",
+  "Agents IA + workflows":"AI agents + workflows",
+  "Le copilote qui pilote tout":"The copilot that runs everything",
+  "Labels & déclencheurs":"Labels & triggers",
+  "Le socle : catégorisation, vues dynamiques, déclenchement des flux":"The foundation: categorization, dynamic views, flow triggering",
+  "Répondre 24/7":"Respond 24/7",
+  "Ne plus manquer un message":"Never miss a message",
+  "Automatiser les workflows":"Automate workflows",
+  "Agents IA + règles":"AI agents + rules",
+  "Centraliser les canaux":"Centralize every channel",
+  "Tout dans une inbox":"Everything in one inbox",
+  "Lancer des campagnes":"Launch campaigns",
+  "Outbound cross-canal":"Cross-channel outbound",
+  "Piloter avec l'IA":"Orchestrate with AI",
+  "Ulysse orchestre tout":"Ulysse orchestrates everything",
+  "Mesurer le parcours":"Measure the journey",
+  "Analytics granulaires":"Granular analytics",
+  "Tous les cas d'usage →":"All use cases →",
+  "← Tous les cas d'usage":"← All use cases",
+  "Demandez aux agents ce qu'ils savent faire dans votre secteur":"Ask the agents what they can do in your industry",
+  "Santé":"Healthcare",
+  "Hôtellerie":"Hospitality",
+  "Assurance":"Insurance",
+  "Pharmacie":"Pharmacy",
+  "Vétérinaire":"Veterinary",
+  "Esthétique":"Aesthetics",
+  "Santé · Cabinet Apollon":"Healthcare · Cabinet Apollon",
+  "Hôtellerie · The Lumière":"Hospitality · The Lumière",
+  "Assurance · Atlas":"Insurance · Atlas",
+  "Pharmacie · Hygie":"Pharmacy · Hygie",
+  "Vétérinaire · Chiron":"Veterinary · Chiron",
+  "Esthétique · Callisto":"Aesthetics · Callisto",
+  "organisations":"organizations",
+  "organisations équipées":"organizations equipped",
+  "Tous vos canaux unifiés : WhatsApp, voix, e-mail, réseaux. Une seule conversation, des campagnes cross-canal.":"All your channels unified: WhatsApp, voice, email, social. One conversation, cross-channel campaigns.",
+  "Explorer →":"Explore →",
+  "Découvrir →":"Discover →",
+  "Tâches, communication interne, appli mobile. Vos équipes, structurées par entité, équipe et membre.":"Tasks, internal communication, mobile app. Your teams, structured by entity, team and member.",
+  "Agents IA + workflows. Le déterministe et le stochastique, ensemble. Sans une ligne de code.":"AI agents + workflows. The deterministic and the stochastic, together. Without a single line of code.",
+  "Le copilote IA qui pilote tout — même depuis WhatsApp. Souverain, jusqu'au modèle.":"The AI copilot that runs everything — even from WhatsApp. Sovereign, down to the model.",
+  "De la première question jusqu'à la fidélité — comme un guide accompagne un voyageur.":"From the first question to loyalty — like a guide accompanying a traveler.",
+  "Premier contact":"First contact",
+  "Réponse instantanée 24/7, tous canaux.":"Instant response 24/7, every channel.",
+  "Qualification":"Qualification",
+  "Priorité & sentiment ajoutés par l'IA.":"Priority & sentiment added by AI.",
+  "Traitement":"Handling",
+  "Tâches structurées, au bon agent.":"Structured tasks, to the right agent.",
+  "Suivi":"Follow-up",
+  "Historique unifié, rien ne se perd.":"Unified history, nothing gets lost.",
+  "Fidélisation":"Retention",
+  "Relances personnalisées, automatiques.":"Personalized, automatic follow-ups.",
+  "Voir le parcours complet →":"See the full journey →",
+  "Voir le parcours complet":"See the full journey",
+  "de demandes traitées":"of requests handled",
+  "de tâches répétitives":"of repetitive tasks",
+  "de disponibilité":"availability",
+  "Un visage, un nom, un ton — et des interfaces génératives bien au-delà du chat. Démos réelles.":"A face, a name, a tone — and generative interfaces far beyond chat. Real demos.",
+  "En direct":"Live",
+  "Le vrai éditeur Rainbow, ici même. Glissez les briques, reliez agents IA et workflows — sans une ligne de code.":"The real Rainbow editor, right here. Drag the bricks, connect AI agents and workflows — without a single line of code.",
+  "Découvrir Rainbow →":"Discover Rainbow →",
+  "Une granularité que personne d'autre n'atteint":"A granularity no one else reaches",
+  "Tout passe par Océan et Desk : vous mesurez chaque canal, chaque équipe, chaque étape du parcours.":"Everything flows through Océan and Desk: you measure every channel, every team, every step of the journey.",
+  "Découvrir Analytics →":"Discover Analytics →",
+  "Ulysse · Piloter":"Ulysse · Orchestrate",
+  "Demandez. Ulysse orchestre.":"Ask. Ulysse orchestrates.",
+  "Posez vos questions en langage naturel — Ulysse lit, relie et agit sur toute la conversation.":"Ask your questions in natural language — Ulysse reads, connects and acts across the whole conversation.",
+  "📊 Combien en attente ?":"📊 How many pending?",
+  "⚡ Mes urgences du jour":"⚡ My priorities today",
+  "⚡ Mes urgences":"⚡ My priorities",
+  "🎯 Quel agent assigner ?":"🎯 Which agent to assign?",
+  "🎯 Quel agent ?":"🎯 Which agent?",
+  "🔁 Relancer les devis":"🔁 Follow up on quotes",
+  "📈 Pics d'activité":"📈 Activity peaks",
+  "Vous :":"You:",
+  "Intégrations":"Integrations",
+  "Sairen s'y connecte et fait circuler la donnée, sans double-saisie.":"Sairen connects to them and keeps data flowing, with no double entry.",
+  "Chaque conversation enrichit la fiche client ; les opportunités qualifiées remontent automatiquement.":"Every conversation enriches the customer record; qualified opportunities surface automatically.",
+  "Reliez conversations, commandes et SAV. L'agent répond avec la donnée réelle.":"Connect conversations, orders and after-sales. The agent answers with real data.",
+  "Booking & agendas":"Booking & calendars",
+  "Sairen lit les dispos, prend et modifie les RDV, envoie confirmations et rappels.":"Sairen reads availability, books and edits appointments, sends confirmations and reminders.",
+  "Paiement & facturation":"Payment & billing",
+  "Liens de paiement dans la conversation, relances d'impayés, encaissement suivi.":"Payment links in the conversation, overdue reminders, tracked collection.",
+  "Helpdesk & support":"Helpdesk & support",
+  "Synchronisez tickets et conversations pour un support unifié.":"Sync tickets and conversations for unified support.",
+  "Suivi de commandes, relances panier, support post-achat connectés à la conversation.":"Order tracking, cart recovery, post-purchase support connected to the conversation.",
+  "Marketing & data":"Marketing & data",
+  "Segmentez et déclenchez des campagnes à partir de vos données clients.":"Segment and trigger campaigns from your customer data.",
+  "Productivité & collaboration":"Productivity & collaboration",
+  "Notifications, partage et suivi là où vos équipes travaillent.":"Notifications, sharing and tracking where your teams work.",
+  "Tableurs & fichiers":"Spreadsheets & files",
+  "Importez une liste pour lancer campagnes et relances.":"Import a list to launch campaigns and follow-ups.",
+  "Automatisation & API":"Automation & API",
+  "Connectez Sairen à des milliers d'outils.":"Connect Sairen to thousands of tools.",
+  "Aucune double-saisie":"No double entry",
+  "La donnée circule dans les deux sens, en continu.":"Data flows both ways, continuously.",
+  "Agents conscients du contexte":"Context-aware agents",
+  "Ils lisent vos systèmes et répondent juste.":"They read your systems and answer accurately.",
+  "Sur-mesure possible":"Custom builds possible",
+  "Un outil métier spécifique ? On le connecte via API.":"A specific business tool? We connect it via API.",
+  "Votre outil n'est pas listé ? Si elle a une API, on s'y connecte.":"Your tool isn't listed? If it has an API, we'll connect to it.",
+  "Parlons-en →":"Let's talk →",
+  "20 minutes pour voir Sairen améliorer votre parcours client, sur vos canaux.":"20 minutes to see Sairen improve your customer journey, across your channels.",
+  "Sans engagement · 20 minutes · adapté à votre secteur":"No commitment · 20 minutes · tailored to your industry",
+  "La plateforme qui améliore le parcours client, sur tous vos canaux. Hébergé en France.":"The platform that improves the customer journey, across all your channels. Hosted in France.",
+  "Parcours client":"Customer journey",
+  "Devenir partenaire":"Become a partner",
+  "À propos":"About",
+  "Carrières":"Careers",
+  "Contact":"Contact",
+  "© 2026 Sairen · Conversation d'une Nouvelle Ère":"© 2026 Sairen · Conversation of a New Era",
+  "CGV":"Terms of Sale",
+  "Confidentialité":"Privacy",
+  "Mentions légales":"Legal notice",
+  "Comment Sairen l'orchestre":"How Sairen orchestrates it",
+  "Briques mobilisées":"Bricks involved",
+  "Les briques s'assemblent":"The bricks assemble",
+  "Tester l'agent →":"Test the agent →",
+  "En pratique":"In practice",
+  "Un exemple concret":"A concrete example",
+  "Exemple":"Example",
+  "Envie de le voir sur votre cas ?":"Want to see it on your use case?",
+  "20 minutes pour cadrer l'orchestration avec votre contexte.":"20 minutes to frame the orchestration around your context.",
+  "Continuer":"Continue",
+  "Canaux":"Channels",
+  "Résolu":"Resolved",
+  "Ouvert":"Open",
+  "Urgent":"Urgent",
+  "Créer tâche":"Create task",
+  "Déclencheur":"Trigger",
+  "Action":"Action",
+  "RDV pris":"Appointments booked",
+  "Agent IA":"AI agent",
+  "E-mail":"Email",
+  "Relié au reste de Sairen":"Connected to the rest of Sairen"
+  };
+
+  var orig = (typeof WeakMap!=='undefined') ? new WeakMap() : null;
+  function norm(s){ return s.replace(/\s+/g,' ').replace(/[’‘‚]/g,"'").trim(); }
+  function leadTrail(raw){ return [ (raw.match(/^\s*/)||[''])[0], (raw.match(/\s*$/)||[''])[0] ]; }
+  function walk(toEN){
+    if(!document.body) return;
+    var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
+      var p=n.parentElement;if(!p)return NodeFilter.FILTER_REJECT;
+      var tag=p.tagName;if(tag==='SCRIPT'||tag==='STYLE'||tag==='NOSCRIPT')return NodeFilter.FILTER_REJECT;
+      if(p.closest('[data-t]')||p.closest('.lang-tog'))return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }});
+    var n;
+    while(n=w.nextNode()){
+      if(toEN){
+        var k=norm(n.nodeValue);
+        if(TX[k]){ if(orig&&!orig.has(n))orig.set(n,n.nodeValue); var lt=leadTrail(n.nodeValue); n.nodeValue=lt[0]+TX[k]+lt[1]; }
+      } else if(orig && orig.has(n)){
+        n.nodeValue=orig.get(n);
+      }
+    }
+  }
+  function sync(){ walk((window.LANG||'fr')==='en'); }
+
+  if(typeof window.toggleLang==='function'){
+    var _t=window.toggleLang;
+    window.toggleLang=function(){ var r=_t.apply(this,arguments); setTimeout(sync,0); return r; };
+  }
+  window.addEventListener('hashchange',function(){ setTimeout(sync,90); });
+  if(document.readyState!=='loading') setTimeout(sync,350);
+  else document.addEventListener('DOMContentLoaded',function(){ setTimeout(sync,350); });
+})();
+</script>
+
 </body></html>
