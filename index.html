@@ -1975,7 +1975,7 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
   #srn-progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:99999;transform:scaleX(0);transform-origin:0 50%;background:var(--grad,linear-gradient(135deg,#1F6CF6 0%,#6840FA 46%,#EE4D63 100%));box-shadow:0 0 10px rgba(104,64,250,.5);pointer-events:none;will-change:transform}
   main[data-page].srn-in{animation:srnIn .55s cubic-bezier(.22,.61,.36,1) both}
   @keyframes srnIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-  .btn-primary,.btn2.primary{transition:transform .22s cubic-bezier(.22,.61,.36,1),box-shadow .22s,background .2s}
+  .btn-primary,.btn-primary:hover,.btn2.primary,.btn2.primary:hover{transform:none!important}
 }
 </style>
 <script id="sairen-motion-js">
@@ -2009,17 +2009,7 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
   }
   window.addEventListener('hashchange',function(){setTimeout(pageIn,40);});
 
-  /* 3 — Boutons magnétiques (CTA principaux, souris uniquement) */
-  if(fine){
-    document.querySelectorAll('.btn-primary,.btn2.primary').forEach(function(b){
-      b.addEventListener('mousemove',function(e){
-        var r=b.getBoundingClientRect();
-        var mx=e.clientX-r.left-r.width/2, my=e.clientY-r.top-r.height/2;
-        b.style.transform='translate('+(mx*0.18).toFixed(1)+'px,'+(my*0.28).toFixed(1)+'px)';
-      });
-      b.addEventListener('mouseleave',function(){b.style.transform='';});
-    });
-  }
+  /* (effet magnétique des CTA retiré) */
 
   /* 4 — Compteurs animés (gros chiffres uniquement, détection sûre) */
   function setupCounters(){
