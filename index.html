@@ -3687,7 +3687,7 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
 
 <style id="srn-mframe-css">.srn-mwrap{width:100%;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#FBFCFF,#F4F6FF);box-shadow:0 30px 70px -34px rgba(80,40,140,.35)}.srn-mframe{display:block;width:100%;border:0;min-height:300px}.msub:has(.srn-mwrap){padding-top:14px;padding-bottom:32px}.msub-hero:has(.srn-mwrap){grid-template-columns:1fr!important;gap:14px;align-items:stretch;text-align:center}.msub-hero:has(.srn-mwrap)>div:first-child{max-width:700px;margin:0 auto}.msub-hero:has(.srn-mwrap) .mod-ico{margin-left:auto;margin-right:auto}.msub-hero:has(.srn-mwrap) .mod-ico.big{width:50px;height:50px}.msub-hero:has(.srn-mwrap) .psub{font-size:clamp(23px,2.9vw,34px)}.msub-hero:has(.srn-mwrap) .lead{font-size:15px;margin-top:9px;margin-left:auto;margin-right:auto;max-width:560px}.msub-hero:has(.srn-mwrap) .hero-cta{justify-content:center;margin-top:15px}.srn-mwrap-bare{border:0!important;background:transparent!important;box-shadow:none!important;border-radius:0!important}</style><script id="srn-mframe-js">window.addEventListener("message",function(e){var d=e.data;if(d&&d.srnNav){location.hash=d.srnNav;}if(d&&d.srnMotion){var fs=document.querySelectorAll("iframe[data-srn-mframe]");for(var i=0;i<fs.length;i++){if(fs[i].contentWindow===e.source){fs[i].style.height=d.h+"px";}}}});</script><style id="dive-frame-css">main[data-page="home"]{padding:0!important;margin:0!important}#dive-frame{display:block;width:100%;height:100vh;border:0;background:#0a0820}body.home-dive>footer{display:none!important}body.home-dive>nav{position:fixed;top:0;left:0;right:0;z-index:1000}</style><script id="dive-frame-js">(function(){function hc(){var p=(location.hash.replace("#/","").split("#")[0])||"home";document.body.classList.toggle("home-dive",p===""||p==="home");}addEventListener("hashchange",hc);if(document.readyState!=="loading")hc();else addEventListener("DOMContentLoaded",hc);addEventListener("message",function(e){var d=e.data;if(d&&d.srnNav){location.hash=d.srnNav;}});function bridgeLang(){var f=document.getElementById("dive-frame");if(f&&f.contentWindow){try{f.contentWindow.postMessage({srnLang:window.LANG||"fr"},"*");}catch(e){}}}if(typeof window.setLang==="function"){var _s=window.setLang;window.setLang=function(){var r=_s.apply(this,arguments);setTimeout(bridgeLang,30);return r;};}var fr0=document.getElementById("dive-frame");if(fr0){fr0.addEventListener("load",function(){setTimeout(bridgeLang,120);});}setTimeout(bridgeLang,900);})();</script><style id="btn-overload">
 /* ── Boutons : pilule dégradée + effet "overload" (Demander une démo) ── */
-.btn-primary{position:relative!important;overflow:hidden!important;border-radius:999px!important;border:0!important;
+.btn-primary{position:relative!important;overflow:hidden!important;border-radius:14px!important;border:0!important;
   font-weight:650!important;color:#fff!important;
   background-image:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,0) 52%),linear-gradient(120deg,#5B6CFF,#9B5CF6,#FF4FA8,#FF6F8B)!important;
   background-size:100% 100%,220% 100%!important;background-position:0 0,0 50%!important;background-repeat:no-repeat!important;
@@ -3701,7 +3701,7 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
 .btn-primary:hover::after{left:135%}
 .btn-primary:active{transform:translateY(-1px) scale(.99)!important}
 /* ── Boutons secondaires : blanc + hover "sexy" ── */
-.btn-ghost{position:relative!important;overflow:hidden!important;border-radius:999px!important;
+.btn-ghost{position:relative!important;overflow:hidden!important;border-radius:14px!important;
   font-weight:650!important;background:#fff!important;background-image:none!important;color:#2a2466!important;border:1px solid rgba(155,92,246,.18)!important;
   box-shadow:0 10px 28px -12px rgba(40,30,90,.32)!important;
   transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,color .28s,border-color .28s!important}
@@ -3712,4 +3712,16 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
   box-shadow:0 20px 46px -12px rgba(123,76,246,.5),0 0 0 1.5px rgba(155,92,246,.4)!important}
 .btn-ghost:hover::after{left:135%}
 .btn-ghost:active{transform:translateY(-1px) scale(.99)!important}
+/* ── Bouton CTA du header (haut à droite) : même dégradé + overload ── */
+.btn2.primary{position:relative!important;overflow:hidden!important;border-radius:14px!important;border:0!important;color:#fff!important;
+  background:none!important;background-image:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,0) 52%),linear-gradient(120deg,#5B6CFF,#9B5CF6,#FF4FA8,#FF6F8B)!important;
+  background-size:100% 100%,220% 100%!important;background-position:0 0,0 50%!important;background-repeat:no-repeat!important;
+  box-shadow:0 14px 36px -12px rgba(123,76,246,.65),0 4px 14px -4px rgba(255,79,168,.5),inset 0 1px 0 rgba(255,255,255,.45)!important;
+  transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,background-position .7s ease!important}
+.btn2.primary::after{content:"";position:absolute;top:-25%;left:-75%;width:50%;height:150%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-18deg);transition:left .65s ease;pointer-events:none}
+.btn2.primary:hover{transform:translateY(-3px) scale(1.03)!important;background-position:0 0,100% 50%!important;
+  box-shadow:0 22px 54px -12px rgba(123,76,246,.9),0 10px 26px -6px rgba(255,79,168,.75),inset 0 1px 0 rgba(255,255,255,.5)!important}
+.btn2.primary:hover::after{left:135%}
+.btn2.primary:active{transform:translateY(-1px) scale(.99)!important}
 </style></body></html>
