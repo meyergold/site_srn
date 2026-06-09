@@ -671,12 +671,12 @@ window.__TPL={plat:"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImZyIj4KPGhlYWQ+CjxtZXRh
       if(ba[i*3+1]>camera.position.y+40){ba[i*3+1]=camera.position.y-150-Math.random()*60;ba[i*3]=(Math.random()-.5)*120;ba[i*3+2]=-10-Math.random()*120;}
     }
     bg.attributes.position.needsUpdate=true;
-    bMat.uniforms.uOp.value=0.10+sstep(0.04,0.55,sT)*0.85;
+    bMat.uniforms.uOp.value=sstep(0.12,0.5,sT)*0.95;
 
     const pa=pg.attributes.position.array;
     for(let i=0;i<N;i++){pa[i*3+1]-=ps[i]*0.03;if(pa[i*3+1]<camera.position.y-80)pa[i*3+1]=camera.position.y+60;}
     pg.attributes.position.needsUpdate=true;
-    parts.material.opacity=0.15+sstep(0.05,0.5,sT)*0.5;
+    parts.material.opacity=sstep(0.12,0.5,sT)*0.55;
 
     depthEl.style.opacity=sstep(0.04,0.62,sT);
 
