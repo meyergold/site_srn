@@ -2059,7 +2059,7 @@ nav{background:rgba(252,242,246,.72)!important;-webkit-backdrop-filter:saturate(
 
   // SCROLL
   let sT=0,tT=0;
-  function onScroll(){const m=document.body.scrollHeight-innerHeight;tT=m>0?scrollY/m:0;}
+  function onScroll(){var d=document.getElementById('dive-home');var m=Math.max(1,(d?d.offsetTop+d.offsetHeight:document.body.scrollHeight)-innerHeight);tT=scrollY/m;if(tT>1)tT=1;}
   addEventListener('scroll',onScroll,{passive:true});onScroll();
   let mx=0,my=0,tmx=0,tmy=0;
   addEventListener('pointermove',e=>{tmx=(e.clientX/innerWidth)*2-1;tmy=(e.clientY/innerHeight)*2-1;});
@@ -2128,7 +2128,7 @@ nav{background:rgba(252,242,246,.72)!important;-webkit-backdrop-filter:saturate(
   }
   for(let i=0;i<N;i++){const b={};spawn(b,true);b.y=Math.random()*H*1.6;B.push(b);}
 
-  function depth(){const m=document.body.scrollHeight-innerHeight;const t=m>0?scrollY/m:0;return t;}
+  function depth(){var d=document.getElementById('dive-home');var m=Math.max(1,(d?d.offsetTop+d.offsetHeight:document.body.scrollHeight)-innerHeight);var t=scrollY/m;return t>1?1:t;}
   function sstep(a,b,x){x=Math.max(0,Math.min(1,(x-a)/(b-a)));return x*x*(3-2*x);}
 
   let last=performance.now();
