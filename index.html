@@ -2126,7 +2126,7 @@ nav{background:rgba(252,242,246,.72)!important;-webkit-backdrop-filter:saturate(
     b.v=12+b.r*3+Math.random()*14;             // px/s, les grosses montent + vite
     b.wob=Math.random()*6.28;b.wv=0.5+Math.random()*1.2;b.wa=4+Math.random()*10;
   }
-  for(let i=0;i<N;i++){const b={};spawn(b,false);B.push(b);}
+  for(let i=0;i<N;i++){const b={};spawn(b,true);b.y=Math.random()*H*1.6;B.push(b);}
 
   function depth(){const m=document.body.scrollHeight-innerHeight;const t=m>0?scrollY/m:0;return t;}
   function sstep(a,b,x){x=Math.max(0,Math.min(1,(x-a)/(b-a)));return x*x*(3-2*x);}
@@ -2135,7 +2135,7 @@ nav{background:rgba(252,242,246,.72)!important;-webkit-backdrop-filter:saturate(
   function draw(now){
     const dt=Math.min(0.05,(now-last)/1000);last=now;
     const t=depth();
-    const glob=0.18+sstep(0.02,0.5,t)*0.72;     // de + en + visible en profondeur
+    const glob=sstep(0.06,0.42,t)*0.96;     // de + en + visible en profondeur
     ctx.clearRect(0,0,W,H);
     for(const b of B){
       b.y-=b.v*dt*(0.7+t*1.4);
