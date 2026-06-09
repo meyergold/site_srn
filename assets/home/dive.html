@@ -228,7 +228,7 @@ section{position:relative;z-index:2}
 .foot-logo{height:32px;width:auto;display:block;margin:46px auto 0}
 .copy{margin-top:26px;font-size:12px;color:rgba(255,255,255,.4)}
 </style>
-<style>#hdr{display:none!important}</style></head>
+<style>#hdr{display:none!important}#bubbles{display:none!important}</style></head>
 <body>
 
 <canvas id="scene"></canvas>
@@ -691,7 +691,7 @@ window.__TPL={plat:"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImZyIj4KPGhlYWQ+CjxtZXRh
 <!-- bulles 2D par-dessus tout (continuité "sous l'eau", masque les coutures) -->
 <script>
 (function(){
-  const cv=document.getElementById('bubbles'),ctx=cv.getContext('2d');
+  const cv=document.getElementById('bubbles');if(!cv||1){return;}const ctx=cv.getContext('2d');
   let W,H,DPR=Math.min(devicePixelRatio,2);
   function size(){W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}
   size();addEventListener('resize',size);
