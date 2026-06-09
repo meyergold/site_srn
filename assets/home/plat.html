@@ -111,14 +111,15 @@ const MODS=[
  {key:'desk',   i:1, name:'Desk',    tag:'Collaborer',   role:'Équipe & ticketing',     desc:"Tâches, communication interne, appli mobile. Vos équipes, structurées."},
  {key:'socle',  i:0, name:'Socle',   tag:'Fondation',    role:'Données & connecteurs',  desc:"Branché au CRM, à l'ERP et aux outils métier. Tout cloud. On-prem."}
 ];
+const ROUTES={ulysse:'#/ulysse',rainbow:'#/rainbow',labels:'#/cas-labels',ocean:'#/ocean',desk:'#/desk',socle:'#/marketplace'};
 const stack=document.getElementById('stack'), cardsEl=document.getElementById('cards');
 const N=MODS.length, GAP_OPEN=70;
 const byI=[...MODS].sort((a,b)=>a.i-b.i);
 byI.forEach(m=>{const c=COL[m.key];const l=document.createElement('div');l.className='layer';l.dataset.i=m.i;l.style.setProperty('--lgrad',c.grad);l.style.setProperty('--lglow',c.glow);l.style.zIndex=m.i;
-  l.innerHTML=`<div class="lic"><div class="halo"></div>${ICONS[m.key]}</div><div class="lmeta"><div class="lname">${m.name}</div><div class="lrole">${m.role}</div></div>`;stack.appendChild(l);});
+  l.innerHTML=`<div class="lic"><div class="halo"></div>${ICONS[m.key]}</div><div class="lmeta"><div class="lname">${m.name}</div><div class="lrole">${m.role}</div></div>`;l.style.cursor='pointer';l.addEventListener('click',function(){try{parent.postMessage({srnNav:ROUTES[m.key]},'*');}catch(e){}});stack.appendChild(l);});
 MODS.forEach(m=>{const c=COL[m.key];const card=document.createElement('div');card.className='lcard'+(m.key==='socle'?' neutral':'');card.dataset.i=m.i;
   card.style.setProperty('--lgrad',c.grad);card.style.setProperty('--lglow',c.glow);
-  card.innerHTML=`<div class="blob"></div><div class="ic"><div class="halo"></div>${ICONS[m.key]}</div><div class="body"><span class="tag">${m.tag}</span><h3>${m.name}</h3><p>${m.desc}</p></div>`;cardsEl.appendChild(card);});
+  card.innerHTML=`<div class="blob"></div><div class="ic"><div class="halo"></div>${ICONS[m.key]}</div><div class="body"><span class="tag">${m.tag}</span><h3>${m.name}</h3><p>${m.desc}</p></div>`;card.style.cursor='pointer';card.dataset.route=ROUTES[m.key];card.addEventListener('click',function(){try{parent.postMessage({srnNav:ROUTES[m.key]},'*');}catch(e){}});cardsEl.appendChild(card);});
 const layers=[...document.querySelectorAll('.layer')], lcards=[...document.querySelectorAll('.lcard')];
 function setActive(i){layers.forEach(l=>l.classList.toggle('active',+l.dataset.i===i));lcards.forEach(c=>c.classList.toggle('on',+c.dataset.i===i));}
 let deployed=false;
