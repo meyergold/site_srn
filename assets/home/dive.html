@@ -228,7 +228,7 @@ section{position:relative;z-index:2}
 .foot-logo{height:32px;width:auto;display:block;margin:46px auto 0}
 .copy{margin-top:26px;font-size:12px;color:rgba(255,255,255,.4)}
 </style>
-</head>
+<style>#hdr{display:none!important}</style></head>
 <body>
 
 <canvas id="scene"></canvas>
@@ -714,13 +714,14 @@ window.__TPL={plat:"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImZyIj4KPGhlYWQ+CjxtZXRh
     const dt=Math.min(0.05,(now-last)/1000);last=now;
     const t=depth();
     const glob=0.18+sstep(0.02,0.5,t)*0.72;     // de + en + visible en profondeur
+    const seaY=H*0.46*(1-sstep(0,0.4,t)); // niveau de la mer (descend = plus d'eau)
     ctx.clearRect(0,0,W,H);
     for(const b of B){
       b.y-=b.v*dt*(0.7+t*1.4);
       b.wob+=b.wv*dt;
       const x=b.x+Math.sin(b.wob)*b.wa;
       if(b.y<-20){spawn(b,true);continue;}
-      const a=glob*(0.25+0.6*(b.r/11));
+      var fade=sstep(seaY-6,seaY+80,b.y);if(fade<=0)continue;const a=glob*(0.25+0.6*(b.r/11))*fade;
       const g=ctx.createRadialGradient(x-b.r*0.35,b.y-b.r*0.4,b.r*0.1,x,b.y,b.r);
       g.addColorStop(0,'rgba(255,255,255,'+(a*0.95)+')');
       g.addColorStop(0.4,'rgba(255,255,255,'+(a*0.10)+')');
