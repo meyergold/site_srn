@@ -231,7 +231,102 @@ section{position:relative;z-index:2}
 .legal-links a{color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
 .legal-links a:hover{color:#fff}
 </style>
-<style>#hdr{display:none!important}#bubbles{display:none!important}</style></head>
+<style>#hdr{display:none!important}#bubbles{display:none!important}</style><style id="wedge-css">
+/* ====== WEDGE — composant isolé & réutilisable ====== */
+.call-wedge{width:100%;max-width:440px;margin-left:auto}
+@media(max-width:880px){.call-wedge{margin:0 auto;max-width:480px}}
+.cw-badge{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;color:#fff;
+  background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);margin-bottom:13px}
+.cw-badge svg{width:14px;height:14px;color:#bcc6ff}
+.cw-step[hidden]{display:none}
+.cw-field{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.97);border-radius:14px;padding:5px 8px 5px 14px;
+  box-shadow:0 18px 44px -22px rgba(0,0,0,.75);transition:box-shadow .25s}
+.cw-ico{flex:0 0 auto;display:inline-flex;align-items:center;color:#7a6fae}
+.cw-ico svg{width:17px;height:17px}
+.cw-input{flex:1;min-width:0;border:0;background:transparent;outline:none;font-family:inherit;font-size:15px;color:#15132e;padding:11px 4px}
+.cw-input::placeholder{color:#8a86a0}
+.cw-btn{margin-top:10px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:14px 20px;border:0;border-radius:14px;cursor:pointer;font-family:inherit;font-size:15px;font-weight:700;color:#fff;
+  background:var(--grad);box-shadow:0 18px 44px -16px rgba(155,92,246,.85);transition:transform .25s,box-shadow .25s}
+.cw-btn:hover{transform:translateY(-2px);box-shadow:0 26px 56px -18px rgba(155,92,246,.95)}
+.cw-btn .cw-arrow{width:16px;height:16px}
+.cw-note{margin-top:11px;font-size:12px;color:rgba(255,255,255,.74);display:flex;align-items:center;gap:7px}
+.cw-sec{margin-top:11px;font-size:13px}
+.cw-sec a{color:rgba(255,255,255,.82);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.28);padding-bottom:1px}
+.cw-sec a:hover{color:#fff}
+.cw-dot{width:9px;height:9px;border-radius:50%;background:#bcc6ff;box-shadow:0 0 0 0 rgba(188,198,255,.6);animation:cwpulse 1.2s ease-out infinite;flex:0 0 9px}
+.cw-dot.ok{background:#9be6a0;animation:none;box-shadow:none}
+@keyframes cwpulse{0%{box-shadow:0 0 0 0 rgba(188,198,255,.6)}100%{box-shadow:0 0 0 12px rgba(188,198,255,0)}}
+.cw-analyze{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:15px 16px;font-size:14px;line-height:1.45;color:rgba(255,255,255,.92)}
+.cw-analyze b{color:#fff;font-weight:700}
+.cw-learn{display:flex;align-items:flex-start;gap:9px;margin-bottom:11px;font-size:12.5px;color:rgba(255,255,255,.86);font-weight:500;line-height:1.45}
+.cw-learn b{font-weight:700;color:#fff}
+/* champ téléphone (étape 2) */
+.cw-telfield{display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.97);border-radius:14px;padding:5px 8px 5px 6px;position:relative;
+  box-shadow:0 18px 44px -22px rgba(0,0,0,.75);transition:box-shadow .25s}
+.cw-cc{display:inline-flex;align-items:center;gap:5px;border:0;background:transparent;cursor:pointer;font-family:inherit;padding:8px 7px;border-radius:9px;color:#15132e}
+.cw-cc:hover{background:rgba(20,16,50,.05)}
+.cw-ccflag{font-size:16px;line-height:1}
+.cw-ccdial{font-size:14px;font-weight:600;color:#15132e}
+.cw-cccar{width:11px;height:11px;opacity:.5}
+.cw-ccpop{position:absolute;top:calc(100% + 6px);left:0;z-index:70;background:#fff;border:1px solid rgba(20,16,50,.10);border-radius:12px;box-shadow:0 18px 44px -14px rgba(0,0,0,.45);padding:5px;min-width:212px;max-height:236px;overflow:auto}
+.cw-ccpop button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:transparent;font-family:inherit;font-size:13px;color:#2a2740;padding:8px 10px;border-radius:8px;cursor:pointer}
+.cw-ccpop button:hover{background:#F4F0FA}
+.cw-ccpop button em{margin-left:auto;font-style:normal;color:#9a96ad;font-weight:600}
+
+/* ===== Builder (étape 3) — phrase façon Rainbow ===== */
+.cw-builder{position:relative;background:linear-gradient(180deg,#fff,#FBF7EF);color:#1a1730;border:1px solid rgba(20,16,50,.06);border-radius:18px;
+  padding:16px 16px 14px;box-shadow:0 26px 60px -30px rgba(0,0,0,.7)}
+.cw-learn2{font-size:11.5px;font-weight:600;color:#6b6880;display:flex;align-items:flex-start;gap:7px;margin-bottom:12px;line-height:1.45}
+.cw-learn2 b{color:#15132e}
+.cw-learn2 .cw-dot{background:#bcc6ff;box-shadow:0 0 0 0 rgba(188,198,255,.6);animation:cwpulse 1.2s ease-out infinite;flex:0 0 9px;margin-top:2px}
+.cw-phrase{font-size:17px;line-height:1.95;font-weight:400;color:#2a2740;letter-spacing:-.01em}
+.cw-phrase .kw{color:#9a96ad}
+.cw-line{line-height:1.9;margin:3px 0}
+.cw-line.cw-sub{padding-left:2px}
+.cw-branch{color:#c4c0d4;margin-right:5px;font-weight:600}
+.bchip{display:inline-flex;align-items:center;gap:6px;padding:3px 8px 4px;border-radius:9px;font-size:13px;font-weight:600;line-height:1.4;
+  vertical-align:.12em;margin:0 1px;white-space:nowrap;animation:chipIn .25s ease both;cursor:pointer;border:0;font-family:inherit}
+.bchip svg{width:12px;height:12px}
+@keyframes chipIn{from{opacity:0;transform:scale(.92) translateY(-2px)}to{opacity:1;transform:none}}
+.bc-call{background:#F5F0FF;color:#6D28D9}
+.bc-sms{background:rgba(59,130,246,.12);color:#1E40AF}
+.bc-wa{background:rgba(37,211,102,.14);color:#047857}
+.bc-mail{background:rgba(107,114,128,.13);color:#374151}
+.bchip.bc-cond{background:rgba(109,40,217,.09);color:#6D28D9;font-size:12.5px}
+.bchip.bc-time{background:#FFF4E0;color:#92400E;font-size:12.5px}
+.bchip.bc-cond:hover,.bchip.bc-time:hover{box-shadow:0 4px 12px rgba(0,0,0,.07)}
+.bchip .bcaret{width:9px;height:9px;opacity:.5;margin-left:1px;flex-shrink:0}
+.cw-add{display:inline-flex;align-items:center;gap:4px;padding:3px 10px 4px;border-radius:9px;font-size:12.5px;font-weight:600;cursor:pointer;
+  border:1px dashed rgba(20,16,50,.25);background:transparent;color:#6b6880;font-family:inherit;vertical-align:.12em;margin-left:3px}
+.cw-add:hover{border-color:#9b5cf6;color:#6D28D9}
+.cw-rm{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:7px;border:0;cursor:pointer;background:rgba(20,16,50,.06);color:#9a96ad;margin-left:6px;vertical-align:.08em;transition:background .2s,color .2s;font-family:inherit}
+.cw-rm:hover{background:#fdeef0;color:#b4244b}
+.cw-rm svg{width:11px;height:11px}
+.cw-mail{margin-top:12px}
+.cw-mail .cw-bfield{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid rgba(20,16,50,.12);border-radius:12px;padding:3px 8px 3px 12px}
+.cw-mail .cw-ico svg{width:16px;height:16px;opacity:.55;color:#15132e}
+.cw-mail .cw-input{font-size:14px;color:#15132e}
+.cw-blaunch{margin-top:12px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 18px;border:0;border-radius:13px;
+  cursor:pointer;font-family:inherit;font-size:15px;font-weight:700;color:#fff;background:var(--grad);box-shadow:0 16px 38px -16px rgba(155,92,246,.7);transition:transform .25s,box-shadow .25s}
+.cw-blaunch:hover{transform:translateY(-2px);box-shadow:0 24px 50px -18px rgba(155,92,246,.85)}
+.cw-blaunch svg{width:18px;height:18px}
+.cw-blaunch .cw-dot{background:#fff;box-shadow:0 0 0 0 rgba(255,255,255,.6)}
+.cw-bnote{margin-top:10px;font-size:11.5px;color:#8a86a0;text-align:center;line-height:1.45}
+/* dropdown de configuration des nœuds */
+.cw-pop{position:absolute;z-index:60;background:#fff;border:1px solid rgba(20,16,50,.10);border-radius:12px;box-shadow:0 18px 44px -14px rgba(0,0,0,.45);padding:5px;min-width:172px;max-width:232px;animation:chipIn .16s ease both}
+.cw-pop button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;border:0;background:transparent;font-family:inherit;font-size:13px;color:#2a2740;padding:9px 10px;border-radius:8px;cursor:pointer;line-height:1.2}
+.cw-pop button:hover{background:#F4F0FA}
+.cw-pop button.sel{font-weight:700;color:#6D28D9}
+.cw-pop button .pg{width:14px;height:14px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 14px;color:#8a86a0}
+.cw-pop button .pg svg{width:14px;height:14px}
+.cw-pop .cw-pop-rm{color:#b4244b}
+.cw-pop .cw-pop-rm:hover{background:#fdeef0}
+.cw-pop-sep{height:1px;background:rgba(20,16,50,.08);margin:4px 4px}
+.hero-wedge-wrap{max-width:420px;width:100%;margin:36px auto 0;text-align:left}
+.hero-wedge-wrap .call-wedge{max-width:100%;margin:0}
+</style>
+</head>
 <body>
 
 <canvas id="scene"></canvas>
@@ -265,6 +360,71 @@ section{position:relative;z-index:2}
       <a class="btn-primary" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_blank" rel="noopener">Demander une démo</a>
       <a class="btn-ghost" href="#">Commencer gratuitement</a>
     </div>
+    <div class="hero-wedge-wrap"><div class="call-wedge" id="callWedge">
+        <span class="cw-badge"><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Testez un agent Sairen, formé à votre métier</span>
+
+        <!-- ÉTAPE 1 — SITE -->
+        <div class="cw-step" data-step="1">
+          <div class="cw-field">
+            <span class="cw-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18" stroke="currentColor" stroke-width="1.5"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18" stroke="currentColor" stroke-width="1.5"/></svg></span>
+            <input id="cwSite" class="cw-input" type="url" inputmode="url" placeholder="Votre site internet" autocomplete="url">
+          </div>
+          <button id="cwGo1" class="cw-btn" type="button"><span>Continuer</span><svg class="cw-arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="cw-note">L'agent lit votre site pour parler déjà votre métier.</div>
+        </div>
+
+        <!-- ÉTAPE 1bis — ANALYSE -->
+        <div class="cw-step" data-step="analyze" hidden>
+          <div class="cw-analyze"><span class="cw-dot"></span><span id="cwAnalyzeTxt">On étudie votre site…</span></div>
+          <button id="cwGo1b" class="cw-btn" type="button" hidden><span>Continuer</span><svg class="cw-arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+
+        <!-- ÉTAPE 2 — NUMÉRO -->
+        <div class="cw-step" data-step="2" hidden>
+          <div class="cw-learn"><span class="cw-dot ok"></span><span id="cwLearn2"></span></div>
+          <div class="cw-telfield" id="cwTelField">
+            <button type="button" class="cw-cc" id="cwCC" aria-label="Indicatif pays"><span class="cw-ccflag">🇫🇷</span><span class="cw-ccdial">+33</span><svg class="cw-cccar" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="cw-ccpop" id="cwCCPop" hidden>
+              <button type="button" data-flag="🇫🇷" data-dial="+33">🇫🇷 France <em>+33</em></button>
+              <button type="button" data-flag="🇧🇪" data-dial="+32">🇧🇪 Belgique <em>+32</em></button>
+              <button type="button" data-flag="🇨🇭" data-dial="+41">🇨🇭 Suisse <em>+41</em></button>
+              <button type="button" data-flag="🇱🇺" data-dial="+352">🇱🇺 Luxembourg <em>+352</em></button>
+              <button type="button" data-flag="🇬🇧" data-dial="+44">🇬🇧 Royaume-Uni <em>+44</em></button>
+              <button type="button" data-flag="🇪🇸" data-dial="+34">🇪🇸 Espagne <em>+34</em></button>
+              <button type="button" data-flag="🇩🇪" data-dial="+49">🇩🇪 Allemagne <em>+49</em></button>
+              <button type="button" data-flag="🇮🇹" data-dial="+39">🇮🇹 Italie <em>+39</em></button>
+              <button type="button" data-flag="🇵🇹" data-dial="+351">🇵🇹 Portugal <em>+351</em></button>
+              <button type="button" data-flag="🇳🇱" data-dial="+31">🇳🇱 Pays-Bas <em>+31</em></button>
+              <button type="button" data-flag="🇺🇸" data-dial="+1">🇺🇸 États-Unis <em>+1</em></button>
+              <button type="button" data-flag="🇲🇦" data-dial="+212">🇲🇦 Maroc <em>+212</em></button>
+            </div>
+            <input id="cwTel" class="cw-input" type="tel" inputmode="tel" placeholder="Votre numéro de téléphone" autocomplete="tel">
+          </div>
+          <button id="cwGo2" class="cw-btn" type="button"><span>Continuer</span><svg class="cw-arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="cw-note">On l'utilisera pour lancer votre séquence de démonstration.</div>
+        </div>
+
+        <!-- ÉTAPE 3 — WORKFLOW -->
+        <div class="cw-step" data-step="3" hidden>
+          <div class="cw-builder">
+            <div class="cw-learn2"><span class="cw-dot"></span><span id="cwLearn3"></span></div>
+            <div class="cw-phrase" id="cwPhrase"></div>
+            <div class="cw-mail" id="cwMailWrap" hidden>
+              <div class="cw-bfield">
+                <span class="cw-ico"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.6"/></svg></span>
+                <input id="cwMail" class="cw-input" type="email" inputmode="email" placeholder="Votre e-mail (requis pour le canal e-mail)" autocomplete="email">
+              </div>
+            </div>
+            <button id="cwLaunch" class="cw-blaunch" type="button">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M7 5v14l11-7L7 5Z" fill="#fff"/></svg>
+              <span>Lancer ma séquence</span>
+            </button>
+            <div class="cw-bnote" id="cwNote">Gratuit · sans engagement · vous composez, l'agent exécute</div>
+          </div>
+        </div>
+
+        <div class="cw-sec"><a href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_blank" rel="noopener">ou réservez une démo ↗</a></div>
+      </div></div>
   </section>
 
   <!-- PREUVE SOCIALE (remontée, en sombre pour contraste sur l'eau claire) -->
@@ -812,5 +972,170 @@ window.__TPL={plat:"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImZyIj4KPGhlYWQ+CjxtZXRh
 .btn-ghost:hover::after{left:135%}
 .btn-ghost:active{transform:translateY(-1px) scale(.99)!important}
 </style>
+<script>
+/* ============================================================
+   WEDGE Sairen — composant isolé & réutilisable
+   3 étapes : site -> numéro -> workflow.  Front-end only.
+   Les traitements sont simulés ; hooks backend marqués // TODO.
+   ============================================================ */
+(function(){
+  var wedge=document.getElementById('callWedge'); if(!wedge) return;
+  var $=function(id){return document.getElementById(id);};
+  var steps={'1':wedge.querySelector('[data-step="1"]'),'analyze':wedge.querySelector('[data-step="analyze"]'),'2':wedge.querySelector('[data-step="2"]'),'3':wedge.querySelector('[data-step="3"]')};
+  function show(name){for(var k in steps){if(steps[k])steps[k].hidden=(k!==name);}}
+  var DOMAIN='';
+
+  function shakeField(el){
+    var f=(el.closest&&(el.closest('.cw-field')||el.closest('.cw-telfield')||el.closest('.cw-bfield')))||el;
+    f.style.boxShadow='0 0 0 2px #ff6f8b';
+    setTimeout(function(){f.style.boxShadow='';},1100);
+    if(el.focus)el.focus();
+  }
+  function domain(v){v=(v||'').trim().replace(/^https?:\/\//i,'').replace(/^www\./i,'').split('/')[0];return v;}
+
+  /* ---------- ÉTAPE 1 : SITE ---------- */
+  var site=$('cwSite');
+  function submitSite(){
+    var v=(site.value||'').trim();
+    if(v.length<3||v.indexOf('.')===-1){shakeField(site);return;}
+    DOMAIN=domain(v);
+    show('analyze');
+    var t=$('cwAnalyzeTxt'); t.textContent='On étudie '+DOMAIN+'…';
+    var dot=steps.analyze.querySelector('.cw-dot'); if(dot)dot.classList.remove('ok');
+    $('cwGo1b').hidden=true;
+    /* // TODO backend : scraper le site {DOMAIN} -> générer le prompt/persona de l'agent */
+    setTimeout(function(){
+      t.innerHTML='✓ Démo prête pour <b>'+DOMAIN+'</b> — votre agent connaît déjà votre activité.';
+      if(dot)dot.classList.add('ok');
+      $('cwGo1b').hidden=false;
+    },1300);
+  }
+  $('cwGo1').addEventListener('click',submitSite);
+  site.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();submitSite();}});
+  $('cwGo1b').addEventListener('click',function(){
+    $('cwLearn2').innerHTML='✓ Démo prête pour <b>'+DOMAIN+'</b> — dernière étape : votre numéro.';
+    show('2'); setTimeout(function(){$('cwTel').focus();},30);
+  });
+
+  /* ---------- ÉTAPE 2 : NUMÉRO (+ indicatif) ---------- */
+  var tel=$('cwTel');
+  var cc=$('cwCC'), ccpop=$('cwCCPop');
+  if(cc&&ccpop){
+    cc.addEventListener('click',function(e){e.stopPropagation();ccpop.hidden=!ccpop.hidden;});
+    ccpop.addEventListener('click',function(e){
+      var b=e.target.closest('button[data-dial]'); if(!b)return; e.stopPropagation();
+      cc.querySelector('.cw-ccflag').textContent=b.getAttribute('data-flag');
+      cc.querySelector('.cw-ccdial').textContent=b.getAttribute('data-dial');
+      ccpop.hidden=true; tel.focus();
+    });
+    document.addEventListener('click',function(e){if(ccpop.hidden)return;if(e.target.closest('#cwCCPop')||e.target.closest('#cwCC'))return;ccpop.hidden=true;});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')ccpop.hidden=true;});
+  }
+  function submitTel(){
+    if((tel.value||'').replace(/\D/g,'').length<6){shakeField(tel);return;}
+    $('cwLearn3').innerHTML='✓ <b>'+DOMAIN+'</b> · composez votre séquence — touchez chaque élément pour le régler :';
+    show('3'); render();
+  }
+  $('cwGo2').addEventListener('click',submitTel);
+  tel.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();submitTel();}});
+
+  /* ---------- ÉTAPE 3 : WORKFLOW (builder phrase) ---------- */
+  var phrase=$('cwPhrase'), builder=wedge.querySelector('.cw-builder');
+  var CH={
+    call:{label:'Appel',cls:'bc-call',svg:'<svg viewBox="0 0 24 24" fill="none"><path d="M6.5 3.5 9 4l1 4-2 1.5a12 12 0 0 0 6.5 6.5L16 14l4 1 .5 2.5a2 2 0 0 1-2 2.3A16 16 0 0 1 4.2 5.5a2 2 0 0 1 2.3-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>'},
+    sms:{label:'SMS',cls:'bc-sms',svg:'<svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v11H8l-4 3V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>'},
+    wa:{label:'WhatsApp',cls:'bc-wa',svg:'<svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>'},
+    mail:{label:'E-mail',cls:'bc-mail',svg:'<svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.6"/></svg>'}
+  };
+  var CANON=['call','sms','wa','mail'];
+  var CONDS=[{k:'noreply',l:'si pas de réponse'},{k:'reply',l:'si je réponds'},{k:'always',l:'dans tous les cas'}];
+  var DELAYS=[{k:'now',l:'tout de suite'},{k:'5min',l:'après 5 min'},{k:'1h',l:'après 1 h'},{k:'next',l:'le lendemain'},{k:'2d',l:'sous 2 jours'}];
+  var STEPS=[{ch:'call'}];
+  var caret='<svg class="bcaret" viewBox="0 0 24 24" fill="none"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var condG='<svg viewBox="0 0 24 24" fill="none"><path d="M6 4v6a4 4 0 0 0 4 4h8M14 10l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var timeG='<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.7"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  function lab(arr,k){for(var i=0;i<arr.length;i++)if(arr[i].k===k)return arr[i].l;return arr[0].l;}
+
+  var pop=document.createElement('div'); pop.className='cw-pop'; pop.id='cwPop'; pop.hidden=true; if(builder)builder.appendChild(pop);
+  var popCtx=null;
+
+  function render(){
+    var html='';
+    STEPS.forEach(function(st,i){
+      var c=CH[st.ch];
+      var chip='<button type="button" class="bchip '+c.cls+'" data-type="ch" data-i="'+i+'">'+c.svg+c.label+caret+'</button>';
+      if(i===0){
+        html+='<div class="cw-line"><span class="kw">Contactez-moi par </span>'+chip+'</div>';
+      }else{
+        if(st.cond==null)st.cond='noreply'; if(st.delay==null)st.delay='5min';
+        html+='<div class="cw-line cw-sub"><span class="cw-branch">&#8627;</span>'
+          +'<button type="button" class="bchip bc-cond" data-type="cond" data-i="'+i+'">'+condG+lab(CONDS,st.cond)+caret+'</button> '
+          +'<button type="button" class="bchip bc-time" data-type="delay" data-i="'+i+'">'+timeG+lab(DELAYS,st.delay)+caret+'</button> '
+          +'<span class="kw">par </span>'+chip
+          +'<button class="cw-rm" type="button" data-rm="'+i+'" aria-label="Supprimer cette action"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></button></div>';
+      }
+    });
+    if(STEPS.length<CANON.length) html+='<div class="cw-line cw-sub"><button class="cw-add" id="cwAdd" type="button">+ ajouter une action</button></div>';
+    phrase.innerHTML=html;
+    $('cwMailWrap').hidden=!STEPS.some(function(s){return s.ch==='mail';});
+  }
+  function addCh(){
+    var used=STEPS.map(function(s){return s.ch;});
+    for(var i=0;i<CANON.length;i++){if(used.indexOf(CANON[i])<0){STEPS.push({ch:CANON[i],cond:'noreply',delay:'5min'});break;}}
+  }
+  function closePop(){pop.hidden=true;pop.innerHTML='';popCtx=null;}
+  function openPop(type,i,anchor){
+    popCtx={i:i,prop:(type==='ch'?'ch':type)};
+    var html='';
+    if(type==='ch'){
+      CANON.forEach(function(k){html+='<button type="button" data-k="'+k+'"'+(STEPS[i].ch===k?' class="sel"':'')+'><span class="pg">'+CH[k].svg+'</span>'+CH[k].label+'</button>';});
+      if(STEPS.length>1)html+='<div class="cw-pop-sep"></div><button type="button" data-k="__rm" class="cw-pop-rm">Retirer ce canal</button>';
+    }else if(type==='cond'){
+      CONDS.forEach(function(o){html+='<button type="button" data-k="'+o.k+'"'+(STEPS[i].cond===o.k?' class="sel"':'')+'>'+o.l+'</button>';});
+    }else{
+      DELAYS.forEach(function(o){html+='<button type="button" data-k="'+o.k+'"'+(STEPS[i].delay===o.k?' class="sel"':'')+'>'+o.l+'</button>';});
+    }
+    pop.innerHTML=html; pop.hidden=false;
+    var br=builder.getBoundingClientRect(), ar=anchor.getBoundingClientRect();
+    pop.style.top=(ar.bottom-br.top+6)+'px';
+    var pw=pop.offsetWidth, left=ar.left-br.left, maxL=builder.clientWidth-pw-8;
+    if(left>maxL)left=maxL; if(left<0)left=0; pop.style.left=left+'px';
+  }
+  pop.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-k]'); if(!b||!popCtx)return; e.stopPropagation();
+    var k=b.getAttribute('data-k');
+    if(k==='__rm'){if(STEPS.length>1)STEPS.splice(popCtx.i,1);}
+    else{STEPS[popCtx.i][popCtx.prop]=k;}
+    closePop(); render();
+  });
+  phrase.addEventListener('click',function(e){
+    var rmb=e.target.closest('[data-rm]'); if(rmb){e.stopPropagation();var ri=+rmb.getAttribute('data-rm');if(STEPS.length>1)STEPS.splice(ri,1);closePop();render();return;}
+    if(e.target.closest('#cwAdd')){e.stopPropagation();addCh();closePop();render();return;}
+    var chip=e.target.closest('[data-type]'); if(chip){e.stopPropagation();openPop(chip.getAttribute('data-type'),+chip.getAttribute('data-i'),chip);}
+  });
+  document.addEventListener('click',function(e){if(pop.hidden)return;if(e.target.closest('#cwPop'))return;closePop();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closePop();});
+
+  /* ---------- Lancer ma séquence ---------- */
+  $('cwLaunch').addEventListener('click',function(){
+    if(STEPS.length===0){shakeField(phrase);return;}
+    if((tel.value||'').replace(/\D/g,'').length<6){show('2');shakeField(tel);return;} /* numéro saisi à l'étape 2 */
+    var hasMail=STEPS.some(function(s){return s.ch==='mail';});
+    if(hasMail){
+      var mail=$('cwMail'), ev=(mail.value||'').trim();
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(ev)){shakeField(mail);return;}
+    }
+    closePop();
+    var btn=$('cwLaunch'); btn.style.pointerEvents='none';
+    btn.innerHTML='<span class="cw-dot"></span><span>Séquence lancée…</span>';
+    var labels=STEPS.map(function(s){return CH[s.ch].label;});
+    $('cwNote').textContent="C'est parti : "+labels.join(' → ')+'. Vos règles de relance sont actives.';
+    /* // TODO backend : déclencher la séquence réelle
+       // - Appel : Retell / LiveKit
+       // - SMS / WhatsApp / e-mail : providers respectifs
+       // payload = { domain:DOMAIN, dial:cc.querySelector('.cw-ccdial').textContent, tel:tel.value, email:$('cwMail').value, steps:STEPS } */
+  });
+})();
+</script>
 </body>
 </html>
