@@ -326,6 +326,64 @@ section{position:relative;z-index:2}
 .hero-wedge-wrap{max-width:420px;width:100%;margin:36px auto 0;text-align:left}
 .hero-wedge-wrap .call-wedge{max-width:100%;margin:0}
 </style>
+<style id="home-sections-css">
+.hsec{position:relative;z-index:2;padding:84px clamp(20px,5vw,40px)}
+.hsec .wrap{max-width:1120px;margin:0 auto}
+.hsec .center{text-align:center}
+.hsec .lead{font-size:17px;line-height:1.6;color:rgba(255,255,255,.82)}
+.hsec .btn-primary{cursor:pointer}
+/* ---- 4 étapes ---- */
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:42px}
+.step-card{position:relative;background:rgba(10,9,30,.46);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:24px;
+  backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);text-align:left}
+.step-n{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--grad);font-weight:800;font-size:16px;color:#fff;margin-bottom:16px}
+.step-card h3{font-size:16.5px;font-weight:700;margin:0 0 6px}
+.step-card p{font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.7);margin:0}
+.steps-go{display:flex;justify-content:center;margin-top:30px}
+.video-wrap{position:relative;margin:38px auto 0;max-width:860px;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.14);
+  background:rgba(10,9,30,.55);aspect-ratio:16/9;display:grid;place-items:center;cursor:pointer}
+.video-wrap::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 45%,rgba(155,92,246,.20),transparent 70%);pointer-events:none}
+.video-play{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:14px}
+.video-play .pbtn{width:74px;height:74px;border-radius:50%;background:var(--grad);display:grid;place-items:center;box-shadow:0 20px 50px -16px rgba(155,92,246,.85);transition:transform .25s}
+.video-wrap:hover .pbtn{transform:scale(1.07)}
+.video-play .pbtn svg{width:28px;height:28px;margin-left:3px}
+.video-play span{font-size:13px;color:rgba(255,255,255,.72)}
+/* ---- main dans la main ---- */
+.together-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:36px;align-items:center;margin-top:30px}
+.together-grid .lead b{color:#fff}
+.tg-panel{background:rgba(10,9,30,.46);border:1px solid rgba(255,255,255,.14);border-radius:24px;padding:22px;backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%)}
+.tg-tabs{display:flex;gap:8px;margin-bottom:14px}
+.tg-tab{font-size:12px;font-weight:700;padding:7px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.16);color:rgba(255,255,255,.85)}
+.tg-tab.ocean{background:rgba(55,172,255,.18);border-color:rgba(55,172,255,.4)}
+.tg-tab.desk{background:rgba(249,85,13,.16);border-color:rgba(249,133,77,.4)}
+.tg-row{display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);margin-bottom:10px}
+.tg-av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:13px;color:#fff;flex:none}
+.tg-av.h{background:linear-gradient(135deg,#37ACFF,#1C8FE6)}
+.tg-av.ai{background:var(--grad)}
+.tg-row b{font-size:13.5px;display:block}
+.tg-row small{font-size:12px;color:rgba(255,255,255,.6)}
+.tg-tag{margin-left:auto;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
+.tg-tag.h{background:rgba(55,172,255,.18);color:#9fd4ff}
+.tg-tag.ai{background:rgba(155,92,246,.22);color:#d7c4ff}
+/* ---- témoignages ---- */
+.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:42px;text-align:left}
+.testi-card{background:rgba(10,9,30,.46);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:26px;backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%)}
+.testi-card .q{font-size:15.5px;line-height:1.62;color:rgba(255,255,255,.92)}
+.testi-who{display:flex;align-items:center;gap:13px;margin-top:20px}
+.testi-av{width:44px;height:44px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-weight:800;font-size:15px;color:#fff;flex:none}
+.testi-who b{display:block;font-size:14.5px}
+.testi-who small{color:rgba(255,255,255,.6);font-size:12.5px}
+/* ---- FAQ ---- */
+.faq-list{max-width:800px;margin:38px auto 0;text-align:left}
+.faq-item{border:1px solid rgba(255,255,255,.14);border-radius:16px;background:rgba(10,9,30,.4);margin-bottom:12px;overflow:hidden}
+.faq-item summary{list-style:none;cursor:pointer;padding:19px 22px;font-size:16px;font-weight:650;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item .fc{flex:none;font-size:20px;font-weight:400;color:#cdb6ff;transition:transform .25s;line-height:1}
+.faq-item[open] .fc{transform:rotate(45deg)}
+.faq-item p{padding:0 22px 20px;margin:0;color:rgba(255,255,255,.72);font-size:14.5px;line-height:1.62}
+@media(max-width:900px){.steps-grid{grid-template-columns:1fr 1fr}.testi-grid,.together-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.steps-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
@@ -456,6 +514,8 @@ section{position:relative;z-index:2}
       </div>
     </div>
   </section>
+<section class="hsec" id="howto"><div class="wrap center"><span class="eyebrow">Comment ça marche</span><h2 class="sec-title">Opérationnel en <em>4 étapes.</em></h2><p class="lead" style="max-width:600px;margin:0 auto">De la création du compte au premier workflow, vous êtes prêt en quelques minutes.</p><div class="steps-grid"><div class="step-card"><span class="step-n">1</span><h3>Créez votre compte</h3><p>Gratuitement, sans carte bancaire. Hébergé en France.</p></div><div class="step-card"><span class="step-n">2</span><h3>Connectez vos canaux</h3><p>WhatsApp, appels, e-mail, réseaux : tout converge.</p></div><div class="step-card"><span class="step-n">3</span><h3>Créez vos agents IA</h3><p>Des agents formés à votre métier, qui répondent 24/7.</p></div><div class="step-card"><span class="step-n">4</span><h3>Dessinez vos workflows</h3><p>Vos automatisations en une phrase, sans code.</p></div></div><div class="steps-go"><a class="btn-primary" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_blank" rel="noopener">GO — Commencer maintenant</a></div><!-- // TODO: remplacer ce bloc .video-wrap par l'embed de la vidéo explicative (YouTube/Vimeo/MP4) --><div class="video-wrap" id="howtoVideo" role="button" tabindex="0" aria-label="Lire la vidéo de présentation"><div class="video-play"><span class="pbtn"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="#fff"/></svg></span><span>Vidéo de présentation · à venir</span></div></div></div></section>
+<section class="hsec" id="together"><div class="wrap"><div class="together-grid"><div><span class="eyebrow">Humains + IA</span><h2 class="sec-title">Travaillez main dans la main <em>avec vos IA.</em></h2><p class="lead">Vos communications externes, gérées par l'IA <b>et</b> vos équipes — sur <b>Océan</b> et <b>Desk</b>. Tous vos collaborateurs et vos agents IA travaillent ensemble, sur la même conversation, sans rupture.</p><div class="cta-row" style="justify-content:flex-start;margin-top:24px"><a class="btn-primary" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_blank" rel="noopener">Demander une démo</a></div></div><div class="tg-panel"><div class="tg-tabs"><span class="tg-tab ocean">Océan · externe</span><span class="tg-tab desk">Desk · interne</span></div><div class="tg-row"><span class="tg-av ai">IA</span><span><b>Sofia · agent IA</b><small>répond au client en 1ʳᵉ ligne</small></span><span class="tg-tag ai">IA</span></div><div class="tg-row"><span class="tg-av h">MD</span><span><b>Marie · équipe</b><small>reprend la main sur le cas complexe</small></span><span class="tg-tag h">Humain</span></div><div class="tg-row"><span class="tg-av ai">IA</span><span><b>Milo · agent IA</b><small>relance et met à jour le CRM</small></span><span class="tg-tag ai">IA</span></div></div></div></div></section>
 
   <!-- IMPACT (compteurs animés) — remonté au-dessus du parcours -->
   <section id="stats">
@@ -575,7 +635,9 @@ section{position:relative;z-index:2}
   <!-- INTÉGRATIONS (HTML importé, section seule) -->
   <section class="embed"><iframe id="if-integ" data-tpl="tpl-integ" scrolling="no" title="Intégrations"></iframe></section>
 
-  <!-- FINAL -->
+  <section class="hsec" id="testi"><div class="wrap center"><span class="eyebrow">Témoignages</span><h2 class="sec-title">Ils transforment leur <em>parcours client.</em></h2><div class="testi-grid"><div class="testi-card"><p class="q">« Sairen a unifié toutes nos conversations clients — un vrai gain de temps pour les équipes. »</p><div class="testi-who"><span class="testi-av">JS</span><span><b>Jonathan Sitruk</b><small>Client Sairen</small></span></div></div><div class="testi-card"><p class="q">« Nos patients sont accompagnés à chaque étape, sans qu'aucune demande ne se perde. »</p><div class="testi-who"><span class="testi-av">AT</span><span><b>Alain Toledano</b><small>Client Sairen</small></span></div></div><div class="testi-card"><p class="q">« Les agents IA répondent 24/7 et nos équipes se concentrent sur l'essentiel. »</p><div class="testi-who"><span class="testi-av">TS</span><span><b>Tracy Sayag</b><small>Client Sairen</small></span></div></div><div class="testi-card"><p class="q">« Mise en place rapide et un impact immédiat sur notre réactivité. »</p><div class="testi-who"><span class="testi-av">VT</span><span><b>Victor Tiboul</b><small>Client Sairen</small></span></div></div></div><p class="lead" style="margin-top:24px;font-size:13.5px;color:rgba(255,255,255,.55)">… et bien d'autres.</p></div></section>
+<section class="hsec" id="faq"><div class="wrap center"><span class="eyebrow">FAQ</span><h2 class="sec-title">Questions <em>fréquentes.</em></h2><div class="faq-list"><details class="faq-item"><summary>Combien de temps pour démarrer ?<span class="fc">+</span></summary><p>Quelques minutes : vous créez votre compte, connectez vos canaux, et vos premiers agents IA sont prêts. Aucune installation.</p></details><details class="faq-item"><summary>Mes données sont-elles sécurisées ?<span class="fc">+</span></summary><p>Oui. Vos données sont hébergées en France et traitées dans le respect du RGPD. Chaque échange est historisé et chiffré.</p></details><details class="faq-item"><summary>Quels canaux puis-je connecter ?<span class="fc">+</span></summary><p>WhatsApp, appels, e-mail, réseaux sociaux et messages internes — tout converge dans une seule conversation.</p></details><details class="faq-item"><summary>L'IA remplace-t-elle mes équipes ?<span class="fc">+</span></summary><p>Non. L'IA et vos équipes travaillent main dans la main : l'IA gère le volume et la 1ʳᵉ ligne, vos collaborateurs reprennent la main quand c'est nécessaire.</p></details><details class="faq-item"><summary>Puis-je essayer gratuitement ?<span class="fc">+</span></summary><p>Oui, vous pouvez commencer gratuitement, sans carte bancaire. Vous pouvez aussi réserver une démo personnalisée.</p></details><details class="faq-item"><summary>Comment fonctionne la facturation ?<span class="fc">+</span></summary><p>Des offres adaptées à votre volume et à vos besoins. Retrouvez le détail sur la page Tarifs ou demandez une démo.</p></details></div></div></section>
+<!-- FINAL -->
   <footer id="final">
     <div class="wrap center">
       <span class="eyebrow">Prêt à plonger ?</span>
