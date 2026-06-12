@@ -246,9 +246,8 @@ section{position:relative;z-index:2}
 .cw-input{flex:1;min-width:0;border:0;background:transparent;outline:none;font-family:inherit;font-size:15px;color:#15132e;padding:11px 4px}
 .cw-input::placeholder{color:#8a86a0}
 .cw-btn{margin:14px auto 0;width:fit-content;min-width:200px;display:flex;align-items:center;justify-content:center;gap:9px;
-  padding:14px 26px;border:0;border-radius:999px;cursor:pointer;font-family:inherit;font-size:15px;font-weight:600;color:#fff;
-  background:var(--grad);box-shadow:0 14px 38px -10px rgba(155,92,246,.65);transition:transform .25s,box-shadow .25s}
-.cw-btn:hover{transform:translateY(-2px);box-shadow:0 26px 56px -18px rgba(155,92,246,.95)}
+  cursor:pointer;font-family:inherit;font-size:15px}
+
 .cw-btn .cw-arrow{width:16px;height:16px}
 .cw-note{margin-top:11px;font-size:12px;color:rgba(255,255,255,.74);display:flex;align-items:center;gap:7px}
 .cw-sec{margin-top:11px;font-size:13px}
@@ -425,14 +424,14 @@ section{position:relative;z-index:2}
             <span class="cw-ico"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M3 12h18" stroke="currentColor" stroke-width="1.5"/><path d="M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18" stroke="currentColor" stroke-width="1.5"/></svg></span>
             <input id="cwSite" class="cw-input" type="url" inputmode="url" placeholder="Votre site internet" autocomplete="url">
           </div>
-          <button id="cwGo1" class="cw-btn" type="button"><span>Continuer</span><svg class="cw-arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button id="cwGo1" class="cw-btn btn-primary" type="button"><span>Continuer</span><svg class="cw-arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <div class="cw-note">L'agent lit votre site pour parler déjà votre métier.</div>
         </div>
 
         <!-- ÉTAPE 1bis — ANALYSE -->
         <div class="cw-step" data-step="analyze" hidden>
           <div class="cw-analyze"><span class="cw-dot"></span><span id="cwAnalyzeTxt">On étudie votre site…</span></div>
-          <button id="cwGo1b" class="cw-btn" type="button" hidden><span>Continuer</span><svg class="cw-arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button id="cwGo1b" class="cw-btn btn-primary" type="button" hidden><span>Continuer</span><svg class="cw-arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
 
         <!-- ÉTAPE 2 — NUMÉRO -->
@@ -456,7 +455,7 @@ section{position:relative;z-index:2}
             </div>
             <input id="cwTel" class="cw-input" type="tel" inputmode="tel" placeholder="Votre numéro de téléphone" autocomplete="tel">
           </div>
-          <button id="cwGo2" class="cw-btn" type="button"><span>Continuer</span><svg class="cw-arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button id="cwGo2" class="cw-btn btn-primary" type="button"><span>Continuer</span><svg class="cw-arrow" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <div class="cw-note">On l'utilisera pour lancer votre séquence de démonstration.</div>
         </div>
 
