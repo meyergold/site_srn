@@ -6,44 +6,45 @@
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--g1:#FF7B5A;--g2:#FF5D8F;--g3:#B557EE;--g4:#5B6CFF;--grad:linear-gradient(100deg,#FF7B5A,#FF5D8F,#B557EE,#5B6CFF);--ink:#1a1730;--muted:#6b6880;--line:#ece9f3;--bg:#FAFAF7}
+:root{--g1:#FF7B5A;--g2:#FF5D8F;--g3:#B557EE;--g4:#5B6CFF;
+  --grad:linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,0) 52%),linear-gradient(120deg,#5B6CFF,#9B5CF6,#FF4FA8,#FF6F8B);
+  --ink:#1a1730;--muted:#6b6880;--line:#ece9f3;--bg:#FAFAF7}
 html,body{height:100%}
 body{font-family:'Comfortaa',-apple-system,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;font-size:14px;overflow:hidden}
 .app{height:100vh;display:flex;flex-direction:column}
-/* header */
-.hd{display:flex;align-items:center;gap:14px;padding:12px 22px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.hd .back{width:30px;height:30px;border-radius:9px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;color:var(--muted);cursor:pointer;flex:none}
-.hd .back svg{width:16px;height:16px}
+.hd{display:flex;align-items:center;gap:14px;padding:13px 22px;background:#fff;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.back{width:32px;height:32px;border-radius:10px;border:1px solid var(--line);background:#fff;display:inline-flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;flex:none}
+.back svg{width:16px;height:16px}
 .av{width:42px;height:42px;border-radius:50%;overflow:hidden;flex:none;box-shadow:0 2px 8px rgba(181,87,238,.25);border:2px solid #fff;outline:1px solid var(--line)}
 .av img{width:100%;height:100%;object-fit:cover;display:block}
 .who b{font-size:16px;font-weight:700;letter-spacing:-.01em}
-.who small{display:flex;align-items:center;gap:5px;color:#16a34a;font-size:11.5px;font-weight:600;margin-top:1px}
+.who small{display:inline-flex;align-items:center;gap:6px;color:#16a34a;font-size:11.5px;font-weight:600;margin-top:2px}
 .who small::before{content:"";width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.18)}
-.tabs{display:flex;gap:4px;margin:0 auto;flex-wrap:wrap}
-.tab{display:flex;align-items:center;gap:7px;padding:8px 13px;border-radius:10px;color:var(--muted);font-size:13.5px;font-weight:500;cursor:pointer;white-space:nowrap}
-.tab svg{width:16px;height:16px;opacity:.8}
+.tabs{display:flex;gap:2px;margin:0 auto;flex-wrap:wrap}
+.tab{position:relative;display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border-radius:10px;color:var(--muted);font-family:inherit;font-size:13.5px;font-weight:500;cursor:pointer;white-space:nowrap;background:none;border:0}
+.tab svg{width:16px;height:16px;flex:none}
 .tab.on{color:#7c3aed;font-weight:600}
-.tab.on .u{position:absolute}
-.tab.on{position:relative}
-.tab.on::after{content:"";position:absolute;left:13px;right:13px;bottom:-13px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--g3),var(--g4))}
-.tab.off{opacity:.45}
-.acts{display:flex;align-items:center;gap:9px;flex:none}
-.btn{display:inline-flex;align-items:center;gap:7px;padding:9px 15px;border-radius:11px;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink)}
-.btn svg{width:15px;height:15px}
-.btn.ghost{color:#5b4bd6}
-.btn.pink{color:#e0529c;background:#fff5fa;border-color:#ffe0ee}
-.btn.grad{background:var(--grad);color:#fff;border:0;box-shadow:0 8px 20px -8px rgba(181,87,238,.7)}
-.kebab{width:32px;height:32px;border-radius:9px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;color:var(--muted);cursor:pointer}
-/* body */
+.tab.on::after{content:"";position:absolute;left:13px;right:13px;bottom:-14px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--g3),var(--g4))}
+.tab.off{opacity:.42}
+.acts{display:inline-flex;align-items:center;gap:9px;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 16px;border-radius:13px;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;line-height:1;
+  background:#fff;color:#2a2466;border:1px solid rgba(155,92,246,.2);box-shadow:0 8px 22px -14px rgba(40,30,90,.4);transition:transform .2s,box-shadow .2s,border-color .2s}
+.btn:hover{transform:translateY(-2px);border-color:rgba(155,92,246,.5);box-shadow:0 16px 34px -16px rgba(123,76,246,.45)}
+.btn svg{width:15px;height:15px;flex:none}
+.btn.grad{color:#fff;border:0;background-image:var(--grad);background-size:100% 100%,220% 100%;background-position:0 0,0 50%;background-repeat:no-repeat;
+  box-shadow:0 14px 34px -12px rgba(123,76,246,.7),0 4px 12px -4px rgba(255,79,168,.45),inset 0 1px 0 rgba(255,255,255,.45);transition:transform .25s,box-shadow .25s,background-position .6s}
+.btn.grad:hover{transform:translateY(-2px);background-position:0 0,100% 50%;box-shadow:0 22px 50px -12px rgba(123,76,246,.92),0 8px 20px -6px rgba(255,79,168,.7),inset 0 1px 0 rgba(255,255,255,.5)}
+.kebab{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:#fff;display:inline-flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer}
+.kebab svg{width:16px;height:16px}
 .bd{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:26px clamp(18px,3vw,34px);overflow:auto}
 .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 1px 0 rgba(20,16,50,.03)}
 .card+.card{margin-top:18px}
-.ch{display:flex;align-items:flex-start;gap:13px;margin-bottom:20px}
-.ci{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;flex:none}
-.ci svg{width:21px;height:21px;color:#fff}
-.ci.purple{background:linear-gradient(135deg,#8b5cf6,#6d28d9)}
+.ch{display:flex;align-items:center;gap:13px;margin-bottom:20px}
+.ci{width:42px;height:42px;border-radius:13px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.ci svg{width:20px;height:20px;color:#fff}
+.ci.purple{background:linear-gradient(135deg,#9B5CF6,#6d28d9)}
 .ci.blue{background:linear-gradient(135deg,#3b82f6,#2563eb)}
-.ci.pink{background:linear-gradient(135deg,#ec4899,#db2777)}
+.ci.pink{background:linear-gradient(135deg,#FF5D8F,#db2777)}
 .ch b{display:block;font-size:16px;font-weight:700;letter-spacing:-.01em}
 .ch span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
 .field{margin-top:16px}
@@ -54,52 +55,52 @@ body{font-family:'Comfortaa',-apple-system,sans-serif;background:var(--bg);color
 .sel:hover{border-color:#d6cdf0}
 .sel.focus{border-color:#b9a6ee;box-shadow:0 0 0 4px rgba(155,92,246,.12)}
 .sel .lg{width:20px;height:20px;object-fit:contain;flex:none}
-.sel .cv{margin-left:auto;color:var(--muted)}
+.sel .cv{margin-left:auto;color:var(--muted);display:inline-flex}
 .sel .cv svg{width:16px;height:16px;display:block}
 .ta{width:100%;border:1.5px solid #e7e3f2;border-radius:12px;background:#fbfaff;padding:13px 14px;font-family:inherit;font-size:13.5px;color:var(--ink);resize:none;line-height:1.55}
 .ta::placeholder{color:#a7a3bd}
 .ta.sm{min-height:96px}
-.sp-card{border-color:#ffe0ee;background:linear-gradient(180deg,#fffafc,#fff)}
-.sp-ta{min-height:430px;border-color:#ffd9ea;background:#fffafc}
+.sp-card{border-color:#f0e2f4;background:linear-gradient(180deg,#fefaff,#fff)}
+.sp-ta{min-height:430px;border-color:#ecd9f1;background:#fefaff}
 @media(max-width:860px){.bd{grid-template-columns:1fr}.tabs{order:3;width:100%;justify-content:flex-start;margin:6px 0 0}}
 </style></head>
 <body><div class="app">
   <div class="hd">
     <button class="back" aria-label="Retour"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-    <div class="av"><img src="../img/img-009-6a18dada9ca1.webp" alt="Agent"></div>
-    <div class="who"><b>Assistant RDV</b><small>Actif</small></div>
+    <span class="av"><img src="../img/img-009-6a18dada9ca1.webp" alt="Agent"></span>
+    <div class="who"><b>Assistant RDV</b><br><small>Actif</small></div>
     <div class="tabs">
-      <div class="tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3a3 3 0 0 0-3 3 3 3 0 0 0-1.5 5.6A3 3 0 0 0 6.5 17 3 3 0 0 0 12 18.5V4.5A2.5 2.5 0 0 0 9.5 3z"/><path d="M14.5 3a3 3 0 0 1 3 3 3 3 0 0 1 1.5 5.6A3 3 0 0 1 17.5 17 3 3 0 0 1 12 18.5"/></svg>Modèle</div>
-      <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>Voix</div>
-      <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>Transcripteur</div>
-      <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6a3.5 3.5 0 0 1 4.6 4.6l-8 8L6 20l1.4-4.6 8-8A3.5 3.5 0 0 1 14 6z"/></svg>Outils</div>
-      <div class="tab off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Analyse</div>
-      <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>Planning</div>
-      <div class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 6.6 19l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3 13.4H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 6.6l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 10 4.6V4a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>Avancé</div>
+      <button class="tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="3"/><rect x="9.5" y="9.5" width="5" height="5" rx="1.2"/><path d="M9 2.5v2.5M15 2.5v2.5M9 19v2.5M15 19v2.5M2.5 9H5M2.5 15H5M19 9h2.5M19 15h2.5"/></svg>Modèle</button>
+      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg>Voix</button>
+      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h4"/></svg>Transcripteur</button>
+      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5a3.5 3.5 0 0 1 4 4l-8.2 8.2L6 19l1.3-4.3z"/><path d="M13 7l4 4"/></svg>Outils</button>
+      <button class="tab off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11M9.3 20V5M14.6 20v-7M20 20H3.5"/></svg>Analyse</button>
+      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>Planning</button>
+      <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M21.5 12h-3M5.5 12h-3M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1M18.7 18.7l-2.1-2.1M7.4 7.4 5.3 5.3"/></svg>Avancé</button>
     </div>
     <div class="acts">
       <button class="btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Tester</button>
-      <button class="btn pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M6 8.5v3a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3v-3M12 14.5v1"/></svg>Visualiser</button>
-      <button class="btn grad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v5h7M8 14h8v6H8z"/></svg>Enregistrer</button>
-      <button class="kebab"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg></button>
+      <button class="btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M6.3 8.3 11 15.4M17.7 8.3 13 15.4"/></svg>Visualiser</button>
+      <button class="btn grad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3.5 3.5V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/><path d="M8 4v5h7M8 13.5h8V21H8z"/></svg>Enregistrer</button>
+      <button class="kebab" aria-label="Plus"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="5" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="12" cy="19" r="1.7"/></svg></button>
     </div>
   </div>
   <div class="bd">
     <div class="col">
       <div class="card">
-        <div class="ch"><span class="ci purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3a3 3 0 0 0-3 3 3 3 0 0 0-1.5 5.6A3 3 0 0 0 6.5 17 3 3 0 0 0 12 18.5V4.5A2.5 2.5 0 0 0 9.5 3z"/><path d="M14.5 3a3 3 0 0 1 3 3 3 3 0 0 1 1.5 5.6A3 3 0 0 1 17.5 17 3 3 0 0 1 12 18.5"/></svg></span><div><b>Configuration du modèle</b><span>Sélectionnez le fournisseur et le modèle IA</span></div></div>
+        <div class="ch"><span class="ci purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="3"/><rect x="9.5" y="9.5" width="5" height="5" rx="1.2"/><path d="M9 2.5v2.5M15 2.5v2.5M9 19v2.5M15 19v2.5M2.5 9H5M2.5 15H5M19 9h2.5M19 15h2.5"/></svg></span><div><b>Configuration du modèle</b><span>Sélectionnez le fournisseur et le modèle IA</span></div></div>
         <div class="field"><label class="lab">Provider <i>*</i></label><div class="sel focus"><img class="lg" src="data:image/png;base64,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AMgJEAAgJ0AAgJwAAQByAgQAyAkQACAnQACAnAABAHICBADICRAAICdAAICcAAEAcgIEAMgJEAAgJ0AAgJwAAQByAgQAyAkQACAnQACAnAABAHICBADICRAAICdAAICcAAEAcgIEAMgJEAAgJ0AAgJwAAQByAgQAyAkQACAnQACAnAABAHICBADICRAAICdAAICcAAEAcgIEAMgJEAAgJ0AAgNzuGGOMw8PJM1Zmb2/2gvVya8fj1u6Me6Pi1o5nb29sDi5eXN769XOzp6zO8sJvx3L1tdkzVmXz0KNj89gTs2esynJ4NM49+djYue+Ts6esytHrb4xrf3hxbPZ2Zk9ZleXF82P5+8uzZ6zKZv8zY/P4U7NnrM7Z731/bG48f365/A0fCnC3+vSfL46Tjzyymb1jTd575ZXln1/6wuwZwH/xwO/P+w4IANATIABAToAAADkBAgDkBAgAkBMgAEBOgAAAOQECAOQECACQEyAAQE6AAAA5AQIA5AQIAJATIABAToAAADkBAgDkBAgAkBMgAEBOgAAAOQECAOQECACQEyAAQE6AAAA5AQIA5AQIAJATIABAToAAADkBAgDkBAgAkBMgAEBOgAAAOQECAOQECACQEyAAQE6AAAA5AQIA5AQIAJATIABAToAAADkBAgDkBAgAkBMgAEBOgAAAOQECAOQECACQEyAAQE6AAAA5AQIA5AQIAJATIABAToAAADkBAgDkBAgAkBMgAEBOgAAAOQECAOQECACQEyAAQE6AAAA5AQIA5AQIAJATIABAToAAADkBAgDkBAgAkBMgAEBOgAAAOQECAOQECACQEyAAQE6AAAA5AQIA5AQIAJATIABAToAAALndnf39cfrb35m9A/gAy7Vr48TZs7NnrM6Js2fHx554cmzOnZs9BfgAO/v74z9TZL7MjB060gAAAABJRU5ErkJggg==" alt="Mistral"><span>Mistral AI</span><span class="cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div></div>
         <div class="field"><label class="lab">Model <i>*</i></label><div class="sel"><span style="font-family:'Geist Mono',monospace;font-size:13px">mistral-large</span><span class="cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div></div>
       </div>
       <div class="card">
-        <div class="ch"><span class="ci blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><div><b>Premier message</b><span>Comportement initial de l'agent</span></div></div>
+        <div class="ch"><span class="ci blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg></span><div><b>Premier message</b><span>Comportement initial de l'agent</span></div></div>
         <div class="field"><label class="lab">Mode</label><div class="sel"><span>L'assistant parle en premier</span><span class="cv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div></div>
         <div class="field"><label class="lab">Message</label><textarea class="ta sm" placeholder="Bonjour, je suis votre assistant..."></textarea></div>
       </div>
     </div>
     <div class="col">
       <div class="card sp-card">
-        <div class="ch"><span class="ci pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></span><div style="flex:1"><b>System Prompt</b><span>Instructions pour l'IA</span></div><button class="btn grad" style="padding:8px 13px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/><path d="M19 14l.7 1.8L21.5 16l-1.8.7L19 18l-.7-1.3L16.5 16l1.8-.2z"/></svg>Générer</button></div>
+        <div class="ch"><span class="ci pink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h4"/></svg></span><div style="flex:1"><b>System Prompt</b><span>Instructions pour l'IA</span></div><button class="btn grad" style="padding:9px 14px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.7 4.1L18 8.8l-4.3 1.7L12 15l-1.7-4.5L6 8.8l4.3-1.7z"/><path d="M18.5 13.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg>Générer</button></div>
         <textarea class="ta sp-ta" placeholder="Vous êtes un assistant IA serviable et professionnel..."></textarea>
       </div>
     </div>
