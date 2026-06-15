@@ -56,7 +56,8 @@ section{position:relative;z-index:2}
   padding:80px clamp(20px,5vw,40px) 60px}
 #hero::before{content:"";position:absolute;left:50%;top:46%;width:min(900px,90vw);height:560px;transform:translate(-50%,-50%);
   background:radial-gradient(closest-side,rgba(10,8,32,.45),transparent 72%);z-index:-1;filter:blur(8px)}
-#hero h1{font-size:clamp(40px,7vw,84px);font-weight:800;line-height:1.02;letter-spacing:-.035em;
+#hero h1{font-size:clamp(28px,6.2vw,80px);font-weight:800;line-height:1.06;letter-spacing:-.028em;
+  max-width:min(900px,94vw);margin-inline:auto;overflow-wrap:break-word;
   text-shadow:0 4px 40px rgba(0,0,0,.35)}
 #hero h1 .g{background:linear-gradient(115deg,#ffe7ee,#f6c9e6,#cdb6ff,#bcc6ff);-webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 2px 18px rgba(0,0,0,.25))}
@@ -104,7 +105,7 @@ section{position:relative;z-index:2}
 /* ── embeds (plateforme + intégrations) ── */
 .embed{position:relative;z-index:2;width:100%}
 .embed iframe{width:100%;border:0;display:block;background:transparent}
-#if-plat{background:rgba(10,8,22,.62) !important}
+#if-plat{background:rgba(10,8,22,.30) !important}
 
 /* ── L'IA AU SERVICE (3 piliers) ── */
 #ai{padding:90px 0}
@@ -342,6 +343,9 @@ section{position:relative;z-index:2}
 .hsec{position:relative;z-index:2;padding:84px clamp(20px,5vw,40px)}
 .sea-gap{height:700px;position:relative;z-index:1;background:transparent;pointer-events:none}
 @media(max-width:760px){.sea-gap{height:460px}}
+#testi{background:linear-gradient(180deg,rgba(6,5,18,.42),rgba(3,2,12,.62))}
+#faq{background:linear-gradient(180deg,rgba(3,2,12,.62),rgba(2,1,9,.74))}
+#final{background:linear-gradient(180deg,rgba(2,1,9,.74),rgba(1,1,6,.86))}
 .hsec .wrap{max-width:1120px;margin:0 auto}
 .hsec .center{text-align:center}
 .hsec .lead{font-size:17px;line-height:1.6;color:rgba(255,255,255,.82)}
