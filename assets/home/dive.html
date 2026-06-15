@@ -61,6 +61,12 @@ section{position:relative;z-index:2}
   text-shadow:0 4px 40px rgba(0,0,0,.35)}
 #hero h1 .g{background:linear-gradient(115deg,#ffe7ee,#f6c9e6,#cdb6ff,#bcc6ff);-webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 2px 18px rgba(0,0,0,.25))}
+#hero h1 .hw{display:inline-block;max-width:100%;clip-path:inset(0 101% 0 0);opacity:0;animation:heroWipe .62s cubic-bezier(.2,.75,.2,1) forwards}
+#hero h1 .hw1{animation-delay:.20s}
+#hero h1 .hw2{animation-delay:.64s}
+#hero h1 .hw3{animation-delay:1.08s}
+@keyframes heroWipe{to{clip-path:inset(0 0 0 0);opacity:1}}
+@media(prefers-reduced-motion:reduce){#hero h1 .hw{animation:none;clip-path:none;opacity:1}}
 #hero p{max-width:660px;margin:22px auto 0;font-size:clamp(16.5px,1.95vw,21px);line-height:1.6;color:#262048;font-weight:450;
   text-shadow:0 1px 1px rgba(255,255,255,.35)}
 .cta-row{display:flex;gap:14px;justify-content:center;margin-top:34px;flex-wrap:wrap}
@@ -570,7 +576,7 @@ section{position:relative;z-index:2}
 
 <main>
   <section id="hero">
-    <h1>Créez vos agents. Dessinez vos workflows.<br><span class="g" style="background:none;-webkit-text-fill-color:#191042;color:#191042;filter:none">Intégrez l'IA au cœur de vos opérations.</span></h1>
+    <h1><span class="hw hw1">Créez vos agents.</span> <span class="hw hw2">Dessinez vos workflows.</span><br><span class="g hw hw3" style="background:none;-webkit-text-fill-color:#191042;color:#191042;filter:none">Intégrez l'IA au cœur de vos opérations.</span></h1>
     <p>Sairen capte chaque échange — clients, équipes, outils — et le transforme en workflow IA. Vos règles cadrent, des agents exécutent 24/7, vos équipes reprennent quand il le faut.</p>
     <div class="cta-row">
       <a class="btn-primary" href="/#/signup" target="_top">Tester un agent</a>
