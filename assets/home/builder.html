@@ -79,14 +79,10 @@
     color: var(--ink);
   }
   .brand-mark {
-    width: 22px; height: 22px;
-    border-radius: 5px;
-    background:
-      repeating-linear-gradient(45deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 4px),
-      repeating-linear-gradient(-45deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 4px),
-      linear-gradient(135deg, var(--grad-1), var(--grad-3));
-    background-blend-mode: overlay;
+    width: 24px; height: 24px;
+    display: inline-grid; place-items: center;
   }
+  .brand-mark svg { width: 24px; height: 24px; display: block; }
   .brand .sep { color: var(--muted-2); }
   .brand .ctx { color: var(--muted); font-weight: 400; }
   .hdr-actions { display: flex; align-items: center; gap: 8px; }
@@ -158,6 +154,13 @@
     margin-bottom: 8px;
   }
   .title-input::placeholder { color: var(--muted-2); }
+  .title-input { padding-left: 16px; }
+  .title-wrap { position: relative; display: block; }
+  .ti-caret { position: absolute; left: 3px; top: 4px; width: 3px; height: 38px; border-radius: 2px;
+    background: linear-gradient(180deg, var(--grad-1), var(--grad-3)); animation: tiBlink 1.05s steps(1) infinite; pointer-events: none; }
+  @keyframes tiBlink { 0%,50% { opacity: 1 } 50.01%,100% { opacity: 0 } }
+  .title-input:focus ~ .ti-caret, .title-input:not(:placeholder-shown) ~ .ti-caret { opacity: 0; animation: none; }
+  @media (prefers-reduced-motion: reduce) { .ti-caret { animation: none; } }
 
   .meta-line {
     display: flex; align-items: center; gap: 10px;
@@ -1417,7 +1420,7 @@
 <header class="hdr">
   <div class="hdr-inner">
     <div class="brand">
-      <span class="brand-mark"></span>
+      <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="rbGem" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4796E3"/><stop offset=".42" stop-color="#9177C7"/><stop offset=".78" stop-color="#BE59D4"/><stop offset="1" stop-color="#E36FA8"/></linearGradient></defs><path d="M12 0c0 6.627 5.373 12 12 12-6.627 0-12 5.373-12 12 0-6.627-5.373-12-12-12C6.627 12 12 6.627 12 0Z" fill="url(#rbGem)"/></svg></span>
       <span>Rainbow</span>
       <span class="sep">·</span>
       <span class="ctx">Nouvelle automatisation</span>
@@ -1435,7 +1438,7 @@
 <!-- WORKSPACE -->
 <main class="workspace">
 
-  <input type="text" class="title-input" placeholder="Nommer cette automatisation…" value="Triage entrant SAV" />
+  <span class="title-wrap"><input type="text" class="title-input" placeholder="Nommez cette automatisation…" value="" /><span class="ti-caret" aria-hidden="true"></span></span>
   <div class="meta-line">
     <span class="draft-dot"></span>
     <span>Brouillon</span>
