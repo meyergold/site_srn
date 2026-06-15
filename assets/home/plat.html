@@ -43,6 +43,7 @@ body{font-family:'Comfortaa',-apple-system,sans-serif;-webkit-font-smoothing:ant
 .lcard:hover,.lcard.on{transform:translateY(-3px);border-color:transparent;background:linear-gradient(160deg,rgba(255,255,255,.13),rgba(255,255,255,.035));box-shadow:0 22px 54px -22px var(--lglow),inset 0 1px 0 rgba(255,255,255,.22)}
 .lcard:hover .blob,.lcard.on .blob{opacity:.32}.lcard:hover::before,.lcard.on::before{opacity:1}.lcard:hover::after,.lcard.on::after{opacity:1}
 .lcard .ic{position:relative;width:48px;height:48px;flex:none;display:grid;place-items:center}
+.brick-logo{width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 6px 14px rgba(0,0,0,.28))}
 .lcard .ic svg{width:30px;height:30px;transition:transform .45s}
 .lcard .ic .halo{position:absolute;inset:-7px;border-radius:50%;background:var(--lgrad);filter:blur(15px);opacity:0;z-index:-1;transition:opacity .45s}
 .lcard:hover .ic .halo,.lcard.on .ic .halo{opacity:.6}.lcard:hover .ic svg,.lcard.on .ic svg{transform:scale(1.08)}
@@ -88,11 +89,11 @@ html,body{background:transparent!important}
 
 <script>
 const ICONS={
- ulysse:`<svg viewBox="0 0 48 48" fill="none" stroke="url(#g_ulysse)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8L40 40"/><path d="M40 8L8 40"/><path d="M24 8L40 24L24 40L8 24Z"/><g fill="url(#g_ulysse)" stroke="none"><circle cx="8" cy="8" r="2"/><circle cx="8" cy="24" r="2"/><circle cx="8" cy="40" r="2"/><circle cx="24" cy="8" r="2"/><circle cx="24" cy="24" r="2"/><circle cx="24" cy="40" r="2"/><circle cx="40" cy="8" r="2"/><circle cx="40" cy="24" r="2"/><circle cx="40" cy="40" r="2"/></g></svg>`,
- rainbow:`<svg viewBox="0 0 48 48" fill="none" stroke="url(#g_rainbow)" stroke-width="2.6" stroke-linecap="round"><path d="M5 40a19 19 0 0 1 38 0"/><path d="M11 40a13 13 0 0 1 26 0"/><path d="M17 40a7 7 0 0 1 14 0"/><path d="M22.5 40a3 3 0 0 1 5 0"/></svg>`,
+ ulysse:`<img src="../img/logo-ulysse.png" alt="" class="brick-logo">`,
+ rainbow:`<img src="../img/logo-rainbow.svg" alt="" class="brick-logo">`,
  labels:`<svg viewBox="0 0 24 24" fill="none" stroke="url(#g_labels)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r="1.5" fill="url(#g_labels)" stroke="none"/></svg>`,
- ocean:`<svg viewBox="0 0 48 48" fill="none" stroke="url(#g_ocean)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 26c3-6 8-6 9.5 0"/><path d="M14.5 26C14 16 22 11 29 14.8c5.6 3 4 10.2-2.2 10.8-3 .3-4.8-2.4-2.8-4.6"/><path d="M4 33c4-4.2 8.5-4.2 12.5 0s8.5 4.2 12.5 0 8-4.2 12 0"/><path d="M4 40c4-4.2 8.5-4.2 12.5 0s8.5 4.2 12.5 0 8-4.2 12 0"/></svg>`,
- desk:`<svg viewBox="0 0 24 24" fill="none" stroke="url(#g_desk)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11V9.5A3.5 3.5 0 0 1 7.5 6h9A3.5 3.5 0 0 1 20 9.5V11"/><rect x="3.3" y="11" width="17.4" height="8" rx="1.8"/><path d="M3.3 11h17.4"/><rect x="10.4" y="9.4" width="3.2" height="4.2" rx="1.4"/></svg>`,
+ ocean:`<img src="../img/logo-ocean.png" alt="" class="brick-logo">`,
+ desk:`<img src="../img/logo-desk.png" alt="" class="brick-logo">`,
  socle:`<svg viewBox="0 0 48 48" fill="none" stroke="url(#g_socle)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 7 9 14l15 7 15-7z"/><path d="M9 24l15 7 15-7"/><path d="M9 33l15 7 15-7"/></svg>`
 };
 const COL={

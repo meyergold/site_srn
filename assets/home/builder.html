@@ -79,10 +79,10 @@
     color: var(--ink);
   }
   .brand-mark {
-    width: 24px; height: 24px;
-    display: inline-grid; place-items: center;
+    height: 22px;
+    display: inline-flex; align-items: center;
   }
-  .brand-mark svg { width: 24px; height: 24px; display: block; }
+  .brand-mark img, .brand-mark svg { height: 22px; width: auto; display: block; }
   .brand .sep { color: var(--muted-2); }
   .brand .ctx { color: var(--muted); font-weight: 400; }
   .hdr-actions { display: flex; align-items: center; gap: 8px; }
@@ -1420,7 +1420,7 @@
 <header class="hdr">
   <div class="hdr-inner">
     <div class="brand">
-      <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="rbGem" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4796E3"/><stop offset=".42" stop-color="#9177C7"/><stop offset=".78" stop-color="#BE59D4"/><stop offset="1" stop-color="#E36FA8"/></linearGradient></defs><path d="M12 0c0 6.627 5.373 12 12 12-6.627 0-12 5.373-12 12 0-6.627-5.373-12-12-12C6.627 12 12 6.627 12 0Z" fill="url(#rbGem)"/></svg></span>
+      <span class="brand-mark"><img src="../img/logo-rainbow.svg" alt="Rainbow"></span>
       <span>Rainbow</span>
       <span class="sep">·</span>
       <span class="ctx">Nouvelle automatisation</span>
