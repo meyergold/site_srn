@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sairenGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0052FF" />
+      <stop offset="30%" stop-color="#2B46FF" />
+      <stop offset="60%" stop-color="#7016FF" />
+      <stop offset="100%" stop-color="#C813FF" />
+    </linearGradient>
+
+    <filter id="glossy3D" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feSpecularLighting in="blur" surfaceScale="7" specularConstant="1.2" specularExponent="35" lighting-color="#ffffff" result="specOut">
+        <fePointLight x="180" y="-50" z="150" />
+      </feSpecularLighting>
+      <feComposite in="specOut" in2="SourceAlpha" operator="in" result="specChar" />
+      
+      <feComponentTransfer in="SourceAlpha" result="shadowAlpha">
+        <feFuncA type="linear" slope="0.7"/>
+      </feComponentTransfer>
+      <feGaussianBlur stdDeviation="4" result="blurShadow" />
+      <feOffset dx="-3" dy="4" />
+      <feComposite operator="out" in2="SourceAlpha" result="inverseShadow"/>
+      
+      <feMerge>
+        <feMergeNode in="SourceGraphic" />
+        <feMergeNode in="inverseShadow" />
+        <feMergeNode in="specChar" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g fill="none" stroke-linecap="round" filter="url(#glossy3D)">
+    
+    <path d="M 50,220 A 150,150 0 0,1 350,220" stroke="url(#sairenGrad)" stroke-width="28" />
+    
+    <path d="M 110,220 A 90,90 0 0,1 290,220" stroke="url(#sairenGrad)" stroke-width="24" />
+    
+    <path d="M 165,220 A 35,35 0 0,1 235,220" stroke="url(#sairenGrad)" stroke-width="20" />
+    
+  </g>
+</svg>
