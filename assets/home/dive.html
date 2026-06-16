@@ -1372,12 +1372,20 @@ window.__TPL={plat:"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImZyIj4KPGhlYWQ+CjxtZXRh
       transparent:true,depthWrite:false,side:THREE.DoubleSide,uniforms:{uA:{value:1900/1050},uO:{value:1}},
       vertexShader:`varying vec2 v;void main(){v=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
       fragmentShader:`precision highp float;varying vec2 v;uniform float uA,uO;
-        void main(){vec2 p=v-vec2(.5,.04);p.x*=uA;float d=length(p);float b=(d-.30)/.085;
-          float a=smoothstep(0.,.14,b)*(1.-smoothstep(.86,1.,b));a*=smoothstep(-.02,.10,p.y);
-          float h=clamp(b,0.,1.);vec3 c=.5+.5*cos(6.2831*(vec3(0.,.33,.67)-h*.82));c=mix(c,vec3(1.),.55);
-          gl_FragColor=vec4(c,a*.28*uO);}`
+        void main(){vec2 p=v-vec2(.5,.02);p.x*=uA;float d=length(p);
+          /* fine arc principal */
+          float b=(d-.30)/.072;
+          float band=smoothstep(0.,.10,b)*(1.-smoothstep(.84,1.,b));
+          band*=smoothstep(-.02,.14,p.y);
+          float h=clamp(b,0.,1.);
+          vec3 c=.5+.5*cos(6.2831*(vec3(0.,.33,.67)-h*.85));
+          c=mix(c,vec3(1.),.40);
+          /* halo doux pour fondre l'arc dans le ciel */
+          float halo=smoothstep(.075,0.,abs(d-.345))*smoothstep(-.02,.18,p.y);
+          float a=band*.58 + halo*.06;
+          gl_FragColor=vec4(c,a*uO);}`
     }));
-    rain.position.set(40,36,-1500);rain.renderOrder=-1;scene.add(rain);})();
+    rain.position.set(0,290,-1500);rain.renderOrder=-1;scene.add(rain);})();
 
   // ── BULLES (montent à mesure qu'on plonge) ──
   const bubbleTex=(function(){
