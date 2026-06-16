@@ -4376,30 +4376,32 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
 }
 @keyframes rb-move{0%{background-position:0 50%}100%{background-position:200% 50%}}
 
-/* CTA principaux : dégradé arc-en-ciel animé + halo flou */
+/* CTA principaux : bouton NOIR magicui — fine bordure arc-en-ciel + halo flou dessous */
 .btn-primary,.btn2.primary,.btn2.primary.ps-cta{
   position:relative!important;overflow:visible!important;isolation:auto!important;
-  border:0!important;border-radius:14px!important;color:#fff!important;
-  text-shadow:0 1px 2px rgba(0,0,0,.22);
-  background:none!important;
-  background-image:linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1))!important;
-  background-size:200% 100%!important;background-repeat:no-repeat!important;
+  border:1.3px solid transparent!important;border-radius:14px!important;color:#fff!important;text-shadow:none!important;
+  background:
+    linear-gradient(#121213,#121213) padding-box,
+    linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1)) border-box!important;
+  background-size:auto,200% 100%!important;background-repeat:no-repeat!important;
   animation:rb-move 3s linear infinite!important;
-  box-shadow:0 14px 36px -12px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.5),inset 0 -2px 6px rgba(0,0,0,.12)!important;
+  box-shadow:0 10px 28px -14px rgba(0,0,0,.45)!important;
 }
+/* neutralise l'ancien reflet blanc */
+.btn-primary::after,.btn2.primary::after{display:none!important}
 .btn-primary::before,.btn2.primary::before{
-  content:"";position:absolute;left:50%;bottom:-24%;z-index:-1;
-  width:64%;height:48%;transform:translateX(-50%);
+  content:"";position:absolute;left:50%;bottom:-22%;z-index:-1;
+  width:60%;height:40%;transform:translateX(-50%);
   background-image:linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1));
   background-size:200% 100%;animation:rb-move 3s linear infinite;
-  filter:blur(15px);opacity:.7;border-radius:999px;pointer-events:none;
+  filter:blur(12px);opacity:.55;border-radius:999px;pointer-events:none;
 }
 .btn-primary:hover,.btn2.primary:hover{
-  transform:translateY(-3px) scale(1.025)!important;background-position:0 50%!important;
-  box-shadow:0 24px 56px -12px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 6px rgba(0,0,0,.12)!important;
+  transform:translateY(-2px)!important;
+  box-shadow:0 16px 38px -14px rgba(0,0,0,.5)!important;
 }
-.btn-primary:hover::before,.btn2.primary:hover::before{opacity:.96;filter:blur(19px)}
-.btn-primary:active,.btn2.primary:active{transform:translateY(-1px) scale(.99)!important}
+.btn-primary:hover::before,.btn2.primary:hover::before{opacity:.82;filter:blur(15px)}
+.btn-primary:active,.btn2.primary:active{transform:translateY(0) scale(.99)!important}
 
 /* CTA secondaires : contour arc-en-ciel animé (variant="outline") */
 .btn-ghost{
