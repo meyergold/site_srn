@@ -819,19 +819,29 @@ section{position:relative;z-index:2}
         </div>
         <!-- 5 · Ulysse -->
         <div class="hiw-vis" id="hiw-vis-4" role="tabpanel" aria-label="Ulysse — Pilotez tout">
-          <div class="mk uly">
-            <span class="mk-eb"><img src="/assets/img/logo-ulysse.png" alt="">Ulysse · copilote</span>
-            <h3 class="mk-h">Le cap sur tout le parcours</h3>
-            <div class="uly-ask">Combien de no-shows cette semaine, et qu'est-ce qu'on lance&nbsp;?</div>
-            <div class="uly-card">
-              <span class="uly-card-k"><img src="/assets/img/logo-ulysse.png" alt="">Ulysse · insight</span>
-              <p class="uly-insight"><b>14 no-shows</b> cette semaine (−18&nbsp;% vs. dernière). Je lance une relance WhatsApp via Rainbow et crée 3 tâches dans Desk.</p>
-              <div class="uly-route">
-                <span class="lab">Routing</span>
-                <span class="uly-pill"><img src="/assets/img/logo-ocean.png" alt="">Océan</span><span class="uly-arr">→</span>
-                <span class="uly-pill"><img src="/assets/img/logo-rainbow.svg" alt="">Rainbow</span><span class="uly-arr">→</span>
-                <span class="uly-pill"><img src="/assets/img/logo-desk.png" alt="">Desk</span>
-              </div>
+          <style>
+          #howit .uly-gpt{position:absolute;inset:0;display:flex;flex-direction:column;background:#fff}
+          #howit .ug-top{display:flex;align-items:center;gap:9px;padding:16px 20px;font-weight:700;font-size:14px;color:#1d1a26;border-bottom:1px solid rgba(20,16,50,.07)}
+          #howit .ug-top img{width:20px;height:20px;border-radius:6px}
+          #howit .ug-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:16px}
+          #howit .ug-logo{width:60px;height:60px;border-radius:18px;box-shadow:0 16px 38px -14px rgba(120,80,240,.55)}
+          #howit .ug-title{font-size:23px;font-weight:700;letter-spacing:-.02em;color:#1d1a26;margin:0}
+          #howit .ug-sub{font-size:14px;line-height:1.55;color:#6b6580;max-width:380px;margin:0}
+          #howit .ug-bar{display:flex;align-items:center;gap:10px;margin:0 20px 20px;padding:13px 14px 13px 18px;border-radius:18px;border:1px solid rgba(20,16,50,.12);background:#fff;box-shadow:0 12px 32px -18px rgba(40,20,90,.35)}
+          #howit .ug-input{flex:1;color:#9a96ad;font-size:14.5px;text-align:left}
+          #howit .ug-send{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(120deg,#676AFE,#9456F7,#BE59D4)}
+          #howit .ug-send svg{width:16px;height:16px;color:#fff}
+          </style>
+          <div class="uly-gpt">
+            <div class="ug-top"><img src="/assets/img/logo-ulysse.png" alt="">Ulysse</div>
+            <div class="ug-empty">
+              <img class="ug-logo" src="/assets/img/logo-ulysse.png" alt="Ulysse">
+              <h3 class="ug-title">Comment puis-je vous aider&nbsp;?</h3>
+              <p class="ug-sub">Posez une question sur votre activité — Ulysse lit Océan, Rainbow et Desk pour vous répondre et agir à votre place.</p>
+            </div>
+            <div class="ug-bar">
+              <span class="ug-input">Message à Ulysse…</span>
+              <span class="ug-send"><svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M6 11l6-6 6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </div>
           </div>
         </div>
