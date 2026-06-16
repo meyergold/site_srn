@@ -4379,7 +4379,7 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
 /* Base commune CTA : bordure arc-en-ciel animee (::before) + halo flou (::after) */
 .btn-primary,.btn2.primary,.btn2.primary.ps-cta,.btn-ghost{
   position:relative!important;overflow:visible!important;isolation:auto!important;
-  border:2px solid transparent!important;border-radius:14px!important;text-shadow:none!important;
+  border:1.5px solid transparent!important;border-radius:12px!important;text-shadow:none!important;
   background-image:none!important;background-clip:padding-box!important;background-origin:padding-box!important;
   animation:none!important;
   box-shadow:0 10px 28px -14px rgba(0,0,0,.45)!important;
@@ -4394,20 +4394,20 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
 }
 /* ::before = anneau de bordure arc-en-ciel (couvre le border-box, derriere le fond) */
 .btn-primary::before,.btn2.primary::before,.btn-ghost::before{
-  content:""!important;display:block!important;position:absolute!important;inset:-2px!important;z-index:-1;
-  border-radius:14px!important;
+  content:""!important;display:block!important;position:absolute!important;inset:-1.5px!important;z-index:-1;
+  border-radius:12px!important;
   background:linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1))!important;
   background-size:200% 100%!important;background-repeat:no-repeat!important;
-  animation:rb-move 3s linear infinite!important;pointer-events:none;
+  animation:rb-move 2s linear infinite!important;pointer-events:none;
 }
-/* ::after = halo arc-en-ciel flou sous le bouton */
+/* ::after = halo arc-en-ciel flou sous le bouton (petit et discret, comme le demo) */
 .btn-primary::after,.btn2.primary::after,.btn-ghost::after{
-  content:""!important;display:block!important;position:absolute!important;left:50%;bottom:-30%;z-index:-2;
-  width:80%;height:62%;transform:translateX(-50%);
+  content:""!important;display:block!important;position:absolute!important;left:50%;bottom:-20%;z-index:-2;
+  width:60%;height:34%;transform:translateX(-50%);
   background:linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1))!important;
   background-size:200% 100%!important;background-repeat:no-repeat!important;
-  animation:rb-move 3s linear infinite!important;
-  filter:blur(14px);opacity:.65;border-radius:999px;pointer-events:none;
+  animation:rb-move 2s linear infinite!important;
+  filter:blur(12px);opacity:.7;border-radius:999px;pointer-events:none;
 }
 .btn-primary:hover,.btn2.primary:hover{transform:translateY(-2px)!important;background-color:#16161c!important}
 .btn-ghost:hover{transform:translateY(-2px)!important;background-color:#f4f4f8!important}
