@@ -772,20 +772,55 @@ section{position:relative;z-index:2}
 
       <!-- VISUEL DYNAMIQUE -->
       <div class="hiw-stage" id="hiwStage">
+        <style id="scr-css">
+        #howit .scr{position:absolute;inset:0;display:flex;flex-direction:column;background:#fff;text-align:left;color:#15182B;overflow:hidden}
+        #howit .scr-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:15px 20px 12px;border-bottom:1px solid rgba(20,16,50,.07)}
+        #howit .scr-title{display:flex;align-items:center;gap:9px;font-size:18px;font-weight:800;letter-spacing:-.02em}
+        #howit .scr-title img{width:22px;height:22px;border-radius:6px;object-fit:contain}
+        #howit .scr-sub{font-size:12.5px;font-weight:600;color:#9a96ad}
+        #howit .scr-ent{font-size:11px;font-weight:700;color:#7c3aed;background:rgba(148,86,247,.1);padding:6px 11px;border-radius:9px;white-space:nowrap}
+        #howit .scr-tb{display:flex;gap:7px;flex-wrap:wrap;padding:11px 20px;border-bottom:1px solid rgba(20,16,50,.05)}
+        #howit .scr-chip{font-size:11.5px;font-weight:600;color:#5b5570;background:#F4F3F8;border:1px solid rgba(20,16,50,.06);padding:6px 11px;border-radius:9px}
+        #howit .scr-banner{margin:12px 20px 0;padding:12px 15px;border-radius:13px;background:rgba(148,86,247,.06);border:1px solid rgba(148,86,247,.16);font-size:12.5px;line-height:1.5;color:#5b5570}
+        #howit .scr-banner b{color:#15182B}
+        #howit .scr-list{flex:1;display:flex;flex-direction:column;overflow:hidden}
+        #howit .scr-row{display:flex;align-items:center;gap:11px;padding:12px 20px;border-bottom:1px solid rgba(20,16,50,.05)}
+        #howit .scr-row.hot{box-shadow:inset 3px 0 0 #FF6E9C}
+        #howit .scr-av{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff;flex:none}
+        #howit .scr-av.wa{background:#25D366}#howit .scr-av.sms{background:#3A8DFF;font-size:9px}
+        #howit .scr-av.go{background:#fff;color:#4285F4;border:1px solid rgba(20,16,50,.12)}
+        #howit .scr-av.ml{background:#EA4335}#howit .scr-av.cl{background:#23B36B}#howit .scr-av.ch{background:#7B6FF0}
+        #howit .scr-av.p1{background:#1AA179}#howit .scr-av.p2{background:#E8943A}#howit .scr-av.p3{background:#3B6FE0}#howit .scr-av.p4{background:#C13D6B}#howit .scr-av.p5{background:#7C3AED}
+        #howit .scr-m{flex:1;min-width:0}
+        #howit .scr-m b{display:block;font-size:13.5px;font-weight:700;color:#15182B;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        #howit .scr-m small{display:block;font-size:12px;color:#7a7690;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+        #howit .scr-tags{display:flex;gap:5px;flex:none}
+        #howit .scr-meta{display:flex;align-items:center;gap:8px;flex:none}
+        #howit .scr-pri{font-size:11px;font-weight:700}
+        #howit .scr-pri.red{color:#D64550}#howit .scr-pri.amber{color:#C77A12}#howit .scr-pri.gray{color:#9a96ad}
+        #howit .scr-d{font-size:11px;color:#9a96ad;font-weight:600;flex:none;width:46px;text-align:right}
+        #howit .t{font-size:10px;font-weight:700;padding:3px 8px;border-radius:7px;white-space:nowrap}
+        #howit .badge{font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:8px;white-space:nowrap}
+        #howit .t.red,#howit .badge.red{background:#FDECEC;color:#D64550}
+        #howit .t.blue,#howit .badge.blue{background:#E8EFFF;color:#3B6FE0}
+        #howit .t.green,#howit .badge.green{background:#E7F7EE;color:#1F9D57}
+        #howit .t.amber,#howit .badge.amber{background:#FFF4E0;color:#C77A12}
+        #howit .t.gray,#howit .badge.gray{background:#F0EFF5;color:#6b6680}
+        #howit .t.violet,#howit .badge.violet{background:#F1E9FF;color:#7c3aed}
+        @media(max-width:880px){#howit .scr-tags .t:nth-child(n+3){display:none}#howit .scr-tb{display:none}}
+        </style>
         <!-- 1 · Océan -->
         <div class="hiw-vis is-active" id="hiw-vis-0" role="tabpanel" aria-label="Océan — Connectez vos canaux">
-          <div class="mk oc">
-            <span class="mk-eb"><img src="/assets/img/logo-ocean.png" alt="">Océan · boîte unifiée</span>
-            <h3 class="mk-h">Tous les canaux convergent</h3>
-            <div class="oc-chips">
-              <span class="oc-chip"><span></span>SMS</span><span class="oc-chip"><span></span>Appel</span><span class="oc-chip"><span></span>WhatsApp</span><span class="oc-chip"><span></span>Email</span><span class="oc-chip"><span></span>Instagram</span><span class="oc-chip"><span></span>Messenger</span><span class="oc-chip"><span></span>Google Avis</span><span class="oc-chip"><span></span>Visio</span>
-            </div>
-            <div class="oc-funnel">convergent vers</div>
-            <div class="oc-inbox">
-              <div class="oc-inbox-h">Boîte de conversation unifiée <b>8 canaux</b></div>
-              <div class="oc-row"><span class="oc-av">W</span><span class="oc-tx"><b>Camille Roy</b><small>Mon colis est arrivé cassé…</small></span><span class="oc-tag">WhatsApp</span></div>
-              <div class="oc-row"><span class="oc-av">SMS</span><span class="oc-tx"><b>+33 6 12…</b><small>Je confirme mon rendez-vous de jeudi</small></span><span class="oc-tag">SMS</span></div>
-              <div class="oc-row"><span class="oc-av">★</span><span class="oc-tx"><b>Avis Google</b><small>« Accueil au top, merci ! » — 5★</small></span><span class="oc-tag">Avis</span></div>
+          <div class="scr">
+            <div class="scr-head"><div class="scr-title"><img src="/assets/img/logo-ocean.png" alt="">Ocean <span class="scr-sub">· 12 conversations</span></div><span class="scr-ent">Toutes les entités</span></div>
+            <div class="scr-tb"><span class="scr-chip">Tous les agents ▾</span><span class="scr-chip">Statut ▾</span><span class="scr-chip">Motifs ▾</span><span class="scr-chip">Type client ▾</span></div>
+            <div class="scr-list">
+              <div class="scr-row hot"><span class="scr-av wa">W</span><div class="scr-m"><b>Marie Dubois</b><small>Bonjour, je souhaite prendre un rendez-vous…</small></div><div class="scr-tags"><span class="t red">Urgent</span><span class="t blue">Nouveau client</span><span class="t green">Bot confirmé</span></div><span class="scr-d">Auj.</span></div>
+              <div class="scr-row"><span class="scr-av go">G</span><div class="scr-m"><b>Ethan Serraf</b><small>Je remercie Sairen pour l'aide apportée…</small></div><div class="scr-tags"><span class="t gray">Faible</span><span class="t amber">Avis Google</span><span class="t green">Positif ★5</span></div><span class="scr-d">1 an</span></div>
+              <div class="scr-row hot"><span class="scr-av ml">@</span><div class="scr-m"><b>Jean Dupont</b><small>Problème de connexion</small></div><div class="scr-tags"><span class="t amber">Moyen</span><span class="t blue">Client fidèle</span><span class="t green">Positif</span></div><span class="scr-d">Auj.</span></div>
+              <div class="scr-row"><span class="scr-av ml">@</span><div class="scr-m"><b>Isabelle Renard</b><small>Demande de devis entreprise</small></div><div class="scr-tags"><span class="t red">Urgent</span><span class="t blue">Prospect B2B</span><span class="t amber">Opportunité</span></div><span class="scr-d">Hier</span></div>
+              <div class="scr-row hot"><span class="scr-av cl">↩</span><div class="scr-m"><b>Sophie Bernard</b><small>Plus d'informations sur vos offres récentes&nbsp;?</small></div><div class="scr-tags"><span class="t gray">Faible</span><span class="t green">Bot résolu</span><span class="t gray">Standard</span></div><span class="scr-d">Ven.</span></div>
+              <div class="scr-row"><span class="scr-av ch">💬</span><div class="scr-m"><b>Pierre Martin</b><small>Je suis insatisfait du service reçu…</small></div><div class="scr-tags"><span class="t red">Urgent</span><span class="t red">Mécontent</span><span class="t red">Négatif</span></div><span class="scr-d">22 Jan</span></div>
             </div>
           </div>
         </div>
@@ -799,21 +834,16 @@ section{position:relative;z-index:2}
         </div>
         <!-- 4 · Desk -->
         <div class="hiw-vis" id="hiw-vis-3" role="tabpanel" aria-label="Desk — Collaborez IA et humain">
-          <div class="mk dk">
-            <span class="mk-eb" style="color:var(--desk)"><img src="/assets/img/logo-desk.png" alt="">Desk · IA + humain</span>
-            <h3 class="mk-h">L'IA prépare, l'humain décide</h3>
-            <div class="dk-thread">
-              <div class="dk-in"><small>Client · WhatsApp</small>Bonjour, puis-je échanger ma commande contre une autre taille ?</div>
-              <div class="dk-draft">
-                <span class="dk-draft-k"><span></span>Réponse préparée par l'IA</span>
-                <p>Bonjour Camille 👋 Bien sûr — l'échange de taille est possible sous 30 jours. Je vous envoie une étiquette de retour prépayée, souhaitez-vous la taille M&nbsp;?</p>
-                <div class="dk-acts">
-                  <button class="dk-btn primary" type="button">Valider</button>
-                  <button class="dk-btn" type="button">Modifier</button>
-                  <button class="dk-btn" type="button">Reprendre la main</button>
-                </div>
-              </div>
-              <div class="dk-who"><img src="/assets/img/human-round.png" alt="">Assignée à Léa — SAV · l'humain garde la main</div>
+          <div class="scr">
+            <div class="scr-head"><div class="scr-title"><img src="/assets/img/logo-desk.png" alt="">Liste des tâches <span class="scr-sub">· 8 tâches · 6 en attente</span></div><span class="scr-ent">Cette semaine</span></div>
+            <div class="scr-banner"><b>Bonjour Marie.</b> 5 tâches vous attendent dont 4 urgentes. L'IA a traité 14 interactions cette nuit, 5 attendent votre supervision.</div>
+            <div class="scr-list">
+              <div class="scr-row"><span class="scr-av p1">CR</span><div class="scr-m"><b>Mise à jour informations compte</b><small>Changement d'adresse de facturation</small></div><div class="scr-meta"><span class="badge green">Traité</span><span class="scr-pri gray">Basse</span></div><span class="scr-d">15 Fév</span></div>
+              <div class="scr-row hot"><span class="scr-av p2">MD</span><div class="scr-m"><b>Relance facture impayée</b><small>Facture #1234 en retard de 15 jours</small></div><div class="scr-meta"><span class="badge amber">À traiter</span><span class="scr-pri red">Urgent</span></div><span class="scr-d">Jeudi</span></div>
+              <div class="scr-row hot"><span class="scr-av p4">EP</span><div class="scr-m"><b>Traiter la réclamation client</b><small>Produit défectueux, demande de remboursement</small></div><div class="scr-meta"><span class="badge blue">En cours</span><span class="scr-pri red">Haute</span></div><span class="scr-d">Ven.</span></div>
+              <div class="scr-row hot"><span class="scr-av p3">SM</span><div class="scr-m"><b>Rappeler le client</b><small>Confirmer le rendez-vous de demain à 14h30</small></div><div class="scr-meta"><span class="badge amber">À traiter</span><span class="scr-pri red">Haute</span></div><span class="scr-d">Sam.</span></div>
+              <div class="scr-row"><span class="scr-av p5">TL</span><div class="scr-m"><b>Envoyer devis par email</b><small>Devis pour la prestation complète demandée</small></div><div class="scr-meta"><span class="badge blue">En cours</span><span class="scr-pri amber">Moyenne</span></div><span class="scr-d">Hier</span></div>
+              <div class="scr-row hot"><span class="scr-av go">G</span><div class="scr-m"><b>Avis Google 3★ — Répondre à M. Benali</b><small>Client insatisfait — délai de livraison trop long</small></div><div class="scr-meta"><span class="badge amber">À faire</span><span class="scr-pri red">Haute</span></div><span class="scr-d">26/05</span></div>
             </div>
           </div>
         </div>
@@ -821,23 +851,47 @@ section{position:relative;z-index:2}
         <div class="hiw-vis" id="hiw-vis-4" role="tabpanel" aria-label="Ulysse — Pilotez tout">
           <style>
           #howit .uly-gpt{position:absolute;inset:0;display:flex;flex-direction:column;background:#fff}
-          #howit .ug-top{display:flex;align-items:center;gap:9px;padding:16px 20px;font-weight:700;font-size:14px;color:#1d1a26;border-bottom:1px solid rgba(20,16,50,.07)}
+          #howit .ug-top{display:flex;align-items:center;gap:9px;padding:15px 20px;font-weight:700;font-size:14px;color:#1d1a26;border-bottom:1px solid rgba(20,16,50,.07)}
           #howit .ug-top img{width:20px;height:20px;border-radius:6px}
-          #howit .ug-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;gap:16px}
-          #howit .ug-logo{width:60px;height:60px;border-radius:18px;box-shadow:0 16px 38px -14px rgba(120,80,240,.55)}
-          #howit .ug-title{font-size:23px;font-weight:700;letter-spacing:-.02em;color:#1d1a26;margin:0}
-          #howit .ug-sub{font-size:14px;line-height:1.55;color:#6b6580;max-width:380px;margin:0}
-          #howit .ug-bar{display:flex;align-items:center;gap:10px;margin:0 20px 20px;padding:13px 14px 13px 18px;border-radius:18px;border:1px solid rgba(20,16,50,.12);background:#fff;box-shadow:0 12px 32px -18px rgba(40,20,90,.35)}
-          #howit .ug-input{flex:1;color:#9a96ad;font-size:14.5px;text-align:left}
+          #howit .ug-chat{flex:1;position:relative;display:flex;flex-direction:column;gap:13px;padding:22px 22px 6px;overflow:hidden}
+          #howit .ug-greet{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:9px;padding:24px;animation:ugGreet 11s infinite}
+          #howit .ug-greet img{width:56px;height:56px;border-radius:17px;box-shadow:0 16px 38px -14px rgba(120,80,240,.55)}
+          #howit .ug-greet b{font-size:20px;font-weight:700;color:#1d1a26}
+          #howit .ug-greet small{font-size:13.5px;color:#6b6580;max-width:340px;line-height:1.5}
+          #howit .ug-row{display:flex;gap:9px;max-width:92%}
+          #howit .ug-ava{width:26px;height:26px;border-radius:8px;flex:none;object-fit:contain;align-self:flex-start}
+          #howit .ug-bub{padding:10px 13px;border-radius:14px;font-size:13px;line-height:1.5}
+          #howit .ug-me-wrap{align-self:flex-end;animation:ugUser 11s infinite}
+          #howit .ug-me-wrap .ug-bub{background:linear-gradient(120deg,#7B6FF0,#9456F7);color:#fff;border-bottom-right-radius:5px}
+          #howit .ug-ai-wrap{align-self:flex-start;animation:ugBot 11s infinite}
+          #howit .ug-ai-wrap .ug-bub{background:#F4F3F8;color:#1d1a26;border-bottom-left-radius:5px}
+          #howit .ug-ai-wrap .ug-bub b{font-weight:700;color:#15182B}
+          #howit .ug-route{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:9px}
+          #howit .ug-pill{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:#5b5570;background:#fff;border:1px solid rgba(20,16,50,.1);padding:4px 8px;border-radius:8px}
+          #howit .ug-pill img{width:12px;height:12px}
+          #howit .ug-arrow{color:#b0aac2;font-weight:700;font-size:11px}
+          #howit .ug-type{align-self:flex-start;overflow:hidden;animation:ugType 11s infinite}
+          #howit .ug-dots{display:inline-flex;gap:4px;padding:12px 14px;background:#F4F3F8;border-radius:14px;border-bottom-left-radius:5px}
+          #howit .ug-dots i{width:6px;height:6px;border-radius:50%;background:#b0aac2;display:block;animation:ugDot 1s infinite}
+          #howit .ug-dots i:nth-child(2){animation-delay:.15s}#howit .ug-dots i:nth-child(3){animation-delay:.3s}
+          #howit .ug-bar{display:flex;align-items:center;gap:10px;margin:0 20px 20px;padding:12px 14px 12px 18px;border-radius:18px;border:1px solid rgba(20,16,50,.12);background:#fff;box-shadow:0 12px 32px -18px rgba(40,20,90,.35)}
+          #howit .ug-input{flex:1;color:#9a96ad;font-size:14px;text-align:left}
           #howit .ug-send{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(120deg,#676AFE,#9456F7,#BE59D4)}
           #howit .ug-send svg{width:16px;height:16px;color:#fff}
+          @keyframes ugDot{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-3px);opacity:1}}
+          @keyframes ugGreet{0%,9%{opacity:1}15%,100%{opacity:0}}
+          @keyframes ugUser{0%,14%{opacity:0;transform:translateY(10px)}19%,90%{opacity:1;transform:none}97%,100%{opacity:0}}
+          @keyframes ugType{0%,24%{opacity:0;max-height:0}28%,40%{opacity:1;max-height:48px}44%,100%{opacity:0;max-height:0}}
+          @keyframes ugBot{0%,44%{opacity:0;transform:translateY(10px)}51%,90%{opacity:1;transform:none}97%,100%{opacity:0}}
+          @media(prefers-reduced-motion:reduce){#howit .ug-greet{display:none}#howit .ug-me-wrap,#howit .ug-ai-wrap{animation:none;opacity:1;transform:none}#howit .ug-type{display:none}}
           </style>
           <div class="uly-gpt">
-            <div class="ug-top"><img src="/assets/img/logo-ulysse.png" alt="">Ulysse</div>
-            <div class="ug-empty">
-              <img class="ug-logo" src="/assets/img/logo-ulysse.png" alt="Ulysse">
-              <h3 class="ug-title">Comment puis-je vous aider&nbsp;?</h3>
-              <p class="ug-sub">Posez une question sur votre activité — Ulysse lit Océan, Rainbow et Desk pour vous répondre et agir à votre place.</p>
+            <div class="ug-top"><img src="/assets/img/logo-ulysse.png" alt="">Ulysse · copilote</div>
+            <div class="ug-chat">
+              <div class="ug-greet"><img src="/assets/img/logo-ulysse.png" alt="Ulysse"><b>Comment puis-je vous aider&nbsp;?</b><small>Ulysse lit Océan, Rainbow et Desk pour répondre et agir à votre place.</small></div>
+              <div class="ug-me-wrap ug-row me"><div class="ug-bub">Combien de no-shows cette semaine, et qu'est-ce qu'on lance&nbsp;?</div></div>
+              <div class="ug-type"><div class="ug-dots"><i></i><i></i><i></i></div></div>
+              <div class="ug-ai-wrap ug-row ai"><img class="ug-ava" src="/assets/img/logo-ulysse.png" alt=""><div class="ug-bub"><b>14 no-shows</b> cette semaine (−18&nbsp;% vs. dernière). Je lance une relance WhatsApp via Rainbow et crée 3 tâches dans Desk.<div class="ug-route"><span class="ug-pill"><img src="/assets/img/logo-ocean.png" alt="">Océan</span><span class="ug-arrow">→</span><span class="ug-pill"><img src="/assets/img/logo-rainbow.svg" alt="">Rainbow</span><span class="ug-arrow">→</span><span class="ug-pill"><img src="/assets/img/logo-desk.png" alt="">Desk</span></div></div></div>
             </div>
             <div class="ug-bar">
               <span class="ug-input">Message à Ulysse…</span>
