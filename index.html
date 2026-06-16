@@ -4403,26 +4403,28 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
 .btn-primary:hover::before,.btn2.primary:hover::before{opacity:.82;filter:blur(15px)}
 .btn-primary:active,.btn2.primary:active{transform:translateY(0) scale(.99)!important}
 
-/* CTA secondaires : contour arc-en-ciel animé (variant="outline") */
+/* CTA secondaires : meme bouton NOIR magicui (fond noir + halo arc-en-ciel) */
 .btn-ghost{
-  position:relative!important;overflow:visible!important;color:#1a1550!important;
-  border:2px solid transparent!important;border-radius:14px!important;
-  background:linear-gradient(#fff,#fff) padding-box,
-             linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1)) border-box!important;
+  position:relative!important;overflow:visible!important;color:#fff!important;text-shadow:none!important;
+  border:1.3px solid transparent!important;border-radius:14px!important;
+  background:
+    linear-gradient(#121213,#121213) padding-box,
+    linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1)) border-box!important;
   background-size:auto,200% 100%!important;background-repeat:no-repeat!important;
   animation:rb-move 3s linear infinite!important;
-  box-shadow:0 10px 26px -14px rgba(40,30,90,.30)!important;
+  box-shadow:0 10px 28px -14px rgba(0,0,0,.45)!important;
 }
+.btn-ghost::after{display:none!important}
 .btn-ghost::before{
   content:"";position:absolute;left:50%;bottom:-22%;z-index:-1;
-  width:60%;height:42%;transform:translateX(-50%);
+  width:60%;height:40%;transform:translateX(-50%);
   background-image:linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1));
   background-size:200% 100%;animation:rb-move 3s linear infinite;
-  filter:blur(14px);opacity:.42;border-radius:999px;pointer-events:none;
+  filter:blur(12px);opacity:.55;border-radius:999px;pointer-events:none;
 }
-.btn-ghost:hover{transform:translateY(-3px) scale(1.025)!important;color:#120e3a!important}
-.btn-ghost:hover::before{opacity:.7;filter:blur(17px)}
-.btn-ghost:active{transform:translateY(-1px) scale(.99)!important}
+.btn-ghost:hover{transform:translateY(-2px)!important;color:#fff!important;box-shadow:0 16px 38px -14px rgba(0,0,0,.5)!important}
+.btn-ghost:hover::before{opacity:.82;filter:blur(15px)}
+.btn-ghost:active{transform:translateY(0) scale(.99)!important}
 
 @media(prefers-reduced-motion:reduce){
   .btn-primary,.btn2.primary,.btn-ghost,
