@@ -4376,58 +4376,34 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
 }
 @keyframes rb-move{0%{background-position:0 50%}100%{background-position:200% 50%}}
 
-/* CTA principaux : bouton NOIR magicui — fine bordure arc-en-ciel + halo flou dessous */
-.btn-primary,.btn2.primary,.btn2.primary.ps-cta{
+/* Tous les CTA : fond NOIR plein + halo arc-en-ciel anime DERRIERE le bouton */
+.btn-primary,.btn2.primary,.btn2.primary.ps-cta,.btn-ghost{
   position:relative!important;overflow:visible!important;isolation:auto!important;
-  border:1.3px solid transparent!important;border-radius:14px!important;color:#fff!important;text-shadow:none!important;
-  background:
-    linear-gradient(#121213,#121213) padding-box,
-    linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1)) border-box!important;
-  background-size:auto,200% 100%!important;background-repeat:no-repeat!important;
+  border:1px solid rgba(255,255,255,.10)!important;border-radius:14px!important;
+  color:#fff!important;text-shadow:none!important;
+  background:#0f0f12!important;background-image:none!important;background-color:#0f0f12!important;
+  animation:none!important;
+  box-shadow:0 10px 28px -14px rgba(0,0,0,.5)!important;
+}
+/* neutralise tout ancien reflet / pseudo */
+.btn-primary::after,.btn2.primary::after,.btn-ghost::after{display:none!important}
+/* le halo arc-en-ciel : seul element colore, place derriere (z-index:-1) */
+.btn-primary::before,.btn2.primary::before,.btn-ghost::before{
+  content:""!important;position:absolute!important;left:50%;bottom:-28%;z-index:-1;
+  width:82%;height:62%;transform:translateX(-50%);
+  background:linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1))!important;
+  background-size:200% 100%!important;background-repeat:no-repeat!important;
   animation:rb-move 3s linear infinite!important;
-  box-shadow:0 10px 28px -14px rgba(0,0,0,.45)!important;
+  filter:blur(14px);opacity:.7;border-radius:999px;pointer-events:none;
 }
-/* neutralise l'ancien reflet blanc */
-.btn-primary::after,.btn2.primary::after{display:none!important}
-.btn-primary::before,.btn2.primary::before{
-  content:"";position:absolute;left:50%;bottom:-22%;z-index:-1;
-  width:60%;height:40%;transform:translateX(-50%);
-  background-image:linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1));
-  background-size:200% 100%;animation:rb-move 3s linear infinite;
-  filter:blur(12px);opacity:.55;border-radius:999px;pointer-events:none;
+.btn-primary:hover,.btn2.primary:hover,.btn-ghost:hover{
+  transform:translateY(-2px)!important;background:#16161c!important;background-color:#16161c!important;
+  box-shadow:0 16px 38px -14px rgba(0,0,0,.55)!important;
 }
-.btn-primary:hover,.btn2.primary:hover{
-  transform:translateY(-2px)!important;
-  box-shadow:0 16px 38px -14px rgba(0,0,0,.5)!important;
-}
-.btn-primary:hover::before,.btn2.primary:hover::before{opacity:.82;filter:blur(15px)}
-.btn-primary:active,.btn2.primary:active{transform:translateY(0) scale(.99)!important}
-
-/* CTA secondaires : meme bouton NOIR magicui (fond noir + halo arc-en-ciel) */
-.btn-ghost{
-  position:relative!important;overflow:visible!important;color:#fff!important;text-shadow:none!important;
-  border:1.3px solid transparent!important;border-radius:14px!important;
-  background:
-    linear-gradient(#121213,#121213) padding-box,
-    linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1)) border-box!important;
-  background-size:auto,200% 100%!important;background-repeat:no-repeat!important;
-  animation:rb-move 3s linear infinite!important;
-  box-shadow:0 10px 28px -14px rgba(0,0,0,.45)!important;
-}
-.btn-ghost::after{display:none!important}
-.btn-ghost::before{
-  content:"";position:absolute;left:50%;bottom:-22%;z-index:-1;
-  width:60%;height:40%;transform:translateX(-50%);
-  background-image:linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1));
-  background-size:200% 100%;animation:rb-move 3s linear infinite;
-  filter:blur(12px);opacity:.55;border-radius:999px;pointer-events:none;
-}
-.btn-ghost:hover{transform:translateY(-2px)!important;color:#fff!important;box-shadow:0 16px 38px -14px rgba(0,0,0,.5)!important}
-.btn-ghost:hover::before{opacity:.82;filter:blur(15px)}
-.btn-ghost:active{transform:translateY(0) scale(.99)!important}
+.btn-primary:hover::before,.btn2.primary:hover::before,.btn-ghost:hover::before{opacity:.95;filter:blur(17px)}
+.btn-primary:active,.btn2.primary:active,.btn-ghost:active{transform:translateY(0) scale(.99)!important}
 
 @media(prefers-reduced-motion:reduce){
-  .btn-primary,.btn2.primary,.btn-ghost,
   .btn-primary::before,.btn2.primary::before,.btn-ghost::before{animation:none!important}
 }
 </style><script id="pricing-sim-js">
