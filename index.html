@@ -4365,59 +4365,6 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
   box-shadow:0 22px 54px -12px rgba(148,86,247,.9),0 10px 26px -6px rgba(190,89,212,.75),inset 0 1px 0 rgba(255,255,255,.5)!important}
 .btn2.primary:hover::after{left:135%}
 .btn2.primary:active{transform:translateY(-1px) scale(.99)!important}
-</style><style id="btn-rainbow">
-/* ── Boutons "rainbow" (magicui RainbowButton) ── */
-:root{
-  --rb-1:hsl(0 100% 63%);   /* rouge   */
-  --rb-2:hsl(270 100% 63%); /* violet  */
-  --rb-3:hsl(210 100% 63%); /* bleu    */
-  --rb-4:hsl(195 100% 63%); /* cyan    */
-  --rb-5:hsl(90 100% 63%);  /* vert    */
-}
-@keyframes rb-move{0%{background-position:0 50%}100%{background-position:200% 50%}}
-
-/* Base commune CTA : bordure arc-en-ciel animee (::before) + halo flou (::after) */
-.btn-primary,.btn2.primary,.btn2.primary.ps-cta,.btn-ghost{
-  position:relative!important;overflow:visible!important;isolation:auto!important;
-  border:1.5px solid transparent!important;border-radius:12px!important;text-shadow:none!important;
-  background-image:none!important;background-clip:padding-box!important;background-origin:padding-box!important;
-  animation:none!important;
-  box-shadow:0 10px 28px -14px rgba(0,0,0,.45)!important;
-}
-/* CTA principaux : fond NOIR, texte blanc */
-.btn-primary,.btn2.primary,.btn2.primary.ps-cta{
-  background-color:#0f0f12!important;color:#fff!important;
-}
-/* CTA secondaires : NEGATIF — fond blanc, texte noir */
-.btn-ghost{
-  background-color:#fff!important;color:#0f0f12!important;
-}
-/* ::before = anneau de bordure arc-en-ciel (couvre le border-box, derriere le fond) */
-.btn-primary::before,.btn2.primary::before,.btn-ghost::before{
-  content:""!important;display:block!important;position:absolute!important;inset:-1.5px!important;z-index:-1;
-  border-radius:12px!important;
-  background:linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1))!important;
-  background-size:200% 100%!important;background-repeat:no-repeat!important;
-  animation:rb-move 2s linear infinite!important;pointer-events:none;
-}
-/* ::after = halo arc-en-ciel flou sous le bouton (petit et discret, comme le demo) */
-.btn-primary::after,.btn2.primary::after,.btn-ghost::after{
-  content:""!important;display:block!important;position:absolute!important;left:50%;bottom:-20%;z-index:-2;
-  width:60%;height:34%;transform:translateX(-50%);
-  background:linear-gradient(90deg,var(--rb-1),var(--rb-5),var(--rb-3),var(--rb-4),var(--rb-2),var(--rb-1))!important;
-  background-size:200% 100%!important;background-repeat:no-repeat!important;
-  animation:rb-move 2s linear infinite!important;
-  filter:blur(12px);opacity:.7;border-radius:999px;pointer-events:none;
-}
-.btn-primary:hover,.btn2.primary:hover{transform:translateY(-2px)!important;background-color:#16161c!important}
-.btn-ghost:hover{transform:translateY(-2px)!important;background-color:#f4f4f8!important}
-.btn-primary:hover::after,.btn2.primary:hover::after,.btn-ghost:hover::after{opacity:.9;filter:blur(17px)}
-.btn-primary:active,.btn2.primary:active,.btn-ghost:active{transform:translateY(0) scale(.99)!important}
-
-@media(prefers-reduced-motion:reduce){
-  .btn-primary::before,.btn2.primary::before,.btn-ghost::before,
-  .btn-primary::after,.btn2.primary::after,.btn-ghost::after{animation:none!important}
-}
 </style><script id="pricing-sim-js">
 try{
 
