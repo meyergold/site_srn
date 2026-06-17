@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 560" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Coucher de soleil sur la mer">
+  <defs>
+    <!-- Sky: deep purple at top, warming to pink at the horizon -->
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#7a5aa6"/>
+      <stop offset="0.32" stop-color="#a978b6"/>
+      <stop offset="0.62" stop-color="#d6a3c0"/>
+      <stop offset="0.86" stop-color="#f3c6d2"/>
+      <stop offset="1"    stop-color="#f7d3d6"/>
+    </linearGradient>
+    <!-- Sea: glowing pink at the horizon fading to calm purple -->
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#f0bfcf"/>
+      <stop offset="0.18" stop-color="#caa0c2"/>
+      <stop offset="0.55" stop-color="#9b81b3"/>
+      <stop offset="1"    stop-color="#6f5d9c"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0"    stop-color="#fff7e8" stop-opacity="0.95"/>
+      <stop offset="0.18" stop-color="#ffe7c9" stop-opacity="0.85"/>
+      <stop offset="0.5"  stop-color="#f7c9c0" stop-opacity="0.35"/>
+      <stop offset="1"    stop-color="#f7c9c0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sunCore" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0"   stop-color="#fffdf6"/>
+      <stop offset="0.6" stop-color="#fff2d8"/>
+      <stop offset="1"   stop-color="#ffe3c2" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="reflect" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#fff3df" stop-opacity="0.85"/>
+      <stop offset="1"   stop-color="#fff3df" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="haze" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1600" height="312" fill="url(#sky)"/>
+  <!-- Sun glow halo on the horizon -->
+  <circle cx="800" cy="300" r="280" fill="url(#sunGlow)"/>
+
+  <!-- Distant mountain ranges, hazy and desaturated -->
+  <g filter="url(#soft)" opacity="0.55">
+    <path d="M0 304 L150 270 L300 292 L470 252 L640 288 L800 262 L980 290 L1160 256 L1340 288 L1500 268 L1600 296 L1600 312 L0 312 Z" fill="#7f7aa8"/>
+  </g>
+  <g filter="url(#soft)" opacity="0.7">
+    <path d="M0 306 L120 288 L260 300 L420 276 L560 300 L720 284 L800 296 L900 280 L1080 302 L1260 282 L1440 304 L1600 290 L1600 312 L0 312 Z" fill="#6f6a9c"/>
+  </g>
+
+  <!-- Soft mist over the water line -->
+  <ellipse cx="800" cy="312" rx="900" ry="40" fill="#f4cdd2" opacity="0.55" filter="url(#haze)"/>
+
+  <!-- Sun core just above the horizon -->
+  <circle cx="800" cy="296" r="46" fill="url(#sunCore)"/>
+  <circle cx="800" cy="296" r="22" fill="#fffaf0"/>
+
+  <!-- Sea -->
+  <rect y="312" width="1600" height="248" fill="url(#sea)"/>
+  <!-- Sun reflection shimmering down the water -->
+  <path d="M770 312 Q800 312 830 312 L818 560 Q800 560 782 560 Z" fill="url(#reflect)"/>
+  <ellipse cx="800" cy="330" rx="70" ry="10" fill="#fff3df" opacity="0.7" filter="url(#soft)"/>
+
+  <!-- Gentle horizontal ripple highlights -->
+  <g stroke="#ffffff" stroke-linecap="round" opacity="0.10">
+    <line x1="120" y1="360" x2="430" y2="360" stroke-width="2"/>
+    <line x1="1080" y1="372" x2="1430" y2="372" stroke-width="2"/>
+    <line x1="300" y1="408" x2="560" y2="408" stroke-width="2"/>
+    <line x1="980" y1="420" x2="1280" y2="420" stroke-width="2"/>
+    <line x1="520" y1="470" x2="760" y2="470" stroke-width="2"/>
+    <line x1="860" y1="486" x2="1140" y2="486" stroke-width="2"/>
+  </g>
+</svg>
