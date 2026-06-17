@@ -66,6 +66,20 @@ img{max-width:100%;display:block}
 .logos-row img{height:34px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.6;transition:.3s}
 .logos-row img:hover{filter:grayscale(0);opacity:1}
 
+/* CLIENTS (+300) */
+.clients{padding:60px 0 18px;background:linear-gradient(180deg,#ffffff 0%,#f7f4ff 55%,#f2ecfd 100%)}
+.cl-eyebrow{text-align:center;font-family:'Geist Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin:0 0 28px}
+.cl-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.cl-card{display:flex;align-items:center;justify-content:center;text-align:center;min-height:86px;padding:18px 14px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 12px 30px -24px rgba(40,20,90,.55);font-weight:700;font-size:14.5px;line-height:1.2;letter-spacing:.01em;color:#56516e;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.cl-card:hover{transform:translateY(-3px);box-shadow:0 20px 42px -22px rgba(40,20,90,.55)}
+.cl-card img{max-height:30px;max-width:118px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.72;transition:.25s}
+.cl-card:hover img{filter:grayscale(0);opacity:1}
+.cl-card.cl-hi{flex-direction:column;gap:3px;background:linear-gradient(135deg,#f3f1ff,#fbf0ff);border-color:rgba(124,92,246,.22)}
+.cl-card.cl-hi b{font-size:30px;font-weight:800;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cl-card.cl-hi span{font-size:11.5px;font-weight:600;color:var(--muted);letter-spacing:0}
+@media(max-width:860px){.cl-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.cl-grid{grid-template-columns:repeat(2,1fr)}.cl-card{min-height:72px;font-size:13px}}
+
 /* STATS */
 .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
@@ -193,6 +207,38 @@ img{max-width:100%;display:block}
   <div class="stat"><b>3×</b><span>conversations traitées</span></div>
   <div class="stat"><b>24/7</b><span>sur tous les canaux</span></div>
 </div></section>
+
+<!-- CLIENTS (+300) -->
+<section class="clients">
+  <div class="wrap">
+    <p class="cl-eyebrow">Ils améliorent leurs process avec Sairen</p>
+    <div class="cl-grid">
+      <div class="cl-card cl-hi"><b>+300</b><span>organisations</span></div>
+      <div class="cl-card">DRAY</div>
+      <div class="cl-card">Allo Casse Auto</div>
+      <div class="cl-card">La Parisienne de Baguette</div>
+      <div class="cl-card">équip'jardin</div>
+      <div class="cl-card">Transcash</div>
+      <div class="cl-card">CMSM</div>
+      <div class="cl-card">point de vente</div>
+      <div class="cl-card">Pullman</div>
+      <div class="cl-card">Best Western</div>
+      <div class="cl-card">LAZEO</div>
+      <div class="cl-card">vidi</div>
+      <div class="cl-card">OPHTALYS</div>
+      <div class="cl-card">delya</div>
+      <div class="cl-card">Ambroise Paré-Hartmann</div>
+      <div class="cl-card">Clinique des Champs-Élysées</div>
+      <div class="cl-card">Racine</div>
+      <div class="cl-card">DENTYLIS</div>
+      <div class="cl-card">TRESSÉ</div>
+      <div class="cl-card"><img src="../img/logo-elsan-black.png" alt="Elsan"></div>
+      <div class="cl-card"><img src="../img/logo-sofitel.png" alt="Sofitel"></div>
+      <div class="cl-card"><img src="../img/logo-vyv-black.png" alt="Groupe VYV"></div>
+      <div class="cl-card">MYLASER</div>
+    </div>
+  </div>
+</section>
 
 <!-- PILLARS -->
 <section class="sec"><div class="wrap">

@@ -2038,13 +2038,13 @@ footer{
 @media(max-width:720px){.ac-grid{grid-template-columns:1fr}.ac-plan{margin-left:0}}
 </style>
 <style id="duna-fx">
-/* ===== Effets nav façon DUNA (page d'accueil uniquement) ===== */
-/* Navbar transparente qui flotte au-dessus du hero */
-body.home-dive>nav{background:transparent!important;border-bottom-color:transparent!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
-body.home-dive .nav-links a,body.home-dive .navdd-t,body.home-dive .link-login{text-shadow:0 1px 14px rgba(255,255,255,.55)}
-/* Bouton CTA en noir (surcharge le dégradé de marque ; scope home pour priorité) */
-body.home-dive .btn2.primary{background:#0b0b0d!important;background-image:none!important;border:0!important;color:#fff!important;box-shadow:0 16px 38px -18px rgba(0,0,0,.6)!important}
-body.home-dive .btn2.primary:hover{background:#000!important;background-image:none!important;transform:translateY(-3px)!important;box-shadow:0 24px 50px -18px rgba(0,0,0,.72)!important}
+/* ===== Effets nav façon DUNA ===== */
+/* Navbar 100% vide (aucun fond) au-dessus du hero — page d'accueil */
+body.home-dive>nav{background:none!important;background-color:transparent!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+body.home-dive .nav-links a,body.home-dive .navdd-t,body.home-dive .link-login{text-shadow:0 1px 14px rgba(255,255,255,.6)}
+/* Boutons CTA en noir — PARTOUT, même effet au survol (préfixe html = priorité de spécificité) */
+html .btn2.primary,html .btn-primary,html .mm-cta,html .ss-go,html .pc-cta.btn-primary{background:#0b0b0d!important;background-image:none!important;border:0!important;color:#fff!important;text-shadow:none!important;box-shadow:0 16px 38px -18px rgba(0,0,0,.6)!important;transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s,background .2s!important}
+html .btn2.primary:hover,html .btn-primary:hover,html .mm-cta:hover,html .ss-go:hover,html .pc-cta.btn-primary:hover{background:#000!important;background-image:none!important;transform:translateY(-3px)!important;box-shadow:0 24px 50px -18px rgba(0,0,0,.72)!important}
 /* Pastille de survol sur les items de nav */
 body.home-dive .nav-links .navdd-t,body.home-dive .nav-links>a{padding:9px 15px;border-radius:999px;transition:background .22s ease,color .2s ease}
 body.home-dive .nav-links .navdd-t:hover,body.home-dive .navdd:hover .navdd-t,body.home-dive .nav-links>a:hover{background:rgba(20,16,40,.08)}
