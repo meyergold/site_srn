@@ -141,16 +141,19 @@ img{max-width:100%;display:block}
 @media(max-width:760px){.cta-band{grid-template-columns:1fr}.cta-img{min-height:200px}}
 
 /* FOOTER */
-.foot{position:relative;color:#fff;background:#0a0816}
-.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:24px;padding:56px 0 40px}
-.foot-grid h4{font-size:13px;letter-spacing:.04em;color:rgba(255,255,255,.5);font-weight:600;margin:0 0 14px;text-transform:uppercase}
-.foot-grid a{display:block;color:rgba(255,255,255,.8);font-size:14px;padding:5px 0}
+.foot{position:relative;color:#fff;overflow:hidden;background:#6f5d9c}
+.foot::before{content:"";position:absolute;inset:0;z-index:0;background:url(../img/footer-sea.svg) center bottom/cover no-repeat}
+.foot::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(56,38,92,.34) 0%,rgba(56,38,92,.06) 26%,rgba(50,32,84,.10) 60%,rgba(43,28,76,.58) 100%)}
+.foot .wrap{position:relative;z-index:2}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:24px;padding:72px 0 40px}
+.foot-grid h4{font-size:13px;letter-spacing:.05em;color:#fff;font-weight:700;margin:0 0 14px;text-transform:uppercase;text-shadow:0 1px 14px rgba(38,22,70,.5)}
+.foot-grid a{display:block;color:rgba(255,255,255,.86);font-size:14px;padding:5px 0;text-shadow:0 1px 12px rgba(38,22,70,.45)}
 .foot-grid a:hover{color:#fff}
-.foot-logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:20px;margin-bottom:12px}
+.foot-logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:20px;margin-bottom:12px;text-shadow:0 1px 14px rgba(38,22,70,.5)}
 .foot-logo .star{width:24px;height:24px;border-radius:7px;background:var(--grad)}
-.foot p{color:rgba(255,255,255,.55);font-size:13.5px;line-height:1.6;max-width:34ch}
-.foot-bot{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;font-size:12.5px;color:rgba(255,255,255,.45)}
-@media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr}}
+.foot p{color:rgba(255,255,255,.9);font-size:13.5px;line-height:1.6;max-width:34ch;text-shadow:0 1px 14px rgba(38,22,70,.5)}
+.foot-bot{border-top:1px solid rgba(255,255,255,.22);padding:20px 0;font-size:12.5px;color:rgba(255,255,255,.85);text-shadow:0 1px 12px rgba(38,22,70,.45)}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;padding:56px 0 36px}}
 </style></head>
 <body>
 
