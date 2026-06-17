@@ -169,6 +169,7 @@ img{max-width:100%;display:block}
 .foot-grid a:hover{color:#150d36}
 .foot-logo{display:flex;align-items:center;gap:9px;font-weight:700;font-size:20px;margin-bottom:12px;color:#241a47;text-shadow:0 1px 10px rgba(255,255,255,.55)}
 .foot-logo .star{width:24px;height:24px;border-radius:7px;background:var(--grad)}
+.foot-logo img{height:34px;width:auto;display:block;filter:drop-shadow(0 2px 10px rgba(255,255,255,.5))}
 .foot p{color:rgba(48,36,92,.9);font-size:13.5px;line-height:1.6;max-width:34ch;text-shadow:0 1px 10px rgba(255,255,255,.5)}
 .foot-bot{border-top:1px solid rgba(40,28,80,.18);padding:20px 0;font-size:12.5px;color:rgba(48,36,92,.82);text-shadow:0 1px 9px rgba(255,255,255,.5)}
 @media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;padding:56px 0 36px}}
@@ -402,7 +403,7 @@ img{max-width:100%;display:block}
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="foot-logo"><span class="star"></span>SAIREN</div>
+        <div class="foot-logo"><img src="../img/sairen-logo.png" alt="Sairen"></div>
         <p>La nouvelle ère de la relation client. Toutes vos communications, enfin sous contrôle.</p>
       </div>
       <div><h4>Produit</h4><a href="#/ocean">Océan</a><a href="#/rainbow">Rainbow</a><a href="#/desk">Desk</a><a href="#/ulysse">Ulysse</a></div>
@@ -422,5 +423,11 @@ document.addEventListener('click',function(e){
   try{ (window.top||window).location.hash=a.getAttribute('href'); }
   catch(_){ location.hash=a.getAttribute('href'); }
 });
+/* On remonte la position de scroll à la page parente pour qu'elle solidifie la navbar */
+(function(){
+  function report(){try{(window.top||window).postMessage({srnScroll:window.scrollY||document.documentElement.scrollTop||0},'*');}catch(e){}}
+  window.addEventListener('scroll',report,{passive:true});
+  window.addEventListener('load',report);report();
+})();
 </script>
 </body></html>

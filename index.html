@@ -2039,8 +2039,13 @@ footer{
 </style>
 <style id="duna-fx">
 /* ===== Effets nav façon DUNA ===== */
+/* Nav pleine largeur : logo collé au bord gauche (façon DUNA) */
+nav .wrap.nav-in{max-width:none!important;padding-left:clamp(18px,3vw,40px)!important;padding-right:clamp(18px,3vw,40px)!important}
 /* Navbar 100% vide (aucun fond) au-dessus du hero — page d'accueil */
-body.home-dive>nav{background:none!important;background-color:transparent!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+body.home-dive>nav{background:none!important;background-color:transparent!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;transition:background .3s ease,box-shadow .3s ease,backdrop-filter .3s ease}
+/* Au scroll (sur le contenu blanc), la navbar redevient blanche pour que le texte n'overlap pas */
+body.home-dive.nav-solid>nav{background:rgba(255,255,255,.92)!important;-webkit-backdrop-filter:saturate(1.5) blur(16px)!important;backdrop-filter:saturate(1.5) blur(16px)!important;box-shadow:0 1px 0 rgba(20,16,40,.07),0 12px 30px -26px rgba(40,20,90,.6)!important}
+body.home-dive.nav-solid .nav-links a,body.home-dive.nav-solid .navdd-t,body.home-dive.nav-solid .link-login{text-shadow:none!important}
 body.home-dive .nav-links a,body.home-dive .navdd-t,body.home-dive .link-login{text-shadow:0 1px 14px rgba(255,255,255,.6)}
 /* Boutons CTA en noir — PARTOUT, même effet au survol (préfixe html = priorité de spécificité) */
 html .btn2.primary,html .btn-primary,html .mm-cta,html .ss-go,html .pc-cta.btn-primary{background:#0b0b0d!important;background-image:none!important;border:0!important;color:#fff!important;text-shadow:none!important;box-shadow:0 16px 38px -18px rgba(0,0,0,.6)!important;transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s,background .2s!important}
@@ -4586,5 +4591,9 @@ function walkAll(lang){
 var oldApply=window.applyLang;
 window.applyLang=function(){if(oldApply)oldApply();walkAll(window.LANG==="fr"?null:window.LANG);};
 })();
+</script>
+<script>
+/* La home (iframe) nous envoie sa position de scroll : on solidifie la navbar quand on quitte le hero */
+addEventListener("message",function(e){var d=e.data;if(d&&typeof d.srnScroll==="number"){document.body.classList.toggle("nav-solid",d.srnScroll>60);}});
 </script>
 </body></html>
