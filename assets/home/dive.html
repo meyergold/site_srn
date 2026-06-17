@@ -151,6 +151,31 @@ img{max-width:100%;display:block}
 .foot p{color:rgba(255,255,255,.55);font-size:13.5px;line-height:1.6;max-width:34ch}
 .foot-bot{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;font-size:12.5px;color:rgba(255,255,255,.45)}
 @media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr}}
+
+/* TRUST */
+.trust{padding:54px 0 6px;text-align:center}
+.trust-p{font-size:13px;color:var(--muted);font-weight:600;margin:0 0 28px}
+.trust-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:34px 50px}
+.trust-row img{height:30px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.55;transition:.3s}
+.trust-row img:hover{filter:grayscale(0);opacity:1}
+/* INDUSTRIES */
+.ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.ind-card{display:flex;flex-direction:column;gap:9px;padding:24px;border-radius:var(--r);background:#fff;border:1px solid var(--line);box-shadow:0 18px 46px -34px rgba(40,20,90,.4);transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,border-color .28s}
+.ind-card:hover{transform:translateY(-5px);border-color:rgba(148,86,247,.28);box-shadow:0 28px 60px -30px rgba(108,64,250,.38)}
+.ind-card .ic{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:var(--grad);color:#fff}
+.ind-card .ic svg{width:22px;height:22px}
+.ind-card b{font-size:16px}.ind-card small{font-size:13px;color:var(--muted);line-height:1.5}
+.ind-card .go{margin-top:4px;font-size:12.5px;font-weight:700;color:#7c3aed}
+@media(max-width:820px){.ind-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.ind-grid{grid-template-columns:1fr}}
+/* FAQ */
+.faq{margin-top:36px;display:flex;flex-direction:column;gap:10px}
+.faq details{border:1px solid var(--line);border-radius:14px;background:#fff;padding:2px 18px}
+.faq summary{list-style:none;cursor:pointer;font-weight:600;font-size:15.5px;color:var(--ink);padding:16px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .pl{flex:none;width:22px;height:22px;border-radius:50%;background:var(--soft);display:grid;place-items:center;color:#7c3aed;font-weight:700;transition:.25s}
+.faq details[open] summary .pl{transform:rotate(45deg);background:rgba(148,86,247,.12)}
+.faq p{margin:0 0 16px;font-size:14.5px;line-height:1.6;color:var(--muted)}
 </style></head>
 <body>
 
@@ -185,6 +210,9 @@ img{max-width:100%;display:block}
   <div class="stat"><b>3×</b><span>conversations traitées</span></div>
   <div class="stat"><b>24/7</b><span>sur tous les canaux</span></div>
 </div></section>
+
+<!-- TRUST -->
+<section class="trust"><div class="wrap"><p class="trust-p">Conçu pour les organisations où chaque échange compte.</p><div class="trust-row"><img loading="lazy" src="/assets/img/img-015-551478494d81.webp" alt="Valbonne"><img loading="lazy" src="/assets/img/img-023-384108f3c11e.webp" alt="Pullman"><img loading="lazy" src="/assets/img/img-026-45d814cdec79.webp" alt="Lazeo"><img loading="lazy" src="/assets/img/logo-elsan-black.png" alt="Elsan"><img loading="lazy" src="/assets/img/img-021-0b84f4ed2053.webp" alt="CMSM"><img loading="lazy" src="/assets/img/logo-vyv-black.png" alt="Groupe VYV"><img loading="lazy" src="/assets/img/img-024-818794ebc7ca.webp" alt="Best Western"></div></div></section>
 
 <!-- PILLARS -->
 <section class="sec"><div class="wrap">
@@ -290,6 +318,9 @@ img{max-width:100%;display:block}
   </div>
 </div></section>
 
+<!-- INDUSTRIES -->
+<section class="sec"><div class="wrap"><div class="sec-head"><span class="eyebrow"><i></i>À qui on s'adresse</span><h2 class="h2">Une mécanique, <em>vos métiers.</em></h2><p class="lead">Choisissez votre secteur : Sairen s'adapte à vos canaux, vos process et votre vocabulaire.</p></div><div class="ind-grid"><a class="ind-card" href="/#/ind-sante" target="_top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg></span><b>Santé</b><small>Appels, prise de RDV, no-show, RIS/DPI.</small><span class="go">Découvrir →</span></a><a class="ind-card" href="/#/ind-hotellerie" target="_top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18V8M3 13h12a4 4 0 0 1 4 4v1M3 18h18M7 11h.01"/></svg></span><b>Hôtellerie</b><small>Réservations, conciergerie 24/7, upsell.</small><span class="go">Découvrir →</span></a><a class="ind-card" href="/#/ind-retail" target="_top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></span><b>Retail</b><small>Demandes produits, SAV, fidélité.</small><span class="go">Découvrir →</span></a><a class="ind-card" href="/#/ind-immobilier" target="_top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-6 8 6"/><path d="M6 10v9h12v-9"/></svg></span><b>Immobilier</b><small>Leads, visites, relances, suivi de dossier.</small><span class="go">Découvrir →</span></a><a class="ind-card" href="/#/ind-services" target="_top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></span><b>Services</b><small>Devis, support, coordination des équipes.</small><span class="go">Découvrir →</span></a><a class="ind-card" href="/#/ind-ecommerce" target="_top"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M3 4h2l2.4 12h11l2-8H6"/></svg></span><b>E-commerce</b><small>Commandes, livraisons, retours, avis.</small><span class="go">Découvrir →</span></a></div></div></section>
+
 <!-- TESTIMONIALS -->
 <section class="sec sec-soft"><div class="wrap">
   <div class="sec-head">
@@ -332,6 +363,9 @@ img{max-width:100%;display:block}
     <span class="badge"><span class="bk">🇫🇷</span>Hébergé en France · Scaleway</span>
   </div>
 </div></section>
+
+<!-- FAQ -->
+<section class="sec sec-soft"><div class="wrap" style="max-width:780px"><div class="sec-head" style="max-width:none"><span class="eyebrow"><i></i>FAQ</span><h2 class="h2">Questions <em>fréquentes.</em></h2></div><div class="faq"><details><summary>Combien de temps pour démarrer ?<span class="pl">+</span></summary><p>Quelques minutes : vous créez votre compte, connectez vos canaux, et vos premiers agents IA sont prêts. Aucune installation.</p></details><details><summary>Mes données sont-elles sécurisées ?<span class="pl">+</span></summary><p>Oui. Vos données sont hébergées en France et traitées dans le respect du RGPD. Chaque échange est historisé et chiffré.</p></details><details><summary>Quels canaux puis-je connecter ?<span class="pl">+</span></summary><p>WhatsApp, appels, e-mail, SMS, réseaux sociaux et messages internes — tout converge dans une seule conversation.</p></details><details><summary>L'IA remplace-t-elle mes équipes ?<span class="pl">+</span></summary><p>Non. L'IA gère le volume et la 1ʳᵉ ligne ; vos équipes reprennent la main quand c'est nécessaire.</p></details><details><summary>Puis-je essayer gratuitement ?<span class="pl">+</span></summary><p>Oui, vous pouvez commencer gratuitement, sans carte bancaire. Vous pouvez aussi réserver une démo personnalisée.</p></details></div></div></section>
 
 <!-- CTA BAND -->
 <section class="wrap" style="padding-bottom:96px"><div class="cta-band">
