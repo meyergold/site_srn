@@ -903,13 +903,23 @@ section{position:relative;z-index:2}
     <style id="howit-css">
 #howit{--ocean:#5B6CFF;--desk:#FF5D8F;--ulysse:#B557EE;--hiw-grad:linear-gradient(100deg,#FF7B5A,#FF5D8F 38%,#B557EE 70%,#5B6CFF);--cream:#FAF8F2;--hiw-ink:#1d1a26;--hiw-mut:#5b5570;--hiw-line:rgba(20,16,50,.09)}
 #howit .wrap{max-width:1160px}
-#howit .hiw-grid{display:grid;grid-template-columns:minmax(300px,400px) 1fr;gap:28px;align-items:stretch;max-width:1140px;margin:40px auto 0;text-align:left}
+/* ── en-tête aligné à gauche + bouton Explorer (façon Duna) ── */
+#howit .hiw-head{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;flex-wrap:wrap;max-width:1140px;margin:0 auto;text-align:left}
+#howit .hiw-head-txt{max-width:680px}
+#howit .hiw-head .sec-title{margin:13px 0 13px}
+#howit .hiw-explore{flex:none;display:inline-flex;align-items:center;gap:8px;padding:11px 21px;border-radius:999px;font-size:14px;font-weight:650;color:var(--hiw-ink);text-decoration:none;background:#fff;border:1px solid var(--hiw-line);box-shadow:0 12px 30px -18px rgba(30,20,80,.45);transition:transform .25s,background .25s,border-color .25s,box-shadow .25s}
+#howit .hiw-explore:hover{transform:translateY(-2px);border-color:rgba(20,16,50,.18);box-shadow:0 18px 38px -18px rgba(30,20,80,.55)}
+#howit .hiw-explore svg{width:16px;height:16px}
+/* ── grille : visuel à gauche (large) · liste à droite ── */
+#howit .hiw-grid{display:grid;grid-template-columns:1fr minmax(320px,420px);gap:28px;align-items:stretch;max-width:1140px;margin:40px auto 0;text-align:left}
+#howit .hiw-stage{order:1}
+#howit .hiw-stepper{order:2}
 /* ── accordion stepper ─────────────────────────────── */
 #howit .hiw-stepper{display:flex;flex-direction:column;gap:12px;list-style:none;margin:0;padding:0}
-#howit .hiw-step{position:relative;display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:0;width:100%;text-align:left;background:#fff;border:1px solid var(--hiw-line);border-radius:18px;padding:15px 17px;cursor:pointer;font-family:inherit;color:var(--hiw-ink);box-shadow:0 16px 40px -34px rgba(30,20,80,.5);transition:border-color .35s,box-shadow .35s,transform .3s}
-#howit .hiw-step:hover{transform:translateY(-1px);box-shadow:0 22px 48px -34px rgba(30,20,80,.55)}
+#howit .hiw-step{position:relative;display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:0;width:100%;text-align:left;background:transparent;border:1px solid transparent;border-radius:18px;padding:14px 16px;cursor:pointer;font-family:inherit;color:var(--hiw-ink);box-shadow:none;transition:background .35s,border-color .35s,box-shadow .35s,transform .3s}
+#howit .hiw-step:hover{background:rgba(20,16,50,.035);border-color:rgba(20,16,50,.06)}
 #howit .hiw-step:focus-visible{outline:2px solid var(--ocean);outline-offset:3px}
-#howit .hiw-step.is-active{box-shadow:0 28px 58px -32px rgba(80,40,140,.55)}
+#howit .hiw-step.is-active{background:#fff;border-color:var(--hiw-line);box-shadow:0 30px 60px -34px rgba(80,40,140,.45)}
 #howit .hiw-step::before{content:"";position:absolute;inset:-1px;border-radius:18px;padding:1.6px;background:var(--accent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;pointer-events:none}
 #howit .hiw-step.is-active::before{opacity:1}
 #howit .hiw-step[data-mod="ocean"]{--accent:linear-gradient(125deg,#5B6CFF,#8aa0ff)}
@@ -925,7 +935,7 @@ section{position:relative;z-index:2}
 #howit .hiw-step[data-mod="desk"] .hiw-mod{color:var(--desk)}
 #howit .hiw-step[data-mod="ulysse"] .hiw-mod{color:var(--ulysse)}
 #howit .hiw-step[data-mod="rainbow"] .hiw-mod{background:var(--hiw-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-#howit .hiw-h{display:block;font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-top:3px}
+#howit .hiw-h{display:block;font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-top:3px;color:var(--hiw-ink)}
 #howit .hiw-body{grid-column:1/-1;overflow:hidden;max-height:0;opacity:0;margin-top:0;transition:max-height .45s ease,opacity .35s ease,margin-top .35s ease}
 #howit .hiw-step.is-active .hiw-body{max-height:220px;opacity:1;margin-top:11px}
 #howit .hiw-body p{font-size:13.5px;line-height:1.6;color:var(--hiw-mut)}
@@ -993,6 +1003,7 @@ section{position:relative;z-index:2}
 @keyframes hiwpulse{0%{box-shadow:0 0 0 0 rgba(255,93,143,.5)}70%{box-shadow:0 0 0 7px rgba(255,93,143,0)}100%{box-shadow:0 0 0 0 rgba(255,93,143,0)}}
 /* ── responsive : < 880px → une colonne, accordéon conservé ── */
 @media(max-width:880px){
+  #howit .hiw-head{align-items:flex-start}
   #howit .hiw-grid{grid-template-columns:1fr;gap:20px}
   #howit .hiw-stage{min-height:0;height:520px;order:2}
   #howit .hiw-stepper{order:1}
@@ -1003,10 +1014,15 @@ section{position:relative;z-index:2}
 }
     </style>
 
-    <div class="wrap center">
-      <span class="eyebrow">Comment ça marche</span>
-      <h2 class="sec-title">Un parcours client. <em>Quatre modules, cinq étapes.</em></h2>
-      <p class="lead" style="max-width:700px;margin:0 auto">Sairen est un Conversation Operating System : tout le parcours client tient dans une seule mécanique. Suivez les cinq étapes — le visuel à droite change avec vous.</p>
+    <div class="wrap">
+      <div class="hiw-head">
+        <div class="hiw-head-txt">
+          <span class="eyebrow">Comment ça marche</span>
+          <h2 class="sec-title">Un parcours client. <em>Quatre modules, cinq étapes.</em></h2>
+          <p class="lead" style="max-width:640px;margin-top:0">Sairen est un Conversation Operating System : tout le parcours client tient dans une seule mécanique. Suivez les cinq étapes — le visuel change avec vous.</p>
+        </div>
+        <a class="hiw-explore" href="/#/pricing" target="_top">Explorer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></a>
+      </div>
     </div>
 
     <div class="hiw-grid">
