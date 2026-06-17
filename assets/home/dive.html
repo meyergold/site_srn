@@ -958,15 +958,16 @@ section{position:relative;z-index:2}
 /* ── vis 1 · Océan : canaux → boîte unifiée ── */
 #howit .oc{background:linear-gradient(180deg,#fff,#FAF8F2)}
 #howit .oc-chips{display:flex;flex-wrap:wrap;gap:8px}
-#howit .oc-chip{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:#2c2840;background:#fff;border:1px solid var(--hiw-line);border-radius:999px;padding:7px 13px;box-shadow:0 8px 20px -16px rgba(30,20,80,.5)}
-#howit .oc-chip span{width:7px;height:7px;border-radius:50%;background:var(--ocean)}
+#howit .oc-chip{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:#2c2840;background:#fff;border:1px solid var(--hiw-line);border-radius:999px;padding:6px 13px 6px 9px;box-shadow:0 6px 16px -14px rgba(30,20,80,.5)}
+#howit .oc-chip svg{width:16px;height:16px;flex:none;color:var(--c)}
 #howit .oc-funnel{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--ocean);font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
 #howit .oc-funnel::before,#howit .oc-funnel::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(91,108,255,.45),transparent)}
 #howit .oc-inbox{flex:1;background:#fff;border:1px solid var(--hiw-line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:9px;box-shadow:0 24px 54px -40px rgba(30,20,80,.6)}
 #howit .oc-inbox-h{display:flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;color:var(--hiw-ink);padding-bottom:10px;border-bottom:1px solid var(--hiw-line)}
 #howit .oc-inbox-h b{margin-left:auto;font-family:'Geist Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.1em;color:var(--ocean);background:rgba(91,108,255,.1);border-radius:6px;padding:3px 7px}
 #howit .oc-row{display:flex;align-items:center;gap:11px}
-#howit .oc-av{width:30px;height:30px;border-radius:9px;flex:none;background:var(--hiw-grad);display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700}
+#howit .oc-av{width:32px;height:32px;border-radius:9px;flex:none;background:var(--c,#6366F1);display:grid;place-items:center;color:#fff;box-shadow:0 6px 14px -8px var(--c,#6366F1)}
+#howit .oc-av svg{width:18px;height:18px}
 #howit .oc-row .oc-tx{min-width:0;flex:1}
 #howit .oc-row .oc-tx b{display:block;font-size:12.5px;font-weight:600;color:var(--hiw-ink)}
 #howit .oc-row .oc-tx small{display:block;font-size:11px;color:var(--hiw-mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -976,7 +977,7 @@ section{position:relative;z-index:2}
 #howit .dk-thread{display:flex;flex-direction:column;gap:10px;flex:1}
 #howit .dk-in{align-self:flex-start;max-width:80%;background:#fff;border:1px solid var(--hiw-line);border-radius:14px 14px 14px 4px;padding:11px 14px;font-size:13px;line-height:1.45;color:var(--hiw-ink);box-shadow:0 10px 26px -22px rgba(30,20,80,.6)}
 #howit .dk-in small{display:block;font-family:'Geist Mono',monospace;font-size:9.5px;letter-spacing:.08em;color:var(--hiw-mut);margin-bottom:5px}
-#howit .dk-draft{position:relative;background:#fff;border:1px solid rgba(255,93,143,.32);border-radius:16px;padding:14px;box-shadow:0 24px 54px -40px rgba(255,93,143,.7)}
+#howit .dk-draft{position:relative;background:#fff;border:1px solid var(--hiw-line);border-radius:16px;padding:14px;box-shadow:0 18px 44px -40px rgba(30,20,80,.45)}
 #howit .dk-draft-k{display:inline-flex;align-items:center;gap:7px;font-family:'Geist Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--desk);margin-bottom:9px}
 #howit .dk-draft-k span{width:6px;height:6px;border-radius:50%;background:var(--desk);box-shadow:0 0 0 0 rgba(255,93,143,.5);animation:hiwpulse 2s infinite}
 #howit .dk-draft p{font-size:13px;line-height:1.5;color:var(--hiw-ink)}
@@ -986,21 +987,86 @@ section{position:relative;z-index:2}
 #howit .dk-who{display:flex;align-items:center;gap:9px;font-size:11.5px;color:var(--hiw-mut);margin-top:4px}
 #howit .dk-who img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1.5px solid #fff;box-shadow:0 4px 12px -6px rgba(30,20,80,.6)}
 /* ── vis 5 · Ulysse : copilote sur cannage ── */
-#howit .uly{background-color:#1a1030;background-image:repeating-linear-gradient(45deg,rgba(213,155,245,.16) 0 1px,transparent 1px 15px),repeating-linear-gradient(-45deg,rgba(213,155,245,.16) 0 1px,transparent 1px 15px),repeating-linear-gradient(0deg,rgba(181,87,238,.12) 0 1px,transparent 1px 30px),repeating-linear-gradient(90deg,rgba(181,87,238,.12) 0 1px,transparent 1px 30px)}
-#howit .uly .mk-h{color:#fff}
-#howit .uly .mk-eb{color:#e3c8fb}
-#howit .uly-ask{align-self:flex-end;max-width:78%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:14px 14px 4px 14px;padding:10px 13px;font-size:12.5px;color:#fff;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-#howit .uly-card{background:rgba(20,12,38,.74);border:1px solid rgba(213,155,245,.28);border-radius:16px;padding:15px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 30px 70px -44px rgba(0,0,0,.9)}
-#howit .uly-card-k{display:inline-flex;align-items:center;gap:7px;font-family:'Geist Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#d9b6f7;margin-bottom:9px}
-#howit .uly-card-k img{width:16px;height:16px;object-fit:contain}
-#howit .uly-insight{font-size:14px;line-height:1.5;color:#fff}
-#howit .uly-insight b{background:linear-gradient(100deg,#FF7B5A,#FF5D8F,#B557EE);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
-#howit .uly-route{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:13px}
-#howit .uly-route .lab{font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#a99cc8;margin-right:2px}
-#howit .uly-pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:5px 11px}
-#howit .uly-pill img{width:14px;height:14px;object-fit:contain}
-#howit .uly-arr{color:#b78fe0;font-weight:700}
+#howit .uly{background:linear-gradient(180deg,#fff,#FBFAFE)}
+#howit .uly-chat{flex:1;display:flex;flex-direction:column;gap:14px;overflow:hidden;padding-top:2px;transition:opacity .3s ease}
+#howit .uly-msg.user{align-self:flex-end;max-width:88%;background:#F1EFF6;border:1px solid rgba(20,16,50,.06);border-radius:16px 16px 5px 16px;padding:11px 14px;font-size:13px;line-height:1.45;color:var(--hiw-ink)}
+#howit .uly-msg.bot{align-self:flex-start;display:flex;gap:10px;max-width:95%}
+#howit .uly-ava{width:30px;height:30px;border-radius:9px;flex:none;background:#F2ECFB;border:1px solid rgba(181,87,238,.18);display:grid;place-items:center}
+#howit .uly-ava img{width:18px;height:18px;object-fit:contain}
+#howit .uly-bubble{background:#fff;border:1px solid var(--hiw-line);border-radius:5px 16px 16px 16px;padding:13px 15px;box-shadow:0 18px 44px -36px rgba(30,20,80,.6)}
+#howit .uly-answer{display:block;font-size:13.5px;line-height:1.55;color:var(--hiw-ink)}
+#howit .uly-answer b{color:#9333EA;font-weight:800}
+#howit .uly-acts{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+#howit .uly-acts span{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:#7c3aed;background:rgba(147,51,234,.07);border:1px solid rgba(147,51,234,.16);border-radius:999px;padding:5px 11px}
+#howit .uly-acts span::before{content:"";width:6px;height:6px;border-radius:50%;background:#9333EA}
+#howit .uly-typing{display:none;align-items:center;gap:5px;height:18px}
+#howit .uly-typing i{width:6px;height:6px;border-radius:50%;background:#c9a3ee;animation:ulyDot 1s infinite}
+#howit .uly-typing i:nth-child(2){animation-delay:.15s}
+#howit .uly-typing i:nth-child(3){animation-delay:.3s}
+#howit .uly.is-typing .uly-typing{display:inline-flex}
+#howit .uly.is-typing .uly-answer,#howit .uly.is-typing .uly-acts{display:none}
+@keyframes ulyDot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+#howit .uly-input{display:flex;align-items:center;gap:10px;margin-top:auto;background:#fff;border:1px solid var(--hiw-line);border-radius:14px;padding:10px 11px 10px 16px;box-shadow:0 14px 36px -30px rgba(30,20,80,.5)}
+#howit .uly-input-tx{flex:1;font-size:13px;color:#9b95ad}
+#howit .uly-send{width:32px;height:32px;border-radius:10px;flex:none;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#9333EA,#B557EE);box-shadow:0 8px 18px -8px rgba(147,51,234,.7)}
+#howit .uly-send svg{width:16px;height:16px}
 @keyframes hiwpulse{0%{box-shadow:0 0 0 0 rgba(255,93,143,.5)}70%{box-shadow:0 0 0 7px rgba(255,93,143,0)}100%{box-shadow:0 0 0 0 rgba(255,93,143,0)}}
+@keyframes hiwpulse2{0%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}70%{box-shadow:0 0 0 6px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+/* ── vis 2 · Agent IA : mockup clean ── */
+#howit .ag{background:linear-gradient(180deg,#fff,#FAF8FF)}
+#howit .mk-eb-rb{color:#9333EA}
+#howit .ag-card{flex:1;background:#fff;border:1px solid var(--hiw-line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:13px;box-shadow:0 24px 54px -42px rgba(30,20,80,.55)}
+#howit .ag-head{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--hiw-line)}
+#howit .ag-ava{width:46px;height:46px;border-radius:13px;flex:none;overflow:hidden;background:#F2ECFB;border:1px solid rgba(181,87,238,.18)}
+#howit .ag-ava img{width:100%;height:100%;object-fit:cover;display:block}
+#howit .ag-id{display:flex;flex-direction:column;min-width:0;gap:2px}
+#howit .ag-id b{font-size:15px;color:var(--hiw-ink)}
+#howit .ag-status{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#16a34a;font-weight:600}
+#howit .ag-status i{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:hiwpulse2 2s infinite}
+#howit .ag-badge{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#9333EA;background:rgba(147,51,234,.08);border:1px solid rgba(147,51,234,.16);border-radius:999px;padding:5px 11px}
+#howit .ag-badge img{width:14px;height:14px;object-fit:contain}
+#howit .ag-field{display:flex;flex-direction:column;gap:7px}
+#howit .ag-lab{font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--hiw-mut)}
+#howit .ag-val{font-size:13.5px;font-weight:600;color:var(--hiw-ink);background:#F7F5F1;border:1px solid var(--hiw-line);border-radius:11px;padding:11px 14px}
+#howit .ag-chips{display:flex;flex-wrap:wrap;gap:8px}
+#howit .ag-chips span{font-size:12.5px;font-weight:600;color:#3a3550;background:#F7F5F1;border:1px solid var(--hiw-line);border-radius:999px;padding:7px 13px}
+#howit .ag-chips span.on{color:#7c3aed;background:rgba(147,51,234,.07);border-color:rgba(147,51,234,.18);display:inline-flex;align-items:center;gap:6px}
+#howit .ag-chips span.on::before{content:"";width:6px;height:6px;border-radius:50%;background:#9333EA}
+#howit .ag-ready{display:inline-flex;align-items:center;gap:9px;margin-top:auto;font-size:13px;font-weight:600;color:#16a34a;background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.18);border-radius:12px;padding:11px 14px}
+#howit .ag-ready svg{width:17px;height:17px}
+/* ── motion d'entrée des visuels ── */
+@keyframes mkUp{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+@keyframes mkFade{from{opacity:0}to{opacity:1}}
+#howit .hiw-vis.is-active .oc-chip{animation:mkUp .42s ease backwards}
+#howit .hiw-vis.is-active .oc-chip:nth-child(1){animation-delay:.04s}
+#howit .hiw-vis.is-active .oc-chip:nth-child(2){animation-delay:.09s}
+#howit .hiw-vis.is-active .oc-chip:nth-child(3){animation-delay:.14s}
+#howit .hiw-vis.is-active .oc-chip:nth-child(4){animation-delay:.19s}
+#howit .hiw-vis.is-active .oc-chip:nth-child(5){animation-delay:.24s}
+#howit .hiw-vis.is-active .oc-chip:nth-child(6){animation-delay:.29s}
+#howit .hiw-vis.is-active .oc-chip:nth-child(7){animation-delay:.34s}
+#howit .hiw-vis.is-active .oc-chip:nth-child(8){animation-delay:.39s}
+#howit .hiw-vis.is-active .oc-row{animation:mkUp .5s ease backwards}
+#howit .hiw-vis.is-active .oc-row:nth-child(2){animation-delay:.5s}
+#howit .hiw-vis.is-active .oc-row:nth-child(3){animation-delay:.63s}
+#howit .hiw-vis.is-active .oc-row:nth-child(4){animation-delay:.76s}
+#howit .hiw-vis.is-active .ag-head{animation:mkUp .45s ease backwards}
+#howit .hiw-vis.is-active .ag-f1{animation:mkUp .45s ease .12s backwards}
+#howit .hiw-vis.is-active .ag-f2{animation:mkUp .45s ease .22s backwards}
+#howit .hiw-vis.is-active .ag-f3{animation:mkUp .45s ease .32s backwards}
+#howit .hiw-vis.is-active .ag-ready{animation:mkUp .5s ease .46s backwards}
+#howit .hiw-vis.is-active .dk-in{animation:mkUp .45s ease backwards}
+#howit .hiw-vis.is-active .dk-draft{animation:mkUp .5s ease .5s backwards}
+#howit .hiw-vis.is-active .dk-who{animation:mkUp .5s ease 1.95s backwards}
+#howit .dk-typing{display:flex;align-items:center;gap:5px;height:0;opacity:0;overflow:hidden}
+#howit .dk-typing i{width:6px;height:6px;border-radius:50%;background:#f3a6c2;animation:ulyDot 1s infinite}
+#howit .dk-typing i:nth-child(2){animation-delay:.15s}
+#howit .dk-typing i:nth-child(3){animation-delay:.3s}
+#howit .hiw-vis.is-active .dk-typing{animation:dkType 1.7s ease backwards}
+@keyframes dkType{0%,82%{height:16px;opacity:1;margin:6px 0 9px}100%{height:0;opacity:0;margin:0}}
+#howit .hiw-vis.is-active .dk-draft p{animation:mkFade .45s ease 1.55s backwards}
+#howit .hiw-vis.is-active .dk-acts{animation:mkUp .45s ease 1.8s backwards}
+@media(prefers-reduced-motion:reduce){#howit .mk *{animation:none!important}#howit .dk-typing,#howit .uly-typing{display:none!important}#howit .uly-chat{transition:none!important}}
 /* ── responsive : < 880px → une colonne, accordéon conservé ── */
 @media(max-width:880px){
   #howit .hiw-head{align-items:flex-start}
@@ -1068,20 +1134,34 @@ section{position:relative;z-index:2}
             <span class="mk-eb"><img src="/assets/img/logo-ocean.png" alt="">Océan · boîte unifiée</span>
             <h3 class="mk-h">Tous les canaux convergent</h3>
             <div class="oc-chips">
-              <span class="oc-chip"><span></span>SMS</span><span class="oc-chip"><span></span>Appel</span><span class="oc-chip"><span></span>WhatsApp</span><span class="oc-chip"><span></span>Email</span><span class="oc-chip"><span></span>Instagram</span><span class="oc-chip"><span></span>Messenger</span><span class="oc-chip"><span></span>Google Avis</span><span class="oc-chip"><span></span>Visio</span>
+              <span class="oc-chip" style="--c:#6366F1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2z"/></svg>SMS</span><span class="oc-chip" style="--c:#10B981"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11 11 0 0 0 3.5.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.4a1 1 0 0 1 1 1 11 11 0 0 0 .6 3.5 1 1 0 0 1-.3 1z"/></svg>Appel</span><span class="oc-chip" style="--c:#25D366"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.7s-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c.6.3 1.1.4 1.5.5a3.5 3.5 0 0 0 1.6.1c.5-.1 1.4-.6 1.6-1.1a2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg>WhatsApp</span><span class="oc-chip" style="--c:#EA4335"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5h18a1 1 0 0 1 1 1v.4l-10 6.2L2 6.4V6a1 1 0 0 1 1-1zm-1 3.5 9.5 5.9a1 1 0 0 0 1 0L22 8.5V18a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></svg>Email</span><span class="oc-chip" style="--c:#E1306C"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>Instagram</span><span class="oc-chip" style="--c:#0084FF"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.24 2 11.2c0 2.83 1.27 5.35 3.26 7.05V22l3-1.65c.86.24 1.78.37 2.74.37 5.5 0 10-4.24 10-9.52S17.5 2 12 2zm.93 12.34-2.55-2.72-4.97 2.72 5.47-5.81 2.61 2.72 4.91-2.72-5.47 5.81z"/></svg>Messenger</span><span class="oc-chip" style="--c:#F5A623"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26 6.6.5-5 4.34 1.55 6.43L12 16.9l-6.05 2.63 1.55-6.43-5-4.34 6.6-.5z"/></svg>Google Avis</span><span class="oc-chip" style="--c:#8B5CF6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="13" height="12" rx="2"/><path d="m15 10.5 6-3.5v10l-6-3.5z"/></svg>Visio</span>
             </div>
             <div class="oc-funnel">convergent vers</div>
             <div class="oc-inbox">
               <div class="oc-inbox-h">Boîte de conversation unifiée <b>8 canaux</b></div>
-              <div class="oc-row"><span class="oc-av">W</span><span class="oc-tx"><b>Camille Roy</b><small>Mon colis est arrivé cassé…</small></span><span class="oc-tag">WhatsApp</span></div>
-              <div class="oc-row"><span class="oc-av">SMS</span><span class="oc-tx"><b>+33 6 12…</b><small>Je confirme mon rendez-vous de jeudi</small></span><span class="oc-tag">SMS</span></div>
-              <div class="oc-row"><span class="oc-av">★</span><span class="oc-tx"><b>Avis Google</b><small>« Accueil au top, merci ! » — 5★</small></span><span class="oc-tag">Avis</span></div>
+              <div class="oc-row"><span class="oc-av" style="--c:#25D366"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-1.9-1.2 7.2 7.2 0 0 1-1.3-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.7s-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c.6.3 1.1.4 1.5.5a3.5 3.5 0 0 0 1.6.1c.5-.1 1.4-.6 1.6-1.1a2 2 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg></span><span class="oc-tx"><b>Camille Roy</b><small>Mon colis est arrivé cassé…</small></span><span class="oc-tag">WhatsApp</span></div>
+              <div class="oc-row"><span class="oc-av" style="--c:#6366F1"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2z"/></svg></span><span class="oc-tx"><b>+33 6 12…</b><small>Je confirme mon rendez-vous de jeudi</small></span><span class="oc-tag">SMS</span></div>
+              <div class="oc-row"><span class="oc-av" style="--c:#F5A623"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26 6.6.5-5 4.34 1.55 6.43L12 16.9l-6.05 2.63 1.55-6.43-5-4.34 6.6-.5z"/></svg></span><span class="oc-tx"><b>Avis Google</b><small>« Accueil au top, merci ! » — 5★</small></span><span class="oc-tag">Avis</span></div>
             </div>
           </div>
         </div>
-        <!-- 2 · Rainbow · agent (réutilise l'écran existant) -->
+        <!-- 2 · Rainbow · agent (mockup clean) -->
         <div class="hiw-vis" id="hiw-vis-1" role="tabpanel" aria-label="Rainbow — Créez votre agent IA">
-          <iframe data-src="agent.html" title="Création d'agent IA Sairen" loading="lazy"></iframe>
+          <div class="mk ag">
+            <span class="mk-eb mk-eb-rb"><img src="/assets/img/logo-rainbow.svg" alt="">Rainbow · agent IA</span>
+            <h3 class="mk-h">Décrivez votre métier, l'agent comprend</h3>
+            <div class="ag-card">
+              <div class="ag-head">
+                <span class="ag-ava"><img src="/assets/img/img-009-6a18dada9ca1.webp" alt="Assistant RDV"></span>
+                <span class="ag-id"><b>Assistant RDV</b><span class="ag-status"><i></i>Actif</span></span>
+                <span class="ag-badge"><img src="/assets/img/logo-rainbow.svg" alt="">Rainbow</span>
+              </div>
+              <div class="ag-field ag-f1"><span class="ag-lab">Métier</span><span class="ag-val">Secrétariat médical · prise de rendez-vous</span></div>
+              <div class="ag-field ag-f2"><span class="ag-lab">Ton de l'agent</span><span class="ag-chips"><span>Professionnel</span><span>Chaleureux</span><span>Concis</span></span></div>
+              <div class="ag-field ag-f3"><span class="ag-lab">Connecté à</span><span class="ag-chips"><span class="on">Doctolib</span><span class="on">Agenda</span><span class="on">WhatsApp</span></span></div>
+              <div class="ag-ready"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Prêt en quelques minutes — aucun code</div>
+            </div>
+          </div>
         </div>
         <!-- 3 · Rainbow · workflow (réutilise le builder canvas v2) -->
         <div class="hiw-vis" id="hiw-vis-2" role="tabpanel" aria-label="Rainbow — Composez vos workflows">
@@ -1096,6 +1176,7 @@ section{position:relative;z-index:2}
               <div class="dk-in"><small>Client · WhatsApp</small>Bonjour, puis-je échanger ma commande contre une autre taille ?</div>
               <div class="dk-draft">
                 <span class="dk-draft-k"><span></span>Réponse préparée par l'IA</span>
+                <div class="dk-typing"><i></i><i></i><i></i></div>
                 <p>Bonjour Camille 👋 Bien sûr — l'échange de taille est possible sous 30 jours. Je vous envoie une étiquette de retour prépayée, souhaitez-vous la taille M&nbsp;?</p>
                 <div class="dk-acts">
                   <button class="dk-btn primary" type="button">Valider</button>
@@ -1111,18 +1192,19 @@ section{position:relative;z-index:2}
         <div class="hiw-vis" id="hiw-vis-4" role="tabpanel" aria-label="Ulysse — Pilotez tout">
           <div class="mk uly">
             <span class="mk-eb"><img src="/assets/img/logo-ulysse.png" alt="">Ulysse · copilote</span>
-            <h3 class="mk-h">Le cap sur tout le parcours</h3>
-            <div class="uly-ask">Combien de no-shows cette semaine, et qu'est-ce qu'on lance&nbsp;?</div>
-            <div class="uly-card">
-              <span class="uly-card-k"><img src="/assets/img/logo-ulysse.png" alt="">Ulysse · insight</span>
-              <p class="uly-insight"><b>14 no-shows</b> cette semaine (−18&nbsp;% vs. dernière). Je lance une relance WhatsApp via Rainbow et crée 3 tâches dans Desk.</p>
-              <div class="uly-route">
-                <span class="lab">Routing</span>
-                <span class="uly-pill"><img src="/assets/img/logo-ocean.png" alt="">Océan</span><span class="uly-arr">→</span>
-                <span class="uly-pill"><img src="/assets/img/logo-rainbow.svg" alt="">Rainbow</span><span class="uly-arr">→</span>
-                <span class="uly-pill"><img src="/assets/img/logo-desk.png" alt="">Desk</span>
+            <h3 class="mk-h">Posez une question, Ulysse agit</h3>
+            <div class="uly-chat" id="ulyChat">
+              <div class="uly-msg user" id="ulyQ">Combien de no-shows cette semaine, et qu'est-ce qu'on lance&nbsp;?</div>
+              <div class="uly-msg bot" id="ulyA">
+                <span class="uly-ava"><img src="/assets/img/logo-ulysse.png" alt="Ulysse"></span>
+                <span class="uly-bubble">
+                  <span class="uly-typing" id="ulyTyping"><i></i><i></i><i></i></span>
+                  <span class="uly-answer" id="ulyAns"><b>14 no-shows</b> cette semaine (−18&nbsp;% vs. dernière). Je lance une relance WhatsApp via Rainbow et crée 3 tâches dans Desk.</span>
+                  <span class="uly-acts" id="ulyActs"><span>Relance WhatsApp</span><span>3 tâches Desk</span></span>
+                </span>
               </div>
             </div>
+            <div class="uly-input"><span class="uly-input-tx">Demandez quelque chose à Ulysse…</span><span class="uly-send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span></div>
           </div>
         </div>
       </div>
@@ -1188,6 +1270,29 @@ section{position:relative;z-index:2}
 
       steps.forEach(function(s){s.tabIndex=-1;});
       setActive(0,false);
+    })();
+    </script>
+    <script id="howit-uly-js">
+    (function(){
+      var uly=document.querySelector('#howit .uly'); if(!uly)return;
+      var Q=document.getElementById('ulyQ'), A=document.getElementById('ulyAns'), ACTS=document.getElementById('ulyActs'), CHAT=document.getElementById('ulyChat');
+      if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+      var EX=[
+        {q:"Combien de no-shows cette semaine, et qu'est-ce qu'on lance&nbsp;?", a:"<b>14 no-shows</b> cette semaine (−18&nbsp;% vs. dernière). Je lance une relance WhatsApp via Rainbow et crée 3 tâches dans Desk.", acts:["Relance WhatsApp","3 tâches Desk"]},
+        {q:"Quel canal performe le mieux ce mois-ci&nbsp;?", a:"<b>WhatsApp</b> : 92&nbsp;% de réponses en moins de 2&nbsp;min. Je propose d'y router les demandes urgentes en priorité.", acts:["Router les urgents","Voir le détail"]},
+        {q:"Prépare un récap de la semaine pour l'équipe.", a:"Récap prêt : <b>312 conversations</b>, 89&nbsp;% résolues par l'IA. Je l'envoie sur Desk ce soir à 18h.", acts:["Programmer l'envoi","Modifier"]}
+      ];
+      var i=0;
+      function fill(e){ACTS.innerHTML=e.acts.map(function(x){return '<span>'+x+'</span>';}).join('');}
+      function cycle(){
+        i=(i+1)%EX.length; var e=EX[i];
+        CHAT.style.opacity='0';
+        setTimeout(function(){
+          Q.innerHTML=e.q; uly.classList.add('is-typing'); CHAT.style.opacity='1';
+          setTimeout(function(){ A.innerHTML=e.a; fill(e); uly.classList.remove('is-typing'); },1100);
+        },340);
+      }
+      setInterval(cycle,4400);
     })();
     </script>
   </section>
