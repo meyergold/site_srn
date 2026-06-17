@@ -2118,7 +2118,7 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
 .fx-blob.b5{animation:fxmorph0 34s ease-in-out infinite}
 
 /* ---- Full-page rising bubbles (FOREGROUND overlay, above sections / below nav) ---- */
-.fx-front{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.fx-front,.fx-gbub,.bubble{display:none!important}
 .fx-gbub{position:absolute;bottom:-8vh;border-radius:50%;
   background:radial-gradient(circle at 33% 28%,rgba(255,255,255,.6),rgba(214,238,255,.16) 52%,rgba(206,214,255,.05) 74%);
   box-shadow:0 2px 12px rgba(150,200,255,.16),inset 0 0 7px rgba(255,255,255,.45);
@@ -2210,21 +2210,7 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
   var blobs = [].slice.call(bg.querySelectorAll('.fx-blob'));
   var fxObjs = [];
 
-  /* ---------- 2. Foreground rising bubbles (full viewport, bottom -> top) ---------- */
-  if(!RM){
-    var front=document.createElement('div'); front.className='fx-front';
-    var N=12;
-    for(var i=0;i<N;i++){
-      var b=document.createElement('span'); b.className='fx-gbub';
-      var s=6+Math.random()*22;
-      b.style.width=s+'px'; b.style.height=s+'px';
-      b.style.left=(Math.random()*100)+'%';
-      b.style.animationDuration=(10+Math.random()*11)+'s';
-      b.style.animationDelay=(-Math.random()*21)+'s';
-      front.appendChild(b);
-    }
-    document.body.appendChild(front);
-  }
+  /* ---------- 2. Foreground rising bubbles — RETIRÉ ---------- */
 
   /* mouse + scroll parallax on blobs */
   var mx=0,my=0,tmx=0,tmy=0,sy=0;
