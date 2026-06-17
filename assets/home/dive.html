@@ -81,33 +81,21 @@ img{max-width:100%;display:block}
 @media(max-width:520px){.cl-grid{grid-template-columns:repeat(2,1fr)}.cl-card{min-height:72px;font-size:13px}}
 
 
-/* SHOWCASE (logos défilants + plateforme + mobile) */
-.showcase{padding:54px 0 46px;background:#fff;overflow:hidden}
-.cl-marquee{margin:26px auto 42px;max-width:1180px;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+/* SHOWCASE (logos défilants + plateforme + mobile, fondu sur la mer) */
+.showcase{position:relative;overflow:hidden;padding:56px 0 0}
+.show-bg{position:absolute;inset:0;z-index:0;background:url("../img/Gemini_Generated_Image_v7lygtv7lygtv7ly (1).png") center/cover no-repeat}
+.show-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.35) 20%,rgba(255,255,255,.1) 50%,rgba(255,255,255,.25) 80%,rgba(255,255,255,.9) 96%,#fff 100%)}
+.showcase .wrap{position:relative;z-index:1}
+.cl-marquee{margin:26px auto 30px;max-width:1180px;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
 .cl-mq-track{display:flex;align-items:center;gap:52px;width:max-content;animation:clmq 38s linear infinite}
 .cl-marquee:hover .cl-mq-track{animation-play-state:paused}
 .cl-mq-track span{flex:none;font-weight:800;font-size:17px;letter-spacing:-.01em;color:#bdb8c8;white-space:nowrap}
 .cl-mq-track img{flex:none;height:23px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.5}
 @keyframes clmq{to{transform:translateX(-50%)}}
-.show-stage{display:flex;gap:26px;align-items:flex-end;justify-content:center}
-.show-app{flex:0 1 740px;min-width:0;background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 50px 100px -55px rgba(40,20,90,.55)}
-.show-app-body{display:grid;grid-template-columns:1.25fr 1fr}
-.show-tasks{padding:14px;display:flex;flex-direction:column;gap:9px;border-right:1px solid var(--line)}
-.show-chat{padding:14px;display:flex;flex-direction:column;gap:9px;background:var(--soft)}
-.show-col-h{font-size:11.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#8a84a0}
-.show-phone{flex:none}
-.phone{width:232px;background:#0c1020;border-radius:34px;padding:9px;box-shadow:0 50px 100px -50px rgba(40,20,90,.6)}
-.phone-screen{background:#fff;border-radius:26px;padding:14px;display:flex;flex-direction:column;gap:9px}
-.ph-top{display:flex;align-items:baseline;justify-content:space-between}
-.ph-top b{font-size:16px}.ph-top span{font-size:11px;color:var(--muted)}
-.ph-task{display:flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:11px;padding:9px 10px}
-.ph-task b{display:block;font-size:12px}.ph-task small{display:block;font-size:10.5px;color:var(--muted)}
-.ph-dot{width:9px;height:9px;border-radius:50%;flex:none}
-.ph-chat-h{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#8a84a0;margin-top:4px}
-.ph-msg{max-width:88%;padding:8px 11px;border-radius:13px;font-size:11.5px;line-height:1.4}
-.ph-msg.them{align-self:flex-start;background:var(--soft);border-bottom-left-radius:4px}
-.ph-msg.me{align-self:flex-end;background:var(--grad);color:#fff;border-bottom-right-radius:4px}
-@media(max-width:900px){.show-stage{flex-direction:column;align-items:center}.show-app{flex:1 1 auto;width:100%}.show-app-body{grid-template-columns:1fr}.show-chat{border-right:0;border-top:1px solid var(--line)}}
+.show-stage{position:relative;z-index:1;display:flex;align-items:flex-end;justify-content:center;gap:0;margin-top:24px;padding:0 clamp(10px,3vw,20px)}
+.show-desktop{position:relative;z-index:1;width:min(820px,76%);height:auto;border-radius:14px 14px 0 0;box-shadow:0 60px 120px -60px rgba(40,20,90,.6);-webkit-mask:linear-gradient(180deg,#000 58%,transparent 100%);mask:linear-gradient(180deg,#000 58%,transparent 100%)}
+.show-mobile{position:relative;z-index:2;width:clamp(150px,17vw,210px);height:auto;margin-left:clamp(-72px,-6vw,-52px);margin-bottom:6px;border-radius:28px;box-shadow:0 50px 100px -50px rgba(40,20,90,.6);-webkit-mask:linear-gradient(180deg,#000 66%,transparent 100%);mask:linear-gradient(180deg,#000 66%,transparent 100%)}
+@media(max-width:760px){.show-desktop{width:90%}.show-mobile{width:33%;margin-left:-20%}}
 
 /* STATS (retiré) */
 .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -265,37 +253,12 @@ img{max-width:100%;display:block}
 
 <!-- STATS -->
 <!-- SHOWCASE -->
-<section class="showcase"><div class="wrap">
+<section class="showcase"><div class="show-bg"></div><div class="wrap">
 <p class="cl-eyebrow">+300 organisations améliorent leurs process avec Sairen</p>
 <div class="cl-marquee"><div class="cl-mq-track"><span>DRAY</span><span>Allo Casse Auto</span><span>La Parisienne de Baguette</span><span>équip'jardin</span><span>Transcash</span><img src="../img/logo-sofitel.png" alt=""><span>CMSM</span><span>point de vente</span><span>Pullman</span><span>Best Western</span><span>LAZEO</span><img src="../img/logo-elsan-black.png" alt=""><span>vidi</span><span>OPHTALYS</span><span>delya</span><span>Clinique des Champs-Élysées</span><img src="../img/logo-vyv-black.png" alt=""><span>Racine</span><span>DENTYLIS</span><span>TRESSÉ</span><span>MYLASER</span><span>DRAY</span><span>Allo Casse Auto</span><span>La Parisienne de Baguette</span><span>équip'jardin</span><span>Transcash</span><img src="../img/logo-sofitel.png" alt=""><span>CMSM</span><span>point de vente</span><span>Pullman</span><span>Best Western</span><span>LAZEO</span><img src="../img/logo-elsan-black.png" alt=""><span>vidi</span><span>OPHTALYS</span><span>delya</span><span>Clinique des Champs-Élysées</span><img src="../img/logo-vyv-black.png" alt=""><span>Racine</span><span>DENTYLIS</span><span>TRESSÉ</span><span>MYLASER</span></div></div>
 <div class="show-stage">
-<div class="show-app">
-<div class="mk-bar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-desk.png" alt=""><b>Desk · Mes tâches & équipe</b></div>
-<div class="show-app-body">
-<div class="show-tasks">
-<div class="show-col-h">Mes tâches · 8</div>
-<div class="row"><span class="av" style="background:#E8943A"></span><div class="m"><b>Relance facture #1234</b><small>15 j de retard</small></div><span class="tg a">À traiter</span></div>
-<div class="row"><span class="av" style="background:#C13D6B"></span><div class="m"><b>Réclamation produit</b><small>Remboursement client</small></div><span class="tg b">En cours</span></div>
-<div class="row"><span class="av" style="background:#3A8DFF"></span><div class="m"><b>Devis entreprise</b><small>Isabelle Renard · B2B</small></div><span class="tg b">En cours</span></div>
-<div class="row"><span class="av" style="background:#1AA179"></span><div class="m"><b>Mise à jour compte</b><small>Changement d'adresse</small></div><span class="tg g">Traité</span></div>
-</div>
-<div class="show-chat">
-<div class="show-col-h">#équipe-support</div>
-<div class="bub ai">Marie · Je prends la réclamation #1234 👍</div>
-<div class="bub me">Parfait, je m'occupe du devis entreprise</div>
-<div class="bub ai">Karim · J'ai bouclé la relance facture ✓</div>
-<div class="bub me">Top, je te tague si besoin</div>
-</div>
-</div>
-</div>
-<div class="show-phone"><div class="phone"><div class="phone-screen">
-<div class="ph-top"><b>Desk</b><span>3 tâches</span></div>
-<div class="ph-task"><span class="ph-dot" style="background:#E8943A"></span><div><b>Relance facture #1234</b><small>15 j de retard</small></div></div>
-<div class="ph-task"><span class="ph-dot" style="background:#C13D6B"></span><div><b>Réclamation produit</b><small>Remboursement</small></div></div>
-<div class="ph-chat-h">Messagerie · Marie</div>
-<div class="ph-msg them">Tu peux valider le devis entreprise ?</div>
-<div class="ph-msg me">C'est fait ✓ je te l'envoie</div>
-</div></div></div>
+<img class="show-desktop" src="../img/platform-desktop.png" alt="Plateforme Sairen — Océan">
+<img class="show-mobile" src="../img/app-mobile.png" alt="Application mobile Sairen — Desk">
 </div>
 </div></section>
 
@@ -320,7 +283,7 @@ img{max-width:100%;display:block}
 </div><b>Capter</b><p>WhatsApp, appels, e-mail, réseaux, web : tous les canaux convergent dans un seul flux unifié.</p></div>
     <div class="pillar"><div class="pill-row">
 <span class="pill-chip" title="ChatGPT"><img src="../img/ChatGPT-Logo.svg.png" alt="ChatGPT"></span>
-<span class="pill-chip txt" title="Claude">Claude</span>
+<span class="pill-chip" title="Claude"><img src="../img/claude-icon-logo.png" alt="Claude"></span>
 <span class="pill-chip" title="Mistral AI"><img src="../img/mistral-color.png" alt="Mistral"></span>
 <span class="pill-chip" title="DeepSeek"><img src="../img/deepseek-color.png" alt="DeepSeek"></span>
 <span class="pill-chip" title="Grok"><img src="../img/Grok-Logo-Transparent.webp" alt="Grok"></span>
