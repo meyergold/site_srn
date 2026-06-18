@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMSM Ocean - Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter pour un rendu ultra-pro -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome pour les logos secondaires et icônes d'interface -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        ocean: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            900: '#4c1d95',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Styles additionnels pour parfaire l'esthétique */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-[#f8fafc] text-slate-800 font-sans antialiased h-screen flex flex-col overflow-hidden">
+
+    <!-- TOPBAR PRINCIPALE -->
+    <header class="h-14 bg-white border-b border-slate-100 flex items-center justify-between px-6 z-20 shrink-0">
+        <div class="flex items-center space-x-3">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-violet-100">
+                C
+            </div>
+            <div class="flex items-center space-x-2 text-xs text-slate-400">
+                <span class="hover:text-slate-600 cursor-pointer font-medium">CMSM</span>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                <span class="hover:text-slate-600 cursor-pointer font-medium">Ocean</span>
+                <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                <span class="text-slate-700 font-semibold">Toutes les conversations</span>
+            </div>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+            <button onclick="openModal('automationModal')" class="bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:opacity-95 text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-sm transition-all flex items-center space-x-1.5">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>Automatiser</span>
+            </button>
+            <div class="h-8 w-[1px] bg-slate-200"></div>
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-violet-100 border border-violet-200 flex items-center justify-center text-violet-700 font-bold text-xs">
+                    CM
+                </div>
+                <div class="hidden md:block text-left">
+                    <p class="text-xs font-bold text-slate-700 leading-none">CMSM</p>
+                    <p class="text-[10px] text-slate-400 leading-none mt-1">Toutes les entités</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        
+        <!-- SIDEBAR DE TOUT AU FOND (ICÔNES APPLICATIONS DE L'UTILISATEUR) -->
+        <aside class="w-[68px] bg-[#0c0d1e] flex flex-col items-center py-4 justify-between shrink-0">
+            <!-- Logos du haut -->
+            <div class="flex flex-col items-center space-y-6 w-full">
+                <!-- Logo principal de l'application -->
+                <div class="w-10 h-10 rounded-xl bg-violet-600 flex items-center justify-center text-white cursor-pointer hover:scale-105 transition-transform shadow-lg shadow-violet-900/30">
+                    <i class="fa-solid fa-om text-lg"></i>
+                </div>
+                <div class="w-8 h-[1px] bg-slate-800"></div>
+                
+                <!-- Les 4 logos personnalisés demandés, placés proprement en haut à gauche -->
+                <!-- 1. Wave (Ocean Logo) - Sélectionné par défaut -->
+                <div class="relative group cursor-pointer flex flex-col items-center">
+                    <div class="absolute left-0 top-1.5 w-1 h-7 bg-cyan-400 rounded-r-md"></div>
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-cyan-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 transform scale-105 transition-all">
+                        <!-- Custom SVG Wave Icon matching logoocean.png -->
+                        <svg class="w-7 h-7 drop-shadow-md" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 65C30 40 45 30 65 35C85 40 90 60 75 75C60 90 40 85 30 75C20 65 10 70 15 65Z" fill="url(#waveGrad1)" />
+                            <path d="M25 68C38 48 50 40 68 44C86 48 85 68 72 78C59 88 42 82 32 75C22 68 18 72 25 68Z" fill="url(#waveGrad2)" opacity="0.8" />
+                            <defs>
+                                <linearGradient id="waveGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#38bdf8" />
+                                    <stop offset="50%" stop-color="#2563eb" />
+                                    <stop offset="100%" stop-color="#a855f7" />
+                                </linearGradient>
+                                <linearGradient id="waveGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#c084fc" />
+                                    <stop offset="100%" stop-color="#06b6d4" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <span class="absolute left-16 bg-slate-900 text-white text-[10px] px-2 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">Ocean (Actif)</span>
+                </div>
+
+                <!-- 2. Chest (Desk Logo) -->
+                <div class="relative group cursor-pointer">
+                    <div class="w-10 h-10 rounded-xl hover:bg-slate-800 flex items-center justify-center transition-all">
+                        <!-- Custom SVG Chest matching logodesk.png -->
+                        <svg class="w-7 h-7" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="35" width="60" height="45" rx="8" fill="url(#chestGrad1)" />
+                            <path d="M20 35C20 25 30 20 50 20C70 20 80 25 80 35H20Z" fill="url(#chestGrad2)" />
+                            <circle cx="50" cy="48" r="12" fill="#2563eb" />
+                            <path d="M45 48L48 51L55 44" stroke="#67e8f9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                            <defs>
+                                <linearGradient id="chestGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#4f46e5" />
+                                    <stop offset="100%" stop-color="#0c0f30" />
+                                </linearGradient>
+                                <linearGradient id="chestGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#6366f1" />
+                                    <stop offset="100%" stop-color="#3b82f6" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <span class="absolute left-16 bg-slate-900 text-white text-[10px] px-2 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">Coffre fort</span>
+                </div>
+
+                <!-- 3. Rainbow (Rainbow Logo) -->
+                <div class="relative group cursor-pointer">
+                    <div class="w-10 h-10 rounded-xl hover:bg-slate-800 flex items-center justify-center transition-all">
+                        <!-- Custom SVG Rainbow matching logorainbow.png -->
+                        <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 70C20 40 40 20 70 20" stroke="url(#rainGrad)" stroke-width="8" stroke-linecap="round" />
+                            <path d="M35 70C35 50 50 35 70 35" stroke="url(#rainGrad)" stroke-width="8" stroke-linecap="round" />
+                            <path d="M50 70C50 60 60 50 70 50" stroke="url(#rainGrad)" stroke-width="8" stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="rainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#3b82f6" />
+                                    <stop offset="50%" stop-color="#a855f7" />
+                                    <stop offset="100%" stop-color="#ec4899" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <span class="absolute left-16 bg-slate-900 text-white text-[10px] px-2 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">Réseau d'arcs</span>
+                </div>
+
+                <!-- 4. Ulysse (Ulysse Logo) -->
+                <div class="relative group cursor-pointer">
+                    <div class="w-10 h-10 rounded-xl hover:bg-slate-800 flex items-center justify-center transition-all">
+                        <!-- Custom SVG Ulysse Grid matching logoulysse.png -->
+                        <svg class="w-7 h-7" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="20" y1="20" x2="80" y2="80" stroke="#4338ca" stroke-width="4" />
+                            <line x1="80" y1="20" x2="20" y2="80" stroke="#4338ca" stroke-width="4" />
+                            <line x1="20" y1="50" x2="80" y2="50" stroke="#4338ca" stroke-width="2" />
+                            <line x1="50" y1="20" x2="50" y2="80" stroke="#4338ca" stroke-width="2" />
+                            
+                            <circle cx="20" cy="20" r="8" fill="#1d4ed8" />
+                            <circle cx="50" cy="20" r="8" fill="#6d28d9" />
+                            <circle cx="80" cy="20" r="8" fill="#be185d" />
+                            <circle cx="20" cy="50" r="8" fill="#6d28d9" />
+                            <circle cx="50" cy="50" r="10" fill="#a21caf" />
+                            <circle cx="80" cy="50" r="8" fill="#6d28d9" />
+                            <circle cx="20" cy="80" r="8" fill="#be185d" />
+                            <circle cx="50" cy="80" r="8" fill="#6d28d9" />
+                            <circle cx="80" cy="80" r="8" fill="#1d4ed8" />
+                        </svg>
+                    </div>
+                    <span class="absolute left-16 bg-slate-900 text-white text-[10px] px-2 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity z-50 whitespace-nowrap">Réseau Ulysse</span>
+                </div>
+            </div>
+            
+            <!-- Bas de la barre d'outils -->
+            <div class="flex flex-col items-center space-y-4">
+                <div class="w-8 h-8 rounded-full hover:bg-slate-800 flex items-center justify-center text-slate-400 cursor-pointer">
+                    <i class="fa-solid fa-gear text-sm"></i>
+                </div>
+                <div class="w-8 h-8 rounded-full hover:bg-slate-800 flex items-center justify-center text-slate-400 cursor-pointer">
+                    <i class="fa-solid fa-circle-question text-sm"></i>
+                </div>
+            </div>
+        </aside>
+
+        <!-- DEUXIÈME SIDEBAR GAUCHE (MENU FILTRES ET CAMPAGNES) -->
+        <aside class="w-60 bg-white border-r border-slate-100 flex flex-col shrink-0 overflow-y-auto custom-scrollbar">
+            <!-- Boutons d'actions rapides -->
+            <div class="p-4 space-y-2">
+                <button onclick="openModal('msgModal')" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg py-2.5 px-4 text-xs font-semibold flex items-center justify-center space-x-2 transition-all shadow-md shadow-pink-500/10">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Nouveau message</span>
+                </button>
+                <button onclick="openModal('campaignModal')" class="w-full bg-white hover:bg-slate-50 text-purple-600 border border-purple-200 hover:border-purple-300 rounded-lg py-2 px-4 text-xs font-semibold flex items-center justify-center space-x-2 transition-all">
+                    <i class="fa-solid fa-bullhorn"></i>
+                    <span>Nouvelle campagne</span>
+                </button>
+            </div>
+
+            <!-- Liste d'océans -->
+            <div class="px-3 py-2">
+                <div class="flex items-center justify-between text-[11px] font-bold text-slate-400 px-3 py-1 uppercase tracking-wider">
+                    <span>Mes Océans</span>
+                    <button class="hover:text-slate-600"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <ul class="space-y-0.5 mt-1">
+                    <li>
+                        <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg bg-violet-50 text-violet-700 font-semibold text-xs transition-colors">
+                            <span class="flex items-center space-x-2.5">
+                                <span class="w-2 h-2 rounded-full bg-violet-600"></span>
+                                <span>Tous les océans</span>
+                            </span>
+                            <span class="bg-violet-200 text-violet-800 text-[10px] px-1.5 py-0.5 rounded-md font-bold">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-600 text-xs transition-colors">
+                            <span class="flex items-center space-x-2.5">
+                                <span class="w-2 h-2 rounded-full bg-sky-500"></span>
+                                <span>Support France</span>
+                            </span>
+                            <span class="text-slate-400 text-[10px] font-semibold">5</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-600 text-xs transition-colors">
+                            <span class="flex items-center space-x-2.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                <span>Sales B2B</span>
+                            </span>
+                            <span class="text-slate-400 text-[10px] font-semibold">3</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-600 text-xs transition-colors">
+                            <span class="flex items-center space-x-2.5">
+                                <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                <span>VIP</span>
+                            </span>
+                            <span class="text-slate-400 text-[10px] font-semibold">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-600 text-xs transition-colors">
+                            <span class="flex items-center space-x-2.5">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                <span>Réclamations</span>
+                            </span>
+                            <span class="text-slate-400 text-[10px] font-semibold">2</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-600 text-xs transition-colors">
+                            <span class="flex items-center space-x-2.5">
+                                <span class="w-2 h-2 rounded-full bg-violet-400"></span>
+                                <span>Prospects froids</span>
+                            </span>
+                            <span class="text-slate-400 text-[10px] font-semibold">8</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Liste de Campagnes -->
+            <div class="px-3 py-2 mt-4">
+                <div class="flex items-center justify-between text-[11px] font-bold text-slate-400 px-3 py-1 uppercase tracking-wider">
+                    <span>Campagnes</span>
+                    <button class="hover:text-slate-600"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <ul class="space-y-0.5 mt-1">
+                    <li>
+                        <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-600 text-xs transition-colors">
+                            <span class="flex items-center space-x-2.5">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                <span>Relance no-show</span>
+                            </span>
+                            <span class="bg-slate-100 text-slate-600 text-[10px] px-1.5 py-0.5 rounded-md font-bold">847</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-600 text-xs transition-colors">
+                            <span class="flex items-center space-x-2.5">
+                                <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                <span>Onboarding patients</span>
+                            </span>
+                            <span class="bg-slate-100 text-slate-600 text-[10px] px-1.5 py-0.5 rounded-md font-bold">203</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-600 text-xs transition-colors">
+                            <span class="flex items-center space-x-2.5">
+                                <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                                <span>Rappels RDV</span>
+                            </span>
+                            <span class="bg-slate-100 text-slate-600 text-[10px] px-1.5 py-0.5 rounded-md font-bold">124</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center justify-between px-3 py-2 rounded-lg hover:bg-slate-50 text-slate-600 text-xs transition-colors">
+                            <span class="flex items-center space-x-2.5">
+                                <span class="w-2 h-2 rounded-full bg-slate-500"></span>
+                                <span>Prospects froids</span>
+                            </span>
+                            <span class="bg-slate-100 text-slate-600 text-[10px] px-1.5 py-0.5 rounded-md font-bold">56</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- ESPACE DE TRAVAIL PRINCIPAL -->
+        <main class="flex-1 flex flex-col overflow-hidden">
+            
+            <!-- HEADER DE SECTION -->
+            <div class="bg-white border-b border-slate-100 p-6 shrink-0">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+                    <div>
+                        <div class="flex items-center space-x-3">
+                            <h1 class="text-2xl font-bold text-slate-800 tracking-tight">Ocean</h1>
+                            <span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full font-semibold">12 conversations</span>
+                        </div>
+                        <p class="text-xs text-slate-400 mt-1">Toutes les conversations multi-canaux</p>
+                    </div>
+                    
+                    <div class="flex items-center space-x-2 self-start md:self-auto">
+                        <button class="bg-white border border-slate-200 hover:border-slate-300 text-slate-700 px-3 py-2 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all">
+                            <i class="fa-solid fa-file-export text-slate-400"></i>
+                            <span>Exporter</span>
+                        </button>
+                        
+                        <div class="relative">
+                            <button class="bg-white border border-slate-200 hover:border-slate-300 text-slate-700 px-3 py-2 rounded-lg text-xs font-semibold flex items-center space-x-2 transition-all">
+                                <i class="fa-regular fa-calendar text-slate-400"></i>
+                                <span>Ce mois-ci</span>
+                                <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BARRE DE RECHERCHE ET BADGE D'INTELLIGENCE ARTIFICIELLE -->
+                <div class="mt-6 flex flex-col lg:flex-row lg:items-center space-y-3 lg:space-y-0 lg:space-x-3">
+                    <div class="relative flex-1">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input id="searchInput" oninput="filterTable()" type="text" placeholder="Rechercher dans les conversations — contacts, contenus, motifs..." class="w-full bg-slate-50 border border-slate-200 focus:border-purple-400 focus:bg-white rounded-xl pl-10 pr-40 py-2.5 text-xs text-slate-700 placeholder-slate-400 outline-none transition-all">
+                        <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-700 px-3 py-1 rounded-lg text-[11px] font-bold flex items-center space-x-1 transition-all">
+                            <i class="fa-solid fa-brain"></i>
+                            <span>Demander à Ulysse AI</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FILTRES AVANCÉS -->
+                <div class="mt-4 flex flex-wrap gap-2 items-center justify-between">
+                    <div class="flex flex-wrap gap-2">
+                        <div class="relative">
+                            <button class="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all">
+                                <span>Tous les agents</span>
+                                <i class="fa-solid fa-chevron-down text-[9px] text-slate-400"></i>
+                            </button>
+                        </div>
+                        <div class="relative">
+                            <button class="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all">
+                                <span>Statut</span>
+                                <i class="fa-solid fa-chevron-down text-[9px] text-slate-400"></i>
+                            </button>
+                        </div>
+                        <div class="relative">
+                            <button class="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all">
+                                <span>Motifs</span>
+                                <i class="fa-solid fa-chevron-down text-[9px] text-slate-400"></i>
+                            </button>
+                        </div>
+                        <div class="relative">
+                            <button class="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all">
+                                <span>Type client</span>
+                                <i class="fa-solid fa-chevron-down text-[9px] text-slate-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button class="text-xs text-slate-400 hover:text-slate-600 font-semibold flex items-center space-x-1">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Filtres avancés</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- BLOC TABLEAU DE CONVERSATIONS -->
+            <div class="flex-1 overflow-auto custom-scrollbar p-6">
+                <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+                    
+                    <!-- SÉLECTEUR D'ONGLET -->
+                    <div class="border-b border-slate-100 px-6 py-3 flex items-center justify-between">
+                        <div class="flex space-x-6 text-xs font-semibold">
+                            <a href="#" class="text-purple-600 border-b-2 border-purple-600 pb-3 -mb-3">Conversations (12)</a>
+                            <a href="#" class="text-slate-400 hover:text-slate-600 pb-3 -mb-3">Archive (0)</a>
+                        </div>
+                        
+                        <button class="bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1.5 transition-all">
+                            <i class="fa-solid fa-table-columns text-slate-400"></i>
+                            <span>Gérer les colonnes</span>
+                        </button>
+                    </div>
+
+                    <!-- TABLEAU -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="border-b border-slate-100 bg-slate-50/50 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                                    <th class="py-4 px-4 text-center w-12">
+                                        <input type="checkbox" onchange="toggleSelectAll(this)" class="rounded text-purple-600 focus:ring-purple-500 border-slate-300 w-4 h-4 cursor-pointer">
+                                    </th>
+                                    <th class="py-4 px-3 w-10"></th>
+                                    <th class="py-4 px-3 w-48">Nom</th>
+                                    <th class="py-4 px-4 min-w-[300px]">Message</th>
+                                    <th class="py-4 px-4 w-32">Priorité</th>
+                                    <th class="py-4 px-4 w-36">Type client</th>
+                                    <th class="py-4 px-4 w-44">Analyse IA</th>
+                                    <th class="py-4 px-4 text-right w-32">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="conversationTableBody" class="divide-y divide-slate-100 text-xs">
+                                
+                                <!-- ROW 1: MARIE DUBOIS -->
+                                <tr class="hover:bg-slate-50/50 transition-colors cursor-pointer table-row-item">
+                                    <td class="py-4 px-4 text-center">
+                                        <input type="checkbox" class="row-checkbox rounded text-purple-600 focus:ring-purple-500 border-slate-300 w-4 h-4 cursor-pointer">
+                                    </td>
+                                    <td class="py-4 px-2 text-center text-amber-400">
+                                        <i class="fa-solid fa-star"></i>
+                                    </td>
+                                    <td class="py-4 px-3">
+                                        <div class="flex items-center space-x-3">
+                                            <!-- Application Logo: WhatsApp -->
+                                            <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm shadow-sm shrink-0">
+                                                <i class="fa-brands fa-whatsapp"></i>
+                                            </div>
+                                            <div class="truncate">
+                                                <p class="font-bold text-slate-800 leading-tight">Marie Dubois</p>
+                                                <p class="text-[10px] text-slate-400 truncate">marie.dubois@exemple.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 font-medium text-slate-700">
+                                        Bonjour, je souhaite prendre un rendez-vous pour la semaine prochaine
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-red-50 text-red-700 border border-red-100">Urgent</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-100">Nouveau client</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">Bot confirmé</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-right font-medium text-slate-500">
+                                        Aujourd'hui
+                                    </td>
+                                </tr>
+
+                                <!-- ROW 2: ETHAN SERRAF -->
+                                <tr class="hover:bg-slate-50/50 transition-colors cursor-pointer table-row-item">
+                                    <td class="py-4 px-4 text-center">
+                                        <input type="checkbox" class="row-checkbox rounded text-purple-600 focus:ring-purple-500 border-slate-300 w-4 h-4 cursor-pointer">
+                                    </td>
+                                    <td class="py-4 px-2 text-center text-slate-300 hover:text-amber-400">
+                                        <i class="fa-regular fa-star"></i>
+                                    </td>
+                                    <td class="py-4 px-3">
+                                        <div class="flex items-center space-x-3">
+                                            <!-- Application Logo: Google -->
+                                            <div class="w-8 h-8 rounded-full bg-red-50 text-red-500 flex items-center justify-center text-sm shadow-sm shrink-0">
+                                                <i class="fa-brands fa-google"></i>
+                                            </div>
+                                            <div class="truncate">
+                                                <p class="font-bold text-slate-800 leading-tight">Ethan Serraf</p>
+                                                <p class="text-[10px] text-slate-400 truncate">ethan.serraf@gmail.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-500 truncate max-w-xs">
+                                        Je remercie Sairen pour l'aide qu'ils m'ont apportée. Avec ces outils j'ai gagné en productivité...
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-slate-50 text-slate-500 border border-slate-100">Faible</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100">Avis Google</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-100"><i class="fa-solid fa-star mr-1"></i>Sentiment positif</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-right font-medium text-slate-400">
+                                        Il y a 1 an
+                                    </td>
+                                </tr>
+
+                                <!-- ROW 3: JEAN DUPONT -->
+                                <tr class="hover:bg-slate-50/50 transition-colors cursor-pointer table-row-item">
+                                    <td class="py-4 px-4 text-center">
+                                        <input type="checkbox" class="row-checkbox rounded text-purple-600 focus:ring-purple-500 border-slate-300 w-4 h-4 cursor-pointer">
+                                    </td>
+                                    <td class="py-4 px-2 text-center text-slate-300 hover:text-amber-400">
+                                        <i class="fa-regular fa-star"></i>
+                                    </td>
+                                    <td class="py-4 px-3">
+                                        <div class="flex items-center space-x-3">
+                                            <!-- Application Logo: Outlook -->
+                                            <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-sm shadow-sm shrink-0">
+                                                <i class="fa-regular fa-envelope"></i>
+                                            </div>
+                                            <div class="truncate">
+                                                <p class="font-bold text-slate-800 leading-tight">Jean Dupont</p>
+                                                <p class="text-[10px] text-slate-400 truncate">jean.dupont@exemple.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 font-medium text-slate-700">
+                                        Problème de connexion
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100">Moyen</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-violet-50 text-violet-700 border border-violet-100">Client fidèle</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">Sentiment positif</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-right font-medium text-slate-500">
+                                        Aujourd'hui
+                                    </td>
+                                </tr>
+
+                                <!-- ROW 4: ISABELLE RENARD -->
+                                <tr class="hover:bg-slate-50/50 transition-colors cursor-pointer table-row-item">
+                                    <td class="py-4 px-4 text-center">
+                                        <input type="checkbox" class="row-checkbox rounded text-purple-600 focus:ring-purple-500 border-slate-300 w-4 h-4 cursor-pointer">
+                                    </td>
+                                    <td class="py-4 px-2 text-center text-slate-300 hover:text-amber-400">
+                                        <i class="fa-regular fa-star"></i>
+                                    </td>
+                                    <td class="py-4 px-3">
+                                        <div class="flex items-center space-x-3">
+                                            <!-- WhatsApp -->
+                                            <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm shadow-sm shrink-0">
+                                                <i class="fa-brands fa-whatsapp"></i>
+                                            </div>
+                                            <div class="truncate">
+                                                <p class="font-bold text-slate-800 leading-tight">Isabelle Renard</p>
+                                                <p class="text-[10px] text-slate-400 truncate">isabelle.renard@corporate.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-600">
+                                        Demande de devis entreprise
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-red-50 text-red-700 border border-red-100">Urgent</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-100">Prospect B2B</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100">Opportunité comm.</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-right font-medium text-slate-400">
+                                        Hier
+                                    </td>
+                                </tr>
+
+                                <!-- ROW 5: SOPHIE BERNARD -->
+                                <tr class="hover:bg-slate-50/50 transition-colors cursor-pointer table-row-item">
+                                    <td class="py-4 px-4 text-center">
+                                        <input type="checkbox" class="row-checkbox rounded text-purple-600 focus:ring-purple-500 border-slate-300 w-4 h-4 cursor-pointer">
+                                    </td>
+                                    <td class="py-4 px-2 text-center text-amber-400">
+                                        <i class="fa-solid fa-star"></i>
+                                    </td>
+                                    <td class="py-4 px-3">
+                                        <div class="flex items-center space-x-3">
+                                            <!-- Gmail -->
+                                            <div class="w-8 h-8 rounded-full bg-red-100 text-red-500 flex items-center justify-center text-sm shadow-sm shrink-0">
+                                                <i class="fa-regular fa-envelope"></i>
+                                            </div>
+                                            <div class="truncate">
+                                                <p class="font-bold text-slate-800 leading-tight">Sophie Bernard</p>
+                                                <p class="text-[10px] text-slate-400 truncate">sophie.bernard@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-600">
+                                        Pourriez-vous me donner plus d'informations sur vos offres récentes
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-slate-50 text-slate-500 border border-slate-100">Faible</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">Bot résolu</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-slate-50 text-slate-500 border border-slate-100">Standard</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-right font-medium text-slate-400">
+                                        Dimanche
+                                    </td>
+                                </tr>
+
+                                <!-- ROW 6: FRANÇOIS DUBOIS -->
+                                <tr class="hover:bg-slate-50/50 transition-colors cursor-pointer table-row-item">
+                                    <td class="py-4 px-4 text-center">
+                                        <input type="checkbox" class="row-checkbox rounded text-purple-600 focus:ring-purple-500 border-slate-300 w-4 h-4 cursor-pointer">
+                                    </td>
+                                    <td class="py-4 px-2 text-center text-slate-300 hover:text-amber-400">
+                                        <i class="fa-regular fa-star"></i>
+                                    </td>
+                                    <td class="py-4 px-3">
+                                        <div class="flex items-center space-x-3">
+                                            <!-- Message icon -->
+                                            <div class="w-8 h-8 rounded-full bg-violet-100 text-violet-600 flex items-center justify-center text-sm shadow-sm shrink-0">
+                                                <i class="fa-solid fa-message"></i>
+                                            </div>
+                                            <div class="truncate">
+                                                <p class="font-bold text-slate-800 leading-tight">François Dubois</p>
+                                                <p class="text-[10px] text-slate-400 truncate">francois.dubois@entreprise.fr</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 font-medium text-slate-700">
+                                        Configuration compte entreprise
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100">Moyen</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-100">Client entreprise</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-100">Technique</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-right font-medium text-slate-500">
+                                        31 Mai
+                                    </td>
+                                </tr>
+
+                                <!-- ROW 7: PIERRE MARTIN -->
+                                <tr class="hover:bg-slate-50/50 transition-colors cursor-pointer table-row-item">
+                                    <td class="py-4 px-4 text-center">
+                                        <input type="checkbox" class="row-checkbox rounded text-purple-600 focus:ring-purple-500 border-slate-300 w-4 h-4 cursor-pointer">
+                                    </td>
+                                    <td class="py-4 px-2 text-center text-slate-300 hover:text-amber-400">
+                                        <i class="fa-regular fa-star"></i>
+                                    </td>
+                                    <td class="py-4 px-3">
+                                        <div class="flex items-center space-x-3">
+                                            <!-- Video icon -->
+                                            <div class="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center text-sm shadow-sm shrink-0">
+                                                <i class="fa-solid fa-video text-xs"></i>
+                                            </div>
+                                            <div class="truncate">
+                                                <p class="font-bold text-slate-800 leading-tight">Pierre Martin</p>
+                                                <p class="text-[10px] text-slate-400 truncate">pierre.martin@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-500">
+                                        Je suis insatisfait du service reçu et souhaite déposer une réclamation
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-red-50 text-red-700 border border-red-100">Urgent</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-red-50 text-red-700 border border-red-100">Client mécontent</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-red-50 text-red-700 border border-red-100">Sentiment négatif</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-right font-medium text-slate-400">
+                                        22 Janv. 2026
+                                    </td>
+                                </tr>
+
+                                <!-- ROW 8: LUCIE PETIT -->
+                                <tr class="hover:bg-slate-50/50 transition-colors cursor-pointer table-row-item">
+                                    <td class="py-4 px-4 text-center">
+                                        <input type="checkbox" class="row-checkbox rounded text-purple-600 focus:ring-purple-500 border-slate-300 w-4 h-4 cursor-pointer">
+                                    </td>
+                                    <td class="py-4 px-2 text-center text-slate-300 hover:text-amber-400">
+                                        <i class="fa-regular fa-star"></i>
+                                    </td>
+                                    <td class="py-4 px-3">
+                                        <div class="flex items-center space-x-3">
+                                            <!-- WhatsApp -->
+                                            <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-sm shadow-sm shrink-0">
+                                                <i class="fa-brands fa-whatsapp"></i>
+                                            </div>
+                                            <div class="truncate">
+                                                <p class="font-bold text-slate-800 leading-tight">Lucie Petit</p>
+                                                <p class="text-[10px] text-slate-400 truncate">lucie.petit@example.com</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-4 text-slate-600">
+                                        Devis pour prestation
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100">Moyen</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100">Prospect chaud</span>
+                                    </td>
+                                    <td class="py-4 px-4">
+                                        <span class="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100">Commercial</span>
+                                    </td>
+                                    <td class="py-4 px-4 text-right font-medium text-slate-400">
+                                        22 Janv. 2026
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- FOOTER DU TABLEAU / PAGINATION -->
+                    <div class="border-t border-slate-100 px-6 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 shrink-0">
+                        <div class="flex items-center space-x-2 text-xs text-slate-500">
+                            <span>Afficher</span>
+                            <select class="bg-white border border-slate-200 rounded-lg px-2 py-1 outline-none text-slate-700 font-medium">
+                                <option>25</option>
+                                <option>50</option>
+                                <option>100</option>
+                            </select>
+                            <span>par page</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between sm:justify-end space-x-6 text-xs font-semibold text-slate-600">
+                            <span>Page 1/1</span>
+                            <div class="flex items-center space-x-2">
+                                <button class="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 text-slate-400 cursor-not-allowed" disabled>
+                                    <i class="fa-solid fa-chevron-left"></i> Précédent
+                                </button>
+                                <button class="p-2 border border-slate-200 rounded-lg hover:bg-slate-50">
+                                    Suivant <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- MODAL POPUP: NOUVEAU MESSAGE -->
+    <div id="msgModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl border border-slate-100 w-full max-w-lg shadow-2xl overflow-hidden transform scale-95 transition-all">
+            <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+                <h3 class="text-sm font-bold text-slate-800">Nouveau message</h3>
+                <button onclick="closeModal('msgModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-sm"></i></button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1.5">Destinataire</label>
+                    <input type="text" placeholder="Entrez un nom ou adresse email..." class="w-full bg-slate-50 border border-slate-200 focus:border-purple-400 focus:bg-white rounded-xl px-4 py-2.5 text-xs text-slate-700 outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1.5">Canal de communication</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button class="bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-lg p-2 text-xs font-bold flex items-center justify-center space-x-1.5 hover:bg-emerald-100 transition-colors">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>WhatsApp</span>
+                        </button>
+                        <button class="bg-red-50 border border-red-200 text-red-600 rounded-lg p-2 text-xs font-bold flex items-center justify-center space-x-1.5 hover:bg-red-100 transition-colors">
+                            <i class="fa-regular fa-envelope text-sm"></i>
+                            <span>Email</span>
+                        </button>
+                        <button class="bg-blue-50 border border-blue-200 text-blue-600 rounded-lg p-2 text-xs font-bold flex items-center justify-center space-x-1.5 hover:bg-blue-100 transition-colors">
+                            <i class="fa-solid fa-message text-sm"></i>
+                            <span>Siren / SMS</span>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1.5">Message</label>
+                    <textarea rows="4" placeholder="Écrivez votre message ici..." class="w-full bg-slate-50 border border-slate-200 focus:border-purple-400 focus:bg-white rounded-xl p-4 text-xs text-slate-700 outline-none transition-all resize-none"></textarea>
+                </div>
+            </div>
+            <div class="px-6 py-4 border-t border-slate-100 bg-slate-50/50 flex items-center justify-end space-x-2">
+                <button onclick="closeModal('msgModal')" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 px-4 py-2 rounded-xl text-xs font-bold transition-all">Annuler</button>
+                <button onclick="closeModal('msgModal')" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-purple-500/10 transition-all">Envoyer le message</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP: NOUVELLE CAMPAGNE -->
+    <div id="campaignModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl border border-slate-100 w-full max-w-md shadow-2xl overflow-hidden transform scale-95 transition-all">
+            <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+                <h3 class="text-sm font-bold text-slate-800">Lancer une campagne</h3>
+                <button onclick="closeModal('campaignModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-sm"></i></button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1.5">Nom de la campagne</label>
+                    <input type="text" placeholder="ex: Relance prospects inactifs" class="w-full bg-slate-50 border border-slate-200 focus:border-purple-400 focus:bg-white rounded-xl px-4 py-2.5 text-xs text-slate-700 outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1.5">Audience ciblée</label>
+                    <select class="w-full bg-slate-50 border border-slate-200 focus:border-purple-400 focus:bg-white rounded-xl px-3 py-2.5 text-xs text-slate-700 outline-none transition-all">
+                        <option>Tous les prospects froids (8)</option>
+                        <option>Support France (5)</option>
+                        <option>VIP (2)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="px-6 py-4 border-t border-slate-100 bg-slate-50/50 flex items-center justify-end space-x-2">
+                <button onclick="closeModal('campaignModal')" class="bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 px-4 py-2 rounded-xl text-xs font-bold transition-all">Annuler</button>
+                <button onclick="closeModal('campaignModal')" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-purple-500/10 transition-all">Créer la campagne</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP: AUTOMATION -->
+    <div id="automationModal" class="hidden fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl border border-slate-100 w-full max-w-md shadow-2xl overflow-hidden transform scale-95 transition-all">
+            <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+                <h3 class="text-sm font-bold text-slate-800">Automatiser des actions</h3>
+                <button onclick="closeModal('automationModal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-sm"></i></button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="bg-violet-50 border border-violet-100 p-4 rounded-xl flex items-start space-x-3">
+                    <i class="fa-solid fa-robot text-violet-600 mt-0.5 text-base"></i>
+                    <div>
+                        <h4 class="text-xs font-bold text-violet-800">Règles d'automations actives</h4>
+                        <p class="text-[11px] text-violet-600 mt-1">Configurez des scénarios automatiques en fonction des statuts ou analyses IA générées.</p>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <div class="border border-slate-100 rounded-xl p-3 flex items-center justify-between hover:bg-slate-50 transition-colors">
+                        <div>
+                            <p class="text-xs font-bold text-slate-700">Détection d'Urgence</p>
+                            <p class="text-[10px] text-slate-400">Si l'Analyse IA détecte "Urgent", envoyer une notification Slack.</p>
+                        </div>
+                        <div class="w-8 h-4 bg-purple-600 rounded-full p-0.5 flex items-center justify-end cursor-pointer">
+                            <div class="w-3 h-3 bg-white rounded-full"></div>
+                        </div>
+                    </div>
+                    <div class="border border-slate-100 rounded-xl p-3 flex items-center justify-between hover:bg-slate-50 transition-colors">
+                        <div>
+                            <p class="text-xs font-bold text-slate-700">Bot de qualification automatique</p>
+                            <p class="text-[10px] text-slate-400">Si nouveau prospect, lancer la discussion via WhatsApp.</p>
+                        </div>
+                        <div class="w-8 h-4 bg-purple-600 rounded-full p-0.5 flex items-center justify-end cursor-pointer">
+                            <div class="w-3 h-3 bg-white rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 py-4 border-t border-slate-100 bg-slate-50/50 flex items-center justify-end">
+                <button onclick="closeModal('automationModal')" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DE FILTRAGE DYNAMIQUE ET GESTION DES MODALS -->
+    <script>
+        // Recherche et filtrage dynamique dans le tableau
+        function filterTable() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#conversationTableBody tr');
+            
+            rows.forEach(row => {
+                const textContent = row.textContent.toLowerCase();
+                if (textContent.includes(query)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+
+        // Modals management
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('hidden');
+        }
+
+        // Toggle global checkboxes
+        function toggleSelectAll(master) {
+            const checkboxes = document.querySelectorAll('.row-checkbox');
+            checkboxes.forEach(cb => {
+                cb.checked = master.checked;
+            });
+        }
+    </script>
+</body>
+</html>
