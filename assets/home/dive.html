@@ -245,6 +245,25 @@ img{max-width:100%;display:block}
 .foot p{color:rgba(48,36,92,.9);font-size:13.5px;line-height:1.6;max-width:34ch;text-shadow:0 1px 10px rgba(255,255,255,.5)}
 .foot-bot{border-top:1px solid rgba(40,28,80,.18);padding:20px 0;font-size:12.5px;color:rgba(48,36,92,.82);text-shadow:0 1px 9px rgba(255,255,255,.5)}
 @media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;padding:56px 0 36px}}
+
+/* BRICKS scrollytelling */
+.bricks{padding:24px 0 80px;background:#fff}
+.bricks-head{max-width:700px;margin:0 auto}
+.bricks-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start;margin-top:6px}
+.bstep{min-height:80vh;display:flex;flex-direction:column;justify-content:center;opacity:.3;filter:saturate(.55);transition:opacity .45s,filter .45s}
+.bstep.on{opacity:1;filter:none}
+.bstep .bnum{font-family:'Geist Mono',monospace;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bstep h3{font-size:clamp(22px,2.6vw,32px);font-weight:700;letter-spacing:-.02em;margin:8px 0 0}
+.bstep p{font-size:16px;color:var(--muted);line-height:1.6;margin:12px 0 0;max-width:42ch}
+.bricks-visual{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center}
+.bstack{display:flex;flex-direction:column;gap:13px;width:min(340px,100%)}
+.bbrick{display:flex;align-items:center;gap:13px;padding:16px 18px;border-radius:16px;background:var(--soft);border:1px solid var(--line);opacity:.25;transform:translateY(26px) scale(.96);transition:transform .55s cubic-bezier(.2,.8,.2,1),opacity .55s,box-shadow .4s,background .4s,border-color .4s;box-shadow:0 18px 40px -30px rgba(40,20,90,.5)}
+.bbrick.show{opacity:1;transform:none}
+.bbrick.active{background:#fff;border-color:rgba(124,92,246,.45);box-shadow:0 34px 70px -34px rgba(108,64,250,.55);transform:scale(1.035)}
+.bbrick img{width:32px;height:32px;object-fit:contain;flex:none}
+.bbrick b{display:block;font-size:16px;line-height:1.1}
+.bbrick small{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
+@media(max-width:820px){.bricks-wrap{grid-template-columns:1fr;gap:6px}.bstep{min-height:auto;padding:16px 0;opacity:1;filter:none}.bricks-visual{position:relative;height:auto;margin-top:8px}.bbrick{opacity:1;transform:none}}
 </style></head>
 <body>
 
@@ -318,6 +337,33 @@ img{max-width:100%;display:block}
 </div><b>Agir</b><p>Des agents IA répondent et exécutent 24/7 ; vos équipes gardent la main sur l'essentiel.</p><div class="pill-prod"><span class="lbl">Propulsé par</span><a href="#/rainbow" target="_top"><img src="../img/logo-rainbow.svg" alt="">Rainbow</a></div></div>
   </div>
 </div></section>
+<!-- BRICKS : scrollytelling -->
+<section class="bricks">
+<div class="wrap">
+<div class="bricks-head">
+<span class="eyebrow"><i></i>Une plateforme, pas des silos</span>
+<h2 class="h2">Quatre briques qui <em>s'imbriquent.</em></h2>
+<p class="lead" style="margin-left:auto;margin-right:auto;text-align:center">Chaque brique fait son métier — et se branche aux autres. Ensemble, elles forment un seul système qui capte, comprend et agit.</p>
+</div>
+<div class="bricks-wrap">
+<div class="bricks-steps">
+<div class="bstep" data-i="0"><span class="bnum">01 — Capter</span><h3>Océan capte</h3><p>Tous les canaux — WhatsApp, appels, e-mail, SMS, avis — entrent dans un flux unique et qualifié.</p></div>
+<div class="bstep" data-i="1"><span class="bnum">02 — Organiser</span><h3>Desk organise</h3><p>Les demandes deviennent des tâches priorisées ; vos équipes collaborent en messagerie interne.</p></div>
+<div class="bstep" data-i="2"><span class="bnum">03 — Agir</span><h3>Rainbow agit</h3><p>Agents IA et workflows répondent et exécutent 24/7, avec reprise humaine quand il le faut.</p></div>
+<div class="bstep" data-i="3"><span class="bnum">04 — Piloter</span><h3>Ulysse pilote</h3><p>Le copilote lit tout, sort les chiffres et lance les actions inter-briques, d'un seul message.</p></div>
+</div>
+<div class="bricks-visual">
+<div class="bstack">
+<div class="bbrick" data-i="0"><img src="../img/logo-ocean.png" alt=""><span><b>Océan</b><small>Capte les conversations</small></span></div>
+<div class="bbrick" data-i="1"><img src="../img/logo-desk.png" alt=""><span><b>Desk</b><small>Organise le travail</small></span></div>
+<div class="bbrick" data-i="2"><img src="../img/logo-rainbow.svg" alt=""><span><b>Rainbow</b><small>Agit avec l'IA</small></span></div>
+<div class="bbrick" data-i="3"><img src="../img/logo-ulysse.png" alt=""><span><b>Ulysse</b><small>Pilote l'ensemble</small></span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
 
 <!-- FEATURE: Océan -->
 <section class="wrap"><div class="feat">
@@ -499,6 +545,17 @@ document.addEventListener('click',function(e){
   function report(){try{(window.top||window).postMessage({srnScroll:window.scrollY||document.documentElement.scrollTop||0},'*');}catch(e){}}
   window.addEventListener('scroll',report,{passive:true});
   window.addEventListener('load',report);report();
+})();
+</script>
+<script>
+(function(){
+var steps=[].slice.call(document.querySelectorAll('.bstep'));
+var bricks=[].slice.call(document.querySelectorAll('.bbrick'));
+if(!steps.length) return;
+if(!('IntersectionObserver' in window)){bricks.forEach(function(b){b.classList.add('show')});return;}
+function act(i){steps.forEach(function(s,k){s.classList.toggle('on',k===i)});bricks.forEach(function(b,k){b.classList.toggle('show',k<=i);b.classList.toggle('active',k===i)});}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)act(+e.target.getAttribute('data-i'))})},{rootMargin:'-45% 0px -45% 0px'});
+steps.forEach(function(s){io.observe(s)});act(0);
 })();
 </script>
 </body></html>
