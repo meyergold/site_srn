@@ -51,7 +51,7 @@ img{max-width:100%;display:block}
 .cl-static img{height:22px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.6}
 .hero-clients{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6b6580;margin:34px 0 0;text-shadow:0 1px 10px rgba(255,255,255,.65)}
 .hero .cl-mq-track span{color:#7a7488;text-shadow:0 1px 10px rgba(255,255,255,.6)}
-.hero .cl-mq-track img{opacity:.62}
+.hero .cl-mq-track img{opacity:.78;mix-blend-mode:multiply}
 .hero h1{font-size:clamp(30px,4.2vw,54px);font-weight:700;letter-spacing:-.03em;line-height:1.05;margin:0;color:#1a1430;text-shadow:0 2px 16px rgba(255,255,255,.75)}
 .hero h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .sub{font-size:clamp(15px,1.6vw,17px);color:#3b3a47;line-height:1.55;margin:15px auto 0;max-width:500px;font-weight:500;text-shadow:0 2px 14px rgba(255,255,255,.8)}
@@ -124,12 +124,12 @@ img{max-width:100%;display:block}
 .pillar b{font-size:18px}
 .pillar p{font-size:14.5px;color:var(--muted);margin:8px 0 0;line-height:1.6}
 /* pillar logo rows */
-.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.pill-chip{width:38px;height:38px;border-radius:11px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;box-shadow:0 8px 20px -16px rgba(40,20,90,.5)}
-.pill-chip img{width:22px;height:22px;object-fit:contain}
-.pill-chip svg{width:20px;height:20px}
+.pill-row{display:flex;flex-wrap:nowrap;gap:6px;margin-bottom:16px}
+.pill-chip{width:28px;height:28px;border-radius:8px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;box-shadow:0 8px 20px -16px rgba(40,20,90,.5);flex:none}
+.pill-chip img{width:18px;height:18px;object-fit:contain}
+.pill-chip svg{width:16px;height:16px}
 .pill-chip.txt{width:auto;padding:0 11px;font-size:12px;font-weight:800;color:#5b5570;letter-spacing:.02em}
-.pill-ava{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 8px 20px -14px rgba(40,20,90,.5)}
+.pill-ava{width:33px;height:33px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 8px 20px -14px rgba(40,20,90,.5);flex:none}
 /* rainbow workflow */
 .wf{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:16px}
 .wf-node{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:11px 13px;box-shadow:0 10px 26px -20px rgba(40,20,90,.5)}
@@ -258,7 +258,7 @@ img{max-width:100%;display:block}
       <a class="btn btn-ghost" style="padding:11px 24px;font-size:14px" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Demander une démo</a>
     </div>
     <p class="hero-clients">+300 organisations améliorent leurs process avec Sairen</p>
-    <div class="cl-static"><span>DRAY</span><span>Allo Casse Auto</span><span>La Parisienne de Baguette</span><span>équip'jardin</span><span>Transcash</span><img src="../img/logo-sofitel.png" alt=""><span>CMSM</span><span>point de vente</span><span>Pullman</span><span>Best Western</span><span>LAZEO</span><img src="../img/logo-elsan-black.png" alt=""><span>vidi</span><span>OPHTALYS</span><span>delya</span><span>Clinique des Champs-Élysées</span><img src="../img/logo-vyv-black.png" alt=""><span>Racine</span><span>DENTYLIS</span><span>TRESSÉ</span></div>
+    <div class="cl-marquee"><div class="cl-mq-track"><img src="../img/cli-racine.jpg" alt=""><img src="../img/cli-lpb.webp" alt=""><img src="../img/cli-lazeo.jpg" alt=""><img src="../img/cli-cmsm.png" alt=""><img src="../img/cli-transcash.png" alt=""><img src="../img/cli-ophtalys.png" alt=""><img src="../img/cli-sofitel.png" alt=""><img src="../img/cli-elsan.png" alt=""><img src="../img/cli-dray.png" alt=""><img src="../img/cli-adelya.png" alt=""><img src="../img/cli-bestwestern.png" alt=""><img src="../img/cli-hep.png" alt=""><img src="../img/cli-simago.png" alt=""><img src="../img/cli-dentagest.png" alt=""><img src="../img/cli-dentylis.png" alt=""><img src="../img/cli-pdv.jpg" alt=""><img src="../img/cli-pullman.png" alt=""><img src="../img/cli-qovetia.png" alt=""><img src="../img/cli-telyo.jpg" alt=""><img src="../img/cli-vyv.png" alt=""><img src="../img/cli-allocasseauto.jpg" alt=""><img src="../img/cli-orange.webp" alt=""><img src="../img/cli-tresse.jpeg" alt=""><img src="../img/cli-vidi.png" alt=""><img src="../img/cli-racine.jpg" alt=""><img src="../img/cli-lpb.webp" alt=""><img src="../img/cli-lazeo.jpg" alt=""><img src="../img/cli-cmsm.png" alt=""><img src="../img/cli-transcash.png" alt=""><img src="../img/cli-ophtalys.png" alt=""><img src="../img/cli-sofitel.png" alt=""><img src="../img/cli-elsan.png" alt=""><img src="../img/cli-dray.png" alt=""><img src="../img/cli-adelya.png" alt=""><img src="../img/cli-bestwestern.png" alt=""><img src="../img/cli-hep.png" alt=""><img src="../img/cli-simago.png" alt=""><img src="../img/cli-dentagest.png" alt=""><img src="../img/cli-dentylis.png" alt=""><img src="../img/cli-pdv.jpg" alt=""><img src="../img/cli-pullman.png" alt=""><img src="../img/cli-qovetia.png" alt=""><img src="../img/cli-telyo.jpg" alt=""><img src="../img/cli-vyv.png" alt=""><img src="../img/cli-allocasseauto.jpg" alt=""><img src="../img/cli-orange.webp" alt=""><img src="../img/cli-tresse.jpeg" alt=""><img src="../img/cli-vidi.png" alt=""></div></div>
     <div class="show-stage">
 <img class="show-desktop" src="../img/platform-desktop2.png" alt="Plateforme Sairen — Océan">
 <img class="show-mobile" src="../img/sairen-desk-phone-taches.png" alt="Application mobile Sairen — Desk">
@@ -282,7 +282,6 @@ img{max-width:100%;display:block}
     <div class="pillar"><div class="pill-row">
 <span class="pill-chip" title="WhatsApp"><img src="../img/ch-whatsapp.png" alt="WhatsApp"></span>
 <span class="pill-chip" title="WhatsApp Business"><img src="../img/ch-whatsapp-business.jpeg" alt="WhatsApp Business"></span>
-<span class="pill-chip" title="SMS"><svg viewBox="0 0 24 24" fill="none" stroke="#5B6CFF" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4L3 21l1.1-3.4A8.5 8.5 0 1 1 21 11.5z"/></svg></span>
 <span class="pill-chip" title="Appel"><img src="../img/ch-call.png" alt="Appel"></span>
 <span class="pill-chip" title="Gmail"><img src="../img/ch-gmail.webp" alt="Gmail"></span>
 <span class="pill-chip" title="Outlook"><img src="../img/ch-outlook.png" alt="Outlook"></span>
@@ -298,9 +297,9 @@ img{max-width:100%;display:block}
 <span class="pill-chip" title="Gemini"><img src="../img/Google_Gemini_icon_2025.svg.png" alt="Gemini"></span>
 </div><b>Comprendre</b><p>Priorité, type de client, sentiment, intention : chaque échange est qualifié automatiquement.</p></div>
     <div class="pillar"><div class="pill-row">
-<img class="pill-ava" src="../img/agir-ai-1.png" alt="">
-<img class="pill-ava" src="../img/agir-ai-2.png" alt="">
-<img class="pill-ava" src="../img/agir-ai-3.png" alt="">
+<img class="pill-ava" src="../img/img-041-333af93f7115.webp" alt="">
+<img class="pill-ava" src="../img/img-038-f00be3c341a4.webp" alt="">
+<img class="pill-ava" src="../img/img-039-e2ecd5ca5f7b.webp" alt="">
 <img class="pill-ava" src="../img/agir-human.webp" alt="">
 <span class="pill-chip" title="Workflows"><svg viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="6" rx="1.5"/><rect x="14" y="14" width="7" height="6" rx="1.5"/><path d="M6.5 10v4a2 2 0 0 0 2 2H14"/></svg></span>
 </div><b>Agir</b><p>Des agents IA répondent et exécutent 24/7 ; vos équipes gardent la main sur l'essentiel.</p></div>
