@@ -305,25 +305,43 @@ img{max-width:100%;display:block}
 .uly-cases span{font-size:13px;font-weight:600;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:9px 15px}
 @media(max-width:860px){.f2-row{grid-template-columns:1fr;gap:22px}.f2-row.rev .f2-txt{order:0}.cap-desk-body{grid-template-columns:1fr}.cdb-chat{border-top:1px solid var(--line)}}
 
-/* TOUR scroll-driven */
-.tour{background:linear-gradient(180deg,#fff 0%,#f6f4ff 45%,#fff 100%)}
-.tour-head{text-align:center;max-width:700px;margin:0 auto;padding-top:34px}
-.tour-scroll{height:430vh;position:relative}
-.tour-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;perspective:1700px}
-.tour-stage{width:min(1120px,93%);height:min(72vh,700px)}
-.tour-frame{width:100%;height:100%;border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 70px 150px -60px rgba(40,20,90,.6);transform-origin:center center;will-change:transform}
-.lf-bar{height:38px;display:flex;align-items:center;gap:7px;padding:0 14px;background:#f4f2f8;border-bottom:1px solid var(--line);position:relative;z-index:2}
-.lf-bar .d{width:11px;height:11px;border-radius:50%;background:#e0dcec}
-.lf-url{margin-left:12px;font-size:12px;color:#8a84a0;background:#fff;border:1px solid var(--line);border-radius:7px;padding:4px 14px}
-.lf-app{width:100%;height:calc(100% - 38px);border:0;display:block;background:#fff;pointer-events:none}
-.tour-caps{position:absolute;left:50%;bottom:7vh;transform:translateX(-50%);width:min(540px,90%);z-index:3;pointer-events:none}
-.tcap{position:absolute;left:0;right:0;bottom:0;opacity:0;transform:translateY(12px);transition:opacity .45s,transform .45s;background:rgba(18,16,26,.8);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:15px 20px;text-align:center;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
-.tcap.on{opacity:1;transform:none}
-.tcap b{display:block;font-size:16px}
-.tcap span{display:block;font-size:13px;color:rgba(255,255,255,.75);margin-top:4px;line-height:1.4}
-.tour-cta{position:absolute;top:6vh;left:50%;transform:translateX(-50%);z-index:4}
-@media(max-width:760px){.tour-scroll{height:auto}.tour-sticky{position:relative;height:auto;padding:16px 0;perspective:none;flex-direction:column;gap:14px}.tour-stage{height:68vh;width:94%}.tour-frame{transform:none!important}.lf-app{pointer-events:auto}.tour-caps{position:static;transform:none;width:94%}.tcap{position:static;opacity:1;transform:none;margin-top:8px}.tour-cta{position:static;transform:none}}
-@media(prefers-reduced-motion:reduce){.tour-frame{transform:none!important}}
+/* ===== VISUAL POLISH : mockups motion & depth ===== */
+/* live indicator on every mock toolbar */
+.mk-bar{position:relative}
+.mk-bar::after{content:"";position:absolute;right:15px;top:50%;transform:translateY(-50%);width:7px;height:7px;border-radius:50%;background:#1F9D57;box-shadow:0 0 0 0 rgba(31,157,87,.55);animation:srnLive 2.4s ease-out infinite}
+@keyframes srnLive{0%{box-shadow:0 0 0 0 rgba(31,157,87,.5)}70%{box-shadow:0 0 0 9px rgba(31,157,87,0)}100%{box-shadow:0 0 0 0 rgba(31,157,87,0)}}
+
+/* depth + ambient glow on the mock cards */
+.feat-vis,.cap-pane,.wf2{position:relative;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.feat-vis::before,.wf2::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(120% 80% at 82% -12%,rgba(124,92,246,.12),transparent 56%);pointer-events:none;z-index:0}
+.feat-vis>*,.wf2>*{position:relative;z-index:1}
+.feat-vis:hover{transform:translateY(-5px);box-shadow:0 60px 120px -52px rgba(40,20,90,.62)}
+.wf2:hover{transform:translateY(-4px);box-shadow:0 60px 120px -54px rgba(40,20,90,.6)}
+
+/* staggered entrance for inner items */
+.feat-vis .row,.feat-vis .bub,.feat-vis .u-act,.feat-vis .wf-node,.feat-vis .wf-line,.feat-vis .wf-split{opacity:0;transform:translateY(15px);transition:opacity .55s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.2,.8,.2,1)}
+.feat-vis.in .row,.feat-vis.in .bub,.feat-vis.in .u-act,.feat-vis.in .wf-node,.feat-vis.in .wf-line,.feat-vis.in .wf-split{opacity:1;transform:none}
+
+/* row / item micro-interaction */
+.row,.u-act{transition:transform .25s,border-color .25s,box-shadow .25s,background .25s}
+.row:hover,.u-act:hover{transform:translateX(3px);border-color:rgba(124,92,246,.42);box-shadow:0 16px 32px -22px rgba(108,64,250,.6)}
+.wf-node{transition:transform .25s,box-shadow .3s,border-color .3s}
+.wf-node:hover{border-color:rgba(124,92,246,.42);box-shadow:0 18px 38px -22px rgba(108,64,250,.55)}
+.wf2-node{transition:opacity .55s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s}
+.wf2-node:hover{border-color:rgba(124,92,246,.42);box-shadow:0 18px 38px -24px rgba(108,64,250,.5)}
+
+/* animated connectors in Rainbow workflow */
+.feat-vis.in .wf-line{transform-origin:top;animation:srnLine .55s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes srnLine{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+/* Ulysse focus band glow + chip interaction */
+.uly-focus{position:relative;overflow:hidden}
+.uly-focus::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 65% at 50% -5%,rgba(143,162,255,.28),transparent 60%);pointer-events:none}
+.uly-in{position:relative;z-index:1}
+.uly-cases span{transition:transform .25s,background .25s,border-color .25s}
+.uly-cases span:hover{transform:translateY(-2px);background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.32)}
+
+@media(prefers-reduced-motion:reduce){.feat-vis .row,.feat-vis .bub,.feat-vis .u-act,.feat-vis .wf-node,.feat-vis .wf-line,.feat-vis .wf-split{opacity:1!important;transform:none!important}.mk-bar::after{animation:none}}
 </style></head>
 <body>
 
@@ -398,26 +416,6 @@ img{max-width:100%;display:block}
 </div><b>Agir</b><p>Des agents IA répondent et exécutent 24/7 ; vos équipes gardent la main sur l'essentiel.</p><div class="pill-prod"><span class="lbl">Propulsé par</span><a href="#/rainbow" target="_top"><img src="../img/logo-rainbow.svg" alt="">Rainbow</a></div></div>
   </div>
 </div></section>
-<!-- TOUR : scroll-driven product tour -->
-<section class="tour">
-<div class="wrap tour-head">
-<span class="eyebrow"><i></i>La plateforme, en vrai</span>
-<h2 class="h2">Plongez dans <em>Sairen.</em></h2>
-</div>
-<div class="tour-scroll"><div class="tour-sticky">
-<a class="tour-cta btn btn-dark" href="platform.html" target="_blank" rel="noopener" style="padding:10px 20px;font-size:13.5px">Explorer la démo interactive →</a>
-<div class="tour-stage"><div class="tour-frame">
-<div class="lf-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="lf-url">app.sairen.io</span></div>
-<iframe class="lf-app" data-src="platform.html" title="Plateforme Sairen" loading="lazy" scrolling="no"></iframe>
-</div></div>
-<div class="tour-caps">
-<div class="tcap" data-i="0"><b>Tous vos canaux, un seul flux</b><span>WhatsApp, e-mail, appels, SMS, avis Google… tout arrive dans Océan.</span></div>
-<div class="tcap" data-i="1"><b>L'IA qualifie chaque échange</b><span>Priorité, type de client, sentiment et intention — en temps réel.</span></div>
-<div class="tcap" data-i="2"><b>De la conversation à l'action</b><span>Tâches, campagnes et pilotage, sans jamais quitter Sairen.</span></div>
-</div>
-</div></div>
-</section>
-
 <!-- FLOW2 : motion explainer -->
 <section class="flow2"><div class="wrap">
 <div class="sec-head" style="text-align:center;max-width:700px;margin:0 auto 6px">
@@ -705,27 +703,18 @@ if(wf){ if('IntersectionObserver' in window){var io=new IntersectionObserver(fun
 })();
 </script>
 <script>
+/* Entrée en cascade des items dans chaque maquette produit */
 (function(){
-var sc=document.querySelector('.tour-scroll'),fr=document.querySelector('.tour-frame'),ifr=document.querySelector('.lf-app');
-var caps=[].slice.call(document.querySelectorAll('.tcap'));
-if(!sc||!fr) return;
-var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-var mobile=window.matchMedia&&window.matchMedia('(max-width:760px)').matches;
-var focal=[{s:1,x:0,y:0},{s:1.55,x:7,y:-7},{s:2.0,x:-3,y:13},{s:1.3,x:-15,y:-3}];
-function lerp(a,b,t){return a+(b-a)*t;}
-function cap(i){caps.forEach(function(c,k){c.classList.toggle('on',k===i);});}
-function upd(){
-  var r=sc.getBoundingClientRect(),vh=window.innerHeight,total=r.height-vh;
-  var p=total>0?Math.min(1,Math.max(0,-r.top/total)):0;
-  var ent=0.14;
-  if(p<ent){var t=p/ent;fr.style.transform='rotateX('+(18*(1-t))+'deg) scale('+(0.86+0.14*t)+') translateY('+(40*(1-t))+'px)';cap(0);return;}
-  var q=(p-ent)/(1-ent),N=focal.length,seg=q*(N-1),i=Math.min(N-2,Math.floor(seg)),f=seg-i,a=focal[i],b=focal[i+1];
-  fr.style.transform='scale('+lerp(a.s,b.s,f)+') translate('+lerp(a.x,b.x,f)+'%,'+lerp(a.y,b.y,f)+'%)';
-  cap(Math.min(caps.length-1,Math.round(seg)));
+var vises=[].slice.call(document.querySelectorAll('.feat-vis'));
+if(!vises.length) return;
+function reveal(v){
+  var kids=[].slice.call(v.querySelectorAll('.row,.bub,.u-act,.wf-node,.wf-line,.wf-split'));
+  kids.forEach(function(k,i){k.style.transitionDelay=(0.07*i)+'s';});
+  v.classList.add('in');
 }
-if(!reduce&&!mobile){var tk=false;window.addEventListener('scroll',function(){if(!tk){requestAnimationFrame(function(){upd();tk=false;});tk=true;}},{passive:true});window.addEventListener('resize',upd);upd();}
-else{if(caps[0])caps[0].classList.add('on');}
-if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&ifr&&!ifr.src){ifr.src=ifr.getAttribute('data-src');io.disconnect();}})},{rootMargin:'400px'});io.observe(sc);}else if(ifr){ifr.src=ifr.getAttribute('data-src');}
+if(!('IntersectionObserver' in window)){vises.forEach(reveal);return;}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){reveal(e.target);io.unobserve(e.target);}})},{threshold:.2});
+vises.forEach(function(v){io.observe(v);});
 })();
 </script>
 </body></html>
