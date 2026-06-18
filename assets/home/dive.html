@@ -349,6 +349,13 @@ img{max-width:100%;display:block}
 .wf2.play .bub,.wf2.play .u-act{opacity:1;transform:none}
 
 @media(prefers-reduced-motion:reduce){.feat-vis .row,.feat-vis .bub,.feat-vis .u-act,.feat-vis .wf-node,.feat-vis .wf-line,.feat-vis .wf-split,.wf2 .bub,.wf2 .u-act{opacity:1!important;transform:none!important}.mk-bar::after{animation:none}}
+
+/* Canva visuals : Océan screenshot + Rainbow ecosystem backdrop */
+.cap-pane{display:flex;flex-direction:column}
+.cap-shot{flex:1;overflow:hidden;background:#fff}
+.cap-shot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.cap-desk-body{flex:1}
+.wf2-eco{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;opacity:.13;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent,#000 28%,#000 72%,transparent);mask-image:linear-gradient(180deg,transparent,#000 28%,#000 72%,transparent)}
 </style></head>
 <body>
 
@@ -442,12 +449,7 @@ img{max-width:100%;display:block}
 <div class="f2-vis"><div class="cap-vis">
 <div class="cap-pane cap-ocean show">
 <div class="mk-bar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ocean.png" alt=""><b>Océan · conversations clients</b></div>
-<div class="mk-body">
-<div class="row"><span class="av" style="background:#25D366"></span><div class="m"><b>Marie Dubois · WhatsApp</b><small>Bonjour, je veux un rendez-vous…</small></div><span class="tg r">Urgent</span></div>
-<div class="row"><span class="av" style="background:#EA4335"></span><div class="m"><b>Jean Dupont · E-mail</b><small>Problème de connexion</small></div><span class="tg g">Résolu IA</span></div>
-<div class="row"><span class="av" style="background:#3A8DFF"></span><div class="m"><b>Isabelle · Devis</b><small>Demande entreprise</small></div><span class="tg b">Prospect</span></div>
-<div class="row"><span class="av" style="background:#FBBC05"></span><div class="m"><b>Sophie · Avis Google</b><small>Service au top&nbsp;!</small></div><span class="tg a">Avis</span></div>
-</div>
+<div class="cap-shot"><img src="../img/ocean-inbox.png" alt="Inbox Océan — toutes les conversations unifiées et qualifiées"></div>
 </div>
 <div class="cap-pane cap-desk">
 <div class="mk-bar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-desk.png" alt=""><b>Desk · tâches &amp; messagerie interne</b></div>
@@ -473,6 +475,7 @@ img{max-width:100%;display:block}
 <p class="lead">Rainbow compose le workflow visuel : déclencheurs, automatisations et agents IA — avec reprise humaine quand il le faut. Sans une ligne de code.</p>
 </div>
 <div class="f2-vis"><div class="wf2">
+<div class="wf2-eco" style="background-image:url(../img/rainbow-ecosystem.png)"></div>
 <div class="mk-bar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · workflow</b></div>
 <div class="wf2-body">
 <div class="wf2-node" style="transition-delay:.05s"><span class="wf2-ic" style="background:#15161d">⚡</span><div><b>Déclencheur</b><small>Message entrant, tous canaux</small></div></div>
