@@ -264,6 +264,46 @@ img{max-width:100%;display:block}
 .bbrick b{display:block;font-size:16px;line-height:1.1}
 .bbrick small{display:block;font-size:12.5px;color:var(--muted);margin-top:2px}
 @media(max-width:820px){.bricks-wrap{grid-template-columns:1fr;gap:6px}.bstep{min-height:auto;padding:16px 0;opacity:1;filter:none}.bricks-visual{position:relative;height:auto;margin-top:8px}.bbrick{opacity:1;transform:none}}
+
+/* FLOW2 motion explainer */
+.flow2{padding:18px 0 70px;background:#fff}
+.f2-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:44px 0}
+.f2-row.rev .f2-txt{order:2}
+.f2-tag{display:inline-block;font-family:'Geist Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.f2-txt h3{font-size:clamp(22px,2.8vw,34px);font-weight:700;letter-spacing:-.02em;line-height:1.12;margin:10px 0 0}
+.f2-txt .lead{margin-top:14px}
+.f2-toggle{display:inline-flex;gap:5px;margin-top:22px;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:5px}
+.f2-tg{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-weight:700;font-size:13px;color:var(--muted);background:none;border:0;border-radius:999px;padding:8px 14px;cursor:pointer;transition:.2s}
+.f2-tg img{width:16px;height:16px}
+.f2-tg.on{background:#fff;color:var(--ink);box-shadow:0 6px 16px -10px rgba(40,20,90,.5)}
+.cap-vis{position:relative;min-height:336px}
+.cap-pane{position:absolute;inset:0;opacity:0;transform:translateY(16px) scale(.985);transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1);pointer-events:none;background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 40px 90px -50px rgba(40,20,90,.5)}
+.cap-pane.show{opacity:1;transform:none;pointer-events:auto}
+.cap-desk-body{display:grid;grid-template-columns:1.2fr 1fr}
+.cdb-tasks{padding:14px;display:flex;flex-direction:column;gap:9px;border-right:1px solid var(--line)}
+.cdb-chat{padding:14px;display:flex;flex-direction:column;gap:8px;background:var(--soft)}
+.wf2{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 40px 90px -50px rgba(40,20,90,.5)}
+.wf2-body{padding:20px;display:flex;flex-direction:column;gap:0}
+.wf2-node{display:flex;align-items:center;gap:12px;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:13px 15px;opacity:0;transform:translateY(16px);transition:opacity .55s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.2,.8,.2,1)}
+.wf2.play .wf2-node{opacity:1;transform:none}
+.wf2-node b{display:block;font-size:14px}.wf2-node small{display:block;font-size:12px;color:var(--muted)}
+.wf2-ic{flex:none;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:#fff;font-size:16px}
+.wf2-ava{flex:none;width:34px;height:34px;border-radius:50%;object-fit:cover}
+.wf2-avas{flex:none;display:flex}
+.wf2-avas img{width:30px;height:30px;border-radius:50%;object-fit:cover;border:2px solid #fff;margin-left:-9px}
+.wf2-avas img:first-child{margin-left:0}
+.wf2-arr{width:2px;height:18px;background:#d8d2ec;margin:0 auto;opacity:0;transition:opacity .5s}
+.wf2.play .wf2-arr{opacity:1}
+.uly-focus{margin-top:34px;border-radius:24px;background:linear-gradient(135deg,#16121f,#241a47);color:#fff;padding:clamp(30px,5vw,56px);text-align:center}
+.uly-in{max-width:720px;margin:0 auto}
+.uly-logo{display:inline-grid;place-items:center;width:54px;height:54px;border-radius:16px;background:rgba(255,255,255,.1);margin-bottom:12px}
+.uly-logo img{width:32px;height:32px}
+.uly-focus h3{font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-.02em;margin:8px 0 0}
+.grad-t2{background:linear-gradient(90deg,#8fa2ff,#c79bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.uly-focus p{color:rgba(255,255,255,.75);font-size:16px;line-height:1.6;margin:14px auto 0;max-width:560px}
+.uly-cases{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:24px}
+.uly-cases span{font-size:13px;font-weight:600;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:9px 15px}
+@media(max-width:860px){.f2-row{grid-template-columns:1fr;gap:22px}.f2-row.rev .f2-txt{order:0}.cap-desk-body{grid-template-columns:1fr}.cdb-chat{border-top:1px solid var(--line)}}
 </style></head>
 <body>
 
@@ -283,6 +323,7 @@ img{max-width:100%;display:block}
   <img class="hero-bg" src="../img/Gemini_Generated_Image_p53o2ip53o2ip53o%20(2).png" alt="" aria-hidden="true">
   <div class="hero-fade"></div>
   <div class="hero-inner">
+    <a class="hero-pill" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top">🏆 Sairen remporte le concours Pitch by Deel <span class="go">→</span></a>
     <h1>La communication<br><span class="g">devient une performance.</span></h1>
     <p class="sub">De la première prise de contact au suivi, Sairen capte, comprend et agit sur chaque échange — et transforme vos communications en véritable levier de performance opérationnelle.</p>
     <div class="cta">
@@ -337,32 +378,83 @@ img{max-width:100%;display:block}
 </div><b>Agir</b><p>Des agents IA répondent et exécutent 24/7 ; vos équipes gardent la main sur l'essentiel.</p><div class="pill-prod"><span class="lbl">Propulsé par</span><a href="#/rainbow" target="_top"><img src="../img/logo-rainbow.svg" alt="">Rainbow</a></div></div>
   </div>
 </div></section>
-<!-- BRICKS : scrollytelling -->
-<section class="bricks">
-<div class="wrap">
-<div class="bricks-head">
-<span class="eyebrow"><i></i>Une plateforme, pas des silos</span>
-<h2 class="h2">Quatre briques qui <em>s'imbriquent.</em></h2>
-<p class="lead" style="margin-left:auto;margin-right:auto;text-align:center">Chaque brique fait son métier — et se branche aux autres. Ensemble, elles forment un seul système qui capte, comprend et agit.</p>
+<!-- FLOW2 : motion explainer -->
+<section class="flow2"><div class="wrap">
+<div class="sec-head" style="text-align:center;max-width:700px;margin:0 auto 6px">
+<span class="eyebrow"><i></i>Comment ça marche</span>
+<h2 class="h2">Une plateforme qui capte, <em>comprend et agit.</em></h2>
 </div>
-<div class="bricks-wrap">
-<div class="bricks-steps">
-<div class="bstep" data-i="0"><span class="bnum">01 — Capter</span><h3>Océan capte</h3><p>Tous les canaux — WhatsApp, appels, e-mail, SMS, avis — entrent dans un flux unique et qualifié.</p></div>
-<div class="bstep" data-i="1"><span class="bnum">02 — Organiser</span><h3>Desk organise</h3><p>Les demandes deviennent des tâches priorisées ; vos équipes collaborent en messagerie interne.</p></div>
-<div class="bstep" data-i="2"><span class="bnum">03 — Agir</span><h3>Rainbow agit</h3><p>Agents IA et workflows répondent et exécutent 24/7, avec reprise humaine quand il le faut.</p></div>
-<div class="bstep" data-i="3"><span class="bnum">04 — Piloter</span><h3>Ulysse pilote</h3><p>Le copilote lit tout, sort les chiffres et lance les actions inter-briques, d'un seul message.</p></div>
-</div>
-<div class="bricks-visual">
-<div class="bstack">
-<div class="bbrick" data-i="0"><img src="../img/logo-ocean.png" alt=""><span><b>Océan</b><small>Capte les conversations</small></span></div>
-<div class="bbrick" data-i="1"><img src="../img/logo-desk.png" alt=""><span><b>Desk</b><small>Organise le travail</small></span></div>
-<div class="bbrick" data-i="2"><img src="../img/logo-rainbow.svg" alt=""><span><b>Rainbow</b><small>Agit avec l'IA</small></span></div>
-<div class="bbrick" data-i="3"><img src="../img/logo-ulysse.png" alt=""><span><b>Ulysse</b><small>Pilote l'ensemble</small></span></div>
+<div class="f2-row">
+<div class="f2-txt">
+<span class="f2-tag">01 · Capter</span>
+<h3>Toute la communication — <span class="grad-t">externe et interne.</span></h3>
+<p class="lead">Océan unifie les échanges avec vos clients sur tous les canaux. Desk gère les tâches et la messagerie interne de vos équipes. Une seule plateforme pour les deux.</p>
+<div class="f2-toggle">
+<button class="f2-tg on" data-cap="0"><img src="../img/logo-ocean.png" alt="">Océan · externe</button>
+<button class="f2-tg" data-cap="1"><img src="../img/logo-desk.png" alt="">Desk · interne</button>
 </div>
 </div>
+<div class="f2-vis"><div class="cap-vis">
+<div class="cap-pane cap-ocean show">
+<div class="mk-bar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ocean.png" alt=""><b>Océan · conversations clients</b></div>
+<div class="mk-body">
+<div class="row"><span class="av" style="background:#25D366"></span><div class="m"><b>Marie Dubois · WhatsApp</b><small>Bonjour, je veux un rendez-vous…</small></div><span class="tg r">Urgent</span></div>
+<div class="row"><span class="av" style="background:#EA4335"></span><div class="m"><b>Jean Dupont · E-mail</b><small>Problème de connexion</small></div><span class="tg g">Résolu IA</span></div>
+<div class="row"><span class="av" style="background:#3A8DFF"></span><div class="m"><b>Isabelle · Devis</b><small>Demande entreprise</small></div><span class="tg b">Prospect</span></div>
+<div class="row"><span class="av" style="background:#FBBC05"></span><div class="m"><b>Sophie · Avis Google</b><small>Service au top&nbsp;!</small></div><span class="tg a">Avis</span></div>
 </div>
 </div>
-</section>
+<div class="cap-pane cap-desk">
+<div class="mk-bar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-desk.png" alt=""><b>Desk · tâches &amp; messagerie interne</b></div>
+<div class="cap-desk-body">
+<div class="cdb-tasks">
+<div class="row"><span class="av" style="background:#E8943A"></span><div class="m"><b>Relance facture #1234</b><small>À traiter</small></div></div>
+<div class="row"><span class="av" style="background:#1AA179"></span><div class="m"><b>Devis entreprise</b><small>En cours</small></div></div>
+<div class="row"><span class="av" style="background:#C13D6B"></span><div class="m"><b>Réclamation produit</b><small>Priorité</small></div></div>
+</div>
+<div class="cdb-chat">
+<div class="bub ai">Marie · Je prends la réclamation 👍</div>
+<div class="bub me">Parfait, je gère le devis</div>
+<div class="bub ai">Karim · Relance envoyée ✓</div>
+</div>
+</div>
+</div>
+</div></div>
+</div>
+<div class="f2-row rev">
+<div class="f2-txt">
+<span class="f2-tag">02 · Comprendre &amp; agir — Rainbow</span>
+<h3>Je structure, <span class="grad-t">puis j'implémente.</span></h3>
+<p class="lead">Rainbow compose le workflow visuel : déclencheurs, automatisations et agents IA — avec reprise humaine quand il le faut. Sans une ligne de code.</p>
+</div>
+<div class="f2-vis"><div class="wf2">
+<div class="mk-bar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · workflow</b></div>
+<div class="wf2-body">
+<div class="wf2-node" style="transition-delay:.05s"><span class="wf2-ic" style="background:#15161d">⚡</span><div><b>Déclencheur</b><small>Message entrant, tous canaux</small></div></div>
+<div class="wf2-arr" style="transition-delay:.18s"></div>
+<div class="wf2-node" style="transition-delay:.3s"><span class="wf2-ic" style="background:#7c3aed">⚙</span><div><b>Automatisation</b><small>Qualifie, route, met à jour</small></div></div>
+<div class="wf2-arr" style="transition-delay:.42s"></div>
+<div class="wf2-node" style="transition-delay:.54s"><img class="wf2-ava" src="../img/img-041-333af93f7115.webp" alt=""><div><b>Agent IA</b><small>Répond &amp; exécute 24/7</small></div></div>
+<div class="wf2-arr" style="transition-delay:.66s"></div>
+<div class="wf2-node" style="transition-delay:.78s"><span class="wf2-avas"><img src="../img/img-038-f00be3c341a4.webp" alt=""><img src="../img/agir-human.webp" alt=""></span><div><b>Humain</b><small>Valide ou reprend la main</small></div></div>
+</div>
+</div></div>
+</div>
+<div class="uly-focus"><div class="uly-in">
+<span class="uly-logo"><img src="../img/logo-ulysse.png" alt=""></span>
+<div class="f2-tag" style="-webkit-text-fill-color:rgba(255,255,255,.65);color:rgba(255,255,255,.65)">03 · Piloter — Ulysse</div>
+<h3>Ulysse pilote tout, connecté via <span class="grad-t2">MCP</span>.</h3>
+<p>Un copilote branché à vos outils via le Model Context Protocol : il lit Océan, Desk et Rainbow, sort les chiffres et lance les actions — d'un seul message, en langage naturel.</p>
+<div class="uly-cases">
+<span>« Combien de no-shows cette semaine&nbsp;? »</span>
+<span>« Lance une relance WhatsApp »</span>
+<span>« Crée le rapport hebdo »</span>
+<span>« Priorise les réclamations négatives »</span>
+<span>« Résume les avis Google du mois »</span>
+</div>
+</div></div>
+</div></section>
+
 
 
 <!-- FEATURE: Océan -->
@@ -556,6 +648,20 @@ if(!('IntersectionObserver' in window)){bricks.forEach(function(b){b.classList.a
 function act(i){steps.forEach(function(s,k){s.classList.toggle('on',k===i)});bricks.forEach(function(b,k){b.classList.toggle('show',k<=i);b.classList.toggle('active',k===i)});}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)act(+e.target.getAttribute('data-i'))})},{rootMargin:'-45% 0px -45% 0px'});
 steps.forEach(function(s){io.observe(s)});act(0);
+})();
+</script>
+<script>
+(function(){
+var caps=[].slice.call(document.querySelectorAll('.cap-pane'));
+var tgs=[].slice.call(document.querySelectorAll('.f2-tg'));
+if(caps.length){var ci=0,tm;
+ function show(n){ci=n;caps.forEach(function(p,k){p.classList.toggle('show',k===n)});tgs.forEach(function(b,k){b.classList.toggle('on',k===n)});}
+ function nx(){show((ci+1)%caps.length);} function start(){tm=setInterval(nx,3800);} start();
+ tgs.forEach(function(b,k){b.addEventListener('click',function(){clearInterval(tm);show(k);start();});});
+ var cv=document.querySelector('.cap-vis'); if(cv){cv.addEventListener('mouseenter',function(){clearInterval(tm)});cv.addEventListener('mouseleave',start);}
+}
+var wf=document.querySelector('.wf2');
+if(wf){ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){wf.classList.add('play');io.disconnect();}})},{threshold:.3});io.observe(wf);} else {wf.classList.add('play');} }
 })();
 </script>
 </body></html>
