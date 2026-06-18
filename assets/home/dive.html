@@ -341,7 +341,14 @@ img{max-width:100%;display:block}
 .uly-cases span{transition:transform .25s,background .25s,border-color .25s}
 .uly-cases span:hover{transform:translateY(-2px);background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.32)}
 
-@media(prefers-reduced-motion:reduce){.feat-vis .row,.feat-vis .bub,.feat-vis .u-act,.feat-vis .wf-node,.feat-vis .wf-line,.feat-vis .wf-split{opacity:1!important;transform:none!important}.mk-bar::after{animation:none}}
+/* Ulysse row (03) : light query chips + chat reveal */
+.f2-cases{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.f2-cases span{font-size:12.5px;font-weight:600;color:#5b5570;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:8px 13px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.f2-cases span:hover{transform:translateY(-2px);border-color:rgba(124,92,246,.4);box-shadow:0 12px 26px -20px rgba(108,64,250,.6)}
+.wf2 .bub,.wf2 .u-act{opacity:0;transform:translateY(14px);transition:opacity .55s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.2,.8,.2,1)}
+.wf2.play .bub,.wf2.play .u-act{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){.feat-vis .row,.feat-vis .bub,.feat-vis .u-act,.feat-vis .wf-node,.feat-vis .wf-line,.feat-vis .wf-split,.wf2 .bub,.wf2 .u-act{opacity:1!important;transform:none!important}.mk-bar::after{animation:none}}
 </style></head>
 <body>
 
@@ -478,20 +485,30 @@ img{max-width:100%;display:block}
 </div>
 </div></div>
 </div>
-<div class="uly-focus"><div class="uly-in">
-<span class="uly-logo"><img src="../img/logo-ulysse.png" alt=""></span>
-<div class="f2-tag" style="-webkit-text-fill-color:rgba(255,255,255,.65);color:rgba(255,255,255,.65)">03 · Piloter — Ulysse</div>
-<h3>Ulysse pilote tout, connecté via <span class="grad-t2">MCP</span>.</h3>
-<p>Un copilote branché à vos outils via le Model Context Protocol : il lit Océan, Desk et Rainbow, sort les chiffres et lance les actions — d'un seul message, en langage naturel.</p>
-<div class="uly-cases">
+<div class="f2-row">
+<div class="f2-txt">
+<span class="f2-tag">03 · Piloter — Ulysse</span>
+<h3>Ulysse <span class="grad-t">pilote tout.</span></h3>
+<p class="lead">Un copilote branché à vos outils : il lit Océan, Desk et Rainbow, sort les chiffres et lance les actions — d'un seul message, en langage naturel.</p>
+<div class="f2-cases">
 <span>« Combien de no-shows cette semaine&nbsp;? »</span>
 <span>« Lance une relance WhatsApp »</span>
 <span>« Crée le rapport hebdo »</span>
-<span>« Priorise les réclamations négatives »</span>
-<span>« Résume les avis Google du mois »</span>
+</div>
+</div>
+<div class="f2-vis"><div class="wf2">
+<div class="mk-bar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ulysse.png" alt=""><b>Ulysse · copilote</b></div>
+<div class="mk-body" style="gap:11px;padding:18px">
+<div class="bub me" style="transition-delay:.05s">Les ventes ont baissé cette semaine. Pourquoi, et qu'est-ce qu'on lance&nbsp;?</div>
+<div class="bub ai" style="transition-delay:.2s"><b>−12&nbsp;% de CA</b> vs. la semaine passée. Causes&nbsp;: <b>38 paniers abandonnés</b> non relancés et <b>14 no-shows</b>. Je lance 3 actions&nbsp;:</div>
+<div class="u-acts">
+<div class="u-act" style="transition-delay:.35s"><img src="../img/logo-rainbow.svg" alt="">Relance WhatsApp des 38 paniers<span class="u-ok">lancé</span></div>
+<div class="u-act" style="transition-delay:.45s"><img src="../img/logo-desk.png" alt="">5 tâches de rappel créées pour l'équipe<span class="u-ok">créé</span></div>
+<div class="u-act" style="transition-delay:.55s"><img src="../img/logo-ocean.png" alt="">Segment «&nbsp;clients à risque&nbsp;» mis à jour<span class="u-ok">à jour</span></div>
+</div>
 </div>
 </div></div>
-</div></section>
+</div></div></section>
 
 <!-- TESTIMONIALS -->
 <section class="sec sec-soft"><div class="wrap">
@@ -599,8 +616,8 @@ if(caps.length){var ci=0,tm;
  tgs.forEach(function(b,k){b.addEventListener('click',function(){clearInterval(tm);show(k);start();});});
  var cv=document.querySelector('.cap-vis'); if(cv){cv.addEventListener('mouseenter',function(){clearInterval(tm)});cv.addEventListener('mouseleave',start);}
 }
-var wf=document.querySelector('.wf2');
-if(wf){ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){wf.classList.add('play');io.disconnect();}})},{threshold:.3});io.observe(wf);} else {wf.classList.add('play');} }
+var wfs=[].slice.call(document.querySelectorAll('.wf2'));
+if(wfs.length){ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('play');io.unobserve(e.target);}})},{threshold:.3});wfs.forEach(function(w){io.observe(w);});} else {wfs.forEach(function(w){w.classList.add('play');});} }
 })();
 </script>
 <script>
