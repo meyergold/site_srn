@@ -304,6 +304,19 @@ img{max-width:100%;display:block}
 .uly-cases{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:24px}
 .uly-cases span{font-size:13px;font-weight:600;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:9px 15px}
 @media(max-width:860px){.f2-row{grid-template-columns:1fr;gap:22px}.f2-row.rev .f2-txt{order:0}.cap-desk-body{grid-template-columns:1fr}.cdb-chat{border-top:1px solid var(--line)}}
+
+/* LIVE platform scroll reveal */
+.live{background:linear-gradient(180deg,#ffffff 0%,#f7f5ff 45%,#ffffff 100%)}
+.live-head{text-align:center;max-width:720px;margin:0 auto;padding-top:34px}
+.live-scroll{height:208vh;position:relative}
+.live-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;perspective:1600px}
+.live-frame{width:min(1120px,93%);height:min(74vh,720px);border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 70px 150px -60px rgba(40,20,90,.6);transform-origin:center bottom;will-change:transform}
+.lf-bar{height:38px;display:flex;align-items:center;gap:7px;padding:0 14px;background:#f4f2f8;border-bottom:1px solid var(--line)}
+.lf-bar .d{width:11px;height:11px;border-radius:50%;background:#e0dcec}
+.lf-url{margin-left:12px;font-size:12px;color:#8a84a0;background:#fff;border:1px solid var(--line);border-radius:7px;padding:4px 14px}
+.lf-app{width:100%;height:calc(100% - 38px);border:0;display:block;background:#fff}
+@media(max-width:760px){.live-scroll{height:auto}.live-sticky{position:relative;height:auto;padding:18px 0;perspective:none}.live-frame{height:70vh;transform:none!important}}
+@media(prefers-reduced-motion:reduce){.live-frame{transform:none!important}}
 </style></head>
 <body>
 
@@ -378,6 +391,21 @@ img{max-width:100%;display:block}
 </div><b>Agir</b><p>Des agents IA répondent et exécutent 24/7 ; vos équipes gardent la main sur l'essentiel.</p><div class="pill-prod"><span class="lbl">Propulsé par</span><a href="#/rainbow" target="_top"><img src="../img/logo-rainbow.svg" alt="">Rainbow</a></div></div>
   </div>
 </div></section>
+<!-- LIVE platform (cora-style scroll reveal) -->
+<section class="live">
+<div class="wrap live-head">
+<span class="eyebrow"><i></i>La plateforme, en vrai</span>
+<h2 class="h2">Pas une capture. <em>La vraie plateforme.</em></h2>
+<p class="lead" style="margin:14px auto 0;text-align:center">Scrollez : la plateforme se déploie. Puis cliquez dedans — c'est une démo interactive, en direct.</p>
+</div>
+<div class="live-scroll"><div class="live-sticky">
+<div class="live-frame">
+<div class="lf-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="lf-url">app.sairen.io</span></div>
+<iframe class="lf-app" data-src="platform.html" title="Plateforme Sairen — démo interactive" loading="lazy"></iframe>
+</div>
+</div></div>
+</section>
+
 <!-- FLOW2 : motion explainer -->
 <section class="flow2"><div class="wrap">
 <div class="sec-head" style="text-align:center;max-width:700px;margin:0 auto 6px">
@@ -662,6 +690,30 @@ if(caps.length){var ci=0,tm;
 }
 var wf=document.querySelector('.wf2');
 if(wf){ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){wf.classList.add('play');io.disconnect();}})},{threshold:.3});io.observe(wf);} else {wf.classList.add('play');} }
+})();
+</script>
+<script>
+(function(){
+var sc=document.querySelector('.live-scroll'), fr=document.querySelector('.live-frame'), ifr=document.querySelector('.lf-app');
+if(!sc||!fr) return;
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var mobile=window.matchMedia&&window.matchMedia('(max-width:760px)').matches;
+function upd(){
+  var r=sc.getBoundingClientRect(), vh=window.innerHeight, total=r.height-vh;
+  var p=total>0?Math.min(1,Math.max(0,-r.top/total)):0;
+  var t=Math.min(1,p/0.5);
+  var rot=22*(1-t), s=0.84+0.16*t, ty=46*(1-t);
+  fr.style.transform='rotateX('+rot+'deg) scale('+s+') translateY('+ty+'px)';
+}
+if(!reduce&&!mobile){
+  var tick=false;
+  window.addEventListener('scroll',function(){if(!tick){requestAnimationFrame(function(){upd();tick=false;});tick=true;}},{passive:true});
+  window.addEventListener('resize',upd); upd();
+}
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&ifr&&!ifr.src){ifr.src=ifr.getAttribute('data-src');io.disconnect();}})},{rootMargin:'300px'});
+  io.observe(sc);
+}else if(ifr){ifr.src=ifr.getAttribute('data-src');}
 })();
 </script>
 </body></html>
