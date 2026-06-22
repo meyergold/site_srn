@@ -101,9 +101,21 @@ img{max-width:100%;display:block}
 .cl-mq-track img{flex:none;height:23px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.5}
 @keyframes clmq{to{transform:translateX(-50%)}}
 .show-stage{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:center;gap:0;margin-top:42px}
-.show-desktop{position:relative;z-index:1;width:min(840px,80%);height:auto;border-radius:11px 11px 0 0;box-shadow:0 50px 110px -55px rgba(40,20,90,.55)}
+.show-desktop{display:block;width:100%;height:auto;border-radius:0 0 4px 4px}
+.browser-frame{position:relative;z-index:1;width:min(840px,80%);border-radius:14px;overflow:hidden;box-shadow:0 40px 100px -40px rgba(40,20,90,.45),0 0 0 1px rgba(20,16,50,.07);background:#f0eff5}
+.browser-bar{height:40px;background:linear-gradient(180deg,#f5f4f9 0%,#eeecf4 100%);border-bottom:1px solid rgba(20,16,50,.08);display:flex;align-items:center;gap:0;padding:0 16px;flex-shrink:0}
+.browser-dots{display:flex;gap:6px;align-items:center;flex:none}
+.browser-dot{width:11px;height:11px;border-radius:50%}
+.browser-dot:nth-child(1){background:#FF6059}
+.browser-dot:nth-child(2){background:#FFBE2E}
+.browser-dot:nth-child(3){background:#29C640}
+.browser-url{flex:1;margin:0 14px;height:22px;background:rgba(255,255,255,.72);border:1px solid rgba(20,16,50,.08);border-radius:6px;display:flex;align-items:center;padding:0 9px;gap:6px;max-width:320px;margin-left:auto;margin-right:auto}
+.browser-url-dot{width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,#676AFE,#BE59D4);flex:none}
+.browser-url-text{font-family:'Geist Mono',monospace;font-size:10px;color:#9896a8;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.browser-icons{display:flex;gap:8px;align-items:center;flex:none}
+.browser-icon{width:14px;height:2px;background:rgba(120,116,140,.3);border-radius:2px}
 .show-mobile{position:relative;z-index:2;align-self:flex-end;width:clamp(158px,15vw,214px);height:auto;margin-left:clamp(-44px,-3.5vw,-28px);margin-bottom:-26px;filter:drop-shadow(0 30px 50px rgba(40,20,90,.38))}
-@media(max-width:760px){.show-desktop{width:90%}.show-mobile{width:33%;margin-left:-20%}}
+@media(max-width:760px){.browser-frame{width:90%}.show-mobile{width:33%;margin-left:-20%}}
 
 /* STATS (retiré) */
 .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -385,7 +397,25 @@ img{max-width:100%;display:block}
     <p class="hero-clients">+300 organisations améliorent leurs process avec Sairen</p>
     <div class="cl-marquee"><div class="cl-mq-track"><img src="../img/cli-racine.jpg" alt=""><img src="../img/cli-lpb.webp" alt=""><img src="../img/cli-lazeo.jpg" alt=""><img src="../img/cli-cmsm.png" alt=""><img src="../img/cli-transcash.png" alt=""><img src="../img/cli-ophtalys.png" alt=""><img src="../img/cli-sofitel.png" alt=""><img src="../img/cli-elsan.png" alt=""><img src="../img/cli-dray.png" alt=""><img src="../img/cli-adelya.png" alt=""><img src="../img/cli-bestwestern.png" alt=""><img src="../img/cli-hep.png" alt=""><img src="../img/cli-simago.png" alt=""><img src="../img/cli-dentagest.png" alt=""><img src="../img/cli-dentylis.png" alt=""><img src="../img/cli-pdv.jpg" alt=""><img src="../img/cli-pullman.png" alt=""><img src="../img/cli-qovetia.png" alt=""><img src="../img/cli-telyo.jpg" alt=""><img src="../img/cli-vyv.png" alt=""><img src="../img/cli-allocasseauto.jpg" alt=""><img src="../img/cli-orange.webp" alt=""><img src="../img/cli-tresse.jpeg" alt=""><img src="../img/cli-vidi.png" alt=""><img src="../img/cli-racine.jpg" alt=""><img src="../img/cli-lpb.webp" alt=""><img src="../img/cli-lazeo.jpg" alt=""><img src="../img/cli-cmsm.png" alt=""><img src="../img/cli-transcash.png" alt=""><img src="../img/cli-ophtalys.png" alt=""><img src="../img/cli-sofitel.png" alt=""><img src="../img/cli-elsan.png" alt=""><img src="../img/cli-dray.png" alt=""><img src="../img/cli-adelya.png" alt=""><img src="../img/cli-bestwestern.png" alt=""><img src="../img/cli-hep.png" alt=""><img src="../img/cli-simago.png" alt=""><img src="../img/cli-dentagest.png" alt=""><img src="../img/cli-dentylis.png" alt=""><img src="../img/cli-pdv.jpg" alt=""><img src="../img/cli-pullman.png" alt=""><img src="../img/cli-qovetia.png" alt=""><img src="../img/cli-telyo.jpg" alt=""><img src="../img/cli-vyv.png" alt=""><img src="../img/cli-allocasseauto.jpg" alt=""><img src="../img/cli-orange.webp" alt=""><img src="../img/cli-tresse.jpeg" alt=""><img src="../img/cli-vidi.png" alt=""></div></div>
     <div class="show-stage">
-<img class="show-desktop" src="../img/Gemini_Generated_Image_lc55gxlc55gxlc55.png" alt="Plateforme Sairen — Océan">
+<div class="browser-frame">
+  <div class="browser-bar">
+    <div class="browser-dots">
+      <span class="browser-dot"></span>
+      <span class="browser-dot"></span>
+      <span class="browser-dot"></span>
+    </div>
+    <div class="browser-url">
+      <span class="browser-url-dot"></span>
+      <span class="browser-url-text">app.sairen.io/ocean</span>
+    </div>
+    <div class="browser-icons">
+      <span class="browser-icon"></span>
+      <span class="browser-icon"></span>
+      <span class="browser-icon"></span>
+    </div>
+  </div>
+  <img class="show-desktop" src="../img/Gemini_Generated_Image_lc55gxlc55gxlc55.png" alt="Plateforme Sairen — Océan">
+</div>
 <img class="show-mobile" src="../img/sairen-desk-phone-taches.png" alt="Application mobile Sairen — Desk">
 </div>
   </div>
