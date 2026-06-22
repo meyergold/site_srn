@@ -368,6 +368,127 @@ img{max-width:100%;display:block}
 .cap-shot img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
 .cap-desk-body{flex:1}
 .wf2-eco{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;opacity:.13;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,transparent,#000 28%,#000 72%,transparent);mask-image:linear-gradient(180deg,transparent,#000 28%,#000 72%,transparent)}
+
+/* ── HOW IT WORKS (new) ── */
+.hw{padding:24px 0 80px;background:#fff}
+.hw-tabs-wrap{text-align:center;margin-bottom:40px}
+.hw-tabs{display:inline-flex;position:relative;background:#F3F2F7;border:1px solid rgba(20,16,50,.07);border-radius:999px;padding:5px;gap:2px}
+.hw-tab{position:relative;z-index:1;display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-weight:700;font-size:14px;color:var(--muted);background:none;border:0;border-radius:999px;padding:10px 20px;cursor:pointer;transition:color .25s;white-space:nowrap}
+.hw-tab img{width:18px;height:18px;object-fit:contain;border-radius:5px;filter:grayscale(1);opacity:.4;transition:filter .25s,opacity .25s}
+.hw-tab.on{color:var(--ink)}
+.hw-tab.on img{filter:none;opacity:1}
+.hw-pill{position:absolute;top:5px;height:calc(100% - 10px);border-radius:999px;background:#fff;box-shadow:0 4px 16px -8px rgba(40,20,90,.28);transition:left .35s cubic-bezier(.2,.8,.2,1),width .35s cubic-bezier(.2,.8,.2,1);pointer-events:none;z-index:0}
+.hw-panel{display:grid;grid-template-columns:380px 1fr;gap:28px;align-items:start}
+.hw-steps{display:flex;flex-direction:column;gap:8px}
+.hw-step{border:1.5px solid var(--line);border-radius:16px;padding:16px 18px;cursor:pointer;transition:border-color .25s,box-shadow .25s,background .25s;background:#fff;user-select:none}
+.hw-step.on{box-shadow:0 12px 36px -20px rgba(40,20,90,.22)}
+.hw-step-head{display:flex;align-items:center;gap:12px}
+.hw-num{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-family:'Geist Mono',monospace;font-size:11px;font-weight:700;color:#fff;transition:background .3s}
+.hw-step-title{font-size:14.5px;font-weight:700;letter-spacing:-.01em;line-height:1.25;flex:1;color:var(--ink);transition:color .2s}
+.hw-step-arr{font-size:12px;color:var(--muted);transition:transform .3s;flex:none;opacity:.6}
+.hw-step.on .hw-step-arr{transform:rotate(90deg);opacity:1}
+.hw-step-body{overflow:hidden;max-height:0;transition:max-height .38s cubic-bezier(.2,.8,.2,1)}
+.hw-step-body p{font-size:13.5px;color:var(--ink2);line-height:1.6;padding:10px 0 4px 38px}
+.hw-step.on .hw-step-body{max-height:180px}
+.hw-prog{height:2.5px;border-radius:2px;background:var(--line);margin:10px 0 0 38px;overflow:hidden;display:none}
+.hw-step.on .hw-prog{display:block}
+.hw-prog-bar{height:100%;width:0%;border-radius:2px;transition:width linear}
+.hw-vis-wrap{position:relative;min-height:400px;border-radius:20px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 36px 80px -48px rgba(40,20,90,.4)}
+.hw-vis-pane{position:absolute;inset:0;opacity:0;transform:translateY(14px) scale(.988);transition:opacity .45s cubic-bezier(.2,.8,.2,1),transform .45s cubic-bezier(.2,.8,.2,1);pointer-events:none;display:flex;flex-direction:column}
+.hw-vis-pane.on{opacity:1;transform:none;pointer-events:auto;position:relative}
+.vbar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--line);background:#fff;flex:none}
+.vbar .d{width:9px;height:9px;border-radius:50%;background:#e3e0ee}
+.vbar b{font-size:12.5px;font-weight:700;margin-left:6px;color:var(--ink)}
+.vbar img{width:17px;height:17px;border-radius:4px;object-fit:contain}
+.vbody{flex:1;overflow:hidden}
+/* inbox rows */
+.vi-row{display:flex;align-items:center;gap:11px;padding:11px 16px;border-bottom:1px solid var(--line);background:#fff;transition:background .2s}
+.vi-row:hover{background:#F8F7FC}
+.vi-ava{width:33px;height:33px;border-radius:10px;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;flex:none;position:relative}
+.vi-ava .vi-ch-ico{position:absolute;right:-4px;bottom:-4px;width:15px;height:15px;border-radius:50%;border:2px solid #fff;display:grid;place-items:center;font-size:7px;color:#fff}
+.vi-who{font-size:13px;font-weight:700;flex:none;min-width:88px}
+.vi-msg{font-size:12px;color:var(--muted);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vi-tags{display:flex;gap:4px;flex:none}
+.vi-tag{font-size:9.5px;font-weight:700;padding:3px 6px;border-radius:5px}
+.vt-ia{background:#F1ECFF;color:#7048E8}.vt-urg{background:#FFEDF5;color:#D6336C}.vt-new{background:#EAF3FF;color:#1C7ED6}.vt-ok{background:#E6F9F0;color:#0B9B73}
+/* outbound campaign */
+.vi-camp{padding:14px;display:flex;flex-direction:column;gap:8px}
+.vi-camp-row{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;transition:.2s}
+.vi-camp-row:hover{transform:translateX(2px);border-color:rgba(104,64,250,.3)}
+.vi-camp-ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#fff;font-size:14px;flex:none}
+.vi-camp-info b{display:block;font-size:12.5px;font-weight:700}
+.vi-camp-info small{font-size:11px;color:var(--muted)}
+.vi-camp-stat{margin-left:auto;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px}
+/* routing */
+.vi-route{padding:16px;display:flex;flex-direction:column;gap:10px}
+.vi-route-toggle{display:flex;gap:0;background:#F3F2F7;border:1px solid var(--line);border-radius:999px;padding:4px;align-self:flex-start}
+.vi-route-btn{font-family:inherit;font-size:12px;font-weight:700;border:0;border-radius:999px;padding:7px 14px;cursor:pointer;transition:.2s;background:none;color:var(--muted)}
+.vi-route-btn.on{background:#fff;color:var(--ink);box-shadow:0 4px 12px -8px rgba(40,20,90,.3)}
+.vi-route-card{display:flex;align-items:flex-start;gap:11px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:13px 15px}
+.vi-route-ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:#fff;font-size:14px;flex:none}
+.vi-route-info b{display:block;font-size:13px;font-weight:700}
+.vi-route-info small{font-size:11.5px;color:var(--muted)}
+.vi-route-badge{margin-left:auto;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:6px}
+/* desk channels */
+.vi-ch-layout{display:flex;height:100%}
+.vi-ch-sidebar{width:120px;background:#F5F4F9;border-right:1px solid var(--line);padding:10px 7px;display:flex;flex-direction:column;gap:2px;flex:none}
+.vi-ch-label{font-family:'Geist Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:4px 8px 6px;margin-top:4px}
+.vi-ch-item{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--muted);padding:6px 8px;border-radius:8px;cursor:pointer;transition:.2s}
+.vi-ch-item.on{background:rgba(104,64,250,.1);color:#6840FA}
+.vi-ch-item .hsh{opacity:.5;font-size:13px}
+.vi-ch-msgs{flex:1;padding:12px;display:flex;flex-direction:column;gap:6px;background:#fff}
+/* tasks */
+.vi-tasks{display:grid;grid-template-columns:1fr 1fr;gap:0;height:100%}
+.vi-tasks-col{padding:11px;border-right:1px solid var(--line)}
+.vi-tasks-col:last-child{border-right:none}
+.vi-tasks-col h4{font-family:'Geist Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:9px;padding:0 3px}
+.vi-task{display:flex;align-items:flex-start;gap:8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 10px;margin-bottom:7px}
+.vi-task-ic{width:20px;height:20px;border-radius:6px;flex:none;display:grid;place-items:center;font-size:10px;color:#fff}
+.vi-task b{display:block;font-size:12px;font-weight:700}
+.vi-task small{font-size:10px;color:var(--muted)}
+/* agent */
+.vi-agent-pad{padding:14px;display:flex;flex-direction:column;gap:10px}
+.vi-agent-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px;box-shadow:0 10px 28px -18px rgba(40,20,90,.3)}
+.vi-agent-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.vi-agent-ava{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;font-size:17px;flex:none}
+.vi-agent-name{font-size:14.5px;font-weight:700}
+.vi-agent-role{font-size:11.5px;color:var(--muted)}
+.vi-agent-badge{margin-left:auto;font-size:10px;font-weight:700;padding:4px 9px;border-radius:99px;background:linear-gradient(135deg,#676AFE,#BE59D4);color:#fff}
+.vi-caps{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.vi-cap{font-size:11px;font-weight:600;color:#5b5570;background:#F3F2F7;border:1px solid var(--line);border-radius:6px;padding:4px 8px}
+.vi-models{display:flex;gap:7px;border-top:1px solid var(--line);padding-top:10px}
+.vi-model{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--muted)}
+.vi-model img{width:16px;height:16px;object-fit:contain;border-radius:4px}
+/* workflow */
+.vi-wf-pad{padding:14px}
+.vi-wf-node{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;box-shadow:0 6px 18px -14px rgba(40,20,90,.3);transition:.2s}
+.vi-wf-node:hover{border-color:rgba(104,64,250,.3);transform:translateX(2px)}
+.vi-wf-node b{display:block;font-size:13px;font-weight:700}
+.vi-wf-node small{display:block;font-size:11px;color:var(--muted)}
+.vi-wf-ic{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:#fff;font-size:13px}
+.vi-wf-line{width:2px;height:14px;background:#e3dff0;margin:0 auto}
+/* ulysse stats */
+.vi-u-pad{padding:14px;display:flex;flex-direction:column;gap:9px}
+.vi-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.vi-stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 10px;text-align:center}
+.vi-stat b{display:block;font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.vi-stat span{font-size:10px;color:var(--muted);display:block;margin-top:3px}
+.vi-sug{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:9px 12px;font-size:12.5px;font-weight:600;color:#3b3a47;transition:.2s}
+.vi-sug:hover{border-color:rgba(104,64,250,.35);transform:translateX(3px)}
+.vi-sug-arr{margin-left:auto;font-size:11px;color:var(--muted)}
+.vi-action{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:9px 12px;font-size:12.5px;font-weight:600;color:#3b3a47}
+.vi-action img{width:15px;height:15px;object-fit:contain;flex:none}
+.vi-action-ok{margin-left:auto;font-size:10px;font-weight:800;color:#1F9D57;background:#E7F7EE;border-radius:5px;padding:2px 7px}
+/* entry animations */
+.hw-vis-pane.on .vi-row,.hw-vis-pane.on .vi-camp-row,.hw-vis-pane.on .vi-route-card,.hw-vis-pane.on .vi-ch-item,.hw-vis-pane.on .vi-task,.hw-vis-pane.on .vi-wf-node,.hw-vis-pane.on .vi-agent-card,.hw-vis-pane.on .vi-stat,.hw-vis-pane.on .vi-sug,.hw-vis-pane.on .vi-action,.hw-vis-pane.on .bub{opacity:0;transform:translateY(10px);animation:hwIn .48s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes hwIn{to{opacity:1;transform:none}}
+.hw-vis-pane.on .vi-row:nth-child(1),.hw-vis-pane.on .vi-camp-row:nth-child(1),.hw-vis-pane.on .vi-route-card:nth-child(1),.hw-vis-pane.on .vi-stat:nth-child(1),.hw-vis-pane.on .vi-sug:nth-child(1),.hw-vis-pane.on .vi-action:nth-child(1),.hw-vis-pane.on .vi-wf-node:nth-child(1),.hw-vis-pane.on .bub:nth-child(1),.hw-vis-pane.on .vi-agent-card:nth-child(1),.hw-vis-pane.on .vi-ch-item:nth-child(1),.hw-vis-pane.on .vi-task:nth-child(1){animation-delay:.04s}
+.hw-vis-pane.on .vi-row:nth-child(2),.hw-vis-pane.on .vi-camp-row:nth-child(2),.hw-vis-pane.on .vi-route-card:nth-child(2),.hw-vis-pane.on .vi-stat:nth-child(2),.hw-vis-pane.on .vi-sug:nth-child(2),.hw-vis-pane.on .vi-action:nth-child(2),.hw-vis-pane.on .vi-wf-node:nth-child(2),.hw-vis-pane.on .bub:nth-child(2),.hw-vis-pane.on .vi-agent-card:nth-child(2),.hw-vis-pane.on .vi-ch-item:nth-child(2),.hw-vis-pane.on .vi-task:nth-child(2){animation-delay:.11s}
+.hw-vis-pane.on .vi-row:nth-child(3),.hw-vis-pane.on .vi-camp-row:nth-child(3),.hw-vis-pane.on .vi-route-card:nth-child(3),.hw-vis-pane.on .vi-stat:nth-child(3),.hw-vis-pane.on .vi-sug:nth-child(3),.hw-vis-pane.on .vi-action:nth-child(3),.hw-vis-pane.on .vi-wf-node:nth-child(3),.hw-vis-pane.on .bub:nth-child(3),.hw-vis-pane.on .vi-agent-card:nth-child(3),.hw-vis-pane.on .vi-ch-item:nth-child(3),.hw-vis-pane.on .vi-task:nth-child(3){animation-delay:.18s}
+.hw-vis-pane.on .vi-row:nth-child(4),.hw-vis-pane.on .vi-wf-node:nth-child(4),.hw-vis-pane.on .vi-sug:nth-child(4),.hw-vis-pane.on .vi-ch-item:nth-child(4),.hw-vis-pane.on .vi-task:nth-child(4){animation-delay:.25s}
+.hw-vis-pane.on .vi-wf-line{opacity:0;animation:hwIn .3s ease .08s forwards}
+@media(max-width:900px){.hw-panel{grid-template-columns:1fr}}
+@media(max-width:640px){.hw-tab{font-size:13px;padding:8px 13px}.hw-tab img{width:15px;height:15px}}
 </style></head>
 <body>
 
@@ -460,88 +581,295 @@ img{max-width:100%;display:block}
 </div><b>Agir</b><p>Des agents IA répondent et exécutent 24/7 ; vos équipes gardent la main sur l'essentiel.</p><div class="pill-prod"><span class="lbl">Propulsé par</span><a href="#/rainbow" target="_top"><img src="../img/logo-rainbow.svg" alt="">Rainbow</a></div></div>
   </div>
 </div></section>
-<!-- FLOW2 : motion explainer -->
-<section class="flow2"><div class="wrap">
-<div class="sec-head" style="text-align:center;max-width:700px;margin:0 auto 6px">
+<!-- HOW IT WORKS — new design -->
+<section class="hw"><div class="wrap">
+<div style="text-align:center;max-width:660px;margin:0 auto 36px">
 <span class="eyebrow"><i></i>Comment ça marche</span>
-<h2 class="h2">Une plateforme qui capte, <em>comprend et agit.</em></h2>
+<h2 class="h2" style="margin-top:14px">Une plateforme qui capte, <em>comprend et agit.</em></h2>
 </div>
-<div class="f2-row">
-<div class="f2-txt">
-<span class="f2-tag">01 · Capter</span>
-<h3>Toute la communication — <span class="grad-t">externe et interne.</span></h3>
-<p class="lead">Océan unifie les échanges avec vos clients sur tous les canaux. Desk gère les tâches et la messagerie interne de vos équipes. Une seule plateforme pour les deux.</p>
-<div class="f2-toggle">
-<button class="f2-tg on" data-cap="0"><img src="../img/logo-ocean.png" alt="">Océan · externe</button>
-<button class="f2-tg" data-cap="1"><img src="../img/logo-desk.png" alt="">Desk · interne</button>
-</div>
-</div>
-<div class="f2-vis"><div class="cap-vis">
-<div class="cap-pane cap-ocean show">
-<div class="mk-bar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ocean.png" alt=""><b>Océan · conversations clients</b></div>
-<div class="cap-shot"><img src="../img/ocean-inbox.png" alt="Inbox Océan — toutes les conversations unifiées et qualifiées"></div>
-</div>
-<div class="cap-pane cap-desk">
-<div class="mk-bar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-desk.png" alt=""><b>Desk · tâches &amp; messagerie interne</b></div>
-<div class="cap-desk-body">
-<div class="cdb-tasks">
-<div class="row"><span class="av" style="background:#E8943A"></span><div class="m"><b>Relance facture #1234</b><small>À traiter</small></div></div>
-<div class="row"><span class="av" style="background:#1AA179"></span><div class="m"><b>Devis entreprise</b><small>En cours</small></div></div>
-<div class="row"><span class="av" style="background:#C13D6B"></span><div class="m"><b>Réclamation produit</b><small>Priorité</small></div></div>
-</div>
-<div class="cdb-chat">
-<div class="bub ai">Marie · Je prends la réclamation 👍</div>
-<div class="bub me">Parfait, je gère le devis</div>
-<div class="bub ai">Karim · Relance envoyée ✓</div>
+<div class="hw-tabs-wrap">
+<div class="hw-tabs" id="hw-tabs">
+<span class="hw-pill" id="hw-pill"></span>
+<button class="hw-tab on" data-hw="0"><img src="../img/logo-ocean.png" alt="">Océan</button>
+<button class="hw-tab" data-hw="1"><img src="../img/logo-desk.png" alt="">Desk</button>
+<button class="hw-tab" data-hw="2"><img src="../img/logo-rainbow.svg" alt="">Rainbow</button>
+<button class="hw-tab" data-hw="3"><img src="../img/logo-ulysse.png" alt="">Ulysse</button>
 </div>
 </div>
+<div class="hw-panel">
+<div class="hw-steps" id="hw-steps"></div>
+<div class="hw-vis-wrap" id="hw-vis"></div>
 </div>
-</div></div>
-</div>
-<div class="f2-row rev">
-<div class="f2-txt">
-<span class="f2-tag">02 · Comprendre &amp; agir — Rainbow</span>
-<h3>Je structure, <span class="grad-t">puis j'implémente.</span></h3>
-<p class="lead">Rainbow compose le workflow visuel : déclencheurs, automatisations et agents IA — avec reprise humaine quand il le faut. Sans une ligne de code.</p>
-</div>
-<div class="f2-vis"><div class="wf2">
-<div class="wf2-eco" style="background-image:url(../img/rainbow-ecosystem.png)"></div>
-<div class="mk-bar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · workflow</b></div>
-<div class="wf2-body">
-<div class="wf2-node" style="transition-delay:.05s"><span class="wf2-ic" style="background:#15161d">⚡</span><div><b>Déclencheur</b><small>Message entrant, tous canaux</small></div></div>
-<div class="wf2-arr" style="transition-delay:.18s"></div>
-<div class="wf2-node" style="transition-delay:.3s"><span class="wf2-ic" style="background:#7c3aed">⚙</span><div><b>Automatisation</b><small>Qualifie, route, met à jour</small></div></div>
-<div class="wf2-arr" style="transition-delay:.42s"></div>
-<div class="wf2-node" style="transition-delay:.54s"><img class="wf2-ava" src="../img/img-041-333af93f7115.webp" alt=""><div><b>Agent IA</b><small>Répond &amp; exécute 24/7</small></div></div>
-<div class="wf2-arr" style="transition-delay:.66s"></div>
-<div class="wf2-node" style="transition-delay:.78s"><span class="wf2-avas"><img src="../img/img-038-f00be3c341a4.webp" alt=""><img src="../img/agir-human.webp" alt=""></span><div><b>Humain</b><small>Valide ou reprend la main</small></div></div>
-</div>
-</div></div>
-</div>
-<div class="f2-row">
-<div class="f2-txt">
-<span class="f2-tag">03 · Piloter — Ulysse</span>
-<h3>Ulysse <span class="grad-t">pilote tout.</span></h3>
-<p class="lead">Un copilote branché à vos outils : il lit Océan, Desk et Rainbow, sort les chiffres et lance les actions — d'un seul message, en langage naturel.</p>
-<div class="f2-cases">
-<span>« Combien de no-shows cette semaine&nbsp;? »</span>
-<span>« Lance une relance WhatsApp »</span>
-<span>« Crée le rapport hebdo »</span>
-</div>
-</div>
-<div class="f2-vis"><div class="wf2">
-<div class="mk-bar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ulysse.png" alt=""><b>Ulysse · copilote</b></div>
-<div class="mk-body" style="gap:11px;padding:18px">
-<div class="bub me" style="transition-delay:.05s">Les ventes ont baissé cette semaine. Pourquoi, et qu'est-ce qu'on lance&nbsp;?</div>
-<div class="bub ai" style="transition-delay:.2s"><b>−12&nbsp;% de CA</b> vs. la semaine passée. Causes&nbsp;: <b>38 paniers abandonnés</b> non relancés et <b>14 no-shows</b>. Je lance 3 actions&nbsp;:</div>
-<div class="u-acts">
-<div class="u-act" style="transition-delay:.35s"><img src="../img/logo-rainbow.svg" alt="">Relance WhatsApp des 38 paniers<span class="u-ok">lancé</span></div>
-<div class="u-act" style="transition-delay:.45s"><img src="../img/logo-desk.png" alt="">5 tâches de rappel créées pour l'équipe<span class="u-ok">créé</span></div>
-<div class="u-act" style="transition-delay:.55s"><img src="../img/logo-ocean.png" alt="">Segment «&nbsp;clients à risque&nbsp;» mis à jour<span class="u-ok">à jour</span></div>
-</div>
-</div>
-</div></div>
-</div></div></section>
+</div></section>
+<script>
+(function(){
+var STEP_DUR = 3200;
+var MODS = [
+  {
+    color:'#1C8FE6', logo:'../img/logo-ocean.png', label:'Océan',
+    steps:[
+      { title:'Toutes les conversations entrantes',
+        desc:"WhatsApp, e-mail, SMS, Instagram, appel vocal — chaque message reçu arrive dans un flux unique, qualifié et routé automatiquement par l'IA.",
+        vis: '<div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ocean.png" alt=""><b>Océan · inbox unifiée</b></div><div class="vbody">'+
+          '<div class="vi-row"><div class="vi-ava" style="background:#25D366"><div class="vi-ch-ico" style="background:#25D366">💬</div>WA</div><span class="vi-who">Fatima L.</span><span class="vi-msg">Bonjour, j\'aimerais modifier mon RDV...</span><div class="vi-tags"><span class="vi-tag vt-ia">IA</span><span class="vi-tag vt-new">Nouveau</span></div></div>'+
+          '<div class="vi-row"><div class="vi-ava" style="background:#EA4335"><div class="vi-ch-ico" style="background:#EA4335">✉</div>ML</div><span class="vi-who">Marc V.</span><span class="vi-msg">Facture #2847 — pouvez-vous confirmer...</span><div class="vi-tags"><span class="vi-tag vt-urg">Urgent</span></div></div>'+
+          '<div class="vi-row"><div class="vi-ava" style="background:#E1306C"><div class="vi-ch-ico" style="background:#E1306C">📷</div>SB</div><span class="vi-who">Sophie B.</span><span class="vi-msg">Super produit ! Je voulais vous demander...</span><div class="vi-tags"><span class="vi-tag vt-ok">Répondu</span></div></div>'+
+          '<div class="vi-row"><div class="vi-ava" style="background:#0078FF"><div class="vi-ch-ico" style="background:#0078FF">📞</div>PR</div><span class="vi-who">Pierre R.</span><span class="vi-msg">Appel entrant · 2 min · Non décroché</span><div class="vi-tags"><span class="vi-tag vt-ia">IA</span></div></div>'+
+          '</div>'
+      },
+      { title:'Toutes les conversations sortantes',
+        desc:"Lancez des campagnes multicanales, des relances automatiques, ou des messages ponctuels ciblés — depuis le même espace, avec vos templates validés.",
+        vis: '<div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ocean.png" alt=""><b>Océan · campagnes sortantes</b></div><div class="vbody"><div class="vi-camp">'+
+          '<div class="vi-camp-row"><div class="vi-camp-ic" style="background:#25D366">💬</div><div class="vi-camp-info"><b>Relance abandons panier</b><small>847 contacts · WhatsApp</small></div><span class="vi-camp-stat" style="background:#E6F9F0;color:#0B9B73">Actif</span></div>'+
+          '<div class="vi-camp-row"><div class="vi-camp-ic" style="background:#EA4335">✉</div><div class="vi-camp-info"><b>Newsletter juin</b><small>2 340 contacts · E-mail</small></div><span class="vi-camp-stat" style="background:#EAF3FF;color:#1C7ED6">Planifié</span></div>'+
+          '<div class="vi-camp-row"><div class="vi-camp-ic" style="background:#6840FA">🔔</div><div class="vi-camp-info"><b>Confirmation RDV J-1</b><small>Auto · tous les jours</small></div><span class="vi-camp-stat" style="background:#E6F9F0;color:#0B9B73">Actif</span></div>'+
+          '</div></div>'
+      },
+      { title:'Manuel ou automatisé — vous choisissez',
+        desc:"Chaque conversation peut être traitée par un agent IA, une règle silencieuse, ou votre équipe. Vous gardez la main à tout moment, sans friction.",
+        vis: '<div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ocean.png" alt=""><b>Océan · routing intelligent</b></div><div class="vbody"><div class="vi-route">'+
+          '<div class="vi-route-toggle"><button class="vi-route-btn on" type="button">IA auto</button><button class="vi-route-btn" type="button">Équipe</button><button class="vi-route-btn" type="button">Mixte</button></div>'+
+          '<div class="vi-route-card"><div class="vi-route-ic" style="background:linear-gradient(135deg,#676AFE,#BE59D4)">🤖</div><div class="vi-route-info"><b>Agent IA actif</b><small>Répond en &lt; 30s · 24h/7j</small></div><span class="vi-route-badge" style="background:#E6F9F0;color:#0B9B73">En ligne</span></div>'+
+          '<div class="vi-route-card"><div class="vi-route-ic" style="background:#E8943A">👋</div><div class="vi-route-info"><b>Escalade humaine</b><small>Si complexité détectée ou demande</small></div><span class="vi-route-badge" style="background:#FFF4E0;color:#C77A12">Règle active</span></div>'+
+          '<div class="vi-route-card"><div class="vi-route-ic" style="background:#1C8FE6">⚡</div><div class="vi-route-info"><b>Automation silencieuse</b><small>Tag, MAJ CRM, notification</small></div><span class="vi-route-badge" style="background:#EAF3FF;color:#1C7ED6">Arrière-plan</span></div>'+
+          '</div></div>'
+      }
+    ]
+  },
+  {
+    color:'#E0529C', logo:'../img/logo-desk.png', label:'Desk',
+    steps:[
+      { title:'Messagerie interne entre collaborateurs',
+        desc:"Un fil de discussion partagé entre toutes vos équipes — humains et agents IA — pour coordonner en temps réel sans sortir de la plateforme.",
+        vis: '<div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-desk.png" alt=""><b>Desk · messagerie interne</b></div><div class="vbody"><div class="vi-ch-layout">'+
+          '<div class="vi-ch-sidebar"><span class="vi-ch-label">Équipe</span><div class="vi-ch-item on"><span class="hsh">#</span>général</div><div class="vi-ch-item"><span class="hsh">#</span>commercial</div><div class="vi-ch-item"><span class="hsh">#</span>support</div></div>'+
+          '<div class="vi-ch-msgs">'+
+          '<div class="bub ai" style="max-width:90%;font-size:12.5px">Marie · J\'ai escaladé le ticket de Fatima 👍</div>'+
+          '<div class="bub me" style="max-width:90%;font-size:12.5px">Je prends, merci ! Je rappelle dans 10 min</div>'+
+          '<div class="bub ai" style="max-width:90%;font-size:12.5px">Karim · Devis #892 envoyé, en attente validation</div>'+
+          '</div></div></div>'
+      },
+      { title:'Canaux & espaces groupe',
+        desc:"Organisez vos équipes par canal, par projet ou par client. Chaque espace concentre les conversations, tâches et fichiers liés.",
+        vis: '<div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-desk.png" alt=""><b>Desk · espaces &amp; canaux</b></div><div class="vbody"><div class="vi-ch-layout">'+
+          '<div class="vi-ch-sidebar"><span class="vi-ch-label">Espaces</span><div class="vi-ch-item"><span class="hsh">#</span>général</div><div class="vi-ch-item on"><span class="hsh">#</span>commercial</div><div class="vi-ch-item"><span class="hsh">#</span>support</div><div class="vi-ch-item"><span class="hsh">#</span>alertes-ia</div></div>'+
+          '<div class="vi-ch-msgs">'+
+          '<div class="bub ai" style="max-width:90%;font-size:12.5px">IA · 3 nouvelles opportunités détectées 🎯</div>'+
+          '<div class="bub ai" style="max-width:90%;font-size:12.5px">Léa · Relance Sofitel envoyée, rdv vendredi</div>'+
+          '<div class="bub me" style="max-width:90%;font-size:12.5px">Top ! Je prépare la pres pour jeudi</div>'+
+          '<div class="bub ai" style="max-width:90%;font-size:12.5px">IA · Devis #902 signé — 12 400 € 🎉</div>'+
+          '</div></div></div>'
+      },
+      { title:'Tâches entre humains et agents IA',
+        desc:"Créez et assignez des tâches à un collègue ou directement à un agent IA. Chaque tâche est tracée, priorisée et clôturée — automatiquement ou manuellement.",
+        vis: '<div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-desk.png" alt=""><b>Desk · tâches &amp; actions</b></div><div class="vbody"><div class="vi-tasks">'+
+          '<div class="vi-tasks-col" style="border-right:1px solid var(--line)"><h4>🤖 Agent IA</h4>'+
+          '<div class="vi-task"><div class="vi-task-ic" style="background:linear-gradient(135deg,#676AFE,#BE59D4)">⚡</div><div><b>Relance no-shows</b><small>Auto · 14 contacts</small></div></div>'+
+          '<div class="vi-task"><div class="vi-task-ic" style="background:#1C8FE6">📊</div><div><b>Rapport hebdo</b><small>En cours…</small></div></div>'+
+          '</div>'+
+          '<div class="vi-tasks-col"><h4>👤 Équipe</h4>'+
+          '<div class="vi-task"><div class="vi-task-ic" style="background:#E8943A">📞</div><div><b>Rappel Mme Dubois</b><small>Marie · Urgent</small></div></div>'+
+          '<div class="vi-task"><div class="vi-task-ic" style="background:#0B9B73">✓</div><div><b>Valider devis #892</b><small>Karim · Fait</small></div></div>'+
+          '</div>'+
+          '</div></div>'
+      }
+    ]
+  },
+  {
+    color:'#7C3AED', logo:'../img/logo-rainbow.svg', label:'Rainbow Studio',
+    steps:[
+      { title:'Des agents IA sur mesure',
+        desc:"Créez des agents IA qui comprennent votre métier, votre ton et vos données. Chacun a un rôle précis, des outils dédiés, et un modèle de votre choix.",
+        vis: '<div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · agent IA</b></div><div class="vbody"><div class="vi-agent-pad">'+
+          '<div class="vi-agent-card"><div class="vi-agent-top"><div class="vi-agent-ava" style="background:linear-gradient(135deg,#676AFE,#BE59D4)">🤖</div><div><div class="vi-agent-name">Sofia</div><div class="vi-agent-role">Agent réception · Santé</div></div><span class="vi-agent-badge">Actif 24/7</span></div>'+
+          '<div class="vi-caps"><span class="vi-cap">Prise de RDV</span><span class="vi-cap">Triage urgent</span><span class="vi-cap">SMS de confirmation</span><span class="vi-cap">Mise à jour dossier</span></div>'+
+          '<div class="vi-models"><span class="vi-model"><img src="../img/claude-icon-logo.png" alt="">Claude</span><span class="vi-model"><img src="../img/mistral-color.png" alt="">Mistral</span><span class="vi-model"><img src="../img/deepseek-color.png" alt="">DeepSeek</span></div>'+
+          '</div></div></div>'
+      },
+      { title:'Des workflows no-code',
+        desc:"Construisez visuellement vos automatisations : déclencheurs, conditions, branchements, intégrations CRM/outils — sans écrire une seule ligne de code.",
+        vis: '<div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · workflow</b></div><div class="vbody"><div class="vi-wf-pad" style="display:flex;flex-direction:column;gap:0;padding:16px">'+
+          '<div class="vi-wf-node"><div class="vi-wf-ic" style="background:#15161d">⚡</div><div><b>Déclencheur</b><small>Message entrant, tous canaux</small></div></div>'+
+          '<div class="vi-wf-line"></div>'+
+          '<div class="vi-wf-node"><div class="vi-wf-ic" style="background:#7C3AED">🔍</div><div><b>Condition</b><small>Détecte l\'intention client</small></div></div>'+
+          '<div class="vi-wf-line"></div>'+
+          '<div class="vi-wf-node"><div class="vi-wf-ic" style="background:linear-gradient(135deg,#676AFE,#BE59D4)">🤖</div><div><b>Agent IA</b><small>Répond et exécute 24/7</small></div></div>'+
+          '<div class="vi-wf-line"></div>'+
+          '<div class="vi-wf-node"><div class="vi-wf-ic" style="background:#E0529C">👋</div><div><b>Escalade humaine</b><small>Si complexité ou demande explicite</small></div></div>'+
+          '</div></div>'
+      },
+      { title:'Le meilleur des deux mondes',
+        desc:"Rainbow combine agents IA et automatisations dans un même espace. L'IA traite le volume, les règles filtrent, et l'humain garde la main sur ce qui compte vraiment.",
+        vis: '<div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · IA + automation</b></div><div class="vbody"><div class="vi-agent-pad">'+
+          '<div class="vi-agent-card"><div class="vi-agent-top"><div class="vi-agent-ava" style="background:linear-gradient(135deg,#676AFE,#BE59D4)">🤖</div><div><div class="vi-agent-name">Agent IA</div><div class="vi-agent-role">Volume, répond en &lt; 30s</div></div><span class="vi-agent-badge">80% des cas</span></div>'+
+          '<div class="vi-caps"><span class="vi-cap">Qualification</span><span class="vi-cap">Réponse instantanée</span><span class="vi-cap">Mise à jour CRM</span></div></div>'+
+          '<div class="vi-agent-card"><div class="vi-agent-top"><div class="vi-agent-ava" style="background:#7C3AED">⚙️</div><div><div class="vi-agent-name">Workflow</div><div class="vi-agent-role">Automatisation silencieuse</div></div><span class="vi-agent-badge" style="background:rgba(124,58,237,.15);color:#7C3AED">No-code</span></div>'+
+          '<div class="vi-caps"><span class="vi-cap">Déclencheurs</span><span class="vi-cap">Conditions</span><span class="vi-cap">Intégrations</span></div></div>'+
+          '</div></div>'
+      }
+    ]
+  },
+  {
+    color:'#6840FA', logo:'../img/logo-ulysse.png', label:'Ulysse',
+    steps:[
+      { title:'Comprendre — lire toute la plateforme',
+        desc:"Ulysse est branché à Océan, Desk et Rainbow. En temps réel, il analyse volumes, tendances, performances des agents et signaux faibles.",
+        vis: '<div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ulysse.png" alt=""><b>Ulysse · analyse temps réel</b></div><div class="vbody"><div class="vi-u-pad">'+
+          '<div class="vi-stat-row"><div class="vi-stat"><b style="background:linear-gradient(135deg,#676AFE,#BE59D4);-webkit-background-clip:text;background-clip:text;color:transparent">94%</b><span>résolution IA</span></div><div class="vi-stat"><b style="color:#1C8FE6">238</b><span>conv. ce mois</span></div><div class="vi-stat"><b style="color:#0B9B73">28s</b><span>tps de réponse</span></div></div>'+
+          '<div class="bub ai" style="font-size:12.5px;align-self:flex-start">Ulysse · 3 signaux détectés cette semaine : hausse des no-shows (+22%), baisse d\'ouverture email, pic de contacts le vendredi soir.</div>'+
+          '</div></div>'
+      },
+      { title:'Suggérer — proposer les bonnes actions',
+        desc:"Ulysse ne se contente pas d'afficher des chiffres : il contextualise, priorise et formule des recommandations actionnables en langage naturel.",
+        vis: '<div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ulysse.png" alt=""><b>Ulysse · suggestions</b></div><div class="vbody"><div class="vi-u-pad">'+
+          '<div class="bub ai" style="font-size:12.5px;align-self:flex-start">Basé sur vos données, je suggère 3 actions prioritaires :</div>'+
+          '<div class="vi-sug"><span>📲</span><span>Relancer les 38 paniers abandonnés via WhatsApp</span><span class="vi-sug-arr">›</span></div>'+
+          '<div class="vi-sug"><span>📅</span><span>Ajouter une confirmation SMS la veille des RDV</span><span class="vi-sug-arr">›</span></div>'+
+          '<div class="vi-sug"><span>📊</span><span>Générer le rapport hebdomadaire pour l\'équipe</span><span class="vi-sug-arr">›</span></div>'+
+          '</div></div>'
+      },
+      { title:'Agir — exécuter d\'un seul message',
+        desc:"Un message en langage naturel suffit. Ulysse lance la campagne, crée les tâches, met à jour les segments — et vous confirme chaque action en temps réel.",
+        vis: '<div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ulysse.png" alt=""><b>Ulysse · actions</b></div><div class="vbody"><div class="vi-u-pad">'+
+          '<div class="bub me" style="font-size:12.5px;align-self:flex-end">Lance la relance panier + crée le rapport</div>'+
+          '<div class="bub ai" style="font-size:12.5px;align-self:flex-start">Compris. 3 actions lancées :</div>'+
+          '<div class="vi-action"><img src="../img/logo-rainbow.svg" alt="">Campagne WhatsApp · 38 contacts<span class="vi-action-ok">lancé</span></div>'+
+          '<div class="vi-action"><img src="../img/logo-desk.png" alt="">5 tâches créées pour l\'équipe<span class="vi-action-ok">créé</span></div>'+
+          '<div class="vi-action"><img src="../img/logo-ocean.png" alt="">Segment «&nbsp;à risque&nbsp;» mis à jour<span class="vi-action-ok">à jour</span></div>'+
+          '</div></div>'
+      }
+    ]
+  }
+];
+
+var cur = {mod:0, step:0};
+var timer = null;
+var progTimer = null;
+var stepsEl = document.getElementById('hw-steps');
+var visEl = document.getElementById('hw-vis');
+var tabsEl = document.getElementById('hw-tabs');
+var pillEl = document.getElementById('hw-pill');
+
+function movePill(btn){
+  var r = btn.getBoundingClientRect();
+  var pr = tabsEl.getBoundingClientRect();
+  pillEl.style.left = (r.left - pr.left - 5 + tabsEl.scrollLeft) + 'px';
+  pillEl.style.width = r.width + 'px';
+}
+
+function renderMod(mi){
+  var mod = MODS[mi];
+  // tabs
+  var tabs = tabsEl.querySelectorAll('.hw-tab');
+  tabs.forEach(function(t){t.classList.toggle('on', +t.dataset.hw === mi);});
+  movePill(tabs[mi]);
+
+  // steps
+  stepsEl.innerHTML = mod.steps.map(function(s,i){
+    return '<div class="hw-step'+(i===0?' on':'') +'" data-si="'+i+'" style="'+(i===0?'border-color:'+mod.color+';':'')+'">'
+      +'<div class="hw-step-head">'
+      +'<span class="hw-num" style="background:'+mod.color+'">0'+(i+1)+'</span>'
+      +'<span class="hw-step-title">'+s.title+'</span>'
+      +'<span class="hw-step-arr">›</span>'
+      +'</div>'
+      +'<div class="hw-step-body"><p>'+s.desc+'</p>'
+      +'<div class="hw-prog"><div class="hw-prog-bar" id="hpb-'+mi+'-'+i+'" style="background:'+mod.color+'"></div></div>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+
+  // visuals (render all, show active)
+  visEl.innerHTML = mod.steps.map(function(s,i){
+    return '<div class="hw-vis-pane'+(i===0?' on':'') +'" data-vi="'+i+'" style="position:'+(i===0?'relative':'absolute')+';inset:0">'+s.vis+'</div>';
+  }).join('');
+
+  // click on steps
+  stepsEl.querySelectorAll('.hw-step').forEach(function(el){
+    el.addEventListener('click', function(){
+      var si = +el.dataset.si;
+      if(si === cur.step && mi === cur.mod) return;
+      cur.step = si;
+      cur.mod = mi;
+      setStep(mi, si, true);
+    });
+  });
+}
+
+function setStep(mi, si, resetTimer){
+  cur.mod = mi; cur.step = si;
+  // steps
+  stepsEl.querySelectorAll('.hw-step').forEach(function(el,i){
+    var on = i===si;
+    el.classList.toggle('on', on);
+    el.style.borderColor = on ? MODS[mi].color : '';
+    el.style.boxShadow = on ? '0 12px 36px -20px '+MODS[mi].color+'66' : '';
+  });
+  // visuals — animate out old, in new
+  visEl.querySelectorAll('.hw-vis-pane').forEach(function(el,i){
+    if(i === si){
+      el.classList.add('on');
+      el.style.position='relative';
+    } else {
+      el.classList.remove('on');
+      el.style.position='absolute';
+    }
+  });
+  // progress bar
+  clearInterval(progTimer);
+  var bar = document.getElementById('hpb-'+mi+'-'+si);
+  if(bar){ bar.style.transition='none'; bar.style.width='0%'; setTimeout(function(){bar.style.transition='width '+STEP_DUR+'ms linear';bar.style.width='100%';},30); }
+  if(resetTimer) startTimer(mi);
+}
+
+function startTimer(mi){
+  clearInterval(timer);
+  timer = setInterval(function(){
+    var next = (cur.step + 1) % MODS[mi].steps.length;
+    setStep(mi, next, false);
+    if(next === 0) startTimer(mi);
+  }, STEP_DUR);
+}
+
+// Init
+renderMod(0);
+setTimeout(function(){movePill(tabsEl.querySelectorAll('.hw-tab')[0]);},10);
+
+// Start progress bar for step 0
+setTimeout(function(){
+  var bar = document.getElementById('hpb-0-0');
+  if(bar){bar.style.transition='none';bar.style.width='0%';setTimeout(function(){bar.style.transition='width '+STEP_DUR+'ms linear';bar.style.width='100%';},30);}
+},50);
+startTimer(0);
+
+// Tab clicks
+tabsEl.addEventListener('click', function(e){
+  var tab = e.target.closest('.hw-tab');
+  if(!tab) return;
+  var mi = +tab.dataset.hw;
+  if(mi === cur.mod) return;
+  cur.mod = mi; cur.step = 0;
+  clearInterval(timer);
+  renderMod(mi);
+  setTimeout(function(){
+    setStep(mi, 0, false);
+    var bar = document.getElementById('hpb-'+mi+'-0');
+    if(bar){bar.style.transition='none';bar.style.width='0%';setTimeout(function(){bar.style.transition='width '+STEP_DUR+'ms linear';bar.style.width='100%';},30);}
+    startTimer(mi);
+  },40);
+});
+
+// Pause on hover
+var sec = document.querySelector('.hw');
+if(sec){
+  sec.addEventListener('mouseenter', function(){clearInterval(timer);clearInterval(progTimer);});
+  sec.addEventListener('mouseleave', function(){
+    startTimer(cur.mod);
+    var bar = document.getElementById('hpb-'+cur.mod+'-'+cur.step);
+    if(bar){bar.style.transition='none';bar.style.width='0%';setTimeout(function(){bar.style.transition='width '+STEP_DUR+'ms linear';bar.style.width='100%';},30);}
+  });
+}
+})();
+</script>
 
 <!-- TESTIMONIALS -->
 <section class="sec sec-soft"><div class="wrap">
