@@ -470,6 +470,19 @@ img{max-width:100%;display:block}
 @media(max-width:860px){.msec-inner{grid-template-columns:1fr;gap:28px}.msec-inner.rev .msec-txt,.msec-inner.rev .msec-vis{order:0}}
 @media(max-width:520px){.msec-btn{padding:7px 12px;font-size:12px}}
 
+/* ── AGENT CARDS ── */
+.ag-list{display:flex;flex-direction:column;gap:0;padding:10px;overflow-y:auto;background:#F8F7FC}
+.ag-card{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:8px;box-shadow:0 4px 16px -10px rgba(40,20,90,.18);transition:transform .2s,box-shadow .2s}
+.ag-card:hover{transform:translateY(-2px);box-shadow:0 10px 28px -14px rgba(40,20,90,.28)}
+.ag-left{position:relative;flex:none}
+.ag-ava{width:48px;height:48px;border-radius:50%;object-fit:cover;display:block}
+.ag-dot-live{position:absolute;bottom:2px;right:2px;width:11px;height:11px;border-radius:50%;background:linear-gradient(135deg,#676AFE,#BE59D4);border:2px solid #fff;animation:pulseDot 1.5s ease-in-out infinite}
+.ag-info{flex:1;min-width:0}
+.ag-name{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.2}
+.ag-role{font-size:11px;color:var(--muted);margin:2px 0 6px}
+.ag-caps{display:flex;flex-wrap:wrap;gap:4px}
+.ag-caps span{font-size:10px;font-weight:600;color:#5b5570;background:#F3F2F7;border:1px solid var(--line);border-radius:5px;padding:2px 7px}
+.ag-badge{flex:none;font-size:10px;font-weight:800;padding:4px 10px;border-radius:99px;background:linear-gradient(135deg,#676AFE,#BE59D4);color:#fff;white-space:nowrap}
 /* ── SCREENSHOT PANES ── */
 .sc-wrap{position:relative;overflow:hidden;flex:1;min-height:320px}
 .sc-img{width:100%;height:100%;object-fit:cover;object-position:top left;display:block;max-height:400px}
@@ -642,7 +655,12 @@ img{max-width:100%;display:block}
 </div>
 <div class="msec-vis">
 <div class="msec-vis-wrap" id="vis-rainbow">
-<div class="msec-pane on"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · agent IA</b></div><div class="sc-wrap"><img src="../img/sc_04.png" alt="" class="sc-img"><div class="sc-badge" style="top:8%;left:5%"><span class="dot dot-live" style="background:linear-gradient(135deg,#676AFE,#BE59D4)"></span>Assistant RDV · Actif 24/7</div><div class="sc-badge" style="top:42%;left:5%"><span class="dot" style="background:#EA4335"></span>GPT-4o · OpenAI</div><div class="sc-badge" style="top:72%;left:5%"><span class="dot" style="background:#7C3AED"></span>System Prompt configuré</div></div></div>
+<div class="msec-pane on"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · agents IA</b></div><div class="vbody ag-list">
+<div class="ag-card vi-agent-card"><div class="ag-left"><img src="../img/avatar-06.png" alt="" class="ag-ava"><div class="ag-dot-live"></div></div><div class="ag-info"><div class="ag-name">Sofia</div><div class="ag-role">Agent réception · Santé</div><div class="ag-caps"><span>Prise de RDV</span><span>Triage urgent</span><span>SMS confirmation</span></div></div><span class="ag-badge">24/7</span></div>
+<div class="ag-card vi-agent-card"><div class="ag-left"><img src="../img/avatar-02.png" alt="" class="ag-ava"><div class="ag-dot-live"></div></div><div class="ag-info"><div class="ag-name">Emma</div><div class="ag-role">Agent commercial · Retail</div><div class="ag-caps"><span>Relance panier</span><span>Devis</span><span>Upsell</span></div></div><span class="ag-badge">24/7</span></div>
+<div class="ag-card vi-agent-card"><div class="ag-left"><img src="../img/avatar-05.png" alt="" class="ag-ava"><div class="ag-dot-live" style="background:#1C8FE6"></div></div><div class="ag-info"><div class="ag-name">Léa</div><div class="ag-role">Agent support · SaaS</div><div class="ag-caps"><span>Tickets</span><span>FAQ</span><span>Escalade</span></div></div><span class="ag-badge" style="background:rgba(28,143,230,.15);color:#1C8FE6">Support</span></div>
+<div class="ag-card vi-agent-card"><div class="ag-left"><img src="../img/avatar-01.png" alt="" class="ag-ava"><div class="ag-dot-live" style="background:#0B9B73"></div></div><div class="ag-info"><div class="ag-name">Lucas</div><div class="ag-role">Agent no-show · Clinique</div><div class="ag-caps"><span>Rappel J-1</span><span>Confirmation</span><span>Rapport</span></div></div><span class="ag-badge" style="background:rgba(11,155,115,.15);color:#0B9B73">Auto</span></div>
+</div></div>
 <div class="msec-pane"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · workflow no-code</b></div><div class="sc-wrap"><img src="../img/sc_05.png" alt="" class="sc-img"><div class="sc-badge" style="top:8%;left:5%"><span class="dot dot-live" style="background:#15161d"></span>Déclencheur · Message entrant</div><div class="sc-badge" style="top:42%;left:5%"><span class="dot" style="background:#7C3AED"></span>Condition · Intention détectée</div><div class="sc-badge" style="top:72%;left:5%"><span class="dot" style="background:#0B9B73"></span>Confirmation RDV envoyée ✓</div></div></div>
 <div class="msec-pane"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · IA + automation</b></div><div class="sc-wrap"><img src="../img/sc_06.png" alt="" class="sc-img"><div class="sc-badge" style="top:8%;left:5%"><span class="dot dot-live" style="background:linear-gradient(135deg,#676AFE,#BE59D4)"></span>14 workflows actifs</div><div class="sc-badge" style="top:42%;left:5%"><span class="dot" style="background:#E8943A"></span>No-show prevention · En pause</div><div class="sc-badge" style="top:72%;left:5%"><span class="dot" style="background:#0B9B73"></span>Import Excel → SMS · Actif</div></div></div>
 </div>
