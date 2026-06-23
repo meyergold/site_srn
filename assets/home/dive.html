@@ -470,6 +470,13 @@ img{max-width:100%;display:block}
 @media(max-width:860px){.msec-inner{grid-template-columns:1fr;gap:28px}.msec-inner.rev .msec-txt,.msec-inner.rev .msec-vis{order:0}}
 @media(max-width:520px){.msec-btn{padding:7px 12px;font-size:12px}}
 
+/* ── OCEAN SLIDE VIEWPORT ── */
+.viewport{position:relative;border-radius:20px;overflow:hidden;background:#3a2d7a;aspect-ratio:16/10;box-shadow:0 28px 58px -22px rgba(60,20,110,.6)}
+.rail{display:flex;width:300%;height:100%;transition:transform .6s cubic-bezier(.7,0,.2,1)}
+.rail img{width:33.3333%;height:100%;object-fit:cover;object-position:top left}
+.caption{position:absolute;left:16px;bottom:16px;z-index:3;display:inline-flex;align-items:center;gap:8px;padding:9px 16px;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:999px;font-size:13px;font-weight:600;box-shadow:0 14px 30px -10px rgba(40,10,70,.45);white-space:nowrap;transition:opacity .3s}
+.caption .led{width:8px;height:8px;border-radius:50%;flex:none}
+.led-green{background:#22c55e}.led-orange{background:#f59e0b}.led-purple{background:#a855f7}
 /* ── AGENT CARDS ── */
 .ag-list{display:flex;flex-direction:column;gap:0;padding:10px;overflow-y:auto;background:#F8F7FC}
 .ag-card{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:8px;box-shadow:0 4px 16px -10px rgba(40,20,90,.18);transition:transform .2s,box-shadow .2s}
@@ -608,10 +615,15 @@ img{max-width:100%;display:block}
 <p class="msec-desc" id="desc-ocean">WhatsApp, e-mail, SMS, Instagram, appel vocal — chaque message reçu arrive dans un flux unique, qualifié et routé automatiquement par l'IA.</p>
 </div>
 <div class="msec-vis">
-<div class="msec-vis-wrap" id="vis-ocean">
-<div class="msec-pane on"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ocean.png" alt=""><b>Océan · inbox unifiée</b></div><div class="sc-wrap"><img src="../img/sc_01.png" alt="" class="sc-img"><div class="sc-badge" style="top:12%;left:5%"><span class="dot dot-live" style="background:#25D366"></span>Nouveau message · WhatsApp</div><div class="sc-badge" style="top:40%;left:5%"><span class="dot" style="background:#EA4335"></span>Urgent · Marc V.</div><div class="sc-badge" style="top:68%;left:5%"><span class="dot" style="background:#1C8FE6"></span>IA · Répondu en 28s</div></div></div>
-<div class="msec-pane"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ocean.png" alt=""><b>Océan · campagnes sortantes</b></div><div class="sc-wrap"><img src="../img/sc_01.png" alt="" class="sc-img"><div class="sc-badge" style="top:12%;left:5%"><span class="dot dot-live" style="background:#25D366"></span>Relance panier · 847 contacts</div><div class="sc-badge" style="top:40%;left:5%"><span class="dot" style="background:#EA4335"></span>Newsletter juin · 2 340</div><div class="sc-badge" style="top:68%;left:5%"><span class="dot" style="background:#6840FA"></span>RDV J-1 · Auto actif</div></div></div>
-<div class="msec-pane"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ocean.png" alt=""><b>Océan · routing intelligent</b></div><div class="sc-wrap"><img src="../img/sc_01.png" alt="" class="sc-img"><div class="sc-badge" style="top:12%;left:5%"><span class="dot dot-live" style="background:linear-gradient(135deg,#676AFE,#BE59D4)"></span>Agent IA · En ligne</div><div class="sc-badge" style="top:40%;left:5%"><span class="dot" style="background:#E8943A"></span>Escalade humaine · Règle active</div><div class="sc-badge" style="top:68%;left:5%"><span class="dot" style="background:#1C8FE6"></span>Tag + MAJ CRM · Arrière-plan</div></div></div>
+<div class="msec-vis-wrap" id="vis-ocean" style="min-height:0;border:none;box-shadow:none;background:transparent">
+<div class="viewport">
+  <div class="rail" id="ocean-rail">
+    <img src="../img/ocean/zone-entrantes.jpg" alt="Conversations multi-canaux">
+    <img src="../img/ocean/zone-sortantes.jpg" alt="Suivi de campagne">
+    <img src="../img/ocean/zone-auto.jpg" alt="Attribution humains et agents IA">
+  </div>
+  <span class="caption" id="ocean-cap"><span class="led led-green"></span>Nouveau message · WhatsApp</span>
+</div>
 </div>
 </div></div>
 </div></div></section>
@@ -739,6 +751,19 @@ var DESCS = {
     tog.querySelectorAll('.msec-btn').forEach(function(b){b.classList.toggle('on',+b.dataset.si===si);});
     movePill(btn);
     if(descEl) descEl.textContent=DESCS[mi][si];
+    // ocean uses slide rail instead of pane switching
+    if(mi==='ocean'){
+      var OCEAN_CAPS=[
+        '<span class="led led-green"></span>Nouveau message · WhatsApp',
+        '<span class="led led-orange"></span>Agent IA pris le relai',
+        '<span class="led led-purple"></span>6 humains · 5 agents IA'
+      ];
+      var rail=document.getElementById('ocean-rail');
+      if(rail) rail.style.transform='translateX('+(-si*33.3333)+'%)';
+      var cap=document.getElementById('ocean-cap');
+      if(cap){cap.style.opacity=0;setTimeout(function(){cap.innerHTML=OCEAN_CAPS[si];cap.style.opacity=1;},250);}
+      return;
+    }
     var panes=vis.querySelectorAll('.msec-pane');
     panes.forEach(function(p,i){
       if(i===si){p.classList.add('on');p.style.position='relative';}
