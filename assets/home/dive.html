@@ -467,6 +467,8 @@ img{max-width:100%;display:block}
 .msec-pane.on .vi-row:nth-child(3),.msec-pane.on .vi-camp-row:nth-child(3),.msec-pane.on .vi-route-card:nth-child(3),.msec-pane.on .vi-stat:nth-child(3),.msec-pane.on .vi-sug:nth-child(3),.msec-pane.on .vi-action:nth-child(3),.msec-pane.on .vi-wf-node:nth-child(3),.msec-pane.on .bub:nth-child(3),.msec-pane.on .vi-agent-card:nth-child(3),.msec-pane.on .vi-ch-item:nth-child(3),.msec-pane.on .vi-task:nth-child(3){animation-delay:.18s}
 .msec-pane.on .vi-row:nth-child(4),.msec-pane.on .vi-wf-node:nth-child(4),.msec-pane.on .vi-ch-item:nth-child(4),.msec-pane.on .vi-task:nth-child(4){animation-delay:.25s}
 .msec-pane.on .vi-wf-line{opacity:0;animation:hwIn .3s ease .07s forwards}
+/* Desk: plus de place pour le motion (2/3 vis, 1/3 texte) */
+#msec-desk .msec-inner{grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:40px;align-items:start}
 @media(max-width:860px){.msec-inner{grid-template-columns:1fr;gap:28px}.msec-inner.rev .msec-txt,.msec-inner.rev .msec-vis{order:0}}
 @media(max-width:520px){.msec-btn{padding:7px 12px;font-size:12px}}
 
@@ -643,7 +645,7 @@ img{max-width:100%;display:block}
 </div>
 <div class="msec-vis">
 <div class="msec-vis-wrap" id="vis-desk" style="min-height:0;border:none;box-shadow:none;background:transparent;padding:0;overflow:hidden;border-radius:20px">
-<iframe id="desk-iframe" src="desk-motion.html" title="Desk — Tâches, Messages directs, Canaux" loading="lazy" style="width:100%;aspect-ratio:1040/620;border:0;display:block;" scrolling="no"></iframe>
+<iframe id="desk-iframe" src="desk-motion.html" title="Desk — Tâches, Messages directs, Canaux" loading="lazy" style="width:100%;aspect-ratio:1040/660;border:0;display:block;" scrolling="no"></iframe>
 </div>
 </div></div>
 </div></div></section>
