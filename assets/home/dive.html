@@ -673,16 +673,7 @@ img{max-width:100%;display:block}
 <p class="msec-desc" id="desc-rainbow">Créez des agents IA qui comprennent votre métier, votre ton et vos données. Chacun a un rôle précis, des outils dédiés, et un modèle de votre choix.</p>
 </div>
 <div class="msec-vis">
-<div class="msec-vis-wrap" id="vis-rainbow">
-<div class="msec-pane on"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · agents IA</b></div><div class="vbody ag-list">
-<div class="ag-card vi-agent-card"><div class="ag-left"><img src="../img/avatar-06.png" alt="" class="ag-ava"><div class="ag-dot-live"></div></div><div class="ag-info"><div class="ag-name">Sofia</div><div class="ag-role">Agent réception · Santé</div><div class="ag-caps"><span>Prise de RDV</span><span>Triage urgent</span><span>SMS confirmation</span></div></div><span class="ag-badge">24/7</span></div>
-<div class="ag-card vi-agent-card"><div class="ag-left"><img src="../img/avatar-02.png" alt="" class="ag-ava"><div class="ag-dot-live"></div></div><div class="ag-info"><div class="ag-name">Emma</div><div class="ag-role">Agent commercial · Retail</div><div class="ag-caps"><span>Relance panier</span><span>Devis</span><span>Upsell</span></div></div><span class="ag-badge">24/7</span></div>
-<div class="ag-card vi-agent-card"><div class="ag-left"><img src="../img/avatar-05.png" alt="" class="ag-ava"><div class="ag-dot-live" style="background:#1C8FE6"></div></div><div class="ag-info"><div class="ag-name">Léa</div><div class="ag-role">Agent support · SaaS</div><div class="ag-caps"><span>Tickets</span><span>FAQ</span><span>Escalade</span></div></div><span class="ag-badge" style="background:rgba(28,143,230,.15);color:#1C8FE6">Support</span></div>
-<div class="ag-card vi-agent-card"><div class="ag-left"><img src="../img/avatar-01.png" alt="" class="ag-ava"><div class="ag-dot-live" style="background:#0B9B73"></div></div><div class="ag-info"><div class="ag-name">Lucas</div><div class="ag-role">Agent no-show · Clinique</div><div class="ag-caps"><span>Rappel J-1</span><span>Confirmation</span><span>Rapport</span></div></div><span class="ag-badge" style="background:rgba(11,155,115,.15);color:#0B9B73">Auto</span></div>
-</div></div>
-<div class="msec-pane"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · workflow no-code</b></div><div class="sc-wrap"><img src="../img/sc_05.png" alt="" class="sc-img"><div class="sc-badge" style="top:8%;left:5%"><span class="dot dot-live" style="background:#15161d"></span>Déclencheur · Message entrant</div><div class="sc-badge" style="top:42%;left:5%"><span class="dot" style="background:#7C3AED"></span>Condition · Intention détectée</div><div class="sc-badge" style="top:72%;left:5%"><span class="dot" style="background:#0B9B73"></span>Confirmation RDV envoyée ✓</div></div></div>
-<div class="msec-pane"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-rainbow.svg" alt=""><b>Rainbow · IA + automation</b></div><div class="sc-wrap"><img src="../img/sc_06.png" alt="" class="sc-img"><div class="sc-badge" style="top:8%;left:5%"><span class="dot dot-live" style="background:linear-gradient(135deg,#676AFE,#BE59D4)"></span>14 workflows actifs</div><div class="sc-badge" style="top:42%;left:5%"><span class="dot" style="background:#E8943A"></span>No-show prevention · En pause</div><div class="sc-badge" style="top:72%;left:5%"><span class="dot" style="background:#0B9B73"></span>Import Excel → SMS · Actif</div></div></div>
-</div>
+<iframe id="rainbow-iframe" src="rainbow-motion.html" style="width:100%;aspect-ratio:1040/620;border:0;display:block;" scrolling="no"></iframe>
 </div></div>
 </div></div></section>
 
@@ -772,6 +763,14 @@ var DESCS = {
       }
       return;
     }
+    // rainbow uses animated iframe
+    if(mi==='rainbow'){
+      var frm=document.getElementById('rainbow-iframe');
+      if(frm&&frm.contentWindow&&frm.contentWindow.RainbowMotion){
+        frm.contentWindow.RainbowMotion.goTo(si+1);
+      }
+      return;
+    }
     var panes=vis.querySelectorAll('.msec-pane');
     panes.forEach(function(p,i){
       if(i===si){p.classList.add('on');p.style.position='relative';}
@@ -803,6 +802,33 @@ var DESCS = {
       }
       var desks=["Créez et assignez des tâches à un collègue ou à un agent IA. Chaque tâche est tracée, priorisée et clôturée — automatiquement ou manuellement.","Un fil de discussion partagé entre toutes vos équipes — humains et agents IA — pour coordonner en temps réel sans sortir de la plateforme.","Organisez vos équipes par canal ou par projet. Chaque espace concentre les conversations, tâches et fichiers liés."];
       if(descEl) descEl.textContent=desks[si];
+    });
+  });
+})();
+// Wire RainbowMotion auto-advance → update site toggle pills
+(function wireRainbowMotion(){
+  var frm=document.getElementById('rainbow-iframe');
+  if(!frm) return;
+  frm.addEventListener('load',function(){
+    var rm=frm.contentWindow&&frm.contentWindow.RainbowMotion;
+    if(!rm) return;
+    var tog=document.getElementById('tog-rainbow');
+    var pill=document.getElementById('pill-rainbow');
+    var descEl=document.getElementById('desc-rainbow');
+    rm.subscribe(function(n){
+      var si=n-1;
+      if(!tog) return;
+      tog.querySelectorAll('.msec-btn').forEach(function(b){
+        b.classList.toggle('on',+b.dataset.si===si);
+      });
+      var activeBtn=tog.querySelector('.msec-btn.on');
+      if(activeBtn&&pill){
+        var r=activeBtn.getBoundingClientRect(), pr=tog.getBoundingClientRect();
+        pill.style.left=(r.left-pr.left-4+tog.scrollLeft)+'px';
+        pill.style.width=r.width+'px';
+      }
+      var descs=["Créez des agents IA qui comprennent votre métier, votre ton et vos données. Chacun a un rôle précis, des outils dédiés, et un modèle de votre choix.","Assemblez des workflows no-code qui connectent agents, canaux et outils métier. Automatisez sans écrire une ligne de code.","Rainbow combine agents IA et automatisations dans un même espace. L'IA traite le volume, les règles filtrent, et l'humain garde la main."];
+      if(descEl) descEl.textContent=descs[si];
     });
   });
 })();
