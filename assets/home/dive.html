@@ -375,8 +375,9 @@ img{max-width:100%;display:block}
 .msec-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
 .msec-inner.rev .msec-txt{order:2}
 .msec-inner.rev .msec-vis{order:1}
-.msec-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;border-radius:99px;padding:6px 12px 6px 8px;margin-bottom:18px}
-.msec-tag img{width:18px;height:18px;object-fit:contain}
+.msec-tag{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);border-radius:12px;padding:8px 14px 8px 8px;margin-bottom:18px;background:rgba(255,255,255,.85);border:1px solid rgba(0,0,0,.08);backdrop-filter:blur(4px)}
+.msec-tag img{width:28px;height:28px;object-fit:contain;border-radius:6px}
+.msec-tag svg{width:28px;height:28px;object-fit:contain}
 .msec-h{font-size:clamp(24px,3vw,36px);font-weight:700;letter-spacing:-.02em;line-height:1.12;margin:0}
 .msec-sub{font-size:15px;color:var(--muted);line-height:1.6;margin:12px 0 0}
 .msec-toggle{display:inline-flex;position:relative;background:#F3F2F7;border:1px solid rgba(20,16,50,.07);border-radius:999px;padding:4px;gap:2px;margin-top:24px}
@@ -482,15 +483,15 @@ img{max-width:100%;display:block}
 @media(max-width:680px){.ulysse-txt-row{grid-template-columns:1fr}}
 
 /* Product CTAs inside section text */
-.msec-product-cta{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font:600 13px var(--ui,system-ui,sans-serif);color:#5b5570;text-decoration:none;border:1px solid rgba(91,85,112,.22);border-radius:10px;padding:7px 14px;background:rgba(255,255,255,.7);transition:color .2s,border-color .2s,background .2s,transform .2s}
-.msec-product-cta:hover{color:#2c2844;border-color:rgba(91,85,112,.4);background:#fff;transform:translateX(2px)}
-.msec-product-cta svg{flex:none;opacity:.7;transition:opacity .2s,transform .2s}
-.msec-product-cta:hover svg{opacity:1;transform:translateX(2px)}
+.msec-product-cta{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font:700 13.5px var(--ui,system-ui,sans-serif);color:#fff;text-decoration:none;border-radius:12px;padding:10px 18px;background:linear-gradient(135deg,#4c46d6,#7c3aed);box-shadow:0 8px 24px -8px rgba(110,100,242,.55);transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s}
+.msec-product-cta:hover{transform:translateY(-2px) translateX(1px);box-shadow:0 14px 32px -8px rgba(110,100,242,.7)}
+.msec-product-cta svg{flex:none;transition:transform .22s cubic-bezier(.2,.8,.2,1)}
+.msec-product-cta:hover svg{transform:translateX(3px)}
 
 /* Soft CTA section before footer */
 .cta-soft{border-radius:26px;background:linear-gradient(135deg,#f5f3fb 0%,#ede8f7 50%,#e8edf8 100%);border:1px solid rgba(130,100,220,.12);padding:clamp(48px,6vw,80px) clamp(28px,5vw,72px);text-align:center}
 .cta-soft-inner{max-width:640px;margin:0 auto}
-.cta-soft-h{font-size:clamp(26px,3.5vw,42px);font-weight:800;letter-spacing:-.025em;line-height:1.1;margin:14px 0 0;color:#15161d}
+.cta-soft-h{font-size:clamp(26px,3.5vw,42px);font-weight:800;letter-spacing:-.025em;line-height:1.1;margin:0 0 0;color:#15161d}
 .cta-soft-sub{font-size:16px;color:#6b6585;line-height:1.55;margin:14px 0 0}
 .cta-soft-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
 @media(max-width:860px){.msec-inner{grid-template-columns:1fr;gap:28px}.msec-inner.rev .msec-txt,.msec-inner.rev .msec-vis{order:0}}
@@ -629,7 +630,7 @@ img{max-width:100%;display:block}
 <!-- OCEAN -->
 <section class="msec" id="msec-ocean"><div class="wrap"><div class="msec-inner">
 <div class="msec-txt">
-<span class="msec-tag" style="background:#1C8FE6"><img src="../img/logo-ocean.png" alt="">Océan</span>
+<span class="msec-tag" style="color:#1C8FE6"><img src="../img/logo-ocean.png" alt="">Océan</span>
 <h3 class="msec-h">Capter la communication <span class="grad-t">externe</span></h3>
 <p class="msec-sub">Toutes vos conversations clients, sur tous les canaux — en entrée comme en sortie, en manuel comme en automatique.</p>
 <div class="msec-toggle" id="tog-ocean">
@@ -658,7 +659,7 @@ img{max-width:100%;display:block}
 <section class="msec" id="msec-desk"><div class="wrap"><div class="msec-inner">
 <div class="desk-txt-row">
   <div>
-    <span class="msec-tag" style="background:#E0529C"><img src="../img/logo-desk.png" alt="">Desk</span>
+    <span class="msec-tag" style="color:#E0529C"><img src="../img/logo-desk.png" alt="">Desk</span>
     <h3 class="msec-h">Capter la communication <span class="grad-t">interne</span></h3>
     <p class="msec-sub">Messagerie, canaux groupe, tâches — Desk connecte tous vos collaborateurs, humains et agents IA, dans un même espace.</p>
   </div>
@@ -685,7 +686,7 @@ img{max-width:100%;display:block}
 <section class="msec" id="msec-rainbow"><div class="wrap"><div class="msec-inner" id="rainbow-msec-inner">
 <div class="rainbow-txt-row">
   <div>
-    <span class="msec-tag" style="background:linear-gradient(135deg,#676AFE,#BE59D4)"><img src="../img/logo-rainbow.svg" alt="">Rainbow Studio</span>
+    <span class="msec-tag" style="background:linear-gradient(135deg,rgba(103,106,254,.08),rgba(190,89,212,.08));border-color:rgba(103,106,254,.2);color:#7760f0"><img src="../img/logo-rainbow.svg" alt="">Rainbow Studio</span>
     <h3 class="msec-h">Comprendre et <span class="grad-t">agir</span></h3>
     <p class="msec-sub">Créez des agents IA sur mesure et des workflows no-code qui automatisent l'ensemble de vos processus métier.</p>
   </div>
@@ -710,7 +711,7 @@ img{max-width:100%;display:block}
 <section class="msec" id="msec-ulysse"><div class="wrap"><div class="msec-inner" id="ulysse-msec-inner">
 <div class="ulysse-txt-row">
   <div>
-    <span class="msec-tag" style="background:#6840FA"><img src="../img/logo-ulysse.png" alt="">Ulysse</span>
+    <span class="msec-tag" style="color:#6840FA"><img src="../img/logo-ulysse.png" alt="">Ulysse</span>
     <h3 class="msec-h">Piloter <span class="grad-t">en langage naturel</span></h3>
     <p class="msec-sub">Un copilote branché à toute la plateforme — il comprend vos données, suggère les bonnes actions, et les exécute d'un seul message.</p>
   </div>
@@ -1486,7 +1487,6 @@ document.querySelectorAll('.card').forEach(c=>io.observe(c));
 <section class="wrap" style="padding-bottom:96px">
   <div class="cta-soft">
     <div class="cta-soft-inner">
-      <span class="eyebrow"><i></i>Notre objectif</span>
       <h2 class="cta-soft-h">Que la communication devienne un levier<br>de performance opérationnelle.</h2>
       <p class="cta-soft-sub">Rejoignez les équipes qui font confiance à Sairen pour piloter l'ensemble de leurs échanges clients.</p>
       <div class="cta-soft-actions">
