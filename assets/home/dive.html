@@ -622,9 +622,9 @@ img{max-width:100%;display:block}
   </div>
 </div></section>
 <!-- HOW IT WORKS — 4 module sections -->
-<section style="padding:40px 0 0;background:#fff"><div class="wrap" style="text-align:center;max-width:660px;margin:0 auto">
+<section style="padding:40px 0 0;background:#fff"><div class="wrap">
 <span class="eyebrow"><i></i>Comment ça marche</span>
-<h2 class="h2" style="margin-top:14px">Une plateforme qui capte, <em>comprend et agit.</em></h2>
+<h2 class="h2" style="margin-top:14px;max-width:620px">Une plateforme qui capte, <em>comprend et agit.</em></h2>
 </div></section>
 
 <!-- OCEAN -->
@@ -905,30 +905,52 @@ var DESCS = {
 
 </script>
 
-<!-- TESTIMONIALS -->
-<section class="sec sec-soft"><div class="wrap">
-  <div class="sec-head">
-    <span class="eyebrow"><i></i>Ils nous font confiance</span>
-    <h2 class="h2">Des résultats concrets, <em>sur le terrain.</em></h2>
-  </div>
-  <div class="tg-grid">
-    <div class="tcard" style="background-image:url('../img/story-blue.jpg')">
-      <div class="kpis"><span><b>−70%</b><small>temps de prise de RDV</small></span><span><b>24/7</b><small>appels qualifiés</small></span></div>
-      <div class="q">« L'accueil téléphonique est fluide 24/7 : chaque appel qualifié, routé et tracé. »</div>
-      <div class="nm">Groupe Hospitalier Ambroise Paré</div><div class="rl">Direction des Opérations · Santé</div>
-    </div>
-    <div class="tcard" style="background-image:url('../img/story-purple.jpg')">
-      <div class="kpis"><span><b>+28%</b><small>upsell</small></span><span><b>−50%</b><small>temps de réponse</small></span></div>
-      <div class="q">« Nos clients ont une réponse immédiate à toute heure, dans le ton de l'établissement. »</div>
-      <div class="nm">Pullman Tour Eiffel</div><div class="rl">Expérience Client · Hôtellerie</div>
-    </div>
-    <div class="tcard" style="background-image:url('../img/story-orange.jpg')">
-      <div class="kpis"><span><b>−60%</b><small>no-show</small></span><span><b>+35%</b><small>RDV confirmés</small></span></div>
-      <div class="q">« Les demandes traitées instantanément sur tous les canaux : moins de no-show, plus de RDV. »</div>
-      <div class="nm">Lazeo</div><div class="rl">Direction Réseau · Médecine esthétique</div>
+<!-- TESTIMONIALS / KPI TICKER -->
+<section class="sec sec-soft" style="overflow:hidden">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow"><i></i>Ils nous font confiance</span>
+      <h2 class="h2">Des résultats concrets, <em>sur le terrain.</em></h2>
     </div>
   </div>
-</div></section>
+  <style>
+  .kpi-track-wrap{position:relative;width:100%;overflow:hidden;margin-top:40px;padding:4px 0}
+  .kpi-track-wrap::before,.kpi-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+  .kpi-track-wrap::before{left:0;background:linear-gradient(90deg,var(--soft),transparent)}
+  .kpi-track-wrap::after{right:0;background:linear-gradient(-90deg,var(--soft),transparent)}
+  .kpi-track{display:flex;gap:16px;width:max-content;animation:kpiScroll 40s linear infinite}
+  .kpi-track:hover{animation-play-state:paused}
+  @keyframes kpiScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .kpi-card{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 22px;box-shadow:0 8px 28px -16px rgba(40,20,90,.18);flex:none;min-width:280px;max-width:320px}
+  .kpi-logo{height:32px;width:80px;object-fit:contain;object-position:left;flex:none;filter:grayscale(.2)}
+  .kpi-divider{width:1px;height:40px;background:var(--line);flex:none}
+  .kpi-stats{display:flex;flex-direction:column;gap:4px}
+  .kpi-stat{display:flex;align-items:baseline;gap:6px}
+  .kpi-stat b{font-size:18px;font-weight:800;color:#15161d;letter-spacing:-.02em}
+  .kpi-stat small{font-size:11px;color:#8a8aa8;font-weight:500}
+  </style>
+  <div class="kpi-track-wrap">
+    <div class="kpi-track" id="kpi-track">
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-lazeo.jpg" alt="Lazeo"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>−60%</b><small>no-show</small></div><div class="kpi-stat"><b>+35%</b><small>RDV confirmés</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-pullman.png" alt="Pullman"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>+28%</b><small>upsell</small></div><div class="kpi-stat"><b>−50%</b><small>temps de réponse</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-sofitel.png" alt="Sofitel"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>94%</b><small>résolution IA</small></div><div class="kpi-stat"><b>24/7</b><small>disponibilité</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-elsan.png" alt="Elsan"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>−70%</b><small>temps prise RDV</small></div><div class="kpi-stat"><b>+40%</b><small>patients satisfaits</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-orange.webp" alt="Orange"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>×3</b><small>volume traité</small></div><div class="kpi-stat"><b>−45%</b><small>coût opérationnel</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-transcash.png" alt="Transcash"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>+52%</b><small>taux conversion</small></div><div class="kpi-stat"><b>−38%</b><small>abandons</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-bestwestern.png" alt="Best Western"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>+22%</b><small>RevPAR</small></div><div class="kpi-stat"><b>4.8★</b><small>satisfaction client</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-vyv.png" alt="VYV"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>−55%</b><small>temps traitement</small></div><div class="kpi-stat"><b>+31%</b><small>adhérents contactés</small></div></div></div>
+      <!-- duplicate for seamless loop -->
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-lazeo.jpg" alt="Lazeo"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>−60%</b><small>no-show</small></div><div class="kpi-stat"><b>+35%</b><small>RDV confirmés</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-pullman.png" alt="Pullman"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>+28%</b><small>upsell</small></div><div class="kpi-stat"><b>−50%</b><small>temps de réponse</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-sofitel.png" alt="Sofitel"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>94%</b><small>résolution IA</small></div><div class="kpi-stat"><b>24/7</b><small>disponibilité</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-elsan.png" alt="Elsan"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>−70%</b><small>temps prise RDV</small></div><div class="kpi-stat"><b>+40%</b><small>patients satisfaits</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-orange.webp" alt="Orange"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>×3</b><small>volume traité</small></div><div class="kpi-stat"><b>−45%</b><small>coût opérationnel</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-transcash.png" alt="Transcash"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>+52%</b><small>taux conversion</small></div><div class="kpi-stat"><b>−38%</b><small>abandons</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-bestwestern.png" alt="Best Western"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>+22%</b><small>RevPAR</small></div><div class="kpi-stat"><b>4.8★</b><small>satisfaction client</small></div></div></div>
+      <div class="kpi-card"><img class="kpi-logo" src="../img/cli-vyv.png" alt="VYV"><div class="kpi-divider"></div><div class="kpi-stats"><div class="kpi-stat"><b>−55%</b><small>temps traitement</small></div><div class="kpi-stat"><b>+31%</b><small>adhérents contactés</small></div></div></div>
+    </div>
+  </div>
+</section>
 
 
 
@@ -1043,7 +1065,7 @@ var DESCS = {
 
 #srn-platform .card.dark .arrow, #srn-platform .card.slate .arrow{border-color:#3a3a48;color:#cfcfda}
 
-#srn-platform .card a.linkrow:hover .arrow{background:var(--rainbow);color:#fff;border-color:transparent;transform:translate(2px,-2px)}
+#srn-platform .card a.linkrow:hover .arrow{background:linear-gradient(135deg,#6B68F4,#8D59EF);color:#fff;border-color:transparent;transform:translate(2px,-2px)}
 
 #srn-platform .linkrow{text-decoration:none;color:inherit;display:contents}
 
@@ -1230,11 +1252,11 @@ var DESCS = {
 </style>
 <div class="wrap">
 
-  <div style="text-align:center">
+  <div>
     <span class="eyebrow">La plateforme</span>
   </div>
-  <h1 class="headline">Une seule plateforme pour<br>déployer l'<span class="grad">IA dans toute votre organisation</span>.</h1>
-  <p class="sub">Multi-modèles, conforme, et pensée pour les structures multi-sites et multi-équipes.</p>
+  <h1 class="headline" style="text-align:left;margin-left:0">Une seule plateforme pour<br>déployer l'<span class="grad">IA dans toute votre organisation</span>.</h1>
+  <p class="sub" style="text-align:left;margin-left:0;max-width:560px">Multi-modèles, conforme, et pensée pour les structures multi-sites et multi-équipes.</p>
 
   <div class="bento">
 
