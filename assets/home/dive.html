@@ -384,7 +384,7 @@ img{max-width:100%;display:block}
 .msec-pill{position:absolute;top:4px;height:calc(100% - 8px);border-radius:999px;background:#fff;box-shadow:0 3px 12px -6px rgba(40,20,90,.25);transition:left .3s cubic-bezier(.2,.8,.2,1),width .3s cubic-bezier(.2,.8,.2,1);pointer-events:none;z-index:0}
 .msec-btn{position:relative;z-index:1;display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-weight:700;font-size:13px;color:var(--muted);background:none;border:0;border-radius:999px;padding:9px 17px;cursor:pointer;transition:color .2s;white-space:nowrap}
 .msec-btn.on{color:var(--ink)}
-.msec-btn-num{width:18px;height:18px;border-radius:6px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff;flex:none;transition:background .3s}
+.msec-btn-num{width:18px;height:18px;border-radius:6px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff;flex:none;background:linear-gradient(135deg,#6B68F4,#8D59EF);transition:background .3s}
 .msec-desc{margin-top:20px;font-size:14.5px;color:var(--ink2);line-height:1.65;min-height:72px}
 .msec-vis-wrap{position:relative;border-radius:20px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:0 36px 80px -48px rgba(40,20,90,.38);min-height:360px}
 .msec-pane{position:absolute;inset:0;opacity:0;transform:translateY(12px) scale(.99);transition:opacity .4s cubic-bezier(.2,.8,.2,1),transform .4s cubic-bezier(.2,.8,.2,1);pointer-events:none;display:flex;flex-direction:column}
@@ -635,9 +635,9 @@ img{max-width:100%;display:block}
 <p class="msec-sub">Toutes vos conversations clients, sur tous les canaux — en entrée comme en sortie, en manuel comme en automatique.</p>
 <div class="msec-toggle" id="tog-ocean">
 <span class="msec-pill" id="pill-ocean"></span>
-<button class="msec-btn on" data-mi="ocean" data-si="0"><span class="msec-btn-num" style="background:#1C8FE6">A</span>Entrantes</button>
-<button class="msec-btn" data-mi="ocean" data-si="1"><span class="msec-btn-num" style="background:#1C8FE6">B</span>Sortantes</button>
-<button class="msec-btn" data-mi="ocean" data-si="2"><span class="msec-btn-num" style="background:#1C8FE6">C</span>Auto / Manuel</button>
+<button class="msec-btn on" data-mi="ocean" data-si="0"><span class="msec-btn-num">A</span>Entrantes</button>
+<button class="msec-btn" data-mi="ocean" data-si="1"><span class="msec-btn-num">B</span>Sortantes</button>
+<button class="msec-btn" data-mi="ocean" data-si="2"><span class="msec-btn-num">C</span>Auto / Manuel</button>
 </div>
 <p class="msec-desc" id="desc-ocean">WhatsApp, e-mail, SMS, Instagram, appel vocal — chaque message reçu arrive dans un flux unique, qualifié et routé automatiquement par l'IA.</p>
     <a class="msec-product-cta" href="#/ocean" target="_top">Découvrir Océan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -666,9 +666,9 @@ img{max-width:100%;display:block}
   <div style="padding-top:8px">
     <div class="msec-toggle" id="tog-desk">
     <span class="msec-pill" id="pill-desk"></span>
-    <button class="msec-btn on" data-mi="desk" data-si="0"><span class="msec-btn-num" style="background:#E0529C">A</span>Tâches</button>
-    <button class="msec-btn" data-mi="desk" data-si="1"><span class="msec-btn-num" style="background:#E0529C">B</span>Messages directs</button>
-    <button class="msec-btn" data-mi="desk" data-si="2"><span class="msec-btn-num" style="background:#E0529C">C</span>Canaux</button>
+    <button class="msec-btn on" data-mi="desk" data-si="0"><span class="msec-btn-num">A</span>Tâches</button>
+    <button class="msec-btn" data-mi="desk" data-si="1"><span class="msec-btn-num">B</span>Messages directs</button>
+    <button class="msec-btn" data-mi="desk" data-si="2"><span class="msec-btn-num">C</span>Canaux</button>
     </div>
     <p class="msec-desc" id="desc-desk">Créez et assignez des tâches à un collègue ou à un agent IA. Chaque tâche est tracée, priorisée et clôturée — automatiquement ou manuellement.</p>
     <a class="msec-product-cta" href="#/desk" target="_top">Découvrir Desk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -693,9 +693,9 @@ img{max-width:100%;display:block}
   <div style="padding-top:8px">
     <div class="msec-toggle" id="tog-rainbow">
     <span class="msec-pill" id="pill-rainbow"></span>
-    <button class="msec-btn on" data-mi="rainbow" data-si="0"><span class="msec-btn-num" style="background:#7C3AED">A</span>Agents IA</button>
-    <button class="msec-btn" data-mi="rainbow" data-si="1"><span class="msec-btn-num" style="background:#7C3AED">B</span>Workflows</button>
-    <button class="msec-btn" data-mi="rainbow" data-si="2"><span class="msec-btn-num" style="background:#7C3AED">C</span>Les deux</button>
+    <button class="msec-btn on" data-mi="rainbow" data-si="0"><span class="msec-btn-num">A</span>Agents IA</button>
+    <button class="msec-btn" data-mi="rainbow" data-si="1"><span class="msec-btn-num">B</span>Workflows</button>
+    <button class="msec-btn" data-mi="rainbow" data-si="2"><span class="msec-btn-num">C</span>Les deux</button>
     </div>
     <p class="msec-desc" id="desc-rainbow">Créez des agents IA qui comprennent votre métier, votre ton et vos données. Chacun a un rôle précis, des outils dédiés, et un modèle de votre choix.</p>
     <a class="msec-product-cta" href="#/rainbow" target="_top">Découvrir Rainbow Studio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -718,9 +718,9 @@ img{max-width:100%;display:block}
   <div style="padding-top:8px">
     <div class="msec-toggle" id="tog-ulysse">
     <span class="msec-pill" id="pill-ulysse"></span>
-    <button class="msec-btn on" data-mi="ulysse" data-si="0"><span class="msec-btn-num" style="background:#6840FA">A</span>Comprendre</button>
-    <button class="msec-btn" data-mi="ulysse" data-si="1"><span class="msec-btn-num" style="background:#6840FA">B</span>Suggérer</button>
-    <button class="msec-btn" data-mi="ulysse" data-si="2"><span class="msec-btn-num" style="background:#6840FA">C</span>Agir</button>
+    <button class="msec-btn on" data-mi="ulysse" data-si="0"><span class="msec-btn-num">A</span>Comprendre</button>
+    <button class="msec-btn" data-mi="ulysse" data-si="1"><span class="msec-btn-num">B</span>Suggérer</button>
+    <button class="msec-btn" data-mi="ulysse" data-si="2"><span class="msec-btn-num">C</span>Agir</button>
     </div>
     <p class="msec-desc" id="desc-ulysse">Ulysse est branché à Océan, Desk et Rainbow. En temps réel, il analyse volumes, tendances, performances des agents et signaux faibles.</p>
     <a class="msec-product-cta" href="#/ulysse" target="_top">Découvrir Ulysse <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
