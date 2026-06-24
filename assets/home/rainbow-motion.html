@@ -33,8 +33,7 @@ body{font-family:var(--ui);color:var(--ink);margin:0;padding:0;background:transp
 /* fixed-design frame that scales to fit (keeps node/edge alignment) */
 .scaler{position:relative}
 .frame{width:1040px;height:620px;transform-origin:top left;position:relative;
-  border-radius:22px;overflow:hidden;background:#fff;
-  box-shadow:0 40px 90px -30px rgba(20,10,50,.65), 0 0 0 1px rgba(255,255,255,.06)}
+  border-radius:22px;overflow:hidden;background:#fff}
 .chrome{height:38px;display:flex;align-items:center;gap:7px;padding:0 16px;background:#fbfbfe;border-bottom:1px solid var(--line)}
 .dot{width:11px;height:11px;border-radius:50%}
 .dot:nth-child(1){background:#ff5f57}.dot:nth-child(2){background:#febc2e}.dot:nth-child(3){background:#28c840}
@@ -86,7 +85,7 @@ body{font-family:var(--ui);color:var(--ink);margin:0;padding:0;background:transp
 
 /* ============ CANVAS (scenes B & C) ============ */
 .nodepanel{position:absolute;left:0;top:48px;bottom:0;width:212px;border-right:1px solid var(--line);
-  padding:14px 12px;background:#fcfcff;display:flex;flex-direction:column;gap:9px}
+  padding:14px 12px;background:#fcfcff;display:flex;flex-direction:column;gap:9px;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#e2e0ea transparent}
 .np-title{font:700 9.5px var(--ui);letter-spacing:1.4px;color:#b8bcca;text-transform:uppercase;margin:0 2px}
 .np-search{height:32px;border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;padding:0 11px;color:#aeb4c2;font:500 12px var(--ui);background:#fff}
 .np-tabs{display:flex;flex-wrap:wrap;gap:5px;margin:2px 0 4px}
@@ -201,15 +200,30 @@ html,body{height:100%;overflow:hidden}
           <div class="np-item rv" style="transition-delay:.16s">
             <div class="nic" style="background:linear-gradient(135deg,#22c55e,#10b981)">⚡</div>
             <div class="nt"><b>Message reçu</b><span>déclencheur</span></div></div>
-          <div class="np-item rv" style="transition-delay:.24s">
+          <div class="np-item rv" style="transition-delay:.22s">
+            <div class="nic" style="background:linear-gradient(135deg,#0ea5e9,#6366f1)">📅</div>
+            <div class="nt"><b>Planifier envoi</b><span>délai / date</span></div></div>
+          <div class="np-item rv" style="transition-delay:.28s">
             <div class="nic" style="background:linear-gradient(135deg,#f59e0b,#f43f5e)">⎇</div>
             <div class="nt"><b>Règle · Condition</b><span>si / sinon</span></div></div>
-          <div class="np-item rv" style="transition-delay:.32s">
-            <div class="nic" style="background:#25D366"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.477-.91zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></div>
+          <div class="np-item rv" style="transition-delay:.34s">
+            <div class="nic" style="background:#25D366"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.51 5.26l-.999 3.648 3.477-.91zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></div>
             <div class="nt"><b>Envoyer WhatsApp</b><span>template ou texte</span></div></div>
-          <div class="np-item rv" style="transition-delay:.4s">
+          <div class="np-item rv" style="transition-delay:.40s">
+            <div class="nic" style="background:linear-gradient(135deg,#6366f1,#a855f7)">🤖</div>
+            <div class="nt"><b>Agent IA</b><span>réponse générée</span></div></div>
+          <div class="np-item rv" style="transition-delay:.46s">
             <div class="nic" style="background:var(--g-btn)">⇄</div>
             <div class="nt"><b>Router vers équipe</b><span>SAV, CSM…</span></div></div>
+          <div class="np-item rv" style="transition-delay:.52s">
+            <div class="nic" style="background:linear-gradient(135deg,#0f766e,#10b981)">📊</div>
+            <div class="nt"><b>Mettre à jour CRM</b><span>champ, segment</span></div></div>
+          <div class="np-item rv" style="transition-delay:.58s">
+            <div class="nic" style="background:linear-gradient(135deg,#dc2626,#f97316)">🔔</div>
+            <div class="nt"><b>Notifier équipe</b><span>Slack, e-mail</span></div></div>
+          <div class="np-item rv" style="transition-delay:.64s">
+            <div class="nic" style="background:linear-gradient(135deg,#4f46e5,#0ea5e9)">📎</div>
+            <div class="nt"><b>Appel API</b><span>webhook sortant</span></div></div>
         </aside>
         <div class="canvas">
           <svg class="cv-svg" viewBox="0 0 828 534">
