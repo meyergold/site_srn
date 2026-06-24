@@ -635,17 +635,15 @@ img{max-width:100%;display:block}
 <p class="msec-sub">Messagerie, canaux groupe, tâches — Desk connecte tous vos collaborateurs, humains et agents IA, dans un même espace.</p>
 <div class="msec-toggle" id="tog-desk">
 <span class="msec-pill" id="pill-desk"></span>
-<button class="msec-btn on" data-mi="desk" data-si="0"><span class="msec-btn-num" style="background:#E0529C">A</span>Messagerie</button>
-<button class="msec-btn" data-mi="desk" data-si="1"><span class="msec-btn-num" style="background:#E0529C">B</span>Canaux</button>
-<button class="msec-btn" data-mi="desk" data-si="2"><span class="msec-btn-num" style="background:#E0529C">C</span>Tâches</button>
+<button class="msec-btn on" data-mi="desk" data-si="0"><span class="msec-btn-num" style="background:#E0529C">A</span>Tâches</button>
+<button class="msec-btn" data-mi="desk" data-si="1"><span class="msec-btn-num" style="background:#E0529C">B</span>Messages directs</button>
+<button class="msec-btn" data-mi="desk" data-si="2"><span class="msec-btn-num" style="background:#E0529C">C</span>Canaux</button>
 </div>
 <p class="msec-desc" id="desc-desk">Un fil de discussion partagé entre toutes vos équipes — humains et agents IA — pour coordonner en temps réel sans sortir de la plateforme.</p>
 </div>
 <div class="msec-vis">
-<div class="msec-vis-wrap" id="vis-desk">
-<div class="msec-pane on"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-desk.png" alt=""><b>Desk · messagerie interne</b></div><div class="sc-wrap"><img src="../img/sc_02.png" alt="" class="sc-img"><div class="sc-badge" style="top:8%;left:5%"><span class="dot dot-live" style="background:#E0529C"></span>En train d'écrire…</div><div class="sc-badge" style="top:45%;left:5%"><span class="dot" style="background:#0B9B73"></span>Devis #892 envoyé ✓</div><div class="sc-badge" style="top:75%;left:5%"><span class="dot" style="background:linear-gradient(135deg,#676AFE,#BE59D4)"></span>IA · Ticket escaladé</div></div></div>
-<div class="msec-pane"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-desk.png" alt=""><b>Desk · canaux groupe</b></div><div class="sc-wrap"><img src="../img/sc_02.png" alt="" class="sc-img"><div class="sc-badge" style="top:8%;left:5%"><span class="dot dot-live" style="background:#7C3AED"></span>3 opportunités détectées 🎯</div><div class="sc-badge" style="top:45%;left:5%"><span class="dot" style="background:#E0529C"></span>Relance Sofitel envoyée</div><div class="sc-badge" style="top:75%;left:5%"><span class="dot" style="background:#0B9B73"></span>Devis #902 signé · 12 400 €</div></div></div>
-<div class="msec-pane"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-desk.png" alt=""><b>Desk · tâches IA &amp; humain</b></div><div class="sc-wrap"><img src="../img/sc_03.png" alt="" class="sc-img"><div class="sc-badge" style="top:8%;left:5%"><span class="dot dot-live" style="background:linear-gradient(135deg,#676AFE,#BE59D4)"></span>Relance no-shows · 14 contacts</div><div class="sc-badge" style="top:45%;left:5%"><span class="dot" style="background:#E8943A"></span>Rappel Mme Dubois · Urgent</div><div class="sc-badge" style="top:75%;left:5%"><span class="dot" style="background:#0B9B73"></span>Valider devis #892 · Fait ✓</div></div></div>
+<div class="msec-vis-wrap" id="vis-desk" style="min-height:0;border:none;box-shadow:none;background:transparent;padding:0;overflow:hidden;border-radius:20px">
+<iframe id="desk-iframe" src="desk-motion.html" title="Desk — Tâches, Messages directs, Canaux" loading="lazy" style="width:100%;aspect-ratio:1040/620;border:0;display:block;" scrolling="no"></iframe>
 </div>
 </div></div>
 </div></div></section>
@@ -711,9 +709,9 @@ var DESCS = {
     "Chaque conversation peut être traitée par un agent IA, une règle silencieuse, ou votre équipe. Vous gardez la main à tout moment."
   ],
   desk: [
+    "Créez et assignez des tâches à un collègue ou à un agent IA. Chaque tâche est tracée, priorisée et clôturée — automatiquement ou manuellement.",
     "Un fil de discussion partagé entre toutes vos équipes — humains et agents IA — pour coordonner en temps réel sans sortir de la plateforme.",
-    "Organisez vos équipes par canal ou par projet. Chaque espace concentre les conversations, tâches et fichiers liés.",
-    "Créez et assignez des tâches à un collègue ou à un agent IA. Chaque tâche est tracée, priorisée et clôturée — automatiquement ou manuellement."
+    "Organisez vos équipes par canal ou par projet. Chaque espace concentre les conversations, tâches et fichiers liés."
   ],
   rainbow: [
     "Créez des agents IA qui comprennent votre métier, votre ton et vos données. Chacun a un rôle précis, des outils dédiés, et un modèle de votre choix.",
@@ -750,10 +748,18 @@ var DESCS = {
     tog.querySelectorAll('.msec-btn').forEach(function(b){b.classList.toggle('on',+b.dataset.si===si);});
     movePill(btn);
     if(descEl) descEl.textContent=DESCS[mi][si];
-    // ocean uses slide rail instead of pane switching
+    // ocean uses slide rail
     if(mi==='ocean'){
       var rail=document.getElementById('ocean-rail');
       if(rail) rail.style.transform='translateX('+(-si*33.3333)+'%)';
+      return;
+    }
+    // desk uses animated iframe
+    if(mi==='desk'){
+      var frm=document.getElementById('desk-iframe');
+      if(frm&&frm.contentWindow&&frm.contentWindow.DeskMotion){
+        frm.contentWindow.DeskMotion.goTo(si+1);
+      }
       return;
     }
     var panes=vis.querySelectorAll('.msec-pane');
@@ -763,6 +769,33 @@ var DESCS = {
     });
   });
 });
+// Wire DeskMotion auto-advance → update site toggle pills
+(function wireDeskMotion(){
+  var frm=document.getElementById('desk-iframe');
+  if(!frm) return;
+  frm.addEventListener('load',function(){
+    var dm=frm.contentWindow&&frm.contentWindow.DeskMotion;
+    if(!dm) return;
+    var tog=document.getElementById('tog-desk');
+    var pill=document.getElementById('pill-desk');
+    var descEl=document.getElementById('desc-desk');
+    dm.subscribe(function(n){
+      var si=n-1; // DeskMotion 1-based → site 0-based
+      if(!tog) return;
+      tog.querySelectorAll('.msec-btn').forEach(function(b){
+        b.classList.toggle('on',+b.dataset.si===si);
+      });
+      var activeBtn=tog.querySelector('.msec-btn.on');
+      if(activeBtn&&pill){
+        var r=activeBtn.getBoundingClientRect(), pr=tog.getBoundingClientRect();
+        pill.style.left=(r.left-pr.left-4+tog.scrollLeft)+'px';
+        pill.style.width=r.width+'px';
+      }
+      var desks=["Créez et assignez des tâches à un collègue ou à un agent IA. Chaque tâche est tracée, priorisée et clôturée — automatiquement ou manuellement.","Un fil de discussion partagé entre toutes vos équipes — humains et agents IA — pour coordonner en temps réel sans sortir de la plateforme.","Organisez vos équipes par canal ou par projet. Chaque espace concentre les conversations, tâches et fichiers liés."];
+      if(descEl) descEl.textContent=desks[si];
+    });
+  });
+})();
 })();
 </script>
 
