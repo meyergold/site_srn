@@ -467,11 +467,28 @@ img{max-width:100%;display:block}
 .msec-pane.on .vi-row:nth-child(3),.msec-pane.on .vi-camp-row:nth-child(3),.msec-pane.on .vi-route-card:nth-child(3),.msec-pane.on .vi-stat:nth-child(3),.msec-pane.on .vi-sug:nth-child(3),.msec-pane.on .vi-action:nth-child(3),.msec-pane.on .vi-wf-node:nth-child(3),.msec-pane.on .bub:nth-child(3),.msec-pane.on .vi-agent-card:nth-child(3),.msec-pane.on .vi-ch-item:nth-child(3),.msec-pane.on .vi-task:nth-child(3){animation-delay:.18s}
 .msec-pane.on .vi-row:nth-child(4),.msec-pane.on .vi-wf-node:nth-child(4),.msec-pane.on .vi-ch-item:nth-child(4),.msec-pane.on .vi-task:nth-child(4){animation-delay:.25s}
 .msec-pane.on .vi-wf-line{opacity:0;animation:hwIn .3s ease .07s forwards}
-/* Desk: layout empilé — texte sur 2 col en haut, motion pleine largeur en bas */
+/* Desk & Rainbow: layout empilé — texte sur 2 col en haut, motion pleine largeur en bas */
 #msec-desk .msec-inner{display:flex;flex-direction:column;gap:28px}
 .desk-txt-row{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 #msec-desk .msec-vis{width:100%}
 @media(max-width:680px){.desk-txt-row{grid-template-columns:1fr}}
+#msec-rainbow .msec-inner{display:flex;flex-direction:column;gap:28px}
+.rainbow-txt-row{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+#msec-rainbow .msec-vis{width:100%}
+@media(max-width:680px){.rainbow-txt-row{grid-template-columns:1fr}}
+
+/* Product CTAs inside section text */
+.msec-product-cta{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font:600 13px var(--ui,system-ui,sans-serif);color:#5b5570;text-decoration:none;border:1px solid rgba(91,85,112,.22);border-radius:10px;padding:7px 14px;background:rgba(255,255,255,.7);transition:color .2s,border-color .2s,background .2s,transform .2s}
+.msec-product-cta:hover{color:#2c2844;border-color:rgba(91,85,112,.4);background:#fff;transform:translateX(2px)}
+.msec-product-cta svg{flex:none;opacity:.7;transition:opacity .2s,transform .2s}
+.msec-product-cta:hover svg{opacity:1;transform:translateX(2px)}
+
+/* Soft CTA section before footer */
+.cta-soft{border-radius:26px;background:linear-gradient(135deg,#f5f3fb 0%,#ede8f7 50%,#e8edf8 100%);border:1px solid rgba(130,100,220,.12);padding:clamp(48px,6vw,80px) clamp(28px,5vw,72px);text-align:center}
+.cta-soft-inner{max-width:640px;margin:0 auto}
+.cta-soft-h{font-size:clamp(26px,3.5vw,42px);font-weight:800;letter-spacing:-.025em;line-height:1.1;margin:14px 0 0;color:#15161d}
+.cta-soft-sub{font-size:16px;color:#6b6585;line-height:1.55;margin:14px 0 0}
+.cta-soft-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
 @media(max-width:860px){.msec-inner{grid-template-columns:1fr;gap:28px}.msec-inner.rev .msec-txt,.msec-inner.rev .msec-vis{order:0}}
 @media(max-width:520px){.msec-btn{padding:7px 12px;font-size:12px}}
 
@@ -618,6 +635,7 @@ img{max-width:100%;display:block}
 <button class="msec-btn" data-mi="ocean" data-si="2"><span class="msec-btn-num" style="background:#1C8FE6">C</span>Auto / Manuel</button>
 </div>
 <p class="msec-desc" id="desc-ocean">WhatsApp, e-mail, SMS, Instagram, appel vocal — chaque message reçu arrive dans un flux unique, qualifié et routé automatiquement par l'IA.</p>
+    <a class="msec-product-cta" href="#/ocean" target="_top">Découvrir Océan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </div>
 <div class="msec-vis">
 <div class="msec-vis-wrap" id="vis-ocean" style="min-height:0;border:none;box-shadow:none;background:transparent">
@@ -648,6 +666,7 @@ img{max-width:100%;display:block}
     <button class="msec-btn" data-mi="desk" data-si="2"><span class="msec-btn-num" style="background:#E0529C">C</span>Canaux</button>
     </div>
     <p class="msec-desc" id="desc-desk">Créez et assignez des tâches à un collègue ou à un agent IA. Chaque tâche est tracée, priorisée et clôturée — automatiquement ou manuellement.</p>
+    <a class="msec-product-cta" href="#/desk" target="_top">Découvrir Desk <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </div>
 <div class="msec-vis">
@@ -659,22 +678,28 @@ img{max-width:100%;display:block}
 </div></div></section>
 
 <!-- RAINBOW -->
-<section class="msec" id="msec-rainbow"><div class="wrap"><div class="msec-inner">
-<div class="msec-txt">
-<span class="msec-tag" style="background:linear-gradient(135deg,#676AFE,#BE59D4)"><img src="../img/logo-rainbow.svg" alt="">Rainbow Studio</span>
-<h3 class="msec-h">Comprendre et <span class="grad-t">agir</span></h3>
-<p class="msec-sub">Créez des agents IA sur mesure et des workflows no-code qui automatisent l'ensemble de vos processus métier.</p>
-<div class="msec-toggle" id="tog-rainbow">
-<span class="msec-pill" id="pill-rainbow"></span>
-<button class="msec-btn on" data-mi="rainbow" data-si="0"><span class="msec-btn-num" style="background:#7C3AED">A</span>Agents IA</button>
-<button class="msec-btn" data-mi="rainbow" data-si="1"><span class="msec-btn-num" style="background:#7C3AED">B</span>Workflows</button>
-<button class="msec-btn" data-mi="rainbow" data-si="2"><span class="msec-btn-num" style="background:#7C3AED">C</span>Les deux</button>
+<section class="msec" id="msec-rainbow"><div class="wrap"><div class="msec-inner" id="rainbow-msec-inner">
+<div class="rainbow-txt-row">
+  <div>
+    <span class="msec-tag" style="background:linear-gradient(135deg,#676AFE,#BE59D4)"><img src="../img/logo-rainbow.svg" alt="">Rainbow Studio</span>
+    <h3 class="msec-h">Comprendre et <span class="grad-t">agir</span></h3>
+    <p class="msec-sub">Créez des agents IA sur mesure et des workflows no-code qui automatisent l'ensemble de vos processus métier.</p>
+  </div>
+  <div style="padding-top:8px">
+    <div class="msec-toggle" id="tog-rainbow">
+    <span class="msec-pill" id="pill-rainbow"></span>
+    <button class="msec-btn on" data-mi="rainbow" data-si="0"><span class="msec-btn-num" style="background:#7C3AED">A</span>Agents IA</button>
+    <button class="msec-btn" data-mi="rainbow" data-si="1"><span class="msec-btn-num" style="background:#7C3AED">B</span>Workflows</button>
+    <button class="msec-btn" data-mi="rainbow" data-si="2"><span class="msec-btn-num" style="background:#7C3AED">C</span>Les deux</button>
+    </div>
+    <p class="msec-desc" id="desc-rainbow">Créez des agents IA qui comprennent votre métier, votre ton et vos données. Chacun a un rôle précis, des outils dédiés, et un modèle de votre choix.</p>
+    <a class="msec-product-cta" href="#/rainbow" target="_top">Découvrir Rainbow Studio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
 </div>
-<p class="msec-desc" id="desc-rainbow">Créez des agents IA qui comprennent votre métier, votre ton et vos données. Chacun a un rôle précis, des outils dédiés, et un modèle de votre choix.</p>
+<div class="msec-vis" style="width:100%">
+<iframe id="rainbow-iframe" src="rainbow-motion.html" style="width:100%;aspect-ratio:1040/620;border:0;display:block;border-radius:16px;overflow:hidden;" scrolling="no"></iframe>
 </div>
-<div class="msec-vis">
-<iframe id="rainbow-iframe" src="rainbow-motion.html" style="width:100%;aspect-ratio:1040/620;border:0;display:block;" scrolling="no"></iframe>
-</div></div>
+</div>
 </div></div></section>
 
 <!-- ULYSSE -->
@@ -690,6 +715,7 @@ img{max-width:100%;display:block}
 <button class="msec-btn" data-mi="ulysse" data-si="2"><span class="msec-btn-num" style="background:#6840FA">C</span>Agir</button>
 </div>
 <p class="msec-desc" id="desc-ulysse">Ulysse est branché à Océan, Desk et Rainbow. En temps réel, il analyse volumes, tendances, performances des agents et signaux faibles.</p>
+    <a class="msec-product-cta" href="#/ulysse" target="_top">Découvrir Ulysse <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
 </div>
 <div class="msec-vis">
 <div class="msec-vis-wrap" id="vis-ulysse">
@@ -731,7 +757,9 @@ var DESCS = {
   var pill = document.getElementById('pill-'+mi);
   var vis = document.getElementById('vis-'+mi);
   var descEl = document.getElementById('desc-'+mi);
-  if(!tog||!pill||!vis) return;
+  if(!tog||!pill) return;
+  // vis may be absent for iframe-backed sections (desk/rainbow)
+  if(!vis && mi!=='desk' && mi!=='rainbow') return;
 
   function movePill(btn){
     var r=btn.getBoundingClientRect(), pr=tog.getBoundingClientRect();
@@ -1361,14 +1389,19 @@ document.querySelectorAll('.card').forEach(c=>io.observe(c));
 
 
 <!-- CTA BAND -->
-<section class="wrap" style="padding-bottom:96px"><div class="cta-band">
-  <div class="cta-img"></div>
-  <div class="cta-pan">
-    <span class="eyebrow" style="color:rgba(255,255,255,.7)"><i></i>Notre objectif</span>
-    <h2>Que la communication devienne un levier de performance opérationnelle.</h2>
-    <a class="btn" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Demander une démo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+<section class="wrap" style="padding-bottom:96px">
+  <div class="cta-soft">
+    <div class="cta-soft-inner">
+      <span class="eyebrow"><i></i>Notre objectif</span>
+      <h2 class="cta-soft-h">Que la communication devienne un levier<br>de performance opérationnelle.</h2>
+      <p class="cta-soft-sub">Rejoignez les équipes qui font confiance à Sairen pour piloter l'ensemble de leurs échanges clients.</p>
+      <div class="cta-soft-actions">
+        <a class="btn btn-dark" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Demander une démo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#/pricing" target="_top">Voir les tarifs</a>
+      </div>
+    </div>
   </div>
-</div></section>
+</section>
 
 <!-- FOOTER -->
 <footer class="foot">
