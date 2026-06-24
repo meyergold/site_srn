@@ -202,6 +202,10 @@ body{margin:0;padding:0;background:transparent;font-family:var(--ui);color:var(-
 .deskwidget{width:100%;gap:0}
 .frame{width:100%;border-radius:0;box-shadow:none}
 html,body{height:100%;overflow:hidden}
+/* restore scene body positions (écrasées par le regex sur body{}) */
+#s1 .body{position:absolute;inset:60px 24px 20px;display:flex;flex-direction:column;gap:9px}
+#s2 .body{position:absolute;inset:64px 24px 22px;display:flex;flex-direction:column}
+#s3 .body{position:absolute;inset:0;display:grid;place-items:center}
 
 </style>
 
