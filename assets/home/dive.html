@@ -53,7 +53,7 @@ img{max-width:100%;display:block}
 .hero .cl-mq-track span{color:#7a7488;text-shadow:0 1px 10px rgba(255,255,255,.6)}
 .hero .cl-mq-track img{opacity:.78;mix-blend-mode:multiply}
 .hero h1{font-size:clamp(30px,4.2vw,54px);font-weight:700;letter-spacing:-.03em;line-height:1.05;margin:0;color:#1a1430;text-shadow:0 2px 16px rgba(255,255,255,.75)}
-.hero h1 .g{background:var(--grad);background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gradShift 7s ease-in-out infinite}@keyframes gradShift{0%,100%{background-position:0% center}50%{background-position:100% center}}
+.hero h1 .g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero .sub{font-size:clamp(15px,1.6vw,17px);color:#3b3a47;line-height:1.55;margin:15px auto 0;max-width:500px;font-weight:500;text-shadow:0 2px 14px rgba(255,255,255,.8)}
 .hero .rot{position:relative;display:inline-block;text-align:center;font-weight:700}
 .hero .rot .sz{visibility:hidden}
@@ -65,7 +65,7 @@ img{max-width:100%;display:block}
 .hero-pill{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:#fff;background:rgba(18,16,26,.46);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:7px 8px 7px 16px;margin:0 0 22px;box-shadow:0 16px 38px -20px rgba(0,0,0,.55);transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s}
 .hero-pill:hover{transform:translateY(-2px);background:rgba(18,16,26,.6)}
 .hero-pill .go{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.18);font-size:12px;line-height:1}
-.hw{display:inline-block;opacity:0;transform:translateY(6px);animation:hwBlur .6s cubic-bezier(.2,.8,.2,1) forwards}@keyframes hwBlur{to{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){.hero .rot .w1{opacity:1;animation:none;position:static}.hero .rot .sz,.hero .rot .w2{display:none}.hw{opacity:1;transform:none;animation:none}.hero h1 .g{animation:none}}
+@media(prefers-reduced-motion:reduce){.hero .rot .w1{opacity:1;animation:none;position:static}.hero .rot .sz,.hero .rot .w2{display:none}}
 
 /* LOGOS */
 .logos{padding:18px 0 56px;text-align:center;background:#fff}
@@ -549,7 +549,7 @@ img{max-width:100%;display:block}
   <div class="hero-fade"></div>
   <div class="hero-inner">
     <a class="hero-pill" href="https://www.linkedin.com/posts/angelo-kahloun-b16997229_we-won-out-of-40-finalists-at-the-paris-activity-7449836431969034241-Swc1" target="_blank" rel="noopener">🏆 Sairen remporte le concours Pitch by Deel <span class="go">→</span></a>
-    <h1><span class="hw" style="animation-delay:.05s">La</span> <span class="hw" style="animation-delay:.15s">communication</span><br><span class="g hw" style="animation-delay:.28s">devient une performance.</span></h1>
+    <h1>La communication<br><span class="g">devient une performance.</span></h1>
     <p class="sub">De la première prise de contact au suivi, Sairen capte, comprend et agit sur chaque échange — et transforme vos communications en véritable levier de performance opérationnelle.</p>
     <div class="cta">
       <a class="btn btn-dark" style="padding:11px 24px;font-size:14px" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Demander une démo</a>
