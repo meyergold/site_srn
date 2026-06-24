@@ -10,6 +10,7 @@
   --ink:#0A0A0A;--canvas:#FAFAF7;--mut:#5b6072;
   --grad:linear-gradient(115deg,#676AFE,#9456F7,#BE59D4);
   --font:'Comfortaa','Geist Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --ui:'Geist',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 }
 .integ{font-family:var(--font);color:var(--ink);background:var(--canvas);
   padding:clamp(72px,9vw,128px) 0 clamp(64px,7vw,104px);position:relative;overflow:hidden}
@@ -92,19 +93,9 @@
 /* footer */
 .foot{text-align:center;margin-top:clamp(44px,5vw,68px);position:relative;z-index:3;padding:0 clamp(20px,5vw,72px)}
 .foot .sub{font-size:14.5px;color:var(--mut);margin-bottom:22px}
-.cta{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:10px;font-size:15.5px;font-weight:650;color:#fff;
-  text-decoration:none;padding:16px 30px;border-radius:15px;border:0;
-  background-image:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,0) 52%),linear-gradient(120deg,#676AFE,#9456F7,#BE59D4);
-  background-size:100% 100%,220% 100%;background-position:0 0,0 50%;background-repeat:no-repeat;
-  box-shadow:0 16px 40px -10px rgba(148,86,247,.7),0 4px 14px -4px rgba(190,89,212,.5),inset 0 1px 0 rgba(255,255,255,.45);
-  transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,background-position .7s ease}
-.cta::after{content:"";position:absolute;top:-25%;left:-75%;width:50%;height:150%;
-  background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-18deg);
-  transition:left .65s ease;pointer-events:none}
-.cta:hover::after{left:135%}
-.cta:hover{transform:translateY(-3px) scale(1.025);background-position:0 0,100% 50%;
-  box-shadow:0 24px 62px -10px rgba(148,86,247,.95),0 10px 26px -6px rgba(190,89,212,.78),inset 0 1px 0 rgba(255,255,255,.5)}
-.cta svg{width:18px;height:18px;transition:transform .3s;position:relative;z-index:1}.cta:hover svg{transform:translateX(5px)}
+.cta{display:inline-flex;align-items:center;gap:9px;font-family:var(--ui,var(--font));font-weight:600;font-size:15px;color:#fff;text-decoration:none;border-radius:14px;padding:13px 22px;border:0;cursor:pointer;background:#0b0b0d;box-shadow:0 8px 22px -8px rgba(0,0,0,.5);transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,background .22s}
+.cta:hover{transform:translateY(-2px);background:#1c1c1e;box-shadow:0 16px 36px -10px rgba(0,0,0,.55)}
+.cta svg{width:16px;height:16px}
 
 @media (max-width:680px){
   .stack{transform:rotateX(16deg);gap:14px}
@@ -138,7 +129,7 @@ body{font-family:var(--font);color:var(--ink);background:var(--canvas);overflow-
 .wrap{position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:0 clamp(18px,4vw,48px)}
 
 /* hero */
-.hero{text-align:center;padding:clamp(54px,8vw,104px) 0 clamp(26px,4vw,40px)}
+.hero{text-align:center;padding:clamp(80px,10vw,120px) 0 clamp(26px,4vw,40px)}
 .back{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--mut);
   text-decoration:none;margin-bottom:26px;transition:.25s}
 .back:hover{color:#7a4bd6;transform:translateX(-3px)}
@@ -207,8 +198,8 @@ body{font-family:var(--font);color:var(--ink);background:var(--canvas);overflow-
 .fcard p{font-size:clamp(14px,1.5vw,17px);opacity:.92;max-width:52ch;margin:0 auto 26px;position:relative}
 .fbtns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
 .btn{font:inherit;font-size:15px;font-weight:650;padding:14px 26px;border-radius:13px;text-decoration:none;cursor:pointer;transition:.25s;border:0}
-.btn.solid{background:#fff;color:#7a3fd0}.btn.solid:hover{transform:translateY(-2px)}
-.btn.ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.4)}.btn.ghost:hover{background:rgba(255,255,255,.24)}
+.btn.solid{background:#0b0b0d;color:#fff;box-shadow:0 8px 22px -8px rgba(0,0,0,.5)}.btn.solid:hover{transform:translateY(-2px);background:#1c1c1e;box-shadow:0 16px 36px -10px rgba(0,0,0,.55)}
+.btn.ghost{background:rgba(255,255,255,.7);color:var(--ink);border:1px solid rgba(0,0,0,.12);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}.btn.ghost:hover{transform:translateY(-2px);background:#fff;box-shadow:0 10px 28px -10px rgba(0,0,0,.12)}
 
 @media (max-width:560px){.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px}.logo,.mono{width:46px;height:46px}}
 @media (prefers-reduced-motion:reduce){.card{animation:none}}
@@ -258,7 +249,7 @@ body{font-family:var(--font);color:var(--ink);background:var(--canvas);overflow-
 
 
 <header class="wrap hero">
-  <a class="back" id="srn-back" href="#/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 18l-6-6 6-6"/></svg> Retour à Sairen</a><br>
+  
   <span class="mk-eyebrow">Marketplace</span>
   <h1>Tout votre stack, <em>connecté à Sairen.</em></h1>
   <p>CRM, ERP, téléphonie, messageries, paiement, IA… Branchez vos outils en quelques clics et laissez la donnée circuler dans une seule conversation, un seul parcours client.</p>
