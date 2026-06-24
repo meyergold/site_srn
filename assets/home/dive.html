@@ -476,6 +476,10 @@ img{max-width:100%;display:block}
 .rainbow-txt-row{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 #msec-rainbow .msec-vis{width:100%}
 @media(max-width:680px){.rainbow-txt-row{grid-template-columns:1fr}}
+#msec-ulysse .msec-inner{display:flex;flex-direction:column;gap:28px}
+.ulysse-txt-row{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+#msec-ulysse .msec-vis{width:100%}
+@media(max-width:680px){.ulysse-txt-row{grid-template-columns:1fr}}
 
 /* Product CTAs inside section text */
 .msec-product-cta{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font:600 13px var(--ui,system-ui,sans-serif);color:#5b5570;text-decoration:none;border:1px solid rgba(91,85,112,.22);border-radius:10px;padding:7px 14px;background:rgba(255,255,255,.7);transition:color .2s,border-color .2s,background .2s,transform .2s}
@@ -703,27 +707,27 @@ img{max-width:100%;display:block}
 </div></div></section>
 
 <!-- ULYSSE -->
-<section class="msec" id="msec-ulysse"><div class="wrap"><div class="msec-inner rev">
-<div class="msec-txt">
-<span class="msec-tag" style="background:#6840FA"><img src="../img/logo-ulysse.png" alt="">Ulysse</span>
-<h3 class="msec-h">Piloter <span class="grad-t">en langage naturel</span></h3>
-<p class="msec-sub">Un copilote branché à toute la plateforme — il comprend vos données, suggère les bonnes actions, et les exécute d'un seul message.</p>
-<div class="msec-toggle" id="tog-ulysse">
-<span class="msec-pill" id="pill-ulysse"></span>
-<button class="msec-btn on" data-mi="ulysse" data-si="0"><span class="msec-btn-num" style="background:#6840FA">A</span>Comprendre</button>
-<button class="msec-btn" data-mi="ulysse" data-si="1"><span class="msec-btn-num" style="background:#6840FA">B</span>Suggérer</button>
-<button class="msec-btn" data-mi="ulysse" data-si="2"><span class="msec-btn-num" style="background:#6840FA">C</span>Agir</button>
-</div>
-<p class="msec-desc" id="desc-ulysse">Ulysse est branché à Océan, Desk et Rainbow. En temps réel, il analyse volumes, tendances, performances des agents et signaux faibles.</p>
+<section class="msec" id="msec-ulysse"><div class="wrap"><div class="msec-inner" id="ulysse-msec-inner">
+<div class="ulysse-txt-row">
+  <div>
+    <span class="msec-tag" style="background:#6840FA"><img src="../img/logo-ulysse.png" alt="">Ulysse</span>
+    <h3 class="msec-h">Piloter <span class="grad-t">en langage naturel</span></h3>
+    <p class="msec-sub">Un copilote branché à toute la plateforme — il comprend vos données, suggère les bonnes actions, et les exécute d'un seul message.</p>
+  </div>
+  <div style="padding-top:8px">
+    <div class="msec-toggle" id="tog-ulysse">
+    <span class="msec-pill" id="pill-ulysse"></span>
+    <button class="msec-btn on" data-mi="ulysse" data-si="0"><span class="msec-btn-num" style="background:#6840FA">A</span>Comprendre</button>
+    <button class="msec-btn" data-mi="ulysse" data-si="1"><span class="msec-btn-num" style="background:#6840FA">B</span>Suggérer</button>
+    <button class="msec-btn" data-mi="ulysse" data-si="2"><span class="msec-btn-num" style="background:#6840FA">C</span>Agir</button>
+    </div>
+    <p class="msec-desc" id="desc-ulysse">Ulysse est branché à Océan, Desk et Rainbow. En temps réel, il analyse volumes, tendances, performances des agents et signaux faibles.</p>
     <a class="msec-product-cta" href="#/ulysse" target="_top">Découvrir Ulysse <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
 </div>
-<div class="msec-vis">
-<div class="msec-vis-wrap" id="vis-ulysse">
-<div class="msec-pane on"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ulysse.png" alt=""><b>Ulysse · analyse</b></div><div class="sc-wrap"><img src="../img/sc_07.png" alt="" class="sc-img"><div class="sc-badge" style="top:8%;left:5%"><span class="dot dot-live" style="background:linear-gradient(135deg,#676AFE,#BE59D4)"></span>94% résolution IA</div><div class="sc-badge" style="top:42%;left:5%"><span class="dot" style="background:#1C8FE6"></span>238 conversations ce mois</div><div class="sc-badge" style="top:72%;left:5%"><span class="dot" style="background:#E8943A"></span>No-shows +22% · Signal détecté</div></div></div>
-<div class="msec-pane"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ulysse.png" alt=""><b>Ulysse · suggestions</b></div><div class="sc-wrap"><img src="../img/sc_07.png" alt="" class="sc-img"><div class="sc-badge" style="top:8%;left:5%"><span class="dot dot-live" style="background:#6840FA"></span>3 actions prioritaires</div><div class="sc-badge" style="top:42%;left:5%"><span class="dot" style="background:#25D366"></span>Relancer 38 paniers · WhatsApp</div><div class="sc-badge" style="top:72%;left:5%"><span class="dot" style="background:#1C8FE6"></span>Rapport hebdo · À planifier</div></div></div>
-<div class="msec-pane"><div class="vbar"><span class="d"></span><span class="d"></span><span class="d"></span><img src="../img/logo-ulysse.png" alt=""><b>Ulysse · actions</b></div><div class="sc-wrap"><img src="../img/sc_07.png" alt="" class="sc-img"><div class="sc-badge" style="top:8%;left:5%"><span class="dot dot-live" style="background:linear-gradient(135deg,#676AFE,#BE59D4)"></span>3 actions lancées</div><div class="sc-badge" style="top:42%;left:5%"><span class="dot" style="background:#25D366"></span>Campagne WhatsApp · 38 contacts</div><div class="sc-badge" style="top:72%;left:5%"><span class="dot" style="background:#0B9B73"></span>Segment «à risque» mis à jour ✓</div></div></div>
+<div class="msec-vis" style="width:100%">
+<iframe id="ulysse-iframe" src="ulysse-motion.html" style="width:100%;aspect-ratio:1040/620;border:0;display:block;border-radius:16px;overflow:hidden;" scrolling="no"></iframe>
 </div>
-</div></div>
 </div></div></section>
 
 
@@ -759,7 +763,7 @@ var DESCS = {
   var descEl = document.getElementById('desc-'+mi);
   if(!tog||!pill) return;
   // vis may be absent for iframe-backed sections (desk/rainbow)
-  if(!vis && mi!=='desk' && mi!=='rainbow') return;
+  if(!vis && mi!=='desk' && mi!=='rainbow' && mi!=='ulysse') return;
 
   function movePill(btn){
     var r=btn.getBoundingClientRect(), pr=tog.getBoundingClientRect();
@@ -799,6 +803,14 @@ var DESCS = {
       }
       return;
     }
+    // ulysse uses animated iframe
+    if(mi==='ulysse'){
+      var frm=document.getElementById('ulysse-iframe');
+      if(frm&&frm.contentWindow&&frm.contentWindow.UlysseMotion){
+        frm.contentWindow.UlysseMotion.goTo(si+1);
+      }
+      return;
+    }
     var panes=vis.querySelectorAll('.msec-pane');
     panes.forEach(function(p,i){
       if(i===si){p.classList.add('on');p.style.position='relative';}
@@ -830,6 +842,33 @@ var DESCS = {
       }
       var desks=["Créez et assignez des tâches à un collègue ou à un agent IA. Chaque tâche est tracée, priorisée et clôturée — automatiquement ou manuellement.","Un fil de discussion partagé entre toutes vos équipes — humains et agents IA — pour coordonner en temps réel sans sortir de la plateforme.","Organisez vos équipes par canal ou par projet. Chaque espace concentre les conversations, tâches et fichiers liés."];
       if(descEl) descEl.textContent=desks[si];
+    });
+  });
+})();
+// Wire UlysseMotion auto-advance → update site toggle pills
+(function wireUlysseMotion(){
+  var frm=document.getElementById('ulysse-iframe');
+  if(!frm) return;
+  frm.addEventListener('load',function(){
+    var um=frm.contentWindow&&frm.contentWindow.UlysseMotion;
+    if(!um) return;
+    var tog=document.getElementById('tog-ulysse');
+    var pill=document.getElementById('pill-ulysse');
+    var descEl=document.getElementById('desc-ulysse');
+    um.subscribe(function(n){
+      var si=n-1;
+      if(!tog) return;
+      tog.querySelectorAll('.msec-btn').forEach(function(b){
+        b.classList.toggle('on',+b.dataset.si===si);
+      });
+      var activeBtn=tog.querySelector('.msec-btn.on');
+      if(activeBtn&&pill){
+        var r=activeBtn.getBoundingClientRect(), pr=tog.getBoundingClientRect();
+        pill.style.left=(r.left-pr.left-4+tog.scrollLeft)+'px';
+        pill.style.width=r.width+'px';
+      }
+      var descs=["Ulysse est branché à Océan, Desk et Rainbow. En temps réel, il analyse volumes, tendances, performances des agents et signaux faibles.","Ulysse détecte les anomalies et vous soumet des actions prioritaires : relances, ajustements d'agents, alertes équipe.","D'un seul message, Ulysse lance des campagnes, reconfigure un agent ou génère un rapport — sans quitter la plateforme."];
+      if(descEl) descEl.textContent=descs[si];
     });
   });
 })();
@@ -1050,6 +1089,8 @@ var DESCS = {
 
 #srn-platform .badge .bl{font-size:9.5px;color:#8d8d99;text-align:center;letter-spacing:.03em}
 
+#srn-platform .badge svg{flex:none}
+
 
 #srn-platform /* ---------- mock: rôles ---------- */
 .roles{width:100%;max-width:430px;background:#15151d;border:1px solid #2c2c38;border-radius:13px;overflow:hidden;margin-top:8px;font-size:11px}
@@ -1241,10 +1282,63 @@ var DESCS = {
       </a>
       <div class="stage">
         <div class="badges">
-          <div class="badge"><span class="bk">HDS</span><span class="bl">Données de santé</span></div>
-          <div class="badge"><span class="bk">RGPD</span><span class="bl">Conformité UE</span></div>
-          <div class="badge"><span class="bk">FR</span><span class="bl">Hébergement Scaleway</span></div>
-          <div class="badge"><span class="bk">ISO</span><span class="bl">27001</span></div>
+          <div class="badge">
+            <!-- HDS — Hébergeur de Données de Santé -->
+            <svg viewBox="0 0 48 48" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="22" stroke="#7C5BF2" stroke-width="1.5" fill="#1a1a28"/>
+              <text x="24" y="20" font-family="Comfortaa,sans-serif" font-weight="700" font-size="10" fill="url(#gh)" text-anchor="middle">HDS</text>
+              <path d="M17 26 Q24 33 31 26 Q24 22 17 26Z" fill="#7C5BF2" opacity=".8"/>
+              <defs><linearGradient id="gh" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6B68F4"/><stop offset="1" stop-color="#AB5DD4"/></linearGradient></defs>
+            </svg>
+            <span class="bl">Données de santé</span>
+          </div>
+          <div class="badge">
+            <!-- GDPR / RGPD -->
+            <svg viewBox="0 0 48 48" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="22" stroke="#7C5BF2" stroke-width="1.5" fill="#1a1a28"/>
+              <!-- EU stars ring -->
+              <g fill="#AB5DD4" opacity=".9">
+                <circle cx="24" cy="5.5" r="1.4"/>
+                <circle cx="32.5" cy="8" r="1.4"/>
+                <circle cx="38.5" cy="15.5" r="1.4"/>
+                <circle cx="40" cy="24" r="1.4"/>
+                <circle cx="38.5" cy="32.5" r="1.4"/>
+                <circle cx="32.5" cy="39" r="1.4"/>
+                <circle cx="24" cy="41.5" r="1.4"/>
+                <circle cx="15.5" cy="39" r="1.4"/>
+                <circle cx="9.5" cy="32.5" r="1.4"/>
+                <circle cx="8" cy="24" r="1.4"/>
+                <circle cx="9.5" cy="15.5" r="1.4"/>
+                <circle cx="15.5" cy="8" r="1.4"/>
+              </g>
+              <text x="24" y="26.5" font-family="Comfortaa,sans-serif" font-weight="700" font-size="9.5" fill="url(#gg)" text-anchor="middle">RGPD</text>
+              <defs><linearGradient id="gg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6B68F4"/><stop offset="1" stop-color="#AB5DD4"/></linearGradient></defs>
+            </svg>
+            <span class="bl">Conformité UE</span>
+          </div>
+          <div class="badge">
+            <!-- Scaleway FR hosting -->
+            <svg viewBox="0 0 48 48" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="22" stroke="#7C5BF2" stroke-width="1.5" fill="#1a1a28"/>
+              <!-- location pin -->
+              <path d="M24 11c-4.4 0-8 3.6-8 8 0 5.5 8 18 8 18s8-12.5 8-18c0-4.4-3.6-8-8-8z" fill="#7C5BF2" opacity=".7"/>
+              <circle cx="24" cy="19" r="3" fill="#fff" opacity=".9"/>
+              <text x="24" y="39" font-family="Inter,sans-serif" font-weight="700" font-size="7" fill="#9090b0" text-anchor="middle">Scaleway</text>
+            </svg>
+            <span class="bl">Hébergement FR</span>
+          </div>
+          <div class="badge">
+            <!-- ISO 27001 -->
+            <svg viewBox="0 0 48 48" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="24" cy="24" r="22" stroke="#7C5BF2" stroke-width="1.5" fill="#1a1a28"/>
+              <!-- gear outline -->
+              <path d="M24 14a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 3a7 7 0 1 1 0 14 7 7 0 0 1 0-14z" fill="#7C5BF2" opacity=".35"/>
+              <text x="24" y="22" font-family="Comfortaa,sans-serif" font-weight="700" font-size="7.5" fill="url(#gi)" text-anchor="middle">ISO</text>
+              <text x="24" y="30" font-family="Inter,sans-serif" font-weight="700" font-size="6.5" fill="#9090b0" text-anchor="middle">27001</text>
+              <defs><linearGradient id="gi" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6B68F4"/><stop offset="1" stop-color="#AB5DD4"/></linearGradient></defs>
+            </svg>
+            <span class="bl">27001</span>
+          </div>
         </div>
       </div>
     </div>
