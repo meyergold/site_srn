@@ -1087,8 +1087,8 @@ var DESCS = {
 #srn-platform .mrow{display:flex;align-items:center;gap:8px;padding:6px 7px;border-radius:8px;margin-bottom:2px;cursor:pointer;transition:background .15s}
 #srn-platform .mrow:hover{background:#f7f5ff}
 #srn-platform .mrow.on{background:#f3f0ff}
-#srn-platform .dot{width:16px;height:16px;border-radius:5px;flex:none;display:grid;place-items:center;font-size:9px;color:#fff;font-weight:700;overflow:hidden}
-#srn-platform .dot img{width:100%;height:100%;object-fit:contain}
+#srn-platform .dot{width:18px;height:18px;border-radius:5px;flex:none;display:grid;place-items:center;font-size:9px;color:#fff;font-weight:700;overflow:hidden}
+#srn-platform .dot img{width:100%;height:100%;object-fit:contain;display:block}
 #srn-platform .mrow .nm{font-weight:500;font-size:11.5px}
 #srn-platform .mrow .tag{margin-left:auto;font-size:9px;color:#9a9aa6;border:1px solid var(--line);border-radius:20px;padding:1px 6px;white-space:nowrap}
 /* right panel */
@@ -1528,18 +1528,16 @@ var DESCS = {
   </div>
 </div>
 <script>
+// Global navigation helper — used by onclick attrs and card click handlers
+window.srnNav=function(page){
+  try{parent.postMessage({srnNav:page},'*');}catch(e){}
+  try{if(top===window){location.hash='/'+page;}}catch(e){}
+};
 (function(){
 const io=new IntersectionObserver((es)=>{
   es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);io.unobserve(e.target)}});
 },{threshold:.18});
 document.querySelectorAll('.card').forEach(c=>io.observe(c));
-
-// Navigation helper – works whether inside iframe or top-level
-function srnNav(page){
-  try{parent.postMessage({srnNav:page},'*');}catch(e){}
-  // fallback: if top IS this page (direct access), just route locally
-  try{if(top===window){location.hash='/'+page;}}catch(e){}
-}
 
 // Multi-modèles interactive model picker
 (function(){
@@ -1578,11 +1576,9 @@ document.querySelectorAll('#srn-platform .card').forEach(function(card){
   var link=card.querySelector('a.linkrow[data-nav]');
   if(!link)return;
   card.addEventListener('click',function(ev){
-    if(ev.target.closest('a'))return; // let native link handle it
-    if(ev.target.closest('#mm-box'))return; // don't nav when interacting with model picker
-    var href=link.getAttribute('href');
-    var target=link.getAttribute('target');
-    var navKey=link.getAttribute('data-nav')||href.replace('#/','');srnNav(navKey);
+    if(ev.target.closest('#mm-box'))return;
+    var navKey=link.getAttribute('data-nav');
+    if(navKey)srnNav(navKey);
   });
 });
 
