@@ -365,10 +365,17 @@ render();
 
 
 <script>
-(function resizeParent(){
-  function send(){try{parent.postMessage({srnH:document.documentElement.scrollHeight},'*');}catch(e){}}
-  send();
-  new ResizeObserver(send).observe(document.body);
+(function(){
+  function sendH(){
+    var h=Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.offsetHeight);
+    try{parent.postMessage({srnH:h},'*');}catch(e){}
+  }
+  sendH();
+  document.addEventListener('DOMContentLoaded',sendH);
+  window.addEventListener('load',sendH);
+  [100,300,600,1200,2500].forEach(function(t){setTimeout(sendH,t);});
+  if(window.ResizeObserver)new ResizeObserver(sendH).observe(document.body);
+  if(window.MutationObserver)new MutationObserver(sendH).observe(document.body,{childList:true,subtree:true,attributes:true,characterData:true});
 })();
 </script>
 </body></html>
