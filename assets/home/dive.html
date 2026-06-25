@@ -98,7 +98,7 @@ img{max-width:100%;display:block}
 .cl-mq-track{display:flex;align-items:center;gap:52px;width:max-content;animation:clmq 38s linear infinite}
 .cl-marquee:hover .cl-mq-track{animation-play-state:paused}
 .cl-mq-track span{flex:none;font-weight:800;font-size:17px;letter-spacing:-.01em;color:#bdb8c8;white-space:nowrap}
-.cl-mq-track img{flex:none;height:23px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.5}
+.cl-mq-track img{flex:none;height:28px;max-width:120px;width:auto;object-fit:contain;filter:grayscale(1) contrast(1.1);opacity:.65}
 @keyframes clmq{to{transform:translateX(-50%)}}
 .show-stage{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:center;gap:0;margin-top:42px}
 .show-desktop{display:block;width:100%;height:auto;border-radius:0 0 4px 4px}
@@ -1266,7 +1266,7 @@ var DESCS = {
 
     <!-- Multi-modèles -->
     <div class="card light c-wide" style="cursor:pointer">
-      <a class="linkrow" href="#/plat-multi-modeles" target="_top">
+      <a class="linkrow" href="javascript:void(0)" data-nav="plat-multi-modeles" onclick="srnNav('plat-multi-modeles')">
         <div>
           <div class="k">Multi-modèles</div>
           <div class="d">Aucun verrou propriétaire. Accédez aux meilleurs LLM du marché depuis une interface unique.</div>
@@ -1342,7 +1342,7 @@ var DESCS = {
 
     <!-- Conformité -->
     <div class="card dark c-narrow" style="cursor:pointer">
-      <a class="linkrow" href="#/plat-conformite" target="_top">
+      <a class="linkrow" href="javascript:void(0)" data-nav="plat-conformite" onclick="srnNav('plat-conformite')">
         <div>
           <div class="k">Conforme par défaut</div>
           <div class="d">Hébergé en France, certifié et opéré dans le respect du cadre santé.</div>
@@ -1414,7 +1414,7 @@ var DESCS = {
 
     <!-- Enterprise-ready -->
     <div class="card slate c-half" style="cursor:pointer">
-      <a class="linkrow" href="#/plat-entreprise" target="_top">
+      <a class="linkrow" href="javascript:void(0)" data-nav="plat-entreprise" onclick="srnNav('plat-entreprise')">
         <div>
           <div class="k">Prête pour l'entreprise</div>
           <div class="d">Gouvernance centralisée : équipes, managers, administrateurs et direction, chacun avec ses droits.</div>
@@ -1434,7 +1434,7 @@ var DESCS = {
 
     <!-- Multi-sites / multi-équipes (signature) -->
     <div class="card cream c-half" style="cursor:pointer">
-      <a class="linkrow" href="#/plat-multi-sites" target="_top">
+      <a class="linkrow" href="javascript:void(0)" data-nav="plat-multi-sites" onclick="srnNav('plat-multi-sites')">
         <div>
           <div class="k">Multi-sites & multi-équipes</div>
           <div class="d">Une vue consolidée du groupe, et chaque entité gère ses propres agents et ses équipes.</div>
@@ -1474,7 +1474,7 @@ var DESCS = {
 
     <!-- Mémoire de tout -->
     <div class="card light c-full" style="min-height:240px;cursor:pointer">
-      <a class="linkrow" href="#/plat-memoire" target="_top">
+      <a class="linkrow" href="javascript:void(0)" data-nav="plat-memoire" onclick="srnNav('plat-memoire')">
         <div>
           <div class="k">Mémoire de tout</div>
           <div class="d">Vos agents se souviennent de chaque échange — quel que soit le canal, l'équipe ou le site. Une continuité parfaite, sans jamais demander deux fois.</div>
@@ -1496,7 +1496,7 @@ var DESCS = {
 
     <!-- Intégrations -->
     <div class="card dark c-full" style="min-height:220px">
-      <a class="linkrow" href="#/integ" target="_top">
+      <a class="linkrow" href="javascript:void(0)" data-nav="integ" onclick="srnNav('integ')">
         <div>
           <div class="k">Intégrations natives</div>
           <div class="d">Connectez vos outils existants : email, voix, WhatsApp, OTA, et vos systèmes métier via API, MCP et A2A.</div>
@@ -1524,6 +1524,13 @@ const io=new IntersectionObserver((es)=>{
   es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);io.unobserve(e.target)}});
 },{threshold:.18});
 document.querySelectorAll('.card').forEach(c=>io.observe(c));
+
+// Navigation helper – works whether inside iframe or top-level
+function srnNav(page){
+  try{parent.postMessage({srnNav:page},'*');}catch(e){}
+  // fallback: if top IS this page (direct access), just route locally
+  try{if(top===window){location.hash='/'+page;}}catch(e){}
+}
 
 // Multi-modèles interactive model picker
 (function(){
@@ -1566,7 +1573,7 @@ document.querySelectorAll('#srn-platform .card').forEach(function(card){
     if(ev.target.closest('#mm-box'))return; // don't nav when interacting with model picker
     var href=link.getAttribute('href');
     var target=link.getAttribute('target');
-    if(target==='_top'){top.location.href=href;}else{location.href=href;}
+    var navKey=link.getAttribute('data-nav')||href.replace('#/','');srnNav(navKey);
   });
 });
 
@@ -1589,6 +1596,226 @@ document.querySelectorAll('#srn-platform .card').forEach(function(card){
     es.forEach(e=>e.isIntersecting?reset():clearInterval(timer));
   },{threshold:.4}).observe(card);
 })();
+})();
+</script>
+</section>
+
+  
+<section id="srn-industries"><style>
+#srn-industries{padding:96px 0 80px;background:#fff}
+#srn-industries .ind-head{text-align:center;max-width:680px;margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+#srn-industries .eyebrow{display:inline-flex;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#7350F5;font-weight:600;margin-bottom:14px}
+#srn-industries h2{font-family:'Comfortaa',sans-serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:#15182B;margin:0 0 14px}
+#srn-industries .ind-sub{font-size:16px;color:#5c5875;line-height:1.55}
+/* Tab pills */
+.ind-tabs{display:flex;justify-content:center;gap:8px;margin:44px 0 48px;flex-wrap:wrap;padding:0 20px}
+.ind-tab{padding:9px 20px;border-radius:100px;border:1.5px solid #e5e2ef;background:#fff;font-weight:600;font-size:14px;cursor:pointer;transition:all .2s;color:#5c5875;font-family:inherit}
+.ind-tab:hover{border-color:#7350F5;color:#7350F5}
+.ind-tab.on{background:linear-gradient(135deg,#676AFE,#9456F7,#BE59D4);color:#fff;border-color:transparent;box-shadow:0 6px 20px -8px rgba(103,106,254,.55)}
+/* Tab panels */
+.ind-panel{display:none;max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+.ind-panel.on{display:block;animation:indFade .3s ease}
+@keyframes indFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+/* Featured case layout */
+.ind-case{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start;margin-bottom:32px}
+@media(max-width:860px){.ind-case{grid-template-columns:1fr;gap:20px}}
+/* Stats banner */
+.ind-stats{display:flex;gap:0;background:linear-gradient(135deg,#1a1628,#2d1f4e);border-radius:16px 16px 0 0;padding:28px 32px;flex-wrap:wrap}
+.ind-stat{flex:1;min-width:120px;text-align:center;padding:0 16px;border-right:1px solid rgba(255,255,255,.1)}
+.ind-stat:last-child{border-right:0}
+.ind-stat b{display:block;font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.03em;background:var(--rainbow);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.ind-stat small{font-size:11.5px;color:rgba(255,255,255,.5);margin-top:5px;display:block;text-transform:uppercase;letter-spacing:.04em}
+/* Quote card */
+.ind-quote-card{background:linear-gradient(135deg,#f7f5ff,#fdf0ff);border:1px solid rgba(124,92,246,.14);border-radius:0 0 16px 16px;padding:28px 32px}
+.ind-quote-card blockquote{font-size:16px;line-height:1.6;color:#22202c;margin:0 0 18px;font-style:italic}
+.ind-quote-by{display:flex;align-items:center;gap:12px}
+.ind-quote-by img{height:32px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.7}
+.ind-quote-by div b{display:block;font-size:13.5px;font-weight:700;color:#15182B}
+.ind-quote-by div span{font-size:12.5px;color:#7a7490}
+/* Video encarts */
+.ind-videos{display:flex;flex-direction:column;gap:14px}
+.ind-video{border-radius:14px;overflow:hidden;background:#0a0820;border:1px solid rgba(255,255,255,.08);position:relative;cursor:pointer;group}
+.ind-video-thumb{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1628,#2d1f4e,#1a2a40);position:relative}
+.ind-video-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.5))}
+.ind-play{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;z-index:1;position:relative;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 24px -8px rgba(0,0,0,.4)}
+.ind-video:hover .ind-play{transform:scale(1.1);box-shadow:0 12px 32px -8px rgba(0,0,0,.5)}
+.ind-play svg{margin-left:3px}
+.ind-video-meta{padding:12px 16px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ind-video-meta .v-title{font-weight:600;font-size:13.5px;color:#15182B}
+.ind-video-meta .v-client{font-size:12px;color:#7a7490}
+.ind-video-meta img{height:20px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.6}
+/* Colored case cards for hotel/retail */
+.ind-case-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:32px}
+@media(max-width:640px){.ind-case-grid{grid-template-columns:1fr}}
+.ind-ccard{border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.ind-ccard-top{padding:28px;flex:1;display:flex;flex-direction:column;gap:14px;min-height:200px}
+.ind-ccard-logo{height:28px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.85}
+.ind-ccard blockquote{font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.9);margin:0;font-style:italic;flex:1}
+.ind-ccard-by{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.65)}
+.ind-ccard-stats{display:flex;gap:0;background:rgba(0,0,0,.2)}
+.ind-ccard-stat{flex:1;padding:14px 16px;text-align:center;border-right:1px solid rgba(255,255,255,.08)}
+.ind-ccard-stat:last-child{border:0}
+.ind-ccard-stat b{display:block;font-size:22px;font-weight:800;color:#fff;line-height:1}
+.ind-ccard-stat small{font-size:10.5px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.04em;margin-top:3px;display:block}
+/* "et d'autres" row */
+.ind-more{text-align:center;padding:12px 0 4px;color:#9090b0;font-size:13.5px}
+.ind-more span{font-weight:600;color:#7350F5}
+</style>
+<div class="ind-head">
+  <span class="eyebrow">Verticales métier</span>
+  <h2>Conçu pour votre secteur</h2>
+  <p class="ind-sub">Des workflows préconfigurés, des intégrations métier et des cas d'usage validés sur le terrain.</p>
+</div>
+<div class="ind-tabs">
+  <button class="ind-tab on" data-ind="sante">🏥 Santé</button>
+  <button class="ind-tab" data-ind="immo">🏢 Immobilier</button>
+  <button class="ind-tab" data-ind="hotel">🏨 Hôtellerie</button>
+  <button class="ind-tab" data-ind="retail">🛍 Retail</button>
+</div>
+
+<!-- SANTÉ -->
+<div class="ind-panel on" data-ind="sante">
+  <div class="ind-case">
+    <div>
+      <div class="ind-stats">
+        <div class="ind-stat"><b>-68%</b><small>Temps de réponse</small></div>
+        <div class="ind-stat"><b>94%</b><small>CSAT patients</small></div>
+        <div class="ind-stat"><b>24/7</b><small>Disponibilité</small></div>
+      </div>
+      <div class="ind-quote-card">
+        <blockquote>« Sairen a transformé notre relation patient. Les demandes de RDV, les résultats, le suivi post-op — tout est traité instantanément sans mobiliser nos soignants. »</blockquote>
+        <div class="ind-quote-by">
+          <img src="../img/logo-elsan-black.png" alt="Elsan">
+          <div><b>Directrice des Opérations</b><span>Groupe Elsan · 120 cliniques</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ind-videos">
+      <div class="ind-video">
+        <div class="ind-video-thumb" style="background:linear-gradient(135deg,#0f2744,#1a3a5c,#0d4c6e)">
+          <div class="ind-play"><svg viewBox="0 0 24 24" fill="#1a1628" width="20" height="20"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="ind-video-meta">
+          <div><div class="v-title">Elsan — Gestion RDV & urgences</div><div class="v-client">Groupe Elsan · 120 cliniques</div></div>
+          <img src="../img/cli-elsan.png" alt="Elsan">
+        </div>
+      </div>
+      <div class="ind-video">
+        <div class="ind-video-thumb" style="background:linear-gradient(135deg,#14213d,#2c3e6e,#1a4060)">
+          <div class="ind-play"><svg viewBox="0 0 24 24" fill="#1a1628" width="20" height="20"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="ind-video-meta">
+          <div><div class="v-title">VYV — Parcours adhérent digitalisé</div><div class="v-client">Groupe VYV · Mutuelle santé</div></div>
+          <img src="../img/cli-vyv.png" alt="VYV">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ind-more">+12 établissements de santé nous font confiance · <span>Elsan, VYV, HEP, Ophtalys, Lazeo…</span></div>
+</div>
+
+<!-- IMMOBILIER -->
+<div class="ind-panel" data-ind="immo">
+  <div class="ind-case">
+    <div>
+      <div class="ind-stats">
+        <div class="ind-stat"><b>+40%</b><small>Leads qualifiés</small></div>
+        <div class="ind-stat"><b>-55%</b><small>Coût de traitement</small></div>
+        <div class="ind-stat"><b>3x</b><small>Vitesse de réponse</small></div>
+      </div>
+      <div class="ind-quote-card">
+        <blockquote>« Sur les demandes de visite et les relances acquéreurs, Sairen gère l'intégralité du flux entrant. Nos agents se concentrent sur ce qui crée vraiment de la valeur. »</blockquote>
+        <div class="ind-quote-by">
+          <div><b>Directeur Commercial</b><span>Réseau national · 200 agences</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ind-videos">
+      <div class="ind-video">
+        <div class="ind-video-thumb" style="background:linear-gradient(135deg,#1c1f2e,#2e3250,#1c2a40)">
+          <div class="ind-play"><svg viewBox="0 0 24 24" fill="#1a1628" width="20" height="20"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <div class="ind-video-meta">
+          <div><div class="v-title">Qualification automatique des leads vendeurs</div><div class="v-client">Réseau national · 200 agences</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ind-more">+8 réseaux immobiliers déployés · <span>Promoteurs, réseaux mandataires, foncières</span></div>
+</div>
+
+<!-- HÔTELLERIE -->
+<div class="ind-panel" data-ind="hotel">
+  <div class="ind-case-grid">
+    <div class="ind-ccard" style="">
+      <div class="ind-ccard-top" style="background:linear-gradient(135deg,#1a1628,#2d1f3e)">
+        <img class="ind-ccard-logo" src="../img/cli-sofitel.png" alt="Sofitel">
+        <blockquote>« Nos concierges IA gèrent les 2/3 des demandes avant-séjour. CSAT en hausse, équipes soulagées. »</blockquote>
+        <div class="ind-ccard-by">Victor Tiboul · Sofitel Paris</div>
+      </div>
+      <div class="ind-ccard-stats">
+        <div class="ind-ccard-stat"><b>+18%</b><small>CSAT</small></div>
+        <div class="ind-ccard-stat"><b>-40%</b><small>Charge équipe</small></div>
+        <div class="ind-ccard-stat"><b>24/7</b><small>Dispo</small></div>
+      </div>
+    </div>
+    <div class="ind-ccard">
+      <div class="ind-ccard-top" style="background:linear-gradient(135deg,#1a2a1a,#1e3d2e)">
+        <img class="ind-ccard-logo" src="../img/cli-bestwestern.png" alt="Best Western">
+        <blockquote>« Le taux de réponse sous 2 min est passé de 20% à 94%. Nos avis Google s'en ressentent directement. »</blockquote>
+        <div class="ind-ccard-by">Responsable Qualité · Best Western</div>
+      </div>
+      <div class="ind-ccard-stats">
+        <div class="ind-ccard-stat"><b>94%</b><small>Réponse &lt;2min</small></div>
+        <div class="ind-ccard-stat"><b>+0.4</b><small>Note Google</small></div>
+        <div class="ind-ccard-stat"><b>×3</b><small>Volume géré</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="ind-more">+15 hôtels et groupes hôteliers · <span>Sofitel, Best Western, Pullman, indépendants 4★</span></div>
+</div>
+
+<!-- RETAIL -->
+<div class="ind-panel" data-ind="retail">
+  <div class="ind-case-grid">
+    <div class="ind-ccard">
+      <div class="ind-ccard-top" style="background:linear-gradient(135deg,#2a1a28,#3d1f3a)">
+        <img class="ind-ccard-logo" src="../img/logo-smcp.png" alt="SMCP">
+        <blockquote>« Rares sont les produits aussi aboutis aussi vite. Sairen gère notre relation client multimarque avec une précision remarquable. »</blockquote>
+        <div class="ind-ccard-by">Sivan Chetrit · Groupe SMCP</div>
+      </div>
+      <div class="ind-ccard-stats">
+        <div class="ind-ccard-stat"><b>4×</b><small>Marques gérées</small></div>
+        <div class="ind-ccard-stat"><b>-30%</b><small>Coût contacts</small></div>
+        <div class="ind-ccard-stat"><b>98%</b><small>Résolution J0</small></div>
+      </div>
+    </div>
+    <div class="ind-ccard">
+      <div class="ind-ccard-top" style="background:linear-gradient(135deg,#1a2028,#1f2d40)">
+        <blockquote>« Sur le Black Friday, Sairen a absorbé ×8 le volume habituel. Zéro dégradation de service, équipe inchangée. »</blockquote>
+        <div class="ind-ccard-by">Head of CX · Enseigne mode premium</div>
+      </div>
+      <div class="ind-ccard-stats">
+        <div class="ind-ccard-stat"><b>×8</b><small>Pic absorbé</small></div>
+        <div class="ind-ccard-stat"><b>0</b><small>Recrutement extra</small></div>
+        <div class="ind-ccard-stat"><b>99%</b><small>Uptime</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="ind-more">+20 enseignes retail et e-commerce · <span>Mode, beauté, électronique, marketplace</span></div>
+</div>
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('#srn-industries .ind-tab');
+  var panels=document.querySelectorAll('#srn-industries .ind-panel');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click',function(){
+      var key=tab.dataset.ind;
+      tabs.forEach(function(t){t.classList.toggle('on',t.dataset.ind===key);});
+      panels.forEach(function(p){p.classList.toggle('on',p.dataset.ind===key);});
+    });
+  });
 })();
 </script>
 </section>
