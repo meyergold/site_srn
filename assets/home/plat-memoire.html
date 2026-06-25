@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mémoire de tout — Sairen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1a22;--ink-soft:#5a5a66;--line:#eceaf0;--bg:#fbfafc;
+  --card-light:#f4f3f6;--card-cream:#f2efe9;--card-dark:#1b1b24;--card-slate:#23232e;
+  --g1:#ff7a59;--g2:#ff4f8b;--g3:#a259ff;--g4:#5b8cff;--g5:#22c1c3;
+  --rainbow:linear-gradient(90deg,var(--g1),var(--g2),var(--g3),var(--g4),var(--g5));
+  --radius:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;height:auto}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);
+  -webkit-font-smoothing:antialiased;line-height:1.5;height:auto}
+a{color:inherit;text-decoration:none}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* topbar */
+.topbar{padding:18px 24px;max-width:1120px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;
+  color:var(--ink-soft);transition:color .2s}
+.back-link:hover{color:var(--ink)}
+.back-link svg{flex:none}
+
+/* hero */
+.hero{padding:48px 24px 56px;max-width:1120px;margin:0 auto}
+.eyebrow{display:inline-block;font-family:'Comfortaa',sans-serif;font-weight:600;font-size:13px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
+.hero h1{font-family:'Comfortaa',sans-serif;font-weight:700;
+  font-size:clamp(26px,4.2vw,48px);line-height:1.1;letter-spacing:-.015em;
+  max-width:820px;margin-bottom:16px}
+.hero h1 .grad{background:var(--rainbow);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;background-size:220% auto;animation:flow 6s linear infinite}
+@keyframes flow{to{background-position:220% center}}
+.hero .sub{font-size:17px;color:var(--ink-soft);max-width:640px;line-height:1.6}
+
+/* sections */
+.section{padding:56px 24px;max-width:1120px;margin:0 auto}
+.section + .section{padding-top:0}
+.section-title{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:22px;
+  margin-bottom:8px;letter-spacing:-.01em}
+.section-sub{color:var(--ink-soft);font-size:15px;margin-bottom:32px;max-width:620px;line-height:1.55}
+
+/* grid */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:760px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
+
+/* card */
+.card{border-radius:var(--radius);padding:28px 26px;border:1px solid var(--line);
+  opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease,box-shadow .2s}
+.card.in{opacity:1;transform:none}
+.card:hover{box-shadow:0 16px 44px -22px rgba(40,30,70,.24)}
+.card.light{background:var(--card-light)}
+.card.cream{background:var(--card-cream)}
+.card.dark{background:var(--card-dark);border-color:#2a2a36;color:#fff}
+.card.slate{background:var(--card-slate);border-color:#30303d;color:#fff}
+.card.white{background:#fff}
+.card .ck{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:17px;margin-bottom:8px}
+.card .cd{font-size:14px;color:var(--ink-soft);line-height:1.55}
+.card.dark .cd,.card.slate .cd{color:#a7a7b4}
+
+/* badge / pill */
+.pill-grad{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;
+  text-transform:uppercase;padding:4px 12px;border-radius:999px;
+  background:var(--rainbow);color:#fff}
+.pill-light{display:inline-block;font-size:11px;font-weight:600;padding:3px 11px;
+  border-radius:999px;background:#f0eeff;color:var(--g3)}
+
+/* highlight block */
+.hl{border-left:3px solid var(--g3);padding:16px 20px;background:#f8f6ff;border-radius:0 14px 14px 0;margin:24px 0}
+.hl p{font-size:14.5px;color:#4a3a6a;line-height:1.6}
+
+/* separator */
+.sep{height:1px;background:var(--line);max-width:1120px;margin:0 auto}
+
+/* cta footer */
+.page-cta{text-align:center;padding:64px 24px 80px}
+.page-cta p{font-size:15px;color:var(--ink-soft);margin-bottom:18px}
+.btn-back{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;
+  color:var(--ink-soft);border:1px solid var(--line);border-radius:30px;padding:10px 20px;
+  transition:.2s;background:var(--bg)}
+.btn-back:hover{background:#fff;box-shadow:0 8px 22px -10px rgba(0,0,0,.12);transform:translateY(-1px)}
+.btn-cta{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;
+  color:#fff;background:#0b0b0d;border-radius:30px;padding:11px 22px;
+  transition:.2s;box-shadow:0 8px 22px -8px rgba(0,0,0,.4)}
+.btn-cta:hover{background:#1c1c1e;transform:translateY(-2px);box-shadow:0 14px 34px -10px rgba(0,0,0,.5)}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="topbar">
+  <a class="back-link" href="#/" target="_top">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Retour à Sairen
+  </a>
+</div>
+</nav>
+
+
+<section class="hero">
+  <span class="eyebrow">La plateforme</span>
+  <h1>Vos agents se souviennent<br><span class="grad">de chaque échange, sur tous les canaux.</span></h1>
+  <p class="sub">Une continuité parfaite, sans jamais demander deux fois la même chose. Quel que soit le canal, l'équipe ou le site.</p>
+</section>
+
+<div class="sep"></div>
+
+<section class="section">
+  <h2 class="section-title">La mémoire en action</h2>
+  <p class="section-sub">Chaque interaction est mémorisée, indexée et rendue accessible à tous les agents de votre organisation — en temps réel.</p>
+  <div class="card white" style="opacity:1;transform:none;padding:32px">
+    <div style="display:inline-flex;align-items:center;gap:8px;font-family:'Comfortaa',sans-serif;font-weight:600;font-size:13px;color:var(--ink-soft);background:var(--bg);border:1px solid var(--line);border-radius:30px;padding:7px 16px;margin-bottom:22px">
+      <span style="width:10px;height:10px;border-radius:50%;background:var(--g3);box-shadow:0 0 0 4px rgba(162,89,255,.2)"></span>
+      Mémoire unifiée · active
+    </div>
+    <div style="display:flex;flex-direction:column;gap:11px;position:relative">
+      <div style="position:absolute;left:19px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--line),transparent)"></div>
+      <div style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 16px">
+        <span style="width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#5b8cff,#22c1c3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex:none">✉</span>
+        <div><div style="font-size:13.5px;color:var(--ink)">« RDV scanner déplacé au 12/03 »</div><div style="font-size:11px;color:var(--ink-soft);margin-top:3px">Email · Site Coulommiers · il y a 2 jours</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 16px">
+        <span style="width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#ff7a59,#ff4f8b);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex:none">☎</span>
+        <div><div style="font-size:13.5px;color:var(--ink)">« Préfère être rappelé l'après-midi »</div><div style="font-size:11px;color:var(--ink-soft);margin-top:3px">Appel · équipe Accueil · il y a 5 jours</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 16px">
+        <span style="width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#22c1c3,#37a866);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex:none">✆</span>
+        <div><div style="font-size:13.5px;color:var(--ink)">« Ordonnance reçue, dossier à jour »</div><div style="font-size:11px;color:var(--ink-soft);margin-top:3px">WhatsApp · Site Saint-Mandé · il y a 1 semaine</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;background:linear-gradient(180deg,#fbf7ff,#fff);border:1px solid #ece4fb;border-radius:14px;padding:13px 16px">
+        <span style="width:32px;height:32px;border-radius:10px;background:var(--rainbow);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex:none">✦</span>
+        <div><div style="font-size:13.5px;color:var(--ink);font-weight:500">L'agent rappelle l'historique complet à chaque nouvelle interaction.</div><div style="font-size:11px;color:var(--ink-soft);margin-top:3px">Synthèse · vue groupe · automatique</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<section class="section">
+  <h2 class="section-title">Cross-canal, cross-équipe, cross-site</h2>
+  <p class="section-sub">La mémoire Sairen n'est pas cloisonnée par canal ou par équipe. Elle suit le contact, pas la conversation.</p>
+  <div class="grid3">
+    <div class="card light">
+      <div class="ck">Multi-canal</div>
+      <div class="cd">Un patient vous contacte par email, puis par téléphone, puis sur WhatsApp. L'agent dispose du contexte complet — sans que le contact n'ait à se répéter.</div>
+    </div>
+    <div class="card light">
+      <div class="ck">Multi-équipe</div>
+      <div class="cd">Le secrétariat et les radiologues partagent la même mémoire client. Une information saisie par l'accueil est immédiatement disponible pour le médecin.</div>
+    </div>
+    <div class="card light">
+      <div class="ck">Multi-site</div>
+      <div class="cd">Un patient fidèle à deux établissements du groupe est reconnu partout. Aucune perte de contexte lors d'un changement de site ou d'interlocuteur.</div>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<section class="section">
+  <h2 class="section-title">Ce que ça change concrètement</h2>
+  <div class="grid2">
+    <div class="card cream">
+      <div class="ck">Zéro redite pour le contact</div>
+      <div class="cd">Le contact n'a plus à expliquer sa situation à chaque interaction. L'agent reprend exactement là où la dernière conversation s'était arrêtée, quel que soit le canal.</div>
+    </div>
+    <div class="card cream">
+      <div class="ck">Personnalisation sans effort</div>
+      <div class="cd">Les préférences, les historiques de commandes, les incidents passés — tout est disponible en contexte. L'agent personnalise chaque réponse sans configuration manuelle.</div>
+    </div>
+    <div class="card cream">
+      <div class="ck">Continuité lors des transferts</div>
+      <div class="cd">Quand un agent transfère une conversation à un humain, la mémoire suit. Le collaborateur qui prend la main dispose du contexte complet sans relire l'historique.</div>
+    </div>
+    <div class="card cream">
+      <div class="ck">Analytics comportementaux</div>
+      <div class="cd">La mémoire nourrit vos tableaux de bord : fréquence de contact, canaux préférés, sujets récurrents. Des insights actionnables sur votre base de contacts.</div>
+    </div>
+  </div>
+</section>
+
+<div class="page-cta">
+  <p>Envie de voir la mémoire en action sur vos cas d'usage ?</p>
+  <div class="cta-btns">
+    <a class="btn-back" href="#/" target="_top">← Retour à l'accueil</a>
+    <a class="btn-cta" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Demander une démo →</a>
+  </div>
+</div>
+
+
+
+<script>
+(function(){
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('in')},i*70);io.unobserve(e.target);}});
+  },{threshold:.15});
+  document.querySelectorAll('.card').forEach(function(c){io.observe(c);});
+})();
+(function resizeParent(){
+  function send(){try{parent.postMessage({srnH:document.documentElement.scrollHeight},'*');}catch(e){}}
+  send();
+  if(window.ResizeObserver)new ResizeObserver(send).observe(document.body);
+  setInterval(send,800);
+})();
+</script>
+
+</body>
+</html>

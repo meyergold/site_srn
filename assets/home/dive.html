@@ -1068,6 +1068,7 @@ var DESCS = {
 #srn-platform .card a.linkrow:hover .arrow{background:linear-gradient(135deg,#6B68F4,#8D59EF);color:#fff;border-color:transparent;transform:translate(2px,-2px)}
 
 #srn-platform .linkrow{text-decoration:none;color:inherit;display:contents}
+#srn-platform .card:has(.linkrow[href*="plat-"]){cursor:pointer}
 
 #srn-platform .stage{margin-top:auto;display:flex;justify-content:center;align-items:flex-end;flex:1}
 
@@ -1261,8 +1262,8 @@ var DESCS = {
   <div class="bento">
 
     <!-- Multi-modèles -->
-    <div class="card light c-wide">
-      <a class="linkrow" href="#">
+    <div class="card light c-wide" style="cursor:pointer">
+      <a class="linkrow" href="#/plat-multi-modeles" target="_top">
         <div>
           <div class="k">Multi-modèles</div>
           <div class="d">Aucun verrou propriétaire. Accédez aux meilleurs LLM du marché depuis une interface unique.</div>
@@ -1295,8 +1296,8 @@ var DESCS = {
     </div>
 
     <!-- Conformité -->
-    <div class="card dark c-narrow">
-      <a class="linkrow" href="#">
+    <div class="card dark c-narrow" style="cursor:pointer">
+      <a class="linkrow" href="#/plat-conformite" target="_top">
         <div>
           <div class="k">Conforme par défaut</div>
           <div class="d">Hébergé en France, certifié et opéré dans le respect du cadre santé.</div>
@@ -1367,8 +1368,8 @@ var DESCS = {
     </div>
 
     <!-- Enterprise-ready -->
-    <div class="card slate c-half">
-      <a class="linkrow" href="#">
+    <div class="card slate c-half" style="cursor:pointer">
+      <a class="linkrow" href="#/plat-entreprise" target="_top">
         <div>
           <div class="k">Prête pour l'entreprise</div>
           <div class="d">Gouvernance centralisée : équipes, managers, administrateurs et direction, chacun avec ses droits.</div>
@@ -1387,8 +1388,8 @@ var DESCS = {
     </div>
 
     <!-- Multi-sites / multi-équipes (signature) -->
-    <div class="card cream c-half">
-      <a class="linkrow" href="#">
+    <div class="card cream c-half" style="cursor:pointer">
+      <a class="linkrow" href="#/plat-multi-sites" target="_top">
         <div>
           <div class="k">Multi-sites & multi-équipes</div>
           <div class="d">Une vue consolidée du groupe, et chaque entité gère ses propres agents et ses équipes.</div>
@@ -1427,8 +1428,8 @@ var DESCS = {
     </div>
 
     <!-- Mémoire de tout -->
-    <div class="card light c-full" style="min-height:240px">
-      <a class="linkrow" href="#">
+    <div class="card light c-full" style="min-height:240px;cursor:pointer">
+      <a class="linkrow" href="#/plat-memoire" target="_top">
         <div>
           <div class="k">Mémoire de tout</div>
           <div class="d">Vos agents se souviennent de chaque échange — quel que soit le canal, l'équipe ou le site. Une continuité parfaite, sans jamais demander deux fois.</div>
