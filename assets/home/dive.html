@@ -1065,11 +1065,12 @@ var DESCS = {
 
 #srn-platform .card.dark .arrow, #srn-platform .card.slate .arrow{border-color:#3a3a48;color:#cfcfda}
 
-#srn-platform .card a.linkrow:hover .arrow{background:linear-gradient(135deg,#6B68F4,#8D59EF);color:#fff;border-color:transparent;transform:translate(2px,-2px)}
-
-#srn-platform .linkrow{text-decoration:none;color:inherit;display:contents}
-#srn-platform .card:has(.linkrow[data-nav]){cursor:pointer}
-  #srn-platform .card:has(.linkrow[data-nav]) .stage{pointer-events:auto}
+#srn-platform .card:has(.card-nav){cursor:pointer;position:relative}
+#srn-platform .card-nav{position:absolute;inset:0;z-index:2;border-radius:inherit}
+#srn-platform .card-nav:focus{outline:2px solid #7350F5;outline-offset:2px}
+#srn-platform .card .card-top{position:relative;z-index:3;pointer-events:none}
+#srn-platform .card .stage{position:relative;z-index:4}
+#srn-platform .card:has(.card-nav):hover .arrow{background:linear-gradient(135deg,#6B68F4,#8D59EF);color:#fff;border-color:transparent;transform:translate(2px,-2px)}
 
 #srn-platform .stage{margin-top:auto;display:flex;justify-content:center;align-items:flex-end;flex:1}
 
@@ -1266,13 +1267,13 @@ var DESCS = {
 
     <!-- Multi-modèles -->
     <div class="card light c-wide" style="cursor:pointer">
-      <a class="linkrow" href="javascript:void(0)" data-nav="plat-multi-modeles" onclick="srnNav('plat-multi-modeles')">
-        <div>
+      <a class="card-nav" onclick="srnNav('plat-multi-modeles')" aria-label="Multi-modèles"></a>
+        <div class="card-top">
           <div class="k">Multi-modèles</div>
           <div class="d">Aucun verrou propriétaire. Accédez aux meilleurs LLM du marché depuis une interface unique.</div>
           <div class="arrow">↗</div>
         </div>
-      </a>
+      
       <div class="stage">
         <div class="modelbox" id="mm-box">
           <div class="col">
@@ -1351,13 +1352,13 @@ var DESCS = {
 
     <!-- Conformité -->
     <div class="card dark c-narrow" style="cursor:pointer">
-      <a class="linkrow" href="javascript:void(0)" data-nav="plat-conformite" onclick="srnNav('plat-conformite')">
-        <div>
+      <a class="card-nav" onclick="srnNav('plat-conformite')" aria-label="Conformité"></a>
+        <div class="card-top">
           <div class="k">Conforme par défaut</div>
           <div class="d">Hébergé en France, certifié et opéré dans le respect du cadre santé.</div>
           <div class="arrow">↗</div>
         </div>
-      </a>
+      
       <div class="stage">
         <div class="badges">
           <div class="badge">
@@ -1423,13 +1424,13 @@ var DESCS = {
 
     <!-- Enterprise-ready -->
     <div class="card slate c-half" style="cursor:pointer">
-      <a class="linkrow" href="javascript:void(0)" data-nav="plat-entreprise" onclick="srnNav('plat-entreprise')">
-        <div>
+      <a class="card-nav" onclick="srnNav('plat-entreprise')" aria-label="Entreprise"></a>
+        <div class="card-top">
           <div class="k">Prête pour l'entreprise</div>
           <div class="d">Gouvernance centralisée : équipes, managers, administrateurs et direction, chacun avec ses droits.</div>
           <div class="arrow">↗</div>
         </div>
-      </a>
+      
       <div class="stage">
         <div class="roles">
           <div class="rh"><span>Permissions</span><span style="text-align:center">Membre</span><span style="text-align:center">Manager</span><span style="text-align:center">Admin</span><span style="text-align:center">Direction</span></div>
@@ -1443,13 +1444,13 @@ var DESCS = {
 
     <!-- Multi-sites / multi-équipes (signature) -->
     <div class="card cream c-half" style="cursor:pointer">
-      <a class="linkrow" href="javascript:void(0)" data-nav="plat-multi-sites" onclick="srnNav('plat-multi-sites')">
-        <div>
+      <a class="card-nav" onclick="srnNav('plat-multi-sites')" aria-label="Multi-sites"></a>
+        <div class="card-top">
           <div class="k">Multi-sites & multi-équipes</div>
           <div class="d">Une vue consolidée du groupe, et chaque entité gère ses propres agents et ses équipes.</div>
           <div class="arrow">↗</div>
         </div>
-      </a>
+      
       <div class="stage">
         <div class="entity">
           <div class="ent-top">
@@ -1483,13 +1484,13 @@ var DESCS = {
 
     <!-- Mémoire de tout -->
     <div class="card light c-full" style="min-height:240px;cursor:pointer">
-      <a class="linkrow" href="javascript:void(0)" data-nav="plat-memoire" onclick="srnNav('plat-memoire')">
-        <div>
+      <a class="card-nav" onclick="srnNav('plat-memoire')" aria-label="Mémoire"></a>
+        <div class="card-top">
           <div class="k">Mémoire de tout</div>
           <div class="d">Vos agents se souviennent de chaque échange — quel que soit le canal, l'équipe ou le site. Une continuité parfaite, sans jamais demander deux fois.</div>
           <div class="arrow">↗</div>
         </div>
-      </a>
+      
       <div class="stage" style="align-items:center">
         <div class="memwrap">
           <div class="memcore"><span class="pulse"></span>Mémoire unifiée</div>
@@ -1505,13 +1506,13 @@ var DESCS = {
 
     <!-- Intégrations -->
     <div class="card dark c-full" style="min-height:220px">
-      <a class="linkrow" href="javascript:void(0)" data-nav="integ" onclick="srnNav('integ')">
-        <div>
+      <a class="card-nav" onclick="srnNav('integ')" aria-label="Intégrations"></a>
+        <div class="card-top">
           <div class="k">Intégrations natives</div>
           <div class="d">Connectez vos outils existants : email, voix, WhatsApp, OTA, et vos systèmes métier via API, MCP et A2A.</div>
           <div class="arrow">↗</div>
         </div>
-      </a>
+      
       <div class="stage" style="margin-top:18px">
         <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
           <span style="border:1px solid #3a3a48;border-radius:30px;padding:7px 16px;font-size:13px;color:#cfcfda">API</span>
@@ -1606,223 +1607,107 @@ document.querySelectorAll('#srn-platform .card').forEach(function(card){
 </section>
 
   
-<section id="srn-industries"><style>
-#srn-industries{padding:96px 0 80px;background:#fff}
-#srn-industries .ind-head{text-align:center;max-width:680px;margin:0 auto;padding:0 clamp(20px,5vw,40px)}
-#srn-industries .eyebrow{display:inline-flex;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#7350F5;font-weight:600;margin-bottom:14px}
-#srn-industries h2{font-family:'Comfortaa',sans-serif;font-size:clamp(28px,4vw,44px);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:#15182B;margin:0 0 14px}
-#srn-industries .ind-sub{font-size:16px;color:#5c5875;line-height:1.55}
-/* Tab pills */
-.ind-tabs{display:flex;justify-content:center;gap:8px;margin:44px 0 48px;flex-wrap:wrap;padding:0 20px}
-.ind-tab{padding:9px 20px;border-radius:100px;border:1.5px solid #e5e2ef;background:#fff;font-weight:600;font-size:14px;cursor:pointer;transition:all .2s;color:#5c5875;font-family:inherit}
-.ind-tab:hover{border-color:#7350F5;color:#7350F5}
-.ind-tab.on{background:linear-gradient(135deg,#676AFE,#9456F7,#BE59D4);color:#fff;border-color:transparent;box-shadow:0 6px 20px -8px rgba(103,106,254,.55)}
-/* Tab panels */
-.ind-panel{display:none;max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,40px)}
-.ind-panel.on{display:block;animation:indFade .3s ease}
-@keyframes indFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-/* Featured case layout */
-.ind-case{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:start;margin-bottom:32px}
-@media(max-width:860px){.ind-case{grid-template-columns:1fr;gap:20px}}
-/* Stats banner */
-.ind-stats{display:flex;gap:0;background:linear-gradient(135deg,#1a1628,#2d1f4e);border-radius:16px 16px 0 0;padding:28px 32px;flex-wrap:wrap}
-.ind-stat{flex:1;min-width:120px;text-align:center;padding:0 16px;border-right:1px solid rgba(255,255,255,.1)}
-.ind-stat:last-child{border-right:0}
-.ind-stat b{display:block;font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.03em;background:var(--rainbow);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
-.ind-stat small{font-size:11.5px;color:rgba(255,255,255,.5);margin-top:5px;display:block;text-transform:uppercase;letter-spacing:.04em}
-/* Quote card */
-.ind-quote-card{background:linear-gradient(135deg,#f7f5ff,#fdf0ff);border:1px solid rgba(124,92,246,.14);border-radius:0 0 16px 16px;padding:28px 32px}
-.ind-quote-card blockquote{font-size:16px;line-height:1.6;color:#22202c;margin:0 0 18px;font-style:italic}
-.ind-quote-by{display:flex;align-items:center;gap:12px}
-.ind-quote-by img{height:32px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.7}
-.ind-quote-by div b{display:block;font-size:13.5px;font-weight:700;color:#15182B}
-.ind-quote-by div span{font-size:12.5px;color:#7a7490}
-/* Video encarts */
-.ind-videos{display:flex;flex-direction:column;gap:14px}
-.ind-video{border-radius:14px;overflow:hidden;background:#0a0820;border:1px solid rgba(255,255,255,.08);position:relative;cursor:pointer;group}
-.ind-video-thumb{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1628,#2d1f4e,#1a2a40);position:relative}
-.ind-video-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.5))}
-.ind-play{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;z-index:1;position:relative;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 24px -8px rgba(0,0,0,.4)}
-.ind-video:hover .ind-play{transform:scale(1.1);box-shadow:0 12px 32px -8px rgba(0,0,0,.5)}
-.ind-play svg{margin-left:3px}
-.ind-video-meta{padding:12px 16px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.ind-video-meta .v-title{font-weight:600;font-size:13.5px;color:#15182B}
-.ind-video-meta .v-client{font-size:12px;color:#7a7490}
-.ind-video-meta img{height:20px;width:auto;object-fit:contain;filter:grayscale(1);opacity:.6}
-/* Colored case cards for hotel/retail */
-.ind-case-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:32px}
-@media(max-width:640px){.ind-case-grid{grid-template-columns:1fr}}
-.ind-ccard{border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
-.ind-ccard-top{padding:28px;flex:1;display:flex;flex-direction:column;gap:14px;min-height:200px}
-.ind-ccard-logo{height:28px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.85}
-.ind-ccard blockquote{font-size:14.5px;line-height:1.6;color:rgba(255,255,255,.9);margin:0;font-style:italic;flex:1}
-.ind-ccard-by{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.65)}
-.ind-ccard-stats{display:flex;gap:0;background:rgba(0,0,0,.2)}
-.ind-ccard-stat{flex:1;padding:14px 16px;text-align:center;border-right:1px solid rgba(255,255,255,.08)}
-.ind-ccard-stat:last-child{border:0}
-.ind-ccard-stat b{display:block;font-size:22px;font-weight:800;color:#fff;line-height:1}
-.ind-ccard-stat small{font-size:10.5px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.04em;margin-top:3px;display:block}
-/* "et d'autres" row */
-.ind-more{text-align:center;padding:12px 0 4px;color:#9090b0;font-size:13.5px}
-.ind-more span{font-weight:600;color:#7350F5}
+<section id="srn-replace"><style>
+#srn-replace{padding:90px 0 80px;background:#fff}
+#srn-replace .rp-wrap{max-width:1060px;margin:0 auto;padding:0 clamp(20px,5vw,40px)}
+#srn-replace .rp-head{text-align:center;margin-bottom:52px}
+#srn-replace .eyebrow{display:inline-flex;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#7350F5;font-weight:600;margin-bottom:14px}
+#srn-replace h2{font-family:'Comfortaa',sans-serif;font-size:clamp(26px,3.8vw,42px);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:#15182B;margin:0 0 12px}
+#srn-replace h2 s{text-decoration-color:#ff4f4f;color:#9090a8}
+#srn-replace .rp-sub{font-size:16px;color:#5c5875;max-width:560px;margin:0 auto;line-height:1.55}
+/* Grid of replaced tools */
+.rp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.rp-card{border:1.5px solid #ece9f5;border-radius:16px;padding:18px 16px;display:flex;flex-direction:column;align-items:flex-start;gap:10px;position:relative;overflow:hidden;background:#faf9fd;transition:transform .2s,box-shadow .2s}
+.rp-card:hover{transform:translateY(-2px);box-shadow:0 14px 32px -16px rgba(40,20,90,.2)}
+.rp-card::after{content:"✕";position:absolute;top:10px;right:12px;font-size:13px;font-weight:800;color:#ff4f4f;opacity:.7}
+.rp-logo{width:36px;height:36px;border-radius:9px;object-fit:contain;background:#fff;border:1px solid #ede9f5;padding:4px}
+.rp-logo-txt{width:36px;height:36px;border-radius:9px;background:var(--bg);border:1px solid #ede9f5;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#5b5070;font-family:'Comfortaa',sans-serif}
+.rp-name{font-weight:700;font-size:14px;color:#22202c;line-height:1.1}
+.rp-cat{font-size:11.5px;color:#9090a8;font-weight:500}
+/* "Sairen fait tout ça" banner */
+.rp-banner{margin-top:32px;background:linear-gradient(135deg,#1a1628,#2d1f4e);border-radius:18px;padding:28px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.rp-banner-txt h3{font-family:'Comfortaa',sans-serif;font-size:clamp(18px,2.5vw,26px);font-weight:700;color:#fff;margin:0 0 6px}
+.rp-banner-txt p{font-size:14.5px;color:rgba(255,255,255,.6);margin:0;max-width:440px}
+.rp-banner-cta{display:flex;gap:10px;flex-wrap:wrap}
+.rp-banner a{padding:11px 22px;border-radius:100px;font-weight:700;font-size:14px;text-decoration:none;transition:.2s;cursor:pointer;font-family:inherit;border:0}
+.rp-banner .btn-w{background:#fff;color:#1a1628}
+.rp-banner .btn-w:hover{background:#f0ecff}
+.rp-banner .btn-g{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.2)}
+.rp-banner .btn-g:hover{background:rgba(255,255,255,.18)}
+@media(max-width:640px){.rp-grid{grid-template-columns:repeat(2,1fr)}.rp-banner{flex-direction:column}}
 </style>
-<div class="ind-head">
-  <span class="eyebrow">Verticales métier</span>
-  <h2>Conçu pour votre secteur</h2>
-  <p class="ind-sub">Des workflows préconfigurés, des intégrations métier et des cas d'usage validés sur le terrain.</p>
-</div>
-<div class="ind-tabs">
-  <button class="ind-tab on" data-ind="sante">🏥 Santé</button>
-  <button class="ind-tab" data-ind="immo">🏢 Immobilier</button>
-  <button class="ind-tab" data-ind="hotel">🏨 Hôtellerie</button>
-  <button class="ind-tab" data-ind="retail">🛍 Retail</button>
-</div>
-
-<!-- SANTÉ -->
-<div class="ind-panel on" data-ind="sante">
-  <div class="ind-case">
-    <div>
-      <div class="ind-stats">
-        <div class="ind-stat"><b>-68%</b><small>Temps de réponse</small></div>
-        <div class="ind-stat"><b>94%</b><small>CSAT patients</small></div>
-        <div class="ind-stat"><b>24/7</b><small>Disponibilité</small></div>
-      </div>
-      <div class="ind-quote-card">
-        <blockquote>« Sairen a transformé notre relation patient. Les demandes de RDV, les résultats, le suivi post-op — tout est traité instantanément sans mobiliser nos soignants. »</blockquote>
-        <div class="ind-quote-by">
-          <img src="../img/logo-elsan-black.png" alt="Elsan">
-          <div><b>Directrice des Opérations</b><span>Groupe Elsan · 120 cliniques</span></div>
-        </div>
-      </div>
+<div class="rp-wrap">
+  <div class="rp-head">
+    <span class="eyebrow">Consolidation</span>
+    <h2>Vous n'aurez plus besoin de <s>tout ça.</s></h2>
+    <p class="rp-sub">Sairen centralise la relation client IA de bout en bout. Une seule plateforme, zéro outil en doublon.</p>
+  </div>
+  <div class="rp-grid">
+    <!-- CX / Support -->
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#e8f0fe;color:#1a73e8">Zd</div>
+      <div class="rp-name">Zendesk</div><div class="rp-cat">Support client</div>
     </div>
-    <div class="ind-videos">
-      <div class="ind-video">
-        <div class="ind-video-thumb" style="background:linear-gradient(135deg,#0f2744,#1a3a5c,#0d4c6e)">
-          <div class="ind-play"><svg viewBox="0 0 24 24" fill="#1a1628" width="20" height="20"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-        <div class="ind-video-meta">
-          <div><div class="v-title">Elsan — Gestion RDV & urgences</div><div class="v-client">Groupe Elsan · 120 cliniques</div></div>
-          <img src="../img/cli-elsan.png" alt="Elsan">
-        </div>
-      </div>
-      <div class="ind-video">
-        <div class="ind-video-thumb" style="background:linear-gradient(135deg,#14213d,#2c3e6e,#1a4060)">
-          <div class="ind-play"><svg viewBox="0 0 24 24" fill="#1a1628" width="20" height="20"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-        <div class="ind-video-meta">
-          <div><div class="v-title">VYV — Parcours adhérent digitalisé</div><div class="v-client">Groupe VYV · Mutuelle santé</div></div>
-          <img src="../img/cli-vyv.png" alt="VYV">
-        </div>
-      </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#fff4e5;color:#f47b20">Ic</div>
+      <div class="rp-name">Intercom</div><div class="rp-cat">Messaging client</div>
+    </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#f0fdf4;color:#16a34a">Fr</div>
+      <div class="rp-name">Freshdesk</div><div class="rp-cat">Helpdesk</div>
+    </div>
+    <!-- IA génératives -->
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#f0fdf4;color:#10a37f"><img src="../img/ChatGPT-Logo.svg.png" alt="" style="width:28px;height:28px;object-fit:contain"></div>
+      <div class="rp-name">ChatGPT</div><div class="rp-cat">IA générative</div>
+    </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#fdf4ff;color:#d97757"><img src="../img/claude-icon-logo.png" alt="" style="width:28px;height:28px;object-fit:contain"></div>
+      <div class="rp-name">Claude</div><div class="rp-cat">IA générative</div>
+    </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#fff7ed;color:#ff7000"><img src="../img/mistral-color.png" alt="" style="width:28px;height:28px;object-fit:contain"></div>
+      <div class="rp-name">Mistral</div><div class="rp-cat">IA générative</div>
+    </div>
+    <!-- Collaboration / comm interne -->
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#fef3c7;color:#d97706">Sl</div>
+      <div class="rp-name">Slack</div><div class="rp-cat">Messagerie équipe</div>
+    </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#eff6ff;color:#2563eb">Tm</div>
+      <div class="rp-name">Teams</div><div class="rp-cat">Collaboration</div>
+    </div>
+    <!-- Voix / telephonie -->
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#ecfdf5;color:#059669">Ac</div>
+      <div class="rp-name">Aircall</div><div class="rp-cat">Téléphonie cloud</div>
+    </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#fdf2f8;color:#c026d3">Vc</div>
+      <div class="rp-name">Vocca</div><div class="rp-cat">Voix IA</div>
+    </div>
+    <!-- No-code / automation -->
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#fdf4ff;color:#7c3aed">Lm</div>
+      <div class="rp-name">Limova</div><div class="rp-cat">Automatisation</div>
+    </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#fff1f2;color:#e11d48">Zp</div>
+      <div class="rp-name">Zapier</div><div class="rp-cat">No-code workflow</div>
     </div>
   </div>
-  <div class="ind-more">+12 établissements de santé nous font confiance · <span>Elsan, VYV, HEP, Ophtalys, Lazeo…</span></div>
-</div>
-
-<!-- IMMOBILIER -->
-<div class="ind-panel" data-ind="immo">
-  <div class="ind-case">
-    <div>
-      <div class="ind-stats">
-        <div class="ind-stat"><b>+40%</b><small>Leads qualifiés</small></div>
-        <div class="ind-stat"><b>-55%</b><small>Coût de traitement</small></div>
-        <div class="ind-stat"><b>3x</b><small>Vitesse de réponse</small></div>
-      </div>
-      <div class="ind-quote-card">
-        <blockquote>« Sur les demandes de visite et les relances acquéreurs, Sairen gère l'intégralité du flux entrant. Nos agents se concentrent sur ce qui crée vraiment de la valeur. »</blockquote>
-        <div class="ind-quote-by">
-          <div><b>Directeur Commercial</b><span>Réseau national · 200 agences</span></div>
-        </div>
-      </div>
+  <div class="rp-banner">
+    <div class="rp-banner-txt">
+      <h3>Sairen fait tout ça — nativement.</h3>
+      <p>Canal, IA, agents, analytics, mémoire, conformité. Un contrat, une interface, une équipe.</p>
     </div>
-    <div class="ind-videos">
-      <div class="ind-video">
-        <div class="ind-video-thumb" style="background:linear-gradient(135deg,#1c1f2e,#2e3250,#1c2a40)">
-          <div class="ind-play"><svg viewBox="0 0 24 24" fill="#1a1628" width="20" height="20"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-        <div class="ind-video-meta">
-          <div><div class="v-title">Qualification automatique des leads vendeurs</div><div class="v-client">Réseau national · 200 agences</div></div>
-        </div>
-      </div>
+    <div class="rp-banner-cta">
+      <a class="btn-w" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Demander une démo</a>
+      <a class="btn-g" href="javascript:void(0)" onclick="srnNav('pricing')">Voir les tarifs</a>
     </div>
   </div>
-  <div class="ind-more">+8 réseaux immobiliers déployés · <span>Promoteurs, réseaux mandataires, foncières</span></div>
 </div>
-
-<!-- HÔTELLERIE -->
-<div class="ind-panel" data-ind="hotel">
-  <div class="ind-case-grid">
-    <div class="ind-ccard" style="">
-      <div class="ind-ccard-top" style="background:linear-gradient(135deg,#1a1628,#2d1f3e)">
-        <img class="ind-ccard-logo" src="../img/cli-sofitel.png" alt="Sofitel">
-        <blockquote>« Nos concierges IA gèrent les 2/3 des demandes avant-séjour. CSAT en hausse, équipes soulagées. »</blockquote>
-        <div class="ind-ccard-by">Victor Tiboul · Sofitel Paris</div>
-      </div>
-      <div class="ind-ccard-stats">
-        <div class="ind-ccard-stat"><b>+18%</b><small>CSAT</small></div>
-        <div class="ind-ccard-stat"><b>-40%</b><small>Charge équipe</small></div>
-        <div class="ind-ccard-stat"><b>24/7</b><small>Dispo</small></div>
-      </div>
-    </div>
-    <div class="ind-ccard">
-      <div class="ind-ccard-top" style="background:linear-gradient(135deg,#1a2a1a,#1e3d2e)">
-        <img class="ind-ccard-logo" src="../img/cli-bestwestern.png" alt="Best Western">
-        <blockquote>« Le taux de réponse sous 2 min est passé de 20% à 94%. Nos avis Google s'en ressentent directement. »</blockquote>
-        <div class="ind-ccard-by">Responsable Qualité · Best Western</div>
-      </div>
-      <div class="ind-ccard-stats">
-        <div class="ind-ccard-stat"><b>94%</b><small>Réponse &lt;2min</small></div>
-        <div class="ind-ccard-stat"><b>+0.4</b><small>Note Google</small></div>
-        <div class="ind-ccard-stat"><b>×3</b><small>Volume géré</small></div>
-      </div>
-    </div>
-  </div>
-  <div class="ind-more">+15 hôtels et groupes hôteliers · <span>Sofitel, Best Western, Pullman, indépendants 4★</span></div>
-</div>
-
-<!-- RETAIL -->
-<div class="ind-panel" data-ind="retail">
-  <div class="ind-case-grid">
-    <div class="ind-ccard">
-      <div class="ind-ccard-top" style="background:linear-gradient(135deg,#2a1a28,#3d1f3a)">
-        <img class="ind-ccard-logo" src="../img/logo-smcp.png" alt="SMCP">
-        <blockquote>« Rares sont les produits aussi aboutis aussi vite. Sairen gère notre relation client multimarque avec une précision remarquable. »</blockquote>
-        <div class="ind-ccard-by">Sivan Chetrit · Groupe SMCP</div>
-      </div>
-      <div class="ind-ccard-stats">
-        <div class="ind-ccard-stat"><b>4×</b><small>Marques gérées</small></div>
-        <div class="ind-ccard-stat"><b>-30%</b><small>Coût contacts</small></div>
-        <div class="ind-ccard-stat"><b>98%</b><small>Résolution J0</small></div>
-      </div>
-    </div>
-    <div class="ind-ccard">
-      <div class="ind-ccard-top" style="background:linear-gradient(135deg,#1a2028,#1f2d40)">
-        <blockquote>« Sur le Black Friday, Sairen a absorbé ×8 le volume habituel. Zéro dégradation de service, équipe inchangée. »</blockquote>
-        <div class="ind-ccard-by">Head of CX · Enseigne mode premium</div>
-      </div>
-      <div class="ind-ccard-stats">
-        <div class="ind-ccard-stat"><b>×8</b><small>Pic absorbé</small></div>
-        <div class="ind-ccard-stat"><b>0</b><small>Recrutement extra</small></div>
-        <div class="ind-ccard-stat"><b>99%</b><small>Uptime</small></div>
-      </div>
-    </div>
-  </div>
-  <div class="ind-more">+20 enseignes retail et e-commerce · <span>Mode, beauté, électronique, marketplace</span></div>
-</div>
-
-<script>
-(function(){
-  var tabs=document.querySelectorAll('#srn-industries .ind-tab');
-  var panels=document.querySelectorAll('#srn-industries .ind-panel');
-  tabs.forEach(function(tab){
-    tab.addEventListener('click',function(){
-      var key=tab.dataset.ind;
-      tabs.forEach(function(t){t.classList.toggle('on',t.dataset.ind===key);});
-      panels.forEach(function(p){p.classList.toggle('on',p.dataset.ind===key);});
-    });
-  });
-})();
-</script>
 </section>
 
   <section class="hsec" id="leaders"><style id="srn-leaders-css">#leaders{position:relative;z-index:2;background:linear-gradient(170deg,#FBF9FB 0%,#F5F1F7 55%,#EEF1F8 100%);padding:90px 0 96px}#leaders .ld-head{text-align:center;padding:0 clamp(20px,5vw,40px)}#leaders .ld-eyebrow{display:inline-flex;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#7350F5;font-weight:600}#leaders .ld-title{font-size:clamp(28px,4vw,46px);font-weight:800;letter-spacing:-.03em;line-height:1.08;margin:12px 0 8px;color:#15182B}#leaders .ld-title em{font-style:normal;background:linear-gradient(115deg,#676AFE,#9456F7,#BE59D4);-webkit-background-clip:text;background-clip:text;color:transparent}#leaders .ld-sub{font-size:16px;color:#4b4f66;max-width:560px;margin:0 auto;line-height:1.5}#leaders .ld-logos{display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:clamp(16px,3vw,34px);max-width:1060px;margin:34px auto 0;padding:0 clamp(16px,4vw,40px);overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}#leaders .ld-logos::-webkit-scrollbar{display:none}#leaders .ld-logo{flex:none;display:inline-flex;align-items:center;background:none;border:0;cursor:pointer;font-family:inherit;font-weight:800;font-size:19px;letter-spacing:-.01em;color:#b6b1c1;opacity:.9;padding:4px 2px;transition:color .25s,opacity .25s}#leaders .ld-logo:hover{color:#6b6580}#leaders .ld-logo.on{color:#15182B;opacity:1}#leaders .ld-logo img{height:24px;width:auto;max-width:112px;object-fit:contain;display:block;filter:grayscale(1);opacity:.5;transition:filter .25s,opacity .25s}#leaders .ld-logo:hover img{opacity:.8}#leaders .ld-logo.on img{filter:none;opacity:1}#leaders .ld-card{position:relative;max-width:1120px;margin:46px auto 0;padding:0 clamp(20px,5vw,40px)}#leaders .ld-stage{display:grid;grid-template-columns:1.05fr .95fr;min-height:406px;background:#ECEAE4;border:1px solid rgba(20,16,50,.06);border-radius:20px;overflow:hidden;box-shadow:0 30px 70px -40px rgba(40,30,90,.45);transition:opacity .34s ease}#leaders .ld-text{display:flex;flex-direction:column;padding:clamp(28px,4vw,52px)}#leaders .ld-quote{font-size:clamp(20px,2.3vw,29px);font-weight:500;line-height:1.34;letter-spacing:-.015em;color:#22202c;margin:0}#leaders .ld-by{margin-top:auto;padding-top:28px}#leaders .ld-by b{display:block;font-size:15px;font-weight:700;color:#15182B}#leaders .ld-by span{display:block;font-size:13.5px;color:#7a7490;margin-top:3px}#leaders .ld-photo{position:relative;overflow:hidden;background:linear-gradient(150deg,#E7E3DC,#DAD5E6)}#leaders .ld-mono{position:absolute;inset:0;display:grid;place-items:center;font-weight:800;font-size:88px;letter-spacing:.02em;color:rgba(91,85,112,.3);font-family:'Geist',sans-serif}#leaders .ld-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}#leaders .ld-photo.logo{display:grid;place-items:center;background:linear-gradient(150deg,#F3F1EC,#E7E3F0)}#leaders .ld-photo.logo .ld-plogo{position:static;width:auto;height:auto;max-width:62%;max-height:44%;object-fit:contain}#leaders .ld-photo.logo .ld-pword{font-weight:800;font-size:clamp(34px,5vw,46px);letter-spacing:-.01em;color:#5b5570}#leaders .ld-dots{display:flex;justify-content:center;gap:6px;margin-top:24px;flex-wrap:wrap}#leaders .ld-dot{width:32px;height:32px;border-radius:50%;background:#e4e0ee;border:0;padding:0;cursor:pointer;font-family:'Geist',sans-serif;font-size:10px;font-weight:700;color:#9990b0;letter-spacing:.01em;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s,transform .25s,box-shadow .25s}#leaders .ld-dot:hover{background:#d0cbe0;color:#5b5570;transform:scale(1.08)}#leaders .ld-dot.on{background:linear-gradient(135deg,#676AFE,#BE59D4);color:#fff;transform:scale(1.12);box-shadow:0 4px 14px -4px rgba(103,106,254,.55)}#leaders .ld-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;padding:40px 20px 0}@media(max-width:820px){#leaders .ld-stage{grid-template-columns:1fr;min-height:0}#leaders .ld-photo{order:-1;height:300px}#leaders .ld-mono{font-size:64px}#leaders .ld-logos{justify-content:flex-start}#leaders .ld-logo img{height:20px}}@media(prefers-reduced-motion:reduce){#leaders .ld-stage{transition:none}}</style><div class="ld-head"><span class="ld-eyebrow">Approuvé par les leaders</span><h2 class="ld-title">Des dirigeants qui <em>parient sur nous.</em></h2><p class="ld-sub">Des dirigeants et entrepreneurs qui croient en Sairen et suivent son ascension.</p><div class="ld-logos" id="ld-logos"></div></div><div class="ld-card"><div class="ld-stage" id="ld-stage"></div><div class="ld-dots" id="ld-dots"></div></div><div class="ld-ctas"><a class="btn btn-dark" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Demander une démo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-ghost" href="#/pricing" target="_top">Voir les tarifs</a></div></div></section><script>var LEADERS=[{"i": "YR", "n": "Yves Ranou", "r": "CEO, Suez", "c": "Suez", "g": "logo-suez.png", "p": "leader-yves-ranou.jpg", "q": "Sairen pose les bases de la relation client augmentée par l'IA. Le genre d'exécution qu'on voit rarement."}, {"i": "JA", "n": "Jonathan Anguelov", "r": "Fondateur, Aircall", "c": "Aircall", "g": "logo-aircall.png", "p": "leader-jonathan-anguelov.jpg", "q": "J'ai bâti Aircall sur l'obsession de la conversation — Sairen pousse cette vision encore plus loin. Une équipe à suivre de très près."}, {"i": "AT", "n": "Alain Toledano", "r": "HORG", "c": "HORG", "g": "logo-horg.png", "p": "leader-alain-toledano.jpg", "q": "Sairen a tout compris du futur de la relation client : l'IA absorbe le volume, l'humain garde le cap. Bluffant."}, {"i": "SC", "n": "Sivan Chetrit", "r": "Groupe SMCP", "c": "SMCP", "g": "logo-smcp.png", "p": "", "q": "Rares sont les produits aussi aboutis aussi vite. Sairen va marquer son marché."}, {"i": "DV", "n": "Deel Ventures", "r": "Deel", "c": "Deel", "g": "logo-deel.png", "p": "", "q": "On parie sur les équipes qui changent la façon de travailler. Sairen en fait clairement partie."}, {"i": "VT", "n": "Victor Tiboul", "r": "Sofitel", "c": "Sofitel", "g": "logo-sofitel.png", "p": "leader-victor-tiboul.jpg", "q": "La barre que Sairen met sur la qualité de l'expérience est impressionnante. Une vraie réussite."}, {"i": "RR", "n": "Ralph Ruimy", "r": "Acheel", "c": "Acheel", "g": "logo-acheel.png", "p": "leader-ralph-ruimy.jpg", "q": "Sairen combine vitesse et justesse comme peu d'acteurs. Je suis leur ascension de près."}, {"i": "KM", "n": "Kobi Maranko", "r": "Arbe", "c": "Arbe", "g": "logo-arbe.png", "p": "leader-kobi-maranko.jpg", "q": "Le niveau d'exécution de Sairen est franchement choquant. Une pépite."}];(function(){var sec=document.getElementById('leaders');if(!sec)return;var stage=document.getElementById('ld-stage'),logos=document.getElementById('ld-logos'),dots=document.getElementById('ld-dots');if(!stage||!logos)return;var cur=0,timer=null;window.ldErr=function(g){g.onerror=null;g.style.display='none';if(g.nextSibling)g.nextSibling.style.display='inline';};function photo(l){if(l.p){return '<div class="ld-photo"><span class="ld-mono">'+l.i+'</span><img src="../img/'+l.p+'" alt="'+l.n+'" loading="lazy" onerror="this.remove()"></div>';}return '<div class="ld-photo logo"><img class="ld-plogo" src="../img/'+l.g+'" alt="'+l.c+'" onerror="ldErr2(this)"><span class="ld-pword" style="display:none">'+l.c+'</span></div>';}window.ldErr2=function(g){g.onerror=null;g.style.display='none';if(g.nextSibling)g.nextSibling.style.display='block';};function card(l){return '<div class="ld-text"><blockquote class="ld-quote">\u00ab '+l.q+' \u00bb</blockquote>'+'<div class="ld-by"><b>'+l.n+'</b><span>'+l.r+'</span></div></div>'+photo(l);}function mark(i){[].forEach.call(logos.children,function(el,x){el.classList.toggle('on',x===i);});if(dots)[].forEach.call(dots.children,function(el,x){el.classList.toggle('on',x===i);});}function render(i){stage.innerHTML=card(LEADERS[i]);mark(i);}function show(i){if(i===cur)return;cur=i;stage.style.opacity=0;setTimeout(function(){render(i);stage.style.opacity=1;},340);}logos.innerHTML=LEADERS.map(function(l,x){return '<button class="ld-logo" type="button" data-i="'+x+'"><img src="../img/'+l.g+'" alt="'+l.c+'" onerror="ldErr(this)"><span style="display:none">'+l.c+'</span></button>';}).join('');if(dots)dots.innerHTML=LEADERS.map(function(l,x){return '<button class="ld-dot" type="button" aria-label="'+l.n+'" data-i="'+x+'">'+l.i+'</button>';}).join('');function onclick(e){var b=e.target.closest('[data-i]');if(!b)return;show(+b.dataset.i);restart();}logos.addEventListener('click',onclick);if(dots)dots.addEventListener('click',onclick);function start(){timer=setInterval(function(){show((cur+1)%LEADERS.length);},3400);}function restart(){clearInterval(timer);start();}sec.addEventListener('mouseenter',function(){clearInterval(timer);});sec.addEventListener('mouseleave',restart);render(0);start();})();</script>
