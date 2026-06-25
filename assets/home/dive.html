@@ -1069,6 +1069,7 @@ var DESCS = {
 
 #srn-platform .linkrow{text-decoration:none;color:inherit;display:contents}
 #srn-platform .card:has(.linkrow[href*="plat-"]){cursor:pointer}
+  #srn-platform .card:has(.linkrow[href*="plat-"]) .stage{pointer-events:none}
 
 #srn-platform .stage{margin-top:auto;display:flex;justify-content:center;align-items:flex-end;flex:1}
 
@@ -1479,6 +1480,18 @@ const io=new IntersectionObserver((es)=>{
   es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);io.unobserve(e.target)}});
 },{threshold:.18});
 document.querySelectorAll('.card').forEach(c=>io.observe(c));
+
+// Make entire platform bento card clickable (not just the arrow area)
+document.querySelectorAll('#srn-platform .card').forEach(function(card){
+  var link=card.querySelector('a.linkrow[href*="plat-"]');
+  if(!link)return;
+  card.addEventListener('click',function(ev){
+    if(ev.target.closest('a'))return; // let native link handle it
+    var href=link.getAttribute('href');
+    var target=link.getAttribute('target');
+    if(target==='_top'){top.location.href=href;}else{location.href=href;}
+  });
+});
 
 // bascule auto entité <-> équipe
 (function(){

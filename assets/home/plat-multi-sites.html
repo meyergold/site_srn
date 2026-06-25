@@ -6,56 +6,30 @@
 <title>Multi-sites & multi-équipes — Sairen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ink:#1a1a22;--ink-soft:#5a5a66;--line:#eceaf0;--bg:#fbfafc;
-  --card-light:#f4f3f6;--card-cream:#f2efe9;--card-dark:#1b1b24;--card-slate:#23232e;
-  --g1:#ff7a59;--g2:#ff4f8b;--g3:#a259ff;--g4:#5b8cff;--g5:#22c1c3;
-  --rainbow:linear-gradient(90deg,var(--g1),var(--g2),var(--g3),var(--g4),var(--g5));
-  --radius:22px;
-}
+:root{--ink:#1a1a22;--ink-soft:#5a5a66;--line:#eceaf0;--bg:#fbfafc;--card-light:#f4f3f6;--card-cream:#f2efe9;--card-dark:#1b1b24;--card-slate:#23232e;--g1:#ff7a59;--g2:#ff4f8b;--g3:#a259ff;--g4:#5b8cff;--g5:#22c1c3;--rainbow:linear-gradient(90deg,var(--g1),var(--g2),var(--g3),var(--g4),var(--g5));--radius:22px}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;height:auto}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);
-  -webkit-font-smoothing:antialiased;line-height:1.5;height:auto}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;height:auto}
 a{color:inherit;text-decoration:none}
-
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-
-/* topbar */
 .topbar{padding:18px 24px;max-width:1120px;margin:0 auto}
-.back-link{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;
-  color:var(--ink-soft);transition:color .2s}
+.back-link{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink-soft);transition:color .2s;cursor:pointer;background:none;border:none;font-family:inherit;padding:0}
 .back-link:hover{color:var(--ink)}
-.back-link svg{flex:none}
-
-/* hero */
 .hero{padding:48px 24px 56px;max-width:1120px;margin:0 auto}
-.eyebrow{display:inline-block;font-family:'Comfortaa',sans-serif;font-weight:600;font-size:13px;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
-.hero h1{font-family:'Comfortaa',sans-serif;font-weight:700;
-  font-size:clamp(26px,4.2vw,48px);line-height:1.1;letter-spacing:-.015em;
-  max-width:820px;margin-bottom:16px}
-.hero h1 .grad{background:var(--rainbow);-webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;background-size:220% auto;animation:flow 6s linear infinite}
+.eyebrow{display:inline-block;font-family:'Comfortaa',sans-serif;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
+.hero h1{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:clamp(26px,4.2vw,48px);line-height:1.1;letter-spacing:-.015em;max-width:820px;margin-bottom:16px}
+.hero h1 .grad{background:var(--rainbow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-size:220% auto;animation:flow 6s linear infinite}
 @keyframes flow{to{background-position:220% center}}
 .hero .sub{font-size:17px;color:var(--ink-soft);max-width:640px;line-height:1.6}
-
-/* sections */
 .section{padding:56px 24px;max-width:1120px;margin:0 auto}
-.section + .section{padding-top:0}
-.section-title{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:22px;
-  margin-bottom:8px;letter-spacing:-.01em}
+.section+.section{padding-top:0}
+.section-title{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:22px;margin-bottom:8px;letter-spacing:-.01em}
 .section-sub{color:var(--ink-soft);font-size:15px;margin-bottom:32px;max-width:620px;line-height:1.55}
-
-/* grid */
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 @media(max-width:760px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
-
-/* card */
-.card{border-radius:var(--radius);padding:28px 26px;border:1px solid var(--line);
-  opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease,box-shadow .2s}
+.card{border-radius:var(--radius);padding:28px 26px;border:1px solid var(--line);opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease,box-shadow .2s}
 .card.in{opacity:1;transform:none}
 .card:hover{box-shadow:0 16px 44px -22px rgba(40,30,70,.24)}
 .card.light{background:var(--card-light)}
@@ -66,169 +40,98 @@ a{color:inherit;text-decoration:none}
 .card .ck{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:17px;margin-bottom:8px}
 .card .cd{font-size:14px;color:var(--ink-soft);line-height:1.55}
 .card.dark .cd,.card.slate .cd{color:#a7a7b4}
-
-/* badge / pill */
-.pill-grad{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;
-  text-transform:uppercase;padding:4px 12px;border-radius:999px;
-  background:var(--rainbow);color:#fff}
-.pill-light{display:inline-block;font-size:11px;font-weight:600;padding:3px 11px;
-  border-radius:999px;background:#f0eeff;color:var(--g3)}
-
-/* highlight block */
-.hl{border-left:3px solid var(--g3);padding:16px 20px;background:#f8f6ff;border-radius:0 14px 14px 0;margin:24px 0}
-.hl p{font-size:14.5px;color:#4a3a6a;line-height:1.6}
-
-/* separator */
+.model-card{background:#fff;border-radius:var(--radius);padding:24px;border:1px solid var(--line);opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease,box-shadow .2s}
+.model-card.in{opacity:1;transform:none}
+.model-card:hover{box-shadow:0 16px 44px -22px rgba(40,30,70,.24)}
+.model-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.model-logo{width:40px;height:40px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f5f4f8;border:1px solid var(--line)}
+.model-logo img{width:28px;height:28px;object-fit:contain}
+.model-name{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:16px;margin-bottom:3px}
+.pill-light{display:inline-block;font-size:11px;font-weight:600;padding:3px 11px;border-radius:999px;background:#f0eeff;color:var(--g3)}
+.hl{border-left:3px solid var(--g3);padding:14px 18px;background:#f8f6ff;border-radius:0 12px 12px 0;margin:16px 0 0}
+.hl p{font-size:13.5px;color:#4a3a6a;line-height:1.6}
 .sep{height:1px;background:var(--line);max-width:1120px;margin:0 auto}
-
-/* cta footer */
 .page-cta{text-align:center;padding:64px 24px 80px}
 .page-cta p{font-size:15px;color:var(--ink-soft);margin-bottom:18px}
-.btn-back{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;
-  color:var(--ink-soft);border:1px solid var(--line);border-radius:30px;padding:10px 20px;
-  transition:.2s;background:var(--bg)}
+.btn-back{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--ink-soft);border:1px solid var(--line);border-radius:30px;padding:10px 20px;transition:.2s;background:var(--bg);cursor:pointer;font-family:inherit}
 .btn-back:hover{background:#fff;box-shadow:0 8px 22px -10px rgba(0,0,0,.12);transform:translateY(-1px)}
-.btn-cta{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;
-  color:#fff;background:#0b0b0d;border-radius:30px;padding:11px 22px;
-  transition:.2s;box-shadow:0 8px 22px -8px rgba(0,0,0,.4)}
+.btn-cta{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#fff;background:#0b0b0d;border-radius:30px;padding:11px 22px;transition:.2s;box-shadow:0 8px 22px -8px rgba(0,0,0,.4);text-decoration:none}
 .btn-cta:hover{background:#1c1c1e;transform:translateY(-2px);box-shadow:0 14px 34px -10px rgba(0,0,0,.5)}
 .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
 </style>
 </head>
 <body>
-
-<nav>
-<div class="topbar">
-  <a class="back-link" href="#/" target="_top">
+<nav><div class="topbar"><button class="back-link" onclick="goHome()">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Retour à Sairen
-  </a>
-</div>
-</nav>
-
+  </button></div></nav>
 
 <section class="hero">
   <span class="eyebrow">La plateforme</span>
   <h1>Une vue consolidée du groupe,<br><span class="grad">chaque entité reste maître chez elle.</span></h1>
   <p class="sub">Gérez plusieurs sites, plusieurs équipes et plusieurs agents depuis une seule interface — sans sacrifier l'autonomie de chaque entité.</p>
 </section>
-
 <div class="sep"></div>
-
 <section class="section">
   <h2 class="section-title">Vue groupe consolidée</h2>
-  <p class="section-sub">La direction dispose d'une vue agrégée de toutes les entités du groupe : agents actifs, membres, interactions, taux d'activation.</p>
-  <div class="card cream" style="opacity:1;transform:none;padding:32px">
+  <p class="section-sub">La direction dispose d'une vue agrégée de toutes les entités : agents actifs, membres, interactions, taux d'activation.</p>
+<div class="card cream" style="opacity:1;transform:none;padding:32px">
     <div style="display:flex;align-items:center;gap:14px;margin-bottom:24px">
-      <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--g3),var(--g4));display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:18px">C</div>
-      <div>
-        <div style="font-family:'Comfortaa',sans-serif;font-weight:700;font-size:17px">CMSM</div>
-        <div style="font-size:12px;color:var(--ink-soft)">Groupe client · 8 entités</div>
-      </div>
+      <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#ff7a59,#ff4f8b);display:flex;align-items:center;justify-content:center;color:#fff;font-family:Comfortaa,sans-serif;font-weight:700;font-size:18px">V</div>
+      <div><div style="font-family:Comfortaa,sans-serif;font-weight:700;font-size:17px">Vitalys Groupe</div><div style="font-size:12px;color:var(--ink-soft)">Groupe fictif · 6 établissements</div></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px">
-      <div style="border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;background:#fff">
-        <div style="font-family:'Comfortaa',sans-serif;font-weight:700;font-size:22px">26/48</div>
-        <div style="font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin-top:4px">Agents</div>
-      </div>
-      <div style="border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;background:#fff">
-        <div style="font-family:'Comfortaa',sans-serif;font-weight:700;font-size:22px">127</div>
-        <div style="font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin-top:4px">Membres</div>
-      </div>
-      <div style="border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;background:#fff">
-        <div style="font-family:'Comfortaa',sans-serif;font-weight:700;font-size:22px">8 192</div>
-        <div style="font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin-top:4px">Interactions</div>
-      </div>
+      <div style="border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;background:#fff"><div style="font-family:Comfortaa,sans-serif;font-weight:700;font-size:22px">18/32</div><div style="font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin-top:4px">Agents</div></div>
+      <div style="border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;background:#fff"><div style="font-family:Comfortaa,sans-serif;font-weight:700;font-size:22px">84</div><div style="font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin-top:4px">Membres</div></div>
+      <div style="border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;background:#fff"><div style="font-family:Comfortaa,sans-serif;font-weight:700;font-size:22px">5 240</div><div style="font-size:10px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin-top:4px">Interactions</div></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
-      <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;background:#fff;border:1px solid var(--line);border-radius:12px">
-        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#22c1c3,#5b8cff);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:11px">CC</div>
-        <div style="flex:1"><div style="font-size:13px;font-weight:600">Centre d'Imagerie de Coulommiers</div><div style="font-size:11px;color:var(--ink-soft)">18 membres</div></div>
-        <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:#fdeef0;color:#e0567a">2/6</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;background:#fff;border:1px solid var(--line);border-radius:12px">
-        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#5b8cff,#a259ff);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:11px">SM</div>
-        <div style="flex:1"><div style="font-size:13px;font-weight:600">Centre d'Imagerie de Saint-Mandé</div><div style="font-size:11px;color:var(--ink-soft)">25 membres</div></div>
-        <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:#e9f7ee;color:#37a866">6/6</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;background:#fff;border:1px solid var(--line);border-radius:12px">
-        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#a259ff,#ff4f8b);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:11px">CD</div>
-        <div style="flex:1"><div style="font-size:13px;font-weight:600">Centre d'Imagerie des Cordeliers</div><div style="font-size:11px;color:var(--ink-soft)">21 membres</div></div>
-        <span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:#fff4e3;color:#d99a35">3/6</span>
-      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;background:#fff;border:1px solid var(--line);border-radius:12px"><div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#22c1c3,#5b8cff);display:flex;align-items:center;justify-content:center;color:#fff;font-family:Comfortaa,sans-serif;font-weight:700;font-size:11px;flex:none">LP</div><div style="flex:1"><div style="font-size:13px;font-weight:600">Clinique du Lac — Paris 15e</div><div style="font-size:11px;color:var(--ink-soft)">22 membres</div></div><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:#e9f7ee;color:#37a866">8/8</span></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;background:#fff;border:1px solid var(--line);border-radius:12px"><div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#a259ff,#ff4f8b);display:flex;align-items:center;justify-content:center;color:#fff;font-family:Comfortaa,sans-serif;font-weight:700;font-size:11px;flex:none">LY</div><div style="flex:1"><div style="font-size:13px;font-weight:600">Clinique du Lac — Lyon Part-Dieu</div><div style="font-size:11px;color:var(--ink-soft)">18 membres</div></div><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:#fff4e3;color:#d99a35">5/8</span></div>
+      <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;background:#fff;border:1px solid var(--line);border-radius:12px"><div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#5b8cff,#22c1c3);display:flex;align-items:center;justify-content:center;color:#fff;font-family:Comfortaa,sans-serif;font-weight:700;font-size:11px;flex:none">BD</div><div style="flex:1"><div style="font-size:13px;font-weight:600">Clinique du Lac — Bordeaux</div><div style="font-size:11px;color:var(--ink-soft)">16 membres</div></div><span style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;background:#fdeef0;color:#e0567a">3/8</span></div>
     </div>
   </div>
 </section>
-
 <div class="sep"></div>
-
 <section class="section">
   <h2 class="section-title">Autonomie par entité</h2>
-  <p class="section-sub">Chaque entité gère ses propres agents, ses membres, ses intégrations — sans impacter les autres. La direction garde la vue d'ensemble.</p>
+  <p class="section-sub">Chaque entité gère ses propres agents, ses membres, ses intégrations — sans impacter les autres.</p>
   <div class="grid3">
-    <div class="card light">
-      <div class="ck">Agents locaux</div>
-      <div class="cd">Chaque site configure ses propres agents selon ses usages spécifiques. Les agents peuvent être partagés au niveau groupe ou rester privés à l'entité.</div>
-    </div>
-    <div class="card light">
-      <div class="ck">Membres & équipes</div>
-      <div class="cd">Gestion des membres par entité. Un même utilisateur peut appartenir à plusieurs entités avec des rôles différents selon le contexte.</div>
-    </div>
-    <div class="card light">
-      <div class="ck">Métriques par entité</div>
-      <div class="cd">Analytics segmentées par site, par équipe, par canal. Identifiez les entités les plus actives et celles qui ont besoin d'accompagnement.</div>
-    </div>
+    <div class="card light"><div class="ck">Agents locaux</div><div class="cd">Chaque site configure ses propres agents selon ses usages spécifiques. Les agents peuvent être partagés au niveau groupe ou rester privés à l'entité.</div></div>
+    <div class="card light"><div class="ck">Membres & équipes</div><div class="cd">Gestion des membres par entité. Un même utilisateur peut appartenir à plusieurs entités avec des rôles différents selon le contexte.</div></div>
+    <div class="card light"><div class="ck">Métriques par entité</div><div class="cd">Analytics segmentées par site, par équipe, par canal. Identifiez les entités les plus actives et celles qui ont besoin d'accompagnement.</div></div>
   </div>
 </section>
-
 <div class="sep"></div>
-
 <section class="section">
   <h2 class="section-title">Cas d'usage typiques</h2>
   <div class="grid2">
-    <div class="card cream">
-      <div class="ck">Groupes de santé</div>
-      <div class="cd">Un groupe de cliniques ou de centres d'imagerie : chaque site gère ses créneaux, ses agents d'accueil et ses rappels de RDV de façon indépendante, avec une vue groupe pour la direction médicale.</div>
-    </div>
-    <div class="card cream">
-      <div class="ck">Réseaux hôteliers</div>
-      <div class="cd">Un groupe hôtelier multi-établissements : chaque hôtel configure ses agents selon son positionnement, la marque garde le contrôle de la charte et des KPIs consolidés.</div>
-    </div>
-    <div class="card cream">
-      <div class="ck">Réseaux de franchises</div>
-      <div class="cd">La tête de réseau déploie les agents validés, chaque franchisé les adapte à son contexte local dans les limites définies par le franchiseur.</div>
-    </div>
-    <div class="card cream">
-      <div class="ck">Groupes B2B multi-BU</div>
-      <div class="cd">Chaque BU gère sa relation client avec ses agents dédiés. La DAF et la direction générale accèdent aux métriques consolidées en temps réel.</div>
-    </div>
+    <div class="card cream"><div class="ck">Groupes de santé</div><div class="cd">Chaque établissement gère ses créneaux, ses agents d'accueil et ses rappels de RDV de façon indépendante, avec une vue groupe pour la direction médicale.</div></div>
+    <div class="card cream"><div class="ck">Réseaux hôteliers</div><div class="cd">Chaque hôtel configure ses agents selon son positionnement, la marque garde le contrôle de la charte et des KPIs consolidés.</div></div>
+    <div class="card cream"><div class="ck">Réseaux de franchises</div><div class="cd">La tête de réseau déploie les agents validés, chaque franchisé les adapte à son contexte local dans les limites définies par le franchiseur.</div></div>
+    <div class="card cream"><div class="ck">Groupes B2B multi-BU</div><div class="cd">Chaque BU gère sa relation client avec ses agents dédiés. La direction générale accède aux métriques consolidées en temps réel.</div></div>
   </div>
 </section>
-
 <div class="page-cta">
   <p>Votre organisation est multi-sites ? Parlons-en.</p>
-  <div class="cta-btns">
-    <a class="btn-back" href="#/" target="_top">← Retour à l'accueil</a>
+  <div class="cta-btns"><button class="btn-back" onclick="goHome()">← Retour à l'accueil</button>
     <a class="btn-cta" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Demander une démo →</a>
   </div>
 </div>
-
-
-
 <script>
+function goHome(){try{parent.postMessage({srnNav:'home'},'*');}catch(e){top.location.hash='/';}}
 (function(){
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('in')},i*70);io.unobserve(e.target);}});
   },{threshold:.15});
-  document.querySelectorAll('.card').forEach(function(c){io.observe(c);});
+  document.querySelectorAll('.card,.model-card').forEach(function(c){io.observe(c);});
 })();
-(function resizeParent(){
-  function send(){try{parent.postMessage({srnH:document.documentElement.scrollHeight},'*');}catch(e){}}
-  send();
-  if(window.ResizeObserver)new ResizeObserver(send).observe(document.body);
-  setInterval(send,800);
+(function(){
+  function sendH(){var h=Math.max(document.documentElement.scrollHeight,document.body.scrollHeight);try{parent.postMessage({srnH:h},'*');}catch(e){}}
+  sendH();document.addEventListener('DOMContentLoaded',sendH);window.addEventListener('load',sendH);
+  [100,300,600,1200].forEach(function(t){setTimeout(sendH,t);});
+  if(window.ResizeObserver)new ResizeObserver(sendH).observe(document.body);
 })();
 </script>
-
 </body>
 </html>
