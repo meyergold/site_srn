@@ -1078,27 +1078,29 @@ var DESCS = {
 .modelbox{
   width:100%;max-width:430px;background:#fff;border:1px solid var(--line);
   border-radius:14px;box-shadow:0 24px 60px -30px rgba(40,30,70,.3);
-  display:grid;grid-template-columns:1fr 1px 1fr;font-size:12px;margin-top:8px;
+  display:grid;grid-template-columns:168px 1px 1fr;font-size:12px;margin-top:8px;
+  overflow:hidden;
 }
-
 #srn-platform .modelbox .col{padding:14px}
-
 #srn-platform .modelbox .vline{background:var(--line)}
-
-#srn-platform .mb-h{font-family:'Comfortaa';font-weight:600;font-size:11px;color:var(--ink-soft);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em}
-
-#srn-platform .mrow{display:flex;align-items:center;gap:8px;padding:6px 7px;border-radius:8px;margin-bottom:2px}
-
+#srn-platform .mb-h{font-family:'Comfortaa';font-weight:600;font-size:10px;color:var(--ink-soft);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em}
+#srn-platform .mrow{display:flex;align-items:center;gap:8px;padding:6px 7px;border-radius:8px;margin-bottom:2px;cursor:pointer;transition:background .15s}
+#srn-platform .mrow:hover{background:#f7f5ff}
 #srn-platform .mrow.on{background:#f3f0ff}
-
-#srn-platform .dot{width:16px;height:16px;border-radius:5px;flex:none;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:700}
-
-#srn-platform .mrow .nm{font-weight:500}
-
-#srn-platform .mrow .tag{margin-left:auto;font-size:9px;color:#9a9aa6;border:1px solid var(--line);border-radius:20px;padding:1px 7px}
-
+#srn-platform .dot{width:16px;height:16px;border-radius:5px;flex:none;display:grid;place-items:center;font-size:9px;color:#fff;font-weight:700;overflow:hidden}
+#srn-platform .dot img{width:100%;height:100%;object-fit:contain}
+#srn-platform .mrow .nm{font-weight:500;font-size:11.5px}
+#srn-platform .mrow .tag{margin-left:auto;font-size:9px;color:#9a9aa6;border:1px solid var(--line);border-radius:20px;padding:1px 6px;white-space:nowrap}
+/* right panel */
+#srn-platform .minfo{display:flex;flex-direction:column;gap:0;padding:14px;min-height:0}
+#srn-platform .minfo-panel{display:none;flex-direction:column;gap:10px;animation:miFade .22s ease}
+#srn-platform .minfo-panel.active{display:flex}
+@keyframes miFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+#srn-platform .mi-name{font-family:'Comfortaa';font-weight:700;font-size:12px;color:var(--ink);margin-bottom:2px}
+#srn-platform .mi-desc{font-size:11.5px;color:var(--ink-soft);line-height:1.6}
+#srn-platform .mi-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+#srn-platform .mi-tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;border:1px solid;background:transparent}
 #srn-platform .feat{font-size:12px;color:var(--ink-soft);line-height:1.7}
-
 #srn-platform .feat b{color:var(--ink);font-weight:600;font-family:'Comfortaa'}
 
 
@@ -1272,24 +1274,66 @@ var DESCS = {
         </div>
       </a>
       <div class="stage">
-        <div class="modelbox">
+        <div class="modelbox" id="mm-box">
           <div class="col">
             <div class="mb-h">Modèles</div>
-            <div class="mrow on"><span class="dot" style="background:#d97757">✦</span><span class="nm">Claude Opus 4.5</span><span class="tag">Anthropic</span></div>
-            <div class="mrow"><span class="dot" style="background:#10a37f">G</span><span class="nm">GPT-5.2</span><span class="tag">OpenAI</span></div>
-            <div class="mrow"><span class="dot" style="background:#ff7000">M</span><span class="nm">Mistral Large</span><span class="tag">EU</span></div>
-            <div class="mrow"><span class="dot" style="background:#4d6bfe">D</span><span class="nm">DeepSeek V3</span><span class="tag">Open</span></div>
-            <div class="mrow"><span class="dot" style="background:#4285f4">◆</span><span class="nm">Gemini 3 Pro</span><span class="tag">Google</span></div>
-            <div class="mrow"><span class="dot" style="background:#6b46c1">L</span><span class="nm">Llama 4</span><span class="tag">Meta</span></div>
+            <div class="mrow on" data-mi="claude"><span class="dot" style="background:#d97757"><img src="assets/img/claude-icon-logo.png" alt=""></span><span class="nm">Claude Opus</span><span class="tag">Anthropic</span></div>
+            <div class="mrow" data-mi="gpt"><span class="dot" style="background:#10a37f"><img src="assets/img/ChatGPT-Logo.svg.png" alt=""></span><span class="nm">GPT-5.2</span><span class="tag">OpenAI</span></div>
+            <div class="mrow" data-mi="mistral"><span class="dot" style="background:#ff7000"><img src="assets/img/mistral-color.png" alt=""></span><span class="nm">Mistral Large</span><span class="tag">EU</span></div>
+            <div class="mrow" data-mi="deepseek"><span class="dot" style="background:#4d6bfe"><img src="assets/img/deepseek-color.png" alt=""></span><span class="nm">DeepSeek V3</span><span class="tag">Open</span></div>
+            <div class="mrow" data-mi="gemini"><span class="dot" style="background:#4285f4"><img src="assets/img/Google_Gemini_icon_2025.svg.png" alt=""></span><span class="nm">Gemini 3 Pro</span><span class="tag">Google</span></div>
+            <div class="mrow" data-mi="llama"><span class="dot" style="background:#fff;border:1px solid #ddd"><img src="assets/img/meta-logo.svg" alt=""></span><span class="nm">Llama 4</span><span class="tag">Meta</span></div>
           </div>
           <div class="vline"></div>
-          <div class="col">
-            <div class="mb-h">Claude Opus 4.5</div>
-            <div class="feat">
-              <b>Le modèle de référence</b> pour les tâches complexes, le code et la rédaction.<br><br>
-              ✓ Documents &nbsp; ✓ Recherche web<br>
-              ✓ Analyse &nbsp; ✓ Raisonnement<br><br>
-              <span style="color:#9a9aa6">Hébergeable en France · open-weight</span>
+          <div class="minfo">
+            <div class="mb-h" id="mm-title">Claude Opus 4.5</div>
+            <div class="minfo-panel active" data-mi="claude">
+              <div class="mi-desc">Meilleure précision sur les tâches complexes : raisonnement multi-étapes, rédaction longue forme, analyse de dossiers.</div>
+              <div class="mi-tags">
+                <span class="mi-tag" style="border-color:#d9775740;color:#d97757">SaaS géré</span>
+                <span class="mi-tag" style="border-color:#d9775740;color:#d97757">Frontier</span>
+                <span class="mi-tag" style="border-color:#d9775740;color:#d97757">Fine-tuning</span>
+              </div>
+            </div>
+            <div class="minfo-panel" data-mi="gpt">
+              <div class="mi-desc">Polyvalent et réactif sur les volumes élevés. Génération structurée (JSON, tableaux) et intégration Microsoft.</div>
+              <div class="mi-tags">
+                <span class="mi-tag" style="border-color:#10a37f40;color:#10a37f">SaaS géré</span>
+                <span class="mi-tag" style="border-color:#10a37f40;color:#10a37f">API mature</span>
+                <span class="mi-tag" style="border-color:#10a37f40;color:#10a37f">Propriétaire</span>
+              </div>
+            </div>
+            <div class="minfo-panel" data-mi="mistral">
+              <div class="mi-desc">Modèle européen open-weight hébergeable en France. Conforme HDS/RGPD by design pour la santé et la finance.</div>
+              <div class="mi-tags">
+                <span class="mi-tag" style="border-color:#ff700040;color:#ff7000">Open-weight</span>
+                <span class="mi-tag" style="border-color:#ff700040;color:#ff7000">Hébergeable FR</span>
+                <span class="mi-tag" style="border-color:#ff700040;color:#ff7000">Fine-tunable</span>
+              </div>
+            </div>
+            <div class="minfo-panel" data-mi="deepseek">
+              <div class="mi-desc">Performance de frontier à coût réduit sur le code et l'extraction structurée. Déployable on-premise.</div>
+              <div class="mi-tags">
+                <span class="mi-tag" style="border-color:#4d6bfe40;color:#4d6bfe">Open-weight</span>
+                <span class="mi-tag" style="border-color:#4d6bfe40;color:#4d6bfe">Hébergeable</span>
+                <span class="mi-tag" style="border-color:#4d6bfe40;color:#4d6bfe">Fine-tunable</span>
+              </div>
+            </div>
+            <div class="minfo-panel" data-mi="gemini">
+              <div class="mi-desc">Nativement multimodal : image, PDF, audio. Grande fenêtre de contexte et intégration Google Workspace.</div>
+              <div class="mi-tags">
+                <span class="mi-tag" style="border-color:#4285f440;color:#4285f4">SaaS géré</span>
+                <span class="mi-tag" style="border-color:#4285f440;color:#4285f4">Multimodal</span>
+                <span class="mi-tag" style="border-color:#4285f440;color:#4285f4">Propriétaire</span>
+              </div>
+            </div>
+            <div class="minfo-panel" data-mi="llama">
+              <div class="mi-desc">Open-source Meta, déployable sur votre infrastructure. Zéro dépendance externe — adapté aux environnements air-gappés.</div>
+              <div class="mi-tags">
+                <span class="mi-tag" style="border-color:#6b46c140;color:#6b46c1">Open-source</span>
+                <span class="mi-tag" style="border-color:#6b46c140;color:#6b46c1">On-premise</span>
+                <span class="mi-tag" style="border-color:#6b46c140;color:#6b46c1">Fine-tunable</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1480,6 +1524,38 @@ const io=new IntersectionObserver((es)=>{
   es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);io.unobserve(e.target)}});
 },{threshold:.18});
 document.querySelectorAll('.card').forEach(c=>io.observe(c));
+
+// Multi-modèles interactive model picker
+(function(){
+  var box=document.getElementById('mm-box');
+  if(!box)return;
+  var rows=box.querySelectorAll('.mrow[data-mi]');
+  var panels=box.querySelectorAll('.minfo-panel[data-mi]');
+  var title=document.getElementById('mm-title');
+  var names={claude:'Claude Opus 4.5',gpt:'GPT-5.2',mistral:'Mistral Large',deepseek:'DeepSeek V3',gemini:'Gemini 3 Pro',llama:'Llama 4'};
+  var timer,current='claude',paused=false;
+  function select(mi){
+    current=mi;
+    rows.forEach(function(r){r.classList.toggle('on',r.dataset.mi===mi);});
+    panels.forEach(function(p){p.classList.toggle('active',p.dataset.mi===mi);});
+    if(title)title.textContent=names[mi]||mi;
+  }
+  rows.forEach(function(r){
+    r.addEventListener('mouseenter',function(){paused=true;clearInterval(timer);select(r.dataset.mi);});
+    r.addEventListener('mouseleave',function(){paused=false;startCycle();});
+    r.addEventListener('click',function(e){e.stopPropagation();select(r.dataset.mi);});
+  });
+  var order=['claude','gpt','mistral','deepseek','gemini','llama'];
+  function startCycle(){
+    clearInterval(timer);
+    timer=setInterval(function(){
+      if(paused)return;
+      var idx=(order.indexOf(current)+1)%order.length;
+      select(order[idx]);
+    },2000);
+  }
+  startCycle();
+})();
 
 // Make entire platform bento card clickable (not just the arrow area)
 document.querySelectorAll('#srn-platform .card').forEach(function(card){
