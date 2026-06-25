@@ -357,8 +357,8 @@ function render(){
 }
 
 qEl.addEventListener('input',e=>{q=e.target.value;render();});
-document.getElementById('sNum').textContent=DATA.length+'+';
-document.getElementById('sCat').textContent=(CATS.length-1);
+const sNum=document.getElementById('sNum');if(sNum)sNum.textContent=DATA.length+'+';
+const sCat=document.getElementById('sCat');if(sCat)sCat.textContent=(CATS.length-1);
 render();
 
 })();</script>
