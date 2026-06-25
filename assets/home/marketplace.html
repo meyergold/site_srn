@@ -197,7 +197,7 @@ body{font-family:var(--font);color:var(--ink);background:var(--canvas);overflow-
 @media (max-width:560px){.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px}.logo,.mono{width:46px;height:46px}}
 @media (prefers-reduced-motion:reduce){.card{animation:none}}
 
-#marketplace{position:relative;display:none}
+#marketplace{position:relative}
 </style></head>
 <body>
 
@@ -363,21 +363,7 @@ render();
 
 })();</script>
 
-<script>(function(){
-  /* page marketplace autonome : on affiche directement la marketplace, pas la section integ */
-  var sec=document.getElementById('integ'), mk=document.getElementById('marketplace');
-  if(sec) sec.style.display='none';
-  if(mk)  mk.style.display='block';,'*');}catch(_){}}});}
 
-  /* auto-redimensionnement de l'iframe dans le site (bridge srnMotion) */
-  function postH(){var H=Math.max(document.documentElement.scrollHeight,document.body.scrollHeight);
-    try{parent.postMessage({srnMotion:1,h:H},'*');}catch(x){}}
-  addEventListener('load',function(){postH();setTimeout(postH,300);setTimeout(postH,900);});
-  addEventListener('resize',postH);
-  if(window.ResizeObserver){try{new ResizeObserver(postH).observe(document.body);}catch(x){}}
-  if(window.MutationObserver){try{new MutationObserver(postH).observe(document.body,{childList:true,subtree:true,attributes:true});}catch(x){}}
-  setInterval(postH,1500);
-})();</script>
 <script>
 (function resizeParent(){
   function send(){try{parent.postMessage({srnH:document.documentElement.scrollHeight},'*');}catch(e){}}
