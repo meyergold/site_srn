@@ -3,130 +3,562 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mémoire de tout — Sairen</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Mémoire — Sairen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#1a1a22;--ink-soft:#5a5a66;--line:#eceaf0;--bg:#fbfafc;--card-light:#f4f3f6;--card-cream:#f2efe9;--card-dark:#1b1b24;--card-slate:#23232e;--g1:#ff7a59;--g2:#ff4f8b;--g3:#a259ff;--g4:#5b8cff;--g5:#22c1c3;--rainbow:linear-gradient(90deg,var(--g1),var(--g2),var(--g3),var(--g4),var(--g5));--radius:22px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;height:auto}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5;height:auto}
+:root{
+  --void:#09090F;--deep:#13121C;--panel:#1E1C2A;
+  --surface:#F7F5FF;--white:#fff;
+  --accent:#7047FF;--accent2:#9D78FF;
+  --teal:#00D4B8;--teal-dim:rgba(0,212,184,.14);
+  --soft:#EAE4FF;--soft2:#F3F0FF;
+  --ink:#1A1826;--ink2:#6B6880;
+  --line:#E8E4F0;--lined:rgba(255,255,255,.08);
+  --r:20px;--rl:28px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--surface);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-.topbar{padding:18px 24px;max-width:1120px;margin:0 auto}
-.back-link{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:var(--ink-soft);transition:color .2s;cursor:pointer;background:none;border:none;font-family:inherit;padding:0}
-.back-link:hover{color:var(--ink)}
-.hero{padding:48px 24px 56px;max-width:1120px;margin:0 auto}
-.eyebrow{display:inline-block;font-family:'Comfortaa',sans-serif;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:18px}
-.hero h1{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:clamp(26px,4.2vw,48px);line-height:1.1;letter-spacing:-.015em;max-width:820px;margin-bottom:16px}
-.hero h1 .grad{background:var(--rainbow);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-size:220% auto;animation:flow 6s linear infinite}
-@keyframes flow{to{background-position:220% center}}
-.hero .sub{font-size:17px;color:var(--ink-soft);max-width:640px;line-height:1.6}
-.section{padding:56px 24px;max-width:1120px;margin:0 auto}
-.section+.section{padding-top:0}
-.section-title{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:22px;margin-bottom:8px;letter-spacing:-.01em}
-.section-sub{color:var(--ink-soft);font-size:15px;margin-bottom:32px;max-width:620px;line-height:1.55}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-@media(max-width:760px){.grid2,.grid3,.grid4{grid-template-columns:1fr}}
-.card{border-radius:var(--radius);padding:28px 26px;border:1px solid var(--line);opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease,box-shadow .2s}
-.card.in{opacity:1;transform:none}
-.card:hover{box-shadow:0 16px 44px -22px rgba(40,30,70,.24)}
-.card.light{background:var(--card-light)}
-.card.cream{background:var(--card-cream)}
-.card.dark{background:var(--card-dark);border-color:#2a2a36;color:#fff}
-.card.slate{background:var(--card-slate);border-color:#30303d;color:#fff}
-.card.white{background:#fff}
-.card .ck{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:17px;margin-bottom:8px}
-.card .cd{font-size:14px;color:var(--ink-soft);line-height:1.55}
-.card.dark .cd,.card.slate .cd{color:#a7a7b4}
-.model-card{background:#fff;border-radius:var(--radius);padding:24px;border:1px solid var(--line);opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease,box-shadow .2s}
-.model-card.in{opacity:1;transform:none}
-.model-card:hover{box-shadow:0 16px 44px -22px rgba(40,30,70,.24)}
-.model-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.model-logo{width:40px;height:40px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#f5f4f8;border:1px solid var(--line)}
-.model-logo img{width:28px;height:28px;object-fit:contain}
-.model-name{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:16px;margin-bottom:3px}
-.pill-light{display:inline-block;font-size:11px;font-weight:600;padding:3px 11px;border-radius:999px;background:#f0eeff;color:var(--g3)}
-.hl{border-left:3px solid var(--g3);padding:14px 18px;background:#f8f6ff;border-radius:0 12px 12px 0;margin:16px 0 0}
-.hl p{font-size:13.5px;color:#4a3a6a;line-height:1.6}
-.sep{height:1px;background:var(--line);max-width:1120px;margin:0 auto}
-.page-cta{text-align:center;padding:64px 24px 80px}
-.page-cta p{font-size:15px;color:var(--ink-soft);margin-bottom:18px}
-.btn-back{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--ink-soft);border:1px solid var(--line);border-radius:30px;padding:10px 20px;transition:.2s;background:var(--bg);cursor:pointer;font-family:inherit}
-.btn-back:hover{background:#fff;box-shadow:0 8px 22px -10px rgba(0,0,0,.12);transform:translateY(-1px)}
-.btn-cta{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#fff;background:#0b0b0d;border-radius:30px;padding:11px 22px;transition:.2s;box-shadow:0 8px 22px -8px rgba(0,0,0,.4);text-decoration:none}
-.btn-cta:hover{background:#1c1c1e;transform:translateY(-2px);box-shadow:0 14px 34px -10px rgba(0,0,0,.5)}
-.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+
+/* NAV */
+.topbar{position:sticky;top:0;z-index:100;background:rgba(9,9,15,.9);border-bottom:1px solid var(--lined);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:13px 28px}
+.topbar-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.back-link{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:rgba(255,255,255,.55);transition:color .2s;cursor:pointer;background:none;border:none;font-family:inherit;padding:0}
+.back-link:hover{color:#fff}
+.topbar-tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+
+/* HERO */
+.hero{background:var(--void);padding:76px 28px 88px;position:relative;overflow:hidden}
+.hero-glow{position:absolute;pointer-events:none;width:700px;height:600px;background:radial-gradient(circle,rgba(112,71,255,.2) 0%,transparent 65%);top:-220px;left:50%;transform:translateX(-50%)}
+.hero-glow2{position:absolute;pointer-events:none;width:360px;height:280px;background:radial-gradient(ellipse,rgba(0,212,184,.13) 0%,transparent 70%);bottom:-60px;right:8%}
+.hero-in{max-width:1080px;margin:0 auto;position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);margin-bottom:22px}
+.eyebrow::before{content:'';display:block;width:22px;height:1px;background:var(--teal)}
+.hero h1{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:clamp(30px,5.2vw,58px);line-height:1.08;letter-spacing:-.02em;color:#fff;max-width:800px;margin-bottom:18px;text-wrap:balance}
+.hero h1 em{font-style:normal;background:linear-gradient(125deg,var(--accent2),var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.5);max-width:540px;line-height:1.65}
+.hero-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:6px 15px;font-size:12.5px;color:rgba(255,255,255,.65)}
+.chip-dot{width:6px;height:6px;border-radius:50%;flex:none}
+
+/* RECOGNITION SECTION */
+.recog{background:var(--void);padding:0 28px 88px}
+.recog-in{max-width:1080px;margin:0 auto}
+.slabel{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.recog h2{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:clamp(21px,3.4vw,35px);line-height:1.15;color:#fff;max-width:660px;margin-bottom:10px;text-wrap:balance}
+.recog-sub{font-size:15px;color:rgba(255,255,255,.48);max-width:540px;line-height:1.62;margin-bottom:44px}
+.recog-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+
+/* Widget */
+.widget{background:var(--panel);border:1px solid var(--lined);border-radius:var(--rl);overflow:hidden}
+.widget-head{display:flex;align-items:center;gap:10px;padding:13px 18px;border-bottom:1px solid var(--lined);background:rgba(255,255,255,.03)}
+.wdots{display:flex;gap:6px}
+.wd{width:10px;height:10px;border-radius:50%}
+.widget-label{font-size:11.5px;color:rgba(255,255,255,.32);margin-left:auto}
+.widget-body{padding:20px;min-height:290px;position:relative}
+.wphase{position:absolute;inset:20px;transition:opacity .45s ease,transform .45s ease;opacity:0;pointer-events:none;transform:translateY(6px)}
+.wphase.on{opacity:1;pointer-events:auto;transform:none}
+
+/* Phase 1 */
+.inc-row{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.inc-ico{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,rgba(112,71,255,.3),rgba(0,212,184,.2));border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:18px;flex:none}
+.inc-num{font-size:17px;font-weight:600;color:#fff;letter-spacing:.05em}
+.inc-time{font-size:11px;color:rgba(255,255,255,.35);margin-top:2px}
+.inc-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.2);border-radius:999px;padding:4px 12px;font-size:11px;font-weight:600;color:#25D366;margin-bottom:12px}
+.bubble{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:4px 14px 14px 14px;padding:12px 16px;font-size:13.5px;color:rgba(255,255,255,.7);line-height:1.55;font-style:italic}
+
+/* Phase 2 */
+.scan-wrap{display:flex;flex-direction:column;gap:14px}
+.scan-row{position:relative;overflow:hidden;background:rgba(112,71,255,.08);border:1px solid rgba(112,71,255,.2);border-radius:12px;padding:14px 18px}
+.scan-num{font-size:17px;font-weight:600;color:#fff;letter-spacing:.06em}
+.scan-beam{position:absolute;top:0;bottom:0;width:56px;background:linear-gradient(90deg,transparent,rgba(0,212,184,.55),transparent);animation:beam 1.3s ease-in-out infinite}
+@keyframes beam{0%{left:-56px}100%{left:calc(100% + 56px)}}
+.scan-status{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--teal)}
+.dots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--teal);margin:0 2px;animation:dp 1.2s ease-in-out infinite}
+.dots span:nth-child(2){animation-delay:.2s}
+.dots span:nth-child(3){animation-delay:.4s}
+@keyframes dp{0%,80%,100%{opacity:.2;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
+.chklist{display:flex;flex-direction:column;gap:8px}
+.chk{display:flex;align-items:center;gap:10px;font-size:12.5px;color:rgba(255,255,255,.35);transition:color .3s}
+.chk.ok{color:rgba(255,255,255,.75)}
+.chk-ico{width:18px;height:18px;border-radius:50%;border:1.5px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:9px;flex:none;transition:background .3s,border-color .3s}
+.chk.ok .chk-ico{background:var(--teal);border-color:var(--teal);color:#000}
+
+/* Phase 3 */
+.profile{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px}
+.prof-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.prof-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#7047FF,#00D4B8);display:flex;align-items:center;justify-content:center;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:16px;color:#fff;flex:none}
+.prof-name{font-size:15px;font-weight:700;color:#fff;margin-bottom:2px}
+.prof-since{font-size:11px;color:rgba(255,255,255,.38)}
+.rec-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,212,184,.15);border:1px solid rgba(0,212,184,.3);border-radius:999px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--teal);margin-left:auto;flex:none}
+.rec-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 3px rgba(0,212,184,.25);animation:rp 2s ease-in-out infinite}
+@keyframes rp{0%,100%{box-shadow:0 0 0 3px rgba(0,212,184,.25)}50%{box-shadow:0 0 0 7px rgba(0,212,184,.07)}}
+.prof-items{display:flex;flex-direction:column;gap:7px}
+.prof-item{display:flex;align-items:flex-start;gap:10px;background:rgba(255,255,255,.03);border-radius:8px;padding:9px 11px;font-size:12.5px;color:rgba(255,255,255,.62)}
+.prof-ico{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex:none}
+.prof-item b{color:#fff;display:block;font-size:12px;margin-bottom:1px}
+
+/* Impact list */
+.impacts{display:flex;flex-direction:column;gap:12px}
+.impact{display:flex;align-items:flex-start;gap:15px;padding:18px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:var(--r);transition:background .2s,border-color .2s}
+.impact:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.13)}
+.impact-n{width:32px;height:32px;border-radius:9px;background:var(--accent);color:#fff;font-family:'Comfortaa',sans-serif;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none}
+.impact-k{font-size:14px;font-weight:600;color:#fff;margin-bottom:5px}
+.impact-d{font-size:13px;color:rgba(255,255,255,.48);line-height:1.55}
+
+/* LIGHT */
+.ls{background:var(--surface);padding:76px 28px}
+.ls+.ls{padding-top:0}
+.ls-in{max-width:1080px;margin:0 auto}
+.sec-ey{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:11px}
+.sec-h{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:clamp(19px,2.7vw,29px);line-height:1.18;margin-bottom:9px;text-wrap:balance;color:var(--ink);letter-spacing:-.01em}
+.sec-s{font-size:15px;color:var(--ink2);max-width:560px;line-height:1.65;margin-bottom:38px}
+
+/* DARK SECTION (deux mémoires) */
+.ds{background:var(--void);padding:76px 28px 88px}
+.ds-in{max-width:1080px;margin:0 auto}
+.dslabel{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:11px}
+.ds h2{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:clamp(19px,2.7vw,29px);line-height:1.18;color:#fff;max-width:640px;margin-bottom:9px;text-wrap:balance}
+.ds-sub{font-size:15px;color:rgba(255,255,255,.45);max-width:540px;line-height:1.65;margin-bottom:40px}
+
+/* Deux mémoires split */
+.mem-split{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.mem-c{background:var(--deep);border:1px solid var(--lined);border-radius:var(--rl);padding:34px 30px;color:#fff;position:relative;overflow:hidden}
+.mem-c::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(112,71,255,.22) 0%,transparent 70%);pointer-events:none}
+.mem-e{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);padding:34px 30px;position:relative;overflow:hidden}
+.mem-e::before{content:'';position:absolute;bottom:-40px;left:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(0,212,184,.1) 0%,transparent 70%);pointer-events:none}
+.mem-tag{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:5px 14px;font-size:11.5px;font-weight:700;margin-bottom:16px}
+.mt-p{background:rgba(112,71,255,.2);color:var(--accent2)}
+.mt-t{background:rgba(0,212,184,.1);color:#009E90}
+.mem-title{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:20px;margin-bottom:7px}
+.mem-c .mem-title{color:#fff}
+.mem-e .mem-title{color:var(--ink)}
+.mem-desc{font-size:13.5px;line-height:1.6;margin-bottom:22px}
+.mem-c .mem-desc{color:rgba(255,255,255,.48)}
+.mem-e .mem-desc{color:var(--ink2)}
+.mem-list{display:flex;flex-direction:column;gap:9px}
+.mi{display:flex;align-items:center;gap:11px;border-radius:11px;padding:10px 13px;font-size:13px}
+.mem-c .mi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.78)}
+.mem-e .mi{background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.mi-ico{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+.mi-body small{display:block;font-size:11px;margin-top:1px}
+.mem-c .mi-body small{color:rgba(255,255,255,.33)}
+.mem-e .mi-body small{color:var(--ink2)}
+
+/* FEED */
+.feed{background:var(--white);border:1px solid var(--line);border-radius:var(--rl);overflow:hidden}
+.feed-head{display:flex;align-items:center;gap:14px;padding:16px 22px;border-bottom:1px solid var(--line);background:var(--soft2)}
+.feed-name{font-size:14px;font-weight:700;color:var(--ink)}
+.feed-since{font-size:11px;color:var(--ink2);margin-top:1px}
+.feed-live{display:flex;align-items:center;gap:7px;margin-left:auto;font-size:12px;font-weight:600;color:var(--accent)}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(112,71,255,.2);animation:lp 2s ease-in-out infinite;flex:none}
+@keyframes lp{0%,100%{box-shadow:0 0 0 4px rgba(112,71,255,.2)}50%{box-shadow:0 0 0 8px rgba(112,71,255,.05)}}
+.feed-rows{}
+.feed-row{display:flex;align-items:flex-start;gap:13px;padding:13px 22px;border-bottom:1px solid var(--line)}
+.feed-row:last-child{border-bottom:none}
+.fr-ico{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;flex:none;margin-top:1px}
+.fr-text{font-size:13.5px;color:var(--ink);line-height:1.45}
+.fr-meta{font-size:11px;color:var(--ink2);margin-top:3px}
+.fr-tag{flex:none;font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:999px;align-self:flex-start;margin-top:3px;white-space:nowrap}
+.feed-synth{display:flex;align-items:flex-start;gap:13px;padding:16px 22px;background:linear-gradient(135deg,var(--soft2),var(--white));border-top:1px solid rgba(112,71,255,.1)}
+.fs-ico{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--teal));display:flex;align-items:center;justify-content:center;font-size:15px;flex:none}
+.fs-label{font-size:10.5px;color:var(--accent);font-weight:700;margin-bottom:4px;letter-spacing:.04em}
+.fs-text{font-size:13.5px;color:var(--ink);line-height:1.5;font-weight:500}
+
+/* GRID3 */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.xc{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease,box-shadow .2s}
+.xc.in{opacity:1;transform:none}
+.xc:hover{box-shadow:0 14px 36px -18px rgba(80,50,180,.14)}
+.xc-ico{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px}
+.xc-k{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:15px;margin-bottom:6px;color:var(--ink)}
+.xc-d{font-size:13.5px;color:var(--ink2);line-height:1.6}
+
+/* IMPACT GRID */
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ic{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:26px 24px;opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.ic.in{opacity:1;transform:none}
+.ic-bar{height:3px;border-radius:2px;width:38px;margin-bottom:16px}
+.ic-k{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:15.5px;margin-bottom:7px;color:var(--ink)}
+.ic-d{font-size:13.5px;color:var(--ink2);line-height:1.6}
+
+/* DIVIDERS */
+.div-l{height:1px;background:var(--line);max-width:1080px;margin:0 auto}
+.div-d{height:1px;background:var(--lined)}
+
+/* CTA */
+.cta{background:var(--void);text-align:center;padding:76px 28px;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(112,71,255,.17) 0%,transparent 70%);pointer-events:none}
+.cta-in{position:relative;z-index:1}
+.cta h2{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:clamp(20px,3.4vw,36px);color:#fff;margin-bottom:12px;text-wrap:balance}
+.cta p{font-size:16px;color:rgba(255,255,255,.48);margin-bottom:30px}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-g{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:rgba(255,255,255,.65);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:11px 23px;transition:.2s;cursor:pointer;font-family:inherit}
+.btn-g:hover{background:rgba(255,255,255,.12);color:#fff}
+.btn-p{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:#fff;background:var(--accent);border:none;border-radius:999px;padding:12px 26px;transition:.2s;box-shadow:0 8px 24px -8px rgba(112,71,255,.55);text-decoration:none}
+.btn-p:hover{background:#5a38ee;transform:translateY(-1px);box-shadow:0 14px 30px -10px rgba(112,71,255,.65)}
+
+@media(prefers-reduced-motion:reduce){
+  .scan-beam,.dots span,.rec-badge::before,.live-dot{animation:none}
+}
+@media(max-width:760px){
+  .recog-grid,.mem-split,.g3,.ig{grid-template-columns:1fr}
+  .hero,.recog,.ls,.ds,.cta{padding-left:20px;padding-right:20px}
+}
 </style>
 </head>
 <body>
-<nav><div class="topbar"><button class="back-link" onclick="goHome()">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-    Retour à Sairen
-  </button></div></nav>
 
+<nav><div class="topbar"><div class="topbar-in">
+  <button class="back-link" onclick="goHome()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Retour à Sairen
+  </button>
+  <span class="topbar-tag">La Plateforme</span>
+</div></div></nav>
+
+<!-- HERO -->
 <section class="hero">
-  <span class="eyebrow">La plateforme</span>
-  <h1>Vos agents se souviennent<br><span class="grad">de chaque échange, sur tous les canaux.</span></h1>
-  <p class="sub">Une continuité parfaite, sans jamais demander deux fois la même chose. Quel que soit le canal, l'équipe ou le site.</p>
-</section>
-<div class="sep"></div>
-<section class="section">
-  <h2 class="section-title">La mémoire en action</h2>
-  <p class="section-sub">Chaque interaction est mémorisée, indexée et rendue accessible à tous les agents de votre organisation — en temps réel.</p>
-  <div class="card white" style="opacity:1;transform:none;padding:32px">
-    <div style="display:inline-flex;align-items:center;gap:8px;font-family:Comfortaa,sans-serif;font-weight:600;font-size:13px;color:var(--ink-soft);background:var(--bg);border:1px solid var(--line);border-radius:30px;padding:7px 16px;margin-bottom:22px">
-      <span style="width:10px;height:10px;border-radius:50%;background:var(--g3);box-shadow:0 0 0 4px rgba(162,89,255,.2)"></span>
-      Mémoire unifiée · active
-    </div>
-    <div style="display:flex;flex-direction:column;gap:11px;position:relative">
-      <div style="position:absolute;left:19px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--line),transparent)"></div>
-      <div style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 16px"><span style="width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#5b8cff,#22c1c3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex:none">✉</span><div><div style="font-size:13.5px">« RDV scanner déplacé au 12/03 »</div><div style="font-size:11px;color:var(--ink-soft);margin-top:3px">Email · Site Paris 15e · il y a 2 jours</div></div></div>
-      <div style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 16px"><span style="width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#ff7a59,#ff4f8b);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex:none">☎</span><div><div style="font-size:13.5px">« Préfère être rappelé l'après-midi »</div><div style="font-size:11px;color:var(--ink-soft);margin-top:3px">Appel · équipe Accueil · il y a 5 jours</div></div></div>
-      <div style="display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:13px 16px"><span style="width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,#22c1c3,#37a866);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex:none">✆</span><div><div style="font-size:13.5px">« Ordonnance reçue, dossier à jour »</div><div style="font-size:11px;color:var(--ink-soft);margin-top:3px">WhatsApp · Site Lyon · il y a 1 semaine</div></div></div>
-      <div style="display:flex;align-items:center;gap:14px;background:linear-gradient(180deg,#fbf7ff,#fff);border:1px solid #ece4fb;border-radius:14px;padding:13px 16px"><span style="width:32px;height:32px;border-radius:10px;background:linear-gradient(90deg,#ff7a59,#a259ff,#22c1c3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;flex:none">✦</span><div><div style="font-size:13.5px;font-weight:500">L'agent rappelle l'historique complet à chaque nouvelle interaction.</div><div style="font-size:11px;color:var(--ink-soft);margin-top:3px">Synthèse · vue groupe · automatique</div></div></div>
+  <div class="hero-glow"></div><div class="hero-glow2"></div>
+  <div class="hero-in">
+    <div class="eyebrow">Mémoire</div>
+    <h1>Vos agents savent déjà<br><em>qui vous êtes.</em></h1>
+    <p class="hero-sub">Chaque échange mémorisé. Chaque préférence retenue. Peu importe le canal, l'équipe ou le moment — la continuité est totale.</p>
+    <div class="hero-chips">
+      <div class="chip"><span class="chip-dot" style="background:var(--teal)"></span>Reconnaissance instantanée</div>
+      <div class="chip"><span class="chip-dot" style="background:var(--accent2)"></span>Mémoire cross-canal</div>
+      <div class="chip"><span class="chip-dot" style="background:#FF7A59"></span>Zéro redite</div>
     </div>
   </div>
 </section>
-<div class="sep"></div>
-<section class="section">
-  <h2 class="section-title">Cross-canal, cross-équipe, cross-site</h2>
-  <div class="grid3">
-    <div class="card light"><div class="ck">Multi-canal</div><div class="cd">Un patient vous contacte par email, puis par téléphone, puis sur WhatsApp. L'agent dispose du contexte complet — sans que le contact n'ait à se répéter.</div></div>
-    <div class="card light"><div class="ck">Multi-équipe</div><div class="cd">Le secrétariat et les praticiens partagent la même mémoire client. Une information saisie par l'accueil est immédiatement disponible pour le médecin.</div></div>
-    <div class="card light"><div class="ck">Multi-site</div><div class="cd">Un contact fidèle à deux établissements du groupe est reconnu partout. Aucune perte de contexte lors d'un changement de site ou d'interlocuteur.</div></div>
+
+<!-- RECONNAISSANCE -->
+<section class="recog">
+  <div class="recog-in">
+    <div class="slabel">Identification instantanée</div>
+    <h2>Un numéro. Un email.<br>Et l'agent sait déjà tout.</h2>
+    <p class="recog-sub">Dès les premiers caractères d'un numéro ou d'une adresse, Sairen retrouve l'historique complet du contact — en millisecondes, sans friction.</p>
+    <div class="recog-grid">
+
+      <!-- ANIMATED WIDGET -->
+      <div class="widget">
+        <div class="widget-head">
+          <div class="wdots">
+            <div class="wd" style="background:#FF5F57"></div>
+            <div class="wd" style="background:#FFBD2E"></div>
+            <div class="wd" style="background:#28CA41"></div>
+          </div>
+          <span class="widget-label" id="wlabel">Nouveau message entrant</span>
+        </div>
+        <div class="widget-body">
+          <!-- Phase 1 : incoming -->
+          <div class="wphase on" id="wp1">
+            <div class="inc-row">
+              <div class="inc-ico">📱</div>
+              <div>
+                <div class="inc-num">+33 6 12 34 56 78</div>
+                <div class="inc-time">WhatsApp · à l'instant</div>
+              </div>
+            </div>
+            <div class="inc-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.172-.009-.371-.013-.57-.013-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+              WhatsApp
+            </div>
+            <div class="bubble">« Bonjour, j'ai un rendez-vous demain — pouvez-vous me confirmer l'heure ? »</div>
+          </div>
+
+          <!-- Phase 2 : scan -->
+          <div class="wphase" id="wp2">
+            <div class="scan-wrap">
+              <div class="scan-row">
+                <div class="scan-num">+33 6 12 34 56 78</div>
+                <div class="scan-beam"></div>
+              </div>
+              <div class="scan-status">
+                <span>Reconnaissance en cours</span>
+                <span class="dots"><span></span><span></span><span></span></span>
+              </div>
+              <div class="chklist">
+                <div class="chk" id="ck1"><div class="chk-ico"></div>Correspondance numéro trouvée</div>
+                <div class="chk" id="ck2"><div class="chk-ico"></div>Chargement de l'historique…</div>
+                <div class="chk" id="ck3"><div class="chk-ico"></div>Préférences et contexte actif…</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 3 : recognized -->
+          <div class="wphase" id="wp3">
+            <div class="profile">
+              <div class="prof-head">
+                <div class="prof-av">MC</div>
+                <div>
+                  <div class="prof-name">Marie Chevalier</div>
+                  <div class="prof-since">Cliente depuis 14 mois · 18 interactions</div>
+                </div>
+                <div class="rec-badge">Reconnu</div>
+              </div>
+              <div class="prof-items">
+                <div class="prof-item">
+                  <div class="prof-ico" style="background:rgba(91,140,255,.15)">📅</div>
+                  <div><b>RDV demain à 10h30 — Site Paris 15e</b>Dr. Moreau · confirmé par email</div>
+                </div>
+                <div class="prof-item">
+                  <div class="prof-ico" style="background:rgba(255,122,89,.15)">⏰</div>
+                  <div><b>Préfère être contactée le matin</b>Noté lors de l'appel du 12/03</div>
+                </div>
+                <div class="prof-item">
+                  <div class="prof-ico" style="background:rgba(37,211,102,.15)">💬</div>
+                  <div><b>Canal habituel : WhatsApp</b>10 échanges sur 18 via ce canal</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IMPACT LIST -->
+      <div class="impacts">
+        <div class="impact">
+          <div class="impact-n">1</div>
+          <div>
+            <div class="impact-k">Reconnaître sans demander</div>
+            <div class="impact-d">Un numéro ou un email suffit. L'agent sait à qui il parle avant même le premier mot — sans formulaire, sans question d'identification.</div>
+          </div>
+        </div>
+        <div class="impact">
+          <div class="impact-n">2</div>
+          <div>
+            <div class="impact-k">Contexte complet en millisecondes</div>
+            <div class="impact-d">L'historique cross-canal s'affiche instantanément : derniers échanges, préférences, incidents en cours, canal préféré.</div>
+          </div>
+        </div>
+        <div class="impact">
+          <div class="impact-n">3</div>
+          <div>
+            <div class="impact-k">Un contact, plusieurs identifiants</div>
+            <div class="impact-d">Sairen regroupe automatiquement email pro, email perso, mobile — un seul profil unifié quel que soit le point d'entrée.</div>
+          </div>
+        </div>
+        <div class="impact">
+          <div class="impact-n">4</div>
+          <div>
+            <div class="impact-k">L'IA contextualise la réponse</div>
+            <div class="impact-d">Fort de cet historique, l'agent formule une réponse adaptée — ton juste, préférences intégrées, sujet en cours — automatiquement.</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-<div class="sep"></div>
-<section class="section">
-  <h2 class="section-title">Ce que ça change concrètement</h2>
-  <div class="grid2">
-    <div class="card cream"><div class="ck">Zéro redite pour le contact</div><div class="cd">Le contact n'a plus à expliquer sa situation à chaque interaction. L'agent reprend exactement là où la dernière conversation s'était arrêtée.</div></div>
-    <div class="card cream"><div class="ck">Personnalisation sans effort</div><div class="cd">Les préférences, les historiques d'échanges, les incidents passés — tout est disponible en contexte pour personnaliser chaque réponse.</div></div>
-    <div class="card cream"><div class="ck">Continuité lors des transferts</div><div class="cd">Quand un agent transfère une conversation à un humain, la mémoire suit. Le collaborateur qui prend la main dispose du contexte complet.</div></div>
-    <div class="card cream"><div class="ck">Analytics comportementaux</div><div class="cd">Fréquence de contact, canaux préférés, sujets récurrents — des insights actionnables sur votre base de contacts.</div></div>
+
+<!-- DEUX MÉMOIRES -->
+<div class="div-d"></div>
+<section class="ds">
+  <div class="ds-in">
+    <div class="dslabel">Deux couches de mémoire</div>
+    <h2>L'IA se souvient pour chaque client.<br>Et pour toute l'entreprise.</h2>
+    <p class="ds-sub">Deux types de mémoire complémentaires, actifs en permanence, disponibles à chaque interaction.</p>
+    <div class="mem-split">
+      <div class="mem-c">
+        <div class="mem-tag mt-p">🧠 Mémoire individuelle</div>
+        <div class="mem-title">Ce que Sairen sait sur chaque client</div>
+        <div class="mem-desc">Un profil vivant, enrichi automatiquement à chaque échange — sur tous les canaux, toutes les équipes, tous les sites.</div>
+        <div class="mem-list">
+          <div class="mi"><div class="mi-ico" style="background:rgba(112,71,255,.2)">🗓</div><div class="mi-body">Historique complet des échanges<small>Email, appel, WhatsApp, Instagram · tous canaux</small></div></div>
+          <div class="mi"><div class="mi-ico" style="background:rgba(91,140,255,.2)">⚙️</div><div class="mi-body">Préférences et habitudes<small>Canal, horaire, interlocuteur préféré</small></div></div>
+          <div class="mi"><div class="mi-ico" style="background:rgba(255,122,89,.2)">💡</div><div class="mi-body">Incidents et résolutions passées<small>Ce qui a posé problème, comment ça a été résolu</small></div></div>
+          <div class="mi"><div class="mi-ico" style="background:rgba(0,212,184,.2)">📊</div><div class="mi-body">Sentiment et satisfaction<small>Score évolutif, signaux de frustration détectés</small></div></div>
+        </div>
+      </div>
+      <div class="mem-e">
+        <div class="mem-tag mt-t">🏢 Mémoire collective</div>
+        <div class="mem-title">Ce que Sairen sait sur votre entreprise</div>
+        <div class="mem-desc">La connaissance métier de vos équipes, disponible à chaque agent IA — en temps réel, sans aucune friction.</div>
+        <div class="mem-list">
+          <div class="mi"><div class="mi-ico" style="background:rgba(0,212,184,.12)">📚</div><div class="mi-body">Base de connaissance produits &amp; services<small>Tarifs, procédures, conditions, FAQ interne</small></div></div>
+          <div class="mi"><div class="mi-ico" style="background:rgba(112,71,255,.1)">🏗</div><div class="mi-body">Workflows et règles d'escalade<small>Qui fait quoi, quand transférer, règles métier</small></div></div>
+          <div class="mi"><div class="mi-ico" style="background:rgba(255,189,46,.15)">🎯</div><div class="mi-body">Offres et promotions en cours<small>Disponible instantanément pour chaque agent</small></div></div>
+          <div class="mi"><div class="mi-ico" style="background:rgba(40,202,65,.12)">🔄</div><div class="mi-body">Mise à jour en temps réel<small>Une modification se propage à tous les agents simultanément</small></div></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-<div class="page-cta">
-  <p>Envie de voir la mémoire en action sur vos cas d'usage ?</p>
-  <div class="cta-btns"><button class="btn-back" onclick="goHome()">← Retour à l'accueil</button>
-    <a class="btn-cta" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Demander une démo →</a>
+
+<!-- FEED -->
+<section class="ls">
+  <div class="ls-in">
+    <div class="sec-ey">La mémoire en action</div>
+    <h2 class="sec-h">Un fil continu à travers tous les canaux</h2>
+    <p class="sec-s">L'agent reconstitue la conversation complète — peu importe l'ordre des échanges ou l'équipe qui les a traités.</p>
+    <div class="feed">
+      <div class="feed-head">
+        <div>
+          <div class="feed-name">Marie Chevalier</div>
+          <div class="feed-since">Cliente depuis 14 mois · dernière interaction il y a 2 jours</div>
+        </div>
+        <div class="feed-live"><div class="live-dot"></div>Mémoire active</div>
+      </div>
+      <div class="feed-rows">
+        <div class="feed-row">
+          <div class="fr-ico" style="background:rgba(91,140,255,.1)">✉️</div>
+          <div style="flex:1"><div class="fr-text">« RDV scanner déplacé au 12/03 — confirmation envoyée »</div><div class="fr-meta">Email · Site Paris 15e · il y a 2 jours</div></div>
+          <div class="fr-tag" style="background:rgba(91,140,255,.1);color:#3B5CF0">Email</div>
+        </div>
+        <div class="feed-row">
+          <div class="fr-ico" style="background:rgba(255,122,89,.1)">☎️</div>
+          <div style="flex:1"><div class="fr-text">« Préfère être rappelée le matin avant 11h »</div><div class="fr-meta">Appel entrant · Équipe Accueil · il y a 5 jours</div></div>
+          <div class="fr-tag" style="background:rgba(255,122,89,.1);color:#D45030">Appel</div>
+        </div>
+        <div class="feed-row">
+          <div class="fr-ico" style="background:rgba(37,211,102,.1)">💬</div>
+          <div style="flex:1"><div class="fr-text">« Ordonnance reçue, dossier mis à jour »</div><div class="fr-meta">WhatsApp · Site Lyon · il y a 1 semaine</div></div>
+          <div class="fr-tag" style="background:rgba(37,211,102,.1);color:#17803D">WhatsApp</div>
+        </div>
+        <div class="feed-row">
+          <div class="fr-ico" style="background:rgba(162,89,255,.1)">📷</div>
+          <div style="flex:1"><div class="fr-text">« Question sur les délais de remboursement — réponse apportée »</div><div class="fr-meta">Instagram DM · il y a 3 semaines</div></div>
+          <div class="fr-tag" style="background:rgba(162,89,255,.1);color:#7A3FD4">Instagram</div>
+        </div>
+      </div>
+      <div class="feed-synth">
+        <div class="fs-ico">✦</div>
+        <div>
+          <div class="fs-label">Synthèse IA · automatique</div>
+          <div class="fs-text">Marie est une cliente régulière, à l'aise sur WhatsApp, préférant le matin. Son dossier est à jour, son RDV confirmé. Aucun signal de friction récent.</div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
+<div style="padding:0 28px"><div class="div-l"></div></div>
+
+<!-- CROSS-CANAL -->
+<section class="ls" style="padding-top:60px">
+  <div class="ls-in">
+    <div class="sec-ey">Continuité totale</div>
+    <h2 class="sec-h">Cross-canal, cross-équipe, cross-site</h2>
+    <p class="sec-s">La mémoire ne s'arrête pas à un canal ou une équipe. Elle suit le contact, partout, en permanence.</p>
+    <div class="g3">
+      <div class="xc">
+        <div class="xc-ico" style="background:rgba(91,140,255,.1)">📡</div>
+        <div class="xc-k">Multi-canal</div>
+        <div class="xc-d">Email, appel, WhatsApp, Instagram — l'agent reprend exactement là où ça s'est arrêté, sans que le contact n'ait à se répéter.</div>
+      </div>
+      <div class="xc" style="transition-delay:.1s">
+        <div class="xc-ico" style="background:rgba(112,71,255,.1)">👥</div>
+        <div class="xc-k">Multi-équipe</div>
+        <div class="xc-d">Secrétariat, praticiens, agents IA — tous partagent la même mémoire en temps réel. Ce que sait l'un, tous le savent.</div>
+      </div>
+      <div class="xc" style="transition-delay:.2s">
+        <div class="xc-ico" style="background:rgba(0,212,184,.1)">🗺️</div>
+        <div class="xc-k">Multi-site</div>
+        <div class="xc-d">Un contact fidèle à deux établissements d'un groupe est reconnu sur chaque site. Le contexte voyage avec lui.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="padding:0 28px"><div class="div-l"></div></div>
+
+<!-- IMPACT -->
+<section class="ls" style="padding-top:60px">
+  <div class="ls-in">
+    <div class="sec-ey">Ce que ça change</div>
+    <h2 class="sec-h">Pour votre équipe, concrètement</h2>
+    <p class="sec-s">Moins de friction à chaque point de contact. Plus de confiance, pour le client comme pour vos collaborateurs.</p>
+    <div class="ig">
+      <div class="ic">
+        <div class="ic-bar" style="background:linear-gradient(90deg,var(--accent),var(--teal))"></div>
+        <div class="ic-k">Zéro redite pour le contact</div>
+        <div class="ic-d">Le contact n'a plus à réexpliquer sa situation. L'agent reprend là où la dernière conversation s'était arrêtée — quel que soit le canal ou l'équipe.</div>
+      </div>
+      <div class="ic" style="transition-delay:.1s">
+        <div class="ic-bar" style="background:linear-gradient(90deg,var(--teal),#5B8CFF)"></div>
+        <div class="ic-k">Personnalisation sans effort</div>
+        <div class="ic-d">Préférences, historique, incidents — tout est en contexte. L'agent personnalise automatiquement chaque réponse, sans configuration manuelle.</div>
+      </div>
+      <div class="ic" style="transition-delay:.05s">
+        <div class="ic-bar" style="background:linear-gradient(90deg,#FF7A59,#A259FF)"></div>
+        <div class="ic-k">Transferts sans perte de contexte</div>
+        <div class="ic-d">Quand l'IA passe la main à un humain, la mémoire suit. Le collaborateur dispose du contexte complet dès la première seconde.</div>
+      </div>
+      <div class="ic" style="transition-delay:.15s">
+        <div class="ic-bar" style="background:linear-gradient(90deg,#A259FF,#22C1C3)"></div>
+        <div class="ic-k">Insights comportementaux</div>
+        <div class="ic-d">Fréquence de contact, canaux préférés, sujets récurrents, satisfaction — des données actionnables sur l'ensemble de votre base.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-in">
+    <h2>La mémoire, c'est ce qui transforme<br>un agent en véritable allié.</h2>
+    <p>Voyez comment Sairen mémorise et contextualise vos interactions.</p>
+    <div class="cta-row">
+      <button class="btn-g" onclick="goHome()">← Retour à l'accueil</button>
+      <a class="btn-p" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Demander une démo →</a>
+    </div>
+  </div>
+</section>
+
 <script>
 function goHome(){try{parent.postMessage({srnNav:'home'},'*');}catch(e){top.location.hash='/';}}
+
+// Recognition widget 3-phase loop
+(function(){
+  var phases=['wp1','wp2','wp3'];
+  var labels=['Nouveau message entrant','Reconnaissance en cours…','Contact identifié ✓'];
+  var dur=[2400,2200,4000];
+  var cur=0;
+
+  function show(i){
+    phases.forEach(function(id,j){
+      var el=document.getElementById(id);
+      el.classList.toggle('on',j===i);
+    });
+    document.getElementById('wlabel').textContent=labels[i];
+    if(i===1){
+      ['ck1','ck2','ck3'].forEach(function(id){document.getElementById(id).classList.remove('ok');});
+      setTimeout(function(){document.getElementById('ck1').classList.add('ok');},120);
+      setTimeout(function(){document.getElementById('ck2').classList.add('ok');},640);
+      setTimeout(function(){document.getElementById('ck3').classList.add('ok');},1160);
+    }
+  }
+
+  function next(){
+    cur=(cur+1)%phases.length;
+    show(cur);
+    setTimeout(next,dur[cur]);
+  }
+  setTimeout(next,dur[0]);
+})();
+
+// Scroll reveals
 (function(){
   var io=new IntersectionObserver(function(es){
-    es.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('in')},i*70);io.unobserve(e.target);}});
-  },{threshold:.15});
-  document.querySelectorAll('.card,.model-card').forEach(function(c){io.observe(c);});
+    es.forEach(function(e,i){
+      if(e.isIntersecting){
+        setTimeout(function(){e.target.classList.add('in');},i*75);
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.13});
+  document.querySelectorAll('.xc,.ic').forEach(function(c){io.observe(c);});
 })();
+
+// Height report
 (function(){
-  function sendH(){var h=Math.max(document.documentElement.scrollHeight,document.body.scrollHeight);try{parent.postMessage({srnH:h},'*');}catch(e){}}
-  sendH();document.addEventListener('DOMContentLoaded',sendH);window.addEventListener('load',sendH);
-  [100,300,600,1200].forEach(function(t){setTimeout(sendH,t);});
-  if(window.ResizeObserver)new ResizeObserver(sendH).observe(document.body);
+  function h(){var v=Math.max(document.documentElement.scrollHeight,document.body.scrollHeight);try{parent.postMessage({srnH:v},'*');}catch(e){}}
+  h();document.addEventListener('DOMContentLoaded',h);window.addEventListener('load',h);
+  [100,300,600,1200].forEach(function(t){setTimeout(h,t);});
+  if(window.ResizeObserver)new ResizeObserver(h).observe(document.body);
 })();
 </script>
 </body>
