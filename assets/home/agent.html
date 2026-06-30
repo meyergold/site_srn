@@ -138,4 +138,41 @@ document.querySelectorAll('.tab').forEach(function(t){
 });
 document.querySelectorAll('.ck').forEach(function(c){c.addEventListener('click',function(){c.classList.toggle('on');var on=c.classList.contains('on');c.querySelector('svg').innerHTML=on?'<circle cx="12" cy="12" r="9"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8"/>':'<circle cx="12" cy="12" r="9"/>';})});
 </script>
+<script>
+(function(){
+var T={
+  "Assistant RDV":{"en":"Appointment assistant","de":"Terminassistent"},
+  "Actif":{"en":"Active","de":"Aktiv"},
+  "Voix":{"en":"Voice","de":"Stimme"},
+  "Transcripteur":{"en":"Transcriber","de":"Transkriptor"},
+  "Outils":{"en":"Tools","de":"Werkzeuge"},
+  "Analyse":{"en":"Analysis","de":"Analyse"},
+  "Avancé":{"en":"Advanced","de":"Erweitert"},
+  "Tester":{"en":"Test","de":"Testen"},
+  "Visualiser":{"en":"Preview","de":"Vorschau"},
+  "Enregistrer":{"en":"Save","de":"Speichern"},
+  "Configuration du modèle":{"en":"Model configuration","de":"Modellkonfiguration"},
+  "Sélectionnez le fournisseur et le modèle IA":{"en":"Select the AI provider and model","de":"Wählen Sie den KI-Anbieter und das Modell"},
+  "Premier message":{"en":"First message","de":"Erste Nachricht"},
+  "Comportement initial de l'agent":{"en":"Initial agent behavior","de":"Anfängliches Agentenverhalten"},
+  "L'assistant parle en premier":{"en":"The assistant speaks first","de":"Der Assistent spricht zuerst"}
+};
+function norm(s){return s.replace(/\s+/g,' ').trim();}
+function walk(lang){
+  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+    if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
+    var p=n.parentElement;if(!p)return NodeFilter.FILTER_REJECT;
+    var t=p.tagName;if(t==='SCRIPT'||t==='STYLE')return NodeFilter.FILTER_REJECT;
+    return NodeFilter.FILTER_ACCEPT;}});
+  var n;while(n=w.nextNode()){
+    var k=norm(n.nodeValue),e=T[k];
+    if(e&&e[lang])n.nodeValue=n.nodeValue.replace(k,e[lang]);
+  }
+}
+var cur='fr';
+function apply(lang){if(lang&&lang!=='fr'){walk(lang);}cur=lang;}
+window.addEventListener('message',function(e){var d=e.data;if(d&&d.srnLang)apply(d.srnLang);});
+try{if(window.parent&&window.parent.LANG&&window.parent.LANG!=='fr')apply(window.parent.LANG);}catch(e){}
+})();
+</script>
 </body></html>

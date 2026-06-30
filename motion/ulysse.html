@@ -257,4 +257,30 @@ html,body{margin:0;padding:0;background:transparent}
 if(window.ResizeObserver){new ResizeObserver(rz).observe(document.body);}
 window.addEventListener('load',rz);[200,600,1200,2500].forEach(function(t){setTimeout(rz,t);});})();
 </script>
+<script>
+(function(){
+var T={
+  "ULYSSE":{"en":"ULYSSE","de":"ULYSSE"},
+  "Votre copilote IA,":{"en":"Your AI copilot,","de":"Ihr KI-Copilot,"},
+  "en langage naturel.":{"en":"in natural language.","de":"in natürlicher Sprache."},
+  "Un modèle de langage qui connaît tout votre espace Sairen. Demandez — et il agit sur Océan, Desk, Rainbow, vos analytics, et même sur vos logiciels internes (ERP, CRM…) via connecteurs.":{"en":"A language model that knows your entire Sairen workspace. Ask — and it acts on Océan, Desk, Rainbow, your analytics, and even your internal software (ERP, CRM…) via connectors.","de":"Ein Sprachmodell, das Ihren gesamten Sairen-Arbeitsbereich kennt. Fragen Sie — und es handelt auf Océan, Desk, Rainbow, Ihren Analytics und sogar Ihrer internen Software (ERP, CRM…) über Konnektoren."}
+};
+function norm(s){return s.replace(/\s+/g,' ').trim();}
+function walk(lang){
+  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+    if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
+    var p=n.parentElement;if(!p)return NodeFilter.FILTER_REJECT;
+    var t=p.tagName;if(t==='SCRIPT'||t==='STYLE')return NodeFilter.FILTER_REJECT;
+    return NodeFilter.FILTER_ACCEPT;}});
+  var n;while(n=w.nextNode()){
+    var k=norm(n.nodeValue),e=T[k];
+    if(e&&e[lang])n.nodeValue=n.nodeValue.replace(k,e[lang]);
+  }
+}
+var cur='fr';
+function apply(lang){if(lang&&lang!=='fr'){walk(lang);}cur=lang;}
+window.addEventListener('message',function(e){var d=e.data;if(d&&d.srnLang)apply(d.srnLang);});
+try{if(window.parent&&window.parent.LANG&&window.parent.LANG!=='fr')apply(window.parent.LANG);}catch(e){}
+})();
+</script>
 </body></html>

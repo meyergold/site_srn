@@ -271,4 +271,43 @@ html,body{margin:0;padding:0;background:transparent}
 if(window.ResizeObserver){new ResizeObserver(rz).observe(document.body);}
 window.addEventListener('load',rz);[200,600,1200,2500].forEach(function(t){setTimeout(rz,t);});})();
 </script>
+<script>
+(function(){
+var T={
+  "INBOX UNIFIÉ":{"en":"UNIFIED INBOX","de":"EINHEITLICHER POSTEINGANG"},
+  "Tous les canaux,":{"en":"All channels,","de":"Alle Kanäle,"},
+  "un seul flux.":{"en":"one single stream.","de":"ein einziger Fluss."},
+  "WhatsApp, SMS, e-mail, voix, Instagram, web : tout converge dans Océan et se qualifie automatiquement — priorité, type de client, sentiment.":{"en":"WhatsApp, SMS, email, voice, Instagram, web: everything converges in Océan and qualifies automatically — priority, customer type, sentiment.","de":"WhatsApp, SMS, E-Mail, Stimme, Instagram, Web: alles läuft in Océan zusammen und qualifiziert sich automatisch — Priorität, Kundentyp, Stimmung."},
+  "Urgent":{"en":"Urgent","de":"Dringend"},
+  "Positif":{"en":"Positive","de":"Positiv"},
+  "Résolu":{"en":"Resolved","de":"Gelöst"},
+  "Prospect":{"en":"Prospect","de":"Interessent"},
+  "Négatif":{"en":"Negative","de":"Negativ"},
+  "Nouveau":{"en":"New","de":"Neu"},
+  "prise de RDV":{"en":"appointment","de":"Terminvereinbarung"},
+  "support":{"en":"support","de":"Support"},
+  "commercial":{"en":"commercial","de":"Vertrieb"},
+  "réclamation":{"en":"complaint","de":"Reklamation"},
+  "question":{"en":"question","de":"Frage"},
+  "devis":{"en":"quote","de":"Angebot"},
+  "conversations":{"en":"conversations","de":"Gespräche"}
+};
+function norm(s){return s.replace(/\s+/g,' ').trim();}
+function walk(lang){
+  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+    if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
+    var p=n.parentElement;if(!p)return NodeFilter.FILTER_REJECT;
+    var t=p.tagName;if(t==='SCRIPT'||t==='STYLE')return NodeFilter.FILTER_REJECT;
+    return NodeFilter.FILTER_ACCEPT;}});
+  var n;while(n=w.nextNode()){
+    var k=norm(n.nodeValue),e=T[k];
+    if(e&&e[lang])n.nodeValue=n.nodeValue.replace(k,e[lang]);
+  }
+}
+var cur='fr';
+function apply(lang){if(lang&&lang!=='fr'){walk(lang);}cur=lang;}
+window.addEventListener('message',function(e){var d=e.data;if(d&&d.srnLang)apply(d.srnLang);});
+try{if(window.parent&&window.parent.LANG&&window.parent.LANG!=='fr')apply(window.parent.LANG);}catch(e){}
+})();
+</script>
 </body></html>
