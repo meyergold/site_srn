@@ -482,6 +482,26 @@ img{max-width:100%;display:block}
 .ulysse-txt-row{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
 #msec-ulysse .msec-vis{width:100%}
 @media(max-width:680px){.ulysse-txt-row{grid-template-columns:1fr}}
+/* ── ULYSSE section — dark aurora ── */
+#msec-ulysse{background:#0c0a18;border-top:1px solid rgba(255,255,255,.06)!important;position:relative;overflow:hidden}
+#msec-ulysse::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 70% at 12% 55%,rgba(112,71,255,.2) 0%,transparent 58%),
+    radial-gradient(ellipse 55% 65% at 88% 25%,rgba(0,212,184,.14) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 45% at 55% 90%,rgba(170,50,220,.1) 0%,transparent 50%);
+  animation:ulysseAurora 7s ease-in-out infinite alternate}
+@keyframes ulysseAurora{from{opacity:.55}to{opacity:1}}
+#msec-ulysse .wrap{position:relative;z-index:1}
+#msec-ulysse .msec-tag{color:rgba(255,255,255,.45)}
+#msec-ulysse .msec-tag img{mix-blend-mode:normal;filter:brightness(0) invert(1);opacity:.75}
+#msec-ulysse .msec-h{color:#fff}
+#msec-ulysse .msec-sub{color:rgba(255,255,255,.5)}
+#msec-ulysse .msec-desc{color:rgba(255,255,255,.55)}
+#msec-ulysse .msec-toggle{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.1)}
+#msec-ulysse .msec-btn{color:rgba(255,255,255,.35)}
+#msec-ulysse .msec-btn.on{color:#fff}
+#msec-ulysse .msec-pill{background:rgba(255,255,255,.14);box-shadow:0 3px 12px -6px rgba(0,0,0,.6)}
+@media(prefers-reduced-motion:reduce){#msec-ulysse::before{animation:none}}
 
 /* Product CTAs inside section text */
 .msec-product-cta{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font:700 13.5px var(--ui,system-ui,sans-serif);color:#fff;text-decoration:none;border-radius:14px;padding:11px 20px;background:#0b0b0d;box-shadow:0 8px 22px -8px rgba(0,0,0,.5);transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,background .22s}
@@ -1632,22 +1652,6 @@ document.querySelectorAll('#srn-platform .card').forEach(function(card){
   animation:rpCore 4s ease-in-out infinite alternate}
 @keyframes rpCore{from{opacity:.5;transform:scale(.7)}to{opacity:1;transform:scale(1.4)}}
 .rp-group{border-radius:0;overflow:hidden;background:#fff;border:0;position:relative;z-index:1;transition:background .3s}
-/* ULYSSE — premium dark AI engine card */
-.rp-group-ulysse{background:linear-gradient(145deg,#0e0b1e 0%,#1a1040 55%,#0f1830 100%)!important}
-.rp-group-ulysse .rp-group-head{border-bottom-color:rgba(255,255,255,.08)}
-.rp-group-ulysse .rp-group-icon{mix-blend-mode:normal;filter:brightness(0) invert(1) opacity(.9)}
-.rp-group-ulysse .rp-group-name{color:#fff}
-.rp-group-ulysse .rp-group-desc{color:rgba(255,255,255,.4)}
-.rp-group-ulysse .rp-tool-name{color:rgba(255,255,255,.7)}
-.rp-group-ulysse .rp-tool-x{color:#ff6b7a;opacity:.7}
-.rp-group-ulysse .rp-tool-logo{mix-blend-mode:normal;border-radius:5px}
-.rp-group-ulysse::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
-  background:radial-gradient(ellipse at 50% -10%,rgba(112,71,255,.22) 0%,transparent 65%);
-  animation:rpUlyPulse 3.5s ease-in-out infinite}
-@keyframes rpUlyPulse{0%,100%{opacity:.5}50%{opacity:1}}
-.rp-uly-badge{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:700;
-  color:rgba(255,255,255,.5);letter-spacing:.12em;text-transform:uppercase;
-  padding:3px 9px;border-radius:20px;border:1px solid rgba(255,255,255,.1);margin-bottom:10px;position:relative;z-index:1}
 .rp-group-head{padding:20px 22px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #ece9f7;position:relative}
 .rp-group-icon{width:38px;height:38px;object-fit:contain;flex:none;mix-blend-mode:multiply}
 .rp-group-info{min-width:0}
@@ -1671,7 +1675,7 @@ document.querySelectorAll('#srn-platform .card').forEach(function(card){
 .rp-banner .btn-g{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.2)}
 .rp-banner .btn-g:hover{background:rgba(255,255,255,.18)}
 @media(max-width:660px){.rp-groups{grid-template-columns:1fr}.rp-banner{flex-direction:column}}
-@media(prefers-reduced-motion:reduce){.rp-groups,.rp-groups::before,.rp-groups::after,.rp-group-ulysse::after{animation:none}}
+@media(prefers-reduced-motion:reduce){.rp-groups,.rp-groups::before,.rp-groups::after{animation:none}}
 </style>
 <div class="rp-wrap">
   <div class="rp-head">
@@ -1732,13 +1736,12 @@ document.querySelectorAll('#srn-platform .card').forEach(function(card){
     </div>
 
     <!-- ULYSSE -->
-    <div class="rp-group rp-group-ulysse">
+    <div class="rp-group">
       <div class="rp-group-head">
         <img class="rp-group-icon" src="../img/logo-ulysse.png" alt="Ulysse">
         <div class="rp-group-info">
-          <div class="rp-uly-badge">✦ Multi-modèles</div>
           <div class="rp-group-name">Ulysse</div>
-          <div class="rp-group-desc">Le cerveau IA de Sairen</div>
+          <div class="rp-group-desc">Moteur IA multi-modèles intégré</div>
         </div>
       </div>
       <div class="rp-tools">
