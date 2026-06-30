@@ -2147,13 +2147,14 @@ footer.rich .ai-summary span{color:rgba(48,36,92,.85)!important}
 <section class="ind-temoignage" id="temoignage-ambroise-pare">
 <div class="wrap">
   <div class="ind-temo-bento">
-    <div class="ind-temo-video-card" style="cursor:pointer" onclick="this.innerHTML='<iframe src=\"https://www.youtube.com/embed/MwVdV2SZksk?autoplay=1&rel=0\" allow=\"autoplay;encrypted-media\" allowfullscreen style=\"position:absolute;inset:0;width:100%;height:100%;border:0\"></iframe>'">
+    <div class="ind-temo-video-card ind-temo-facade" id="sante-facade" onclick="var c=document.getElementById('sante-facade');c.innerHTML='<iframe src=\'https://www.youtube.com/embed/MwVdV2SZksk?rel=0&modestbranding=1&autoplay=1\' title=\'Témoignage Ambroise Paré\' frameborder=\'0\' allow=\'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\' allowfullscreen style=\'position:absolute;inset:0;width:100%;height:100%;border:0\'></iframe>';c.onclick=null;c.style.cursor='default'" style="cursor:pointer">
       <img src="https://img.youtube.com/vi/MwVdV2SZksk/maxresdefault.jpg" alt="Témoignage Ambroise Paré" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
       <div style="position:absolute;inset:0;background:rgba(0,0,0,.18);display:flex;align-items:center;justify-content:center">
         <div style="width:68px;height:68px;background:rgba(255,255,255,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(0,0,0,.28)">
           <svg viewBox="0 0 24 24" width="28" height="28" fill="#111"><polygon points="9,7 19,12 9,17"/></svg>
         </div>
       </div>
+    </div>
     </div>
     <div class="ind-temo-quote-card" style="background:linear-gradient(145deg,#062228,#0a3040,#0d1e32)">
       <img class="ind-temo-logo" src="assets/img/cli-ambroise-pare.png" alt="Groupe Hospitalier Ambroise Paré · Hartmann">
