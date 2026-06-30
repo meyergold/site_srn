@@ -1548,14 +1548,18 @@ nav{background:rgba(253,247,251,.93)!important;-webkit-backdrop-filter:saturate(
 .pc-feat-dot.y{background:linear-gradient(135deg,#09cafc,#6840FA)}
 .pc-feat-dot.n{background:#f0eef8}
 /* credits info */
-.pc-cred{background:linear-gradient(135deg,#f7f5ff,#f0f4ff);border-radius:14px;padding:16px;margin-top:18px}
-.pc-cred-label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6840FA;margin-bottom:8px}
-.pc-cred-val{font-size:20px;font-weight:800;color:#15182B;letter-spacing:-.02em}
-.pc-cred-sub{font-size:11.5px;color:#7a7898;margin-top:2px;line-height:1.4}
-.pc-cred-est{display:inline-block;margin-top:10px;font-size:12px;font-weight:700;color:#6840FA;cursor:pointer;border:none;background:none;font-family:inherit;padding:0}
-.pc-cred-est:hover{text-decoration:underline}
+.pc-cred{background:linear-gradient(135deg,#f7f5ff,#f0f4ff);border-radius:14px;padding:14px 16px;margin-top:18px}
+.pc-cred-row{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.pc-cred-label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#6840FA}
+.pc-cred-val{font-size:20px;font-weight:800;color:#15182B;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.pc-cred-sub{font-size:11px;color:#9d9bba;margin-top:3px}
+.pc-cred-addon{margin-top:12px;padding-top:12px;border-top:1px solid rgba(104,64,250,.1)}
+.pc-cred-addon-lbl{display:block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9d9bba;margin-bottom:6px}
+.pc-cred-sel{width:100%;padding:8px 10px;border-radius:9px;border:1.5px solid #d8d4ed;background:#fff;font-family:inherit;font-size:12.5px;font-weight:600;color:#2c1f6a;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236840FA' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.pc-cred-sel:focus{outline:none;border-color:#6840FA}
+.pc-cred-rate{display:block;font-size:10.5px;color:#9d9bba;margin-top:5px;text-align:right}
 /* enterprise */
-.ps-ent{background:linear-gradient(135deg,#0f0d1e,#1e1640);border-radius:24px;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.ps-ent{background:linear-gradient(135deg,#0f0d1e,#1e1640);border-radius:24px;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-top:32px;margin-bottom:40px}
 .ps-ent-l{flex:1;min-width:260px}
 .ps-ent-tier{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px}
 .ps-ent-name{font-size:28px;font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:8px}
@@ -2001,6 +2005,25 @@ footer.rich .ai-summary span{color:rgba(48,36,92,.85)!important}
   </div>
 </div>
 <div class="ps-grid" id="psGrid"></div>
+<div class="ps-ent">
+  <div class="ps-ent-l">
+    <div class="ps-ent-tier">Enterprise</div>
+    <div class="ps-ent-name">Sur mesure, sans limite.</div>
+    <div class="ps-ent-desc">Pour les organisations de +50 utilisateurs avec des besoins avancés : SLA garanti, SSO, déploiement dédié, intégrations personnalisées.</div>
+    <div class="ps-ent-tags">
+      <span class="ps-ent-tag">SLA garanti</span>
+      <span class="ps-ent-tag">SSO / SAML</span>
+      <span class="ps-ent-tag">Déploiement dédié</span>
+      <span class="ps-ent-tag">Support 24/7</span>
+      <span class="ps-ent-tag">Crédits illimités</span>
+      <span class="ps-ent-tag">Intégrations custom</span>
+    </div>
+  </div>
+  <div class="ps-ent-r">
+    <a class="ps-ent-cta1" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_blank" rel="noopener">Parler à l'équipe →</a>
+    <a class="ps-ent-cta2" href="mailto:contact@sairen.io">contact@sairen.io</a>
+  </div>
+</div>
 <div class="ps-credits-explain">
   <div class="pce-title">Crédits de communication</div>
   <div class="pce-sub">1 crédit = €0.01 · Vous ne payez que ce que vous utilisez</div>
@@ -2033,25 +2056,6 @@ footer.rich .ai-summary span{color:rgba(48,36,92,.85)!important}
       <div class="pce-cr">€0.01 / email envoyé</div>
       <div class="pce-ex">Emails transactionnels, marketing, réponses automatiques</div>
     </div>
-  </div>
-</div>
-<div class="ps-ent">
-  <div class="ps-ent-l">
-    <div class="ps-ent-tier">Enterprise</div>
-    <div class="ps-ent-name">Sur mesure, sans limite.</div>
-    <div class="ps-ent-desc">Pour les organisations de +50 utilisateurs avec des besoins avancés : SLA garanti, SSO, déploiement dédié, intégrations personnalisées.</div>
-    <div class="ps-ent-tags">
-      <span class="ps-ent-tag">SLA garanti</span>
-      <span class="ps-ent-tag">SSO / SAML</span>
-      <span class="ps-ent-tag">Déploiement dédié</span>
-      <span class="ps-ent-tag">Support 24/7</span>
-      <span class="ps-ent-tag">Crédits illimités</span>
-      <span class="ps-ent-tag">Intégrations custom</span>
-    </div>
-  </div>
-  <div class="ps-ent-r">
-    <a class="ps-ent-cta1" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_blank" rel="noopener">Parler à l'équipe →</a>
-    <a class="ps-ent-cta2" href="mailto:contact@sairen.io">contact@sairen.io</a>
   </div>
 </div>
 <p class="ps-note">Tarification indicative. Pour un devis sur mesure ou +50 utilisateurs, <a href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_blank" rel="noopener">parlez à notre équipe →</a></p>
@@ -4638,17 +4642,17 @@ const PLANS=[
   {id:0,slug:'starter',name:'Starter',price:0,color:'#5a5878',tagline:'Pour démarrer sans engagement',
    feats:['Ocean : email, Google Avis','Desk : tickets & chat','Rainbow Studio'],
    no:['Téléphonie externe','Ulysse (employé IA)'],
-   credits:1000,fixedCr:true,btn:'free'},
+   credits:500,fixedCr:true,btn:'free'},
   {id:1,slug:'essentiel',name:'Essentiel',price:7,color:'#1C8FE6',tagline:'Pour les équipes en croissance',
    feats:['Ocean : tous les canaux','Desk : tickets & chat','Rainbow Studio'],
    no:['Téléphonie externe','Ulysse (employé IA)'],
-   btn:'def'},
+   credits:1000,fixedCr:false,btn:'def'},
   {id:2,slug:'pro',name:'Pro',price:12,color:'#6840FA',tagline:'Le plus utilisé par nos clients',popular:true,
-   feats:['Ocean : tous les canaux','Desk : tickets & chat','Rainbow Studio','Téléphonie externe (SIP)','Ulysse (employé IA)','Crédits IA inclus'],
-   btn:'pop'},
+   feats:['Ocean : tous les canaux','Desk : tickets & chat','Rainbow Studio','Téléphonie externe (SIP)','Ulysse (employé IA)'],
+   credits:3000,fixedCr:false,addons:true,btn:'pop'},
   {id:3,slug:'expert',name:'Expert',price:15,color:'#de06bb',tagline:'Pour les opérations avancées',
-   feats:['Ocean : tous les canaux','Desk : tickets & chat','Rainbow Studio','Téléphonie externe (SIP)','Ulysse (employé IA)','Crédits IA avancés','Reporting avancé'],
-   btn:'def'},
+   feats:['Ocean : tous les canaux','Desk : tickets & chat','Rainbow Studio','Téléphonie externe (SIP)','Ulysse (employé IA)','Reporting avancé'],
+   credits:5000,fixedCr:false,addons:true,btn:'def'},
 ];
 const PALIERS=[
   {c:1000,p:10},{c:2500,p:25},{c:5000,p:50},{c:10000,p:100},{c:15000,p:150},{c:20000,p:200},
@@ -4676,9 +4680,18 @@ function renderGrid(){
     const nots=(p.no||[]).map(f=>`<div class="pc-feat no"><span class="pc-feat-dot n"></span>${f}</div>`).join('');
     const btnCls=p.btn==='pop'?'pc-btn-pop':p.btn==='free'?'pc-btn-free':'pc-btn-def';
     const btnTxt=p.price===0?'Commencer gratuitement':p.btn==='pop'?`Choisir ${p.name} →`:`Choisir ${p.name}`;
-    const cred=p.fixedCr
-      ?`<div class="pc-cred"><div class="pc-cred-label">Crédits inclus</div><div class="pc-cred-val">1 000 crédits</div><div class="pc-cred-sub">offerts · non renouvelables</div></div>`
-      :`<div class="pc-cred"><div class="pc-cred-label">Crédits</div><div class="pc-cred-sub">Appels IA, SMS, emails, WhatsApp…<br>ajoutés selon votre usage réel.</div><button class="pc-cred-est" onclick="openEst(${p.id})">Estimer mon budget crédits →</button></div>`;
+    const credVal=fmt(p.credits)+(p.fixedCr?' cr offerts':' cr / mois inclus');
+    const addonOpts=p.addons?[
+      {c:0,label:'Aucun'},
+      {c:1000,label:'+1 000 cr · +€10/mois'},
+      {c:2500,label:'+2 500 cr · +€25/mois'},
+      {c:5000,label:'+5 000 cr · +€50/mois'},
+      {c:10000,label:'+10 000 cr · +€100/mois'},
+      {c:20000,label:'+20 000 cr · +€200/mois'},
+      {c:50000,label:'+50 000 cr · +€500/mois'},
+    ]:null;
+    const addonHtml=addonOpts?`<div class="pc-cred-addon"><span class="pc-cred-addon-lbl">Crédits supplémentaires</span><select class="pc-cred-sel">${addonOpts.map(o=>`<option value="${o.c}">${o.label}</option>`).join('')}</select><span class="pc-cred-rate">0,01 € le crédit</span></div>`:'';
+    const cred=`<div class="pc-cred"><div class="pc-cred-row"><span class="pc-cred-label">Crédits inclus${p.fixedCr?' (offert)':' / mois'}</span><span class="pc-cred-val">${fmt(p.credits)}</span></div>${p.fixedCr?'<div class="pc-cred-sub">non renouvelables</div>':''}${addonHtml}</div>`;
     return`<div class="pc${p.popular?' pop':''}">
       ${p.popular?'<span class="pc-badge">Le plus utilisé</span>':''}
       <div class="pc-tier">${p.name}</div>
