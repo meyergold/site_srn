@@ -1623,6 +1623,7 @@ document.querySelectorAll('#srn-platform .card').forEach(function(card){
 .rp-card::after{content:"✕";position:absolute;top:10px;right:12px;font-size:13px;font-weight:800;color:#ff4f4f;opacity:.7}
 .rp-logo{width:36px;height:36px;border-radius:9px;object-fit:contain;background:#fff;border:1px solid #ede9f5;padding:4px}
 .rp-logo-txt{width:36px;height:36px;border-radius:9px;background:var(--bg);border:1px solid #ede9f5;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#5b5070;font-family:'Comfortaa',sans-serif}
+.rp-logo-txt img{width:28px;height:28px;object-fit:contain;mix-blend-mode:multiply}
 .rp-name{font-weight:700;font-size:14px;color:#22202c;line-height:1.1}
 .rp-cat{font-size:11.5px;color:#9090a8;font-weight:500}
 /* "Sairen fait tout ça" banner */
@@ -1644,58 +1645,92 @@ document.querySelectorAll('#srn-platform .card').forEach(function(card){
     <p class="rp-sub">Sairen centralise la relation client IA de bout en bout. Une seule plateforme, zéro outil en doublon.</p>
   </div>
   <div class="rp-grid">
-    <!-- CX / Support -->
+    <!-- CX / Support / Inbox -->
     <div class="rp-card">
-      <div class="rp-logo-txt" style="background:#e8f0fe;color:#1a73e8">Zd</div>
-      <div class="rp-name">Zendesk</div><div class="rp-cat">Support client</div>
+      <div class="rp-logo-txt" style="background:#e8f0fe"><img src="../img/rp-front.png" alt="Front"></div>
+      <div class="rp-name">Front</div><div class="rp-cat">Shared inbox</div>
     </div>
     <div class="rp-card">
       <div class="rp-logo-txt" style="background:#fff4e5;color:#f47b20">Ic</div>
       <div class="rp-name">Intercom</div><div class="rp-cat">Messaging client</div>
     </div>
     <div class="rp-card">
-      <div class="rp-logo-txt" style="background:#f0fdf4;color:#16a34a">Fr</div>
-      <div class="rp-name">Freshdesk</div><div class="rp-cat">Helpdesk</div>
-    </div>
-    <!-- IA génératives -->
-    <div class="rp-card">
-      <div class="rp-logo-txt" style="background:#f0fdf4;color:#10a37f"><img src="../img/ChatGPT-Logo.svg.png" alt="" style="width:28px;height:28px;object-fit:contain"></div>
-      <div class="rp-name">ChatGPT</div><div class="rp-cat">IA générative</div>
+      <div class="rp-logo-txt" style="background:#e8f0fe"><img src="../img/rp-crisp.webp" alt="Crisp"></div>
+      <div class="rp-name">Crisp</div><div class="rp-cat">Live chat</div>
     </div>
     <div class="rp-card">
-      <div class="rp-logo-txt" style="background:#fdf4ff;color:#d97757"><img src="../img/claude-icon-logo.png" alt="" style="width:28px;height:28px;object-fit:contain"></div>
-      <div class="rp-name">Claude</div><div class="rp-cat">IA générative</div>
+      <div class="rp-logo-txt" style="background:#e8f0fe;color:#1a73e8">Zd</div>
+      <div class="rp-name">Zendesk</div><div class="rp-cat">Support client</div>
     </div>
     <div class="rp-card">
-      <div class="rp-logo-txt" style="background:#fff7ed;color:#ff7000"><img src="../img/mistral-color.png" alt="" style="width:28px;height:28px;object-fit:contain"></div>
-      <div class="rp-name">Mistral</div><div class="rp-cat">IA générative</div>
+      <div class="rp-logo-txt" style="background:#f0f8ff;color:#00a1e0">Sf</div>
+      <div class="rp-name">Salesforce</div><div class="rp-cat">CRM</div>
     </div>
     <!-- Collaboration / comm interne -->
     <div class="rp-card">
-      <div class="rp-logo-txt" style="background:#fef3c7;color:#d97706">Sl</div>
+      <div class="rp-logo-txt" style="background:#fff8f0"><img src="../img/rp-slack.png" alt="Slack"></div>
       <div class="rp-name">Slack</div><div class="rp-cat">Messagerie équipe</div>
     </div>
     <div class="rp-card">
       <div class="rp-logo-txt" style="background:#eff6ff;color:#2563eb">Tm</div>
       <div class="rp-name">Teams</div><div class="rp-cat">Collaboration</div>
     </div>
-    <!-- Voix / telephonie -->
+    <!-- Voix / téléphonie -->
     <div class="rp-card">
-      <div class="rp-logo-txt" style="background:#ecfdf5;color:#059669">Ac</div>
+      <div class="rp-logo-txt" style="background:#f0fdf8"><img src="../img/logo-aircall.png" alt="Aircall"></div>
       <div class="rp-name">Aircall</div><div class="rp-cat">Téléphonie cloud</div>
     </div>
     <div class="rp-card">
-      <div class="rp-logo-txt" style="background:#fdf2f8;color:#c026d3">Vc</div>
+      <div class="rp-logo-txt" style="background:#f0f4ff"><img src="../img/rp-ringover.svg" alt="Ringover" style="width:28px;height:28px;object-fit:contain;mix-blend-mode:multiply"></div>
+      <div class="rp-name">Ringover</div><div class="rp-cat">Téléphonie cloud</div>
+    </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#fdf2f8"><img src="../img/rp-vocca.png" alt="Vocca"></div>
       <div class="rp-name">Vocca</div><div class="rp-cat">Voix IA</div>
     </div>
-    <!-- No-code / automation -->
+    <!-- Externalisation / BPO -->
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#fff0f0;color:#e11d48">Tp</div>
+      <div class="rp-name">Teleperformance</div><div class="rp-cat">BPO</div>
+    </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#f0f8ff;color:#0055a5">Cx</div>
+      <div class="rp-name">Concentrix</div><div class="rp-cat">BPO</div>
+    </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#f5f0ff;color:#6d28d9">Kn</div>
+      <div class="rp-name">Konecta</div><div class="rp-cat">BPO</div>
+    </div>
+    <!-- Automatisation / no-code -->
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#fff0f5"><img src="../img/rp-make.jpg" alt="Make"></div>
+      <div class="rp-name">Make</div><div class="rp-cat">No-code workflow</div>
+    </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#f5f0ff"><img src="../img/rp-n8n.webp" alt="n8n"></div>
+      <div class="rp-name">n8n</div><div class="rp-cat">Automatisation</div>
+    </div>
     <div class="rp-card">
       <div class="rp-logo-txt" style="background:#fdf4ff;color:#7c3aed">Lm</div>
       <div class="rp-name">Limova</div><div class="rp-cat">Automatisation</div>
     </div>
+    <!-- Langue / IA locale -->
     <div class="rp-card">
-      <div class="rp-logo-txt" style="background:#fff1f2;color:#e11d48">Zp</div>
-      <div class="rp-name">Zapier</div><div class="rp-cat">No-code workflow</div>
+      <div class="rp-logo-txt" style="background:#f0fdf4;color:#16a34a">Lg</div>
+      <div class="rp-name">Languedok</div><div class="rp-cat">Langue / NLP</div>
+    </div>
+    <!-- IA génératives -->
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#f0fdf4;color:#10a37f"><img src="../img/ChatGPT-Logo.svg.png" alt="ChatGPT"></div>
+      <div class="rp-name">ChatGPT</div><div class="rp-cat">IA générative</div>
+    </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#fdf4ff;color:#d97757"><img src="../img/claude-icon-logo.png" alt="Claude"></div>
+      <div class="rp-name">Claude</div><div class="rp-cat">IA générative</div>
+    </div>
+    <div class="rp-card">
+      <div class="rp-logo-txt" style="background:#fff7ed;color:#ff7000"><img src="../img/mistral-color.png" alt="Mistral"></div>
+      <div class="rp-name">Mistral</div><div class="rp-cat">IA générative</div>
     </div>
   </div>
   <div class="rp-banner">
