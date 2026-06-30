@@ -1618,29 +1618,22 @@ document.querySelectorAll('#srn-platform .card').forEach(function(card){
 #srn-replace .rp-sub{font-size:16px;color:#5c5875;max-width:560px;margin:0 auto;line-height:1.55}
 /* 2×2 connected grid */
 .rp-groups{display:grid;grid-template-columns:1fr 1fr;gap:3px;position:relative;border-radius:24px;overflow:hidden;background:#e0dbf5}
-/* traveling glow overlay — one pseudo ring sweeps clockwise through the 4 cards */
+/* memory core — persistent breathing glow at the intersection of all 4 cards */
 .rp-groups::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:2;border-radius:24px;
-  background:conic-gradient(from var(--rp-angle,0deg) at 50% 50%,
-    rgba(112,71,255,.55) 0deg, rgba(112,71,255,0) 60deg,
-    rgba(0,212,184,.45) 180deg, rgba(0,212,184,0) 240deg,
-    rgba(112,71,255,.55) 360deg);
-  animation:rpSpin 5s linear infinite;
-  /* mask it so glow only shows on the gap lines, not inside cards */
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;mask-composite:exclude;
-  padding:3px}
-@property --rp-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
-@keyframes rpSpin{to{--rp-angle:360deg}}
-.rp-group{border-radius:0;overflow:hidden;background:#fff;border:0;position:relative;z-index:1;
-  transition:background .3s}
+  background:radial-gradient(circle at 50% 50%,rgba(112,71,255,.28) 0%,rgba(0,212,184,.12) 28%,rgba(112,71,255,0) 55%);
+  animation:rpMemPulse 4s ease-in-out infinite}
+@keyframes rpMemPulse{0%,100%{opacity:.4;transform:scale(.7)}50%{opacity:1;transform:scale(1.18)}}
+/* data-flow scan — each card shimmers upward in turn, like recording into memory */
+.rp-group::after{content:'';position:absolute;inset:0;pointer-events:none;z-index:3;
+  background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.09) 50%,rgba(255,255,255,0) 100%);
+  transform:translateY(110%);animation:rpScan 12s ease-in-out infinite}
+.rp-group:nth-child(1)::after{animation-delay:0s}
+.rp-group:nth-child(2)::after{animation-delay:3s}
+.rp-group:nth-child(3)::after{animation-delay:6s}
+.rp-group:nth-child(4)::after{animation-delay:9s}
+@keyframes rpScan{0%,8%,100%{transform:translateY(110%);opacity:0}2%{opacity:1}7%{transform:translateY(-110%);opacity:0}}
+.rp-group{border-radius:0;overflow:hidden;background:#fff;border:0;position:relative;z-index:1;transition:background .3s}
 .rp-group-head{padding:20px 22px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #ece9f7;position:relative}
-/* per-product accent strip that pulses in turn */
-.rp-group-head::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;opacity:0;transition:opacity .4s;border-radius:0}
-.rp-group:nth-child(1) .rp-group-head::before{background:linear-gradient(180deg,#0EA5E9,#38BDF8);animation:rpAccent 5s ease-in-out infinite 0s}
-.rp-group:nth-child(2) .rp-group-head::before{background:linear-gradient(180deg,#7C3AED,#A78BFA);animation:rpAccent 5s ease-in-out infinite 1.25s}
-.rp-group:nth-child(3) .rp-group-head::before{background:linear-gradient(180deg,#F59E0B,#FCD34D);animation:rpAccent 5s ease-in-out infinite 2.5s}
-.rp-group:nth-child(4) .rp-group-head::before{background:linear-gradient(180deg,#10B981,#34D399);animation:rpAccent 5s ease-in-out infinite 3.75s}
-@keyframes rpAccent{0%,15%,100%{opacity:0}5%,10%{opacity:1}}
 .rp-group-icon{width:38px;height:38px;object-fit:contain;flex:none;mix-blend-mode:multiply}
 .rp-group-info{min-width:0}
 .rp-group-name{font-weight:800;font-size:15.5px;color:#15182B;letter-spacing:-.01em}
@@ -1663,7 +1656,7 @@ document.querySelectorAll('#srn-platform .card').forEach(function(card){
 .rp-banner .btn-g{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.2)}
 .rp-banner .btn-g:hover{background:rgba(255,255,255,.18)}
 @media(max-width:660px){.rp-groups{grid-template-columns:1fr}.rp-banner{flex-direction:column}}
-@media(prefers-reduced-motion:reduce){.rp-groups::before,.rp-group-head::before{animation:none}}
+@media(prefers-reduced-motion:reduce){.rp-groups::before,.rp-group::after{animation:none}}
 </style>
 <div class="rp-wrap">
   <div class="rp-head">
@@ -1686,8 +1679,7 @@ document.querySelectorAll('#srn-platform .card').forEach(function(card){
         <div class="rp-tool"><span class="rp-tool-x">✕</span><img class="rp-tool-logo" src="../img/rp-front.png" alt=""><span class="rp-tool-name">Front</span></div>
         <div class="rp-tool"><span class="rp-tool-x">✕</span><img class="rp-tool-logo" src="../img/rp-crisp.webp" alt=""><span class="rp-tool-name">Crisp</span></div>
         <div class="rp-tool"><span class="rp-tool-x">✕</span><img class="rp-tool-logo" src="../img/rp-intercom.svg" alt=""><span class="rp-tool-name">Intercom</span></div>
-        <div class="rp-tool"><span class="rp-tool-x">✕</span><img class="rp-tool-logo" src="../img/logo-aircall.png" alt=""><span class="rp-tool-name">Aircall</span></div>
-        <div class="rp-tool"><span class="rp-tool-x">✕</span><img class="rp-tool-logo" src="../img/rp-ringover2.png" alt=""><span class="rp-tool-name">Ringover</span></div>
+<div class="rp-tool"><span class="rp-tool-x">✕</span><img class="rp-tool-logo" src="../img/rp-ringover2.png" alt=""><span class="rp-tool-name">Ringover</span></div>
       </div>
     </div>
 
