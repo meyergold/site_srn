@@ -17,7 +17,7 @@ a{text-decoration:none;color:inherit}
 .wave-sep{line-height:0;margin-top:-1px}
 nav{position:sticky;top:0;z-index:60;padding:10px 20px;background:transparent;display:flex;justify-content:center}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:54px;width:100%;max-width:980px;background:rgba(12,8,32,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:0 8px 0 20px}
-.logo{display:flex;align-items:center;line-height:0}.logo img{height:32px;display:block}
+.logo{display:flex;align-items:center;line-height:0;padding-top:6px}.logo img{height:32px;display:block}
 .nav-links{display:flex;gap:22px;font-size:14px;color:rgba(255,255,255,.88);font-weight:500;align-items:center}
 .nav-links a:hover{color:#fff}
 .has-drop{position:relative}
@@ -2044,7 +2044,7 @@ nav .wrap.nav-in{max-width:none!important;padding-left:clamp(18px,3vw,40px)!impo
 /* Navbar 100% vide (aucun fond) au-dessus du hero — page d'accueil */
 body.home-dive>nav{background:none!important;background-color:transparent!important;border:0!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;transition:background .3s ease,box-shadow .3s ease,backdrop-filter .3s ease}
 /* Au scroll (sur le contenu blanc), la navbar redevient blanche pour que le texte n'overlap pas */
-body.home-dive.nav-solid>nav{background:rgba(255,255,255,.92)!important;-webkit-backdrop-filter:saturate(1.5) blur(16px)!important;backdrop-filter:saturate(1.5) blur(16px)!important;box-shadow:0 1px 0 rgba(20,16,40,.07),0 12px 30px -26px rgba(40,20,90,.6)!important}
+body.home-dive.nav-solid>nav{}
 body.home-dive.nav-solid .nav-links a,body.home-dive.nav-solid .navdd-t,body.home-dive.nav-solid .link-login{text-shadow:none!important}
 body.home-dive .nav-links a,body.home-dive .navdd-t,body.home-dive .link-login{text-shadow:0 1px 14px rgba(255,255,255,.6)}
 /* Boutons CTA en noir — PARTOUT, même effet au survol (préfixe html = priorité de spécificité) */
