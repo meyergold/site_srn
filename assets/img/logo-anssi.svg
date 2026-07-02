@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <path id="anssiTop" d="M52 172 A88 88 0 1 1 148 172"/>
+    <path id="anssiBot" d="M8 100 A92 92 0 0 0 192 100"/>
+  </defs>
+  <circle cx="100" cy="100" r="99" fill="#1E4A73"/>
+  <circle cx="100" cy="100" r="79" fill="#BFC6CF"/>
+  <!-- continents stylisés -->
+  <g fill="#fff" opacity=".8">
+    <path d="M48 64c8-12 21-21 36-25-4 8-2 15 4 19-10 2-15 10-13 19-8-2-15 0-19 6-4-6-7-12-8-19z"/>
+    <path d="M124 32c13 5 25 14 33 27-8 0-14 6-14 13-8-6-19-6-25 2-2-10-10-17-19-17 6-11 15-21 25-25z"/>
+    <path d="M158 118c-2 13-9 27-21 36 0-8-6-13-13-13 6-8 6-19-2-25 10-2 17-10 17-19 8 6 15 13 19 21z"/>
+    <path d="M60 144c-10-8-17-19-20-31 7 3 14 0 18-6 4 9 13 15 23 13-4 9 0 19 8 24-10 3-20 3-29 0z"/>
+  </g>
+  <!-- bouclier : fond blanc -->
+  <path d="M100 40c11 9 26 14 38 14v40c0 25-16 44-38 55-22-11-38-30-38-55V54c12 0 27-5 38-14z" fill="#fff"/>
+  <!-- moitié gauche bleue, moitié droite rouge, séparées par une courbe blanche -->
+  <path d="M96 45c-9 7-22 11-30 11v38c0 22 13 39 30 50 3-16 4-34 2-52-2-17-2-33-2-47z" fill="#143A63"/>
+  <path d="M104 45c9 7 22 11 30 11v38c0 22-13 39-30 50-3-16-4-34-2-52 2-17 2-33 2-47z" fill="#E1252B"/>
+  <!-- étoile courbe à 6 branches -->
+  <path d="M100 70 C103 79 108 84 116 85 C110 90 108 97 110 105 C104 101 96 101 90 105 C92 97 90 90 84 85 C92 84 97 79 100 70 Z" fill="#143A63" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+  <!-- textes circulaires -->
+  <text font-family="Georgia,'Times New Roman',serif" font-size="12" font-weight="bold" letter-spacing=".2" fill="#fff">
+    <textPath href="#anssiTop" startOffset="50%" text-anchor="middle">AGENCE NATIONALE DE LA SÉCURITÉ DES SYSTÈMES D'INFORMATION</textPath>
+  </text>
+  <text font-family="Georgia,'Times New Roman',serif" font-size="18" font-weight="bold" letter-spacing="4" fill="#fff">
+    <textPath href="#anssiBot" startOffset="50%" text-anchor="middle">•  ANSSI  •</textPath>
+  </text>
+</svg>
