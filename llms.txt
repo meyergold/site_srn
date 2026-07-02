@@ -1,0 +1,39 @@
+# Sairen
+
+> Sairen est la plateforme IA de relation client des entreprises du monde réel : agents IA vocaux et écrits disponibles 24/7, inbox omnicanale (appels, WhatsApp, e-mail, SMS, Instagram), CRM unifié par contact, workflows no-code et copilote analytique. Hébergée en France, conforme RGPD et HDS, alignée sur le référentiel SecNumCloud de l'ANSSI.
+
+Sairen s'adresse aux secteurs où la relation client se joue sur le terrain : santé (cabinets, cliniques, radiologie), hôtellerie, retail & e-commerce, beauté & bien-être, immobilier, B2B & distribution.
+
+## Produits
+
+- [Océan](https://www.sairen.io/#/ocean) : centre de contacts omnicanal IA — tous les canaux dans une inbox unique, qualifiée automatiquement (priorité, sentiment, intention), campagnes sortantes cross-canal incluant l'agent vocal IA.
+- [Desk](https://www.sairen.io/#/desk) : espace de travail d'équipe — messagerie interne, tâches assignables à des humains ou des agents IA, organisation par entités et équipes.
+- [Rainbow](https://www.sairen.io/#/rainbow) : studio d'agents IA et de workflows no-code — agents sur mesure branchés à vos données et outils, automatisations déterministes avec déclencheurs et labels.
+- [Ulysse](https://www.sairen.io/#/ulysse) : copilote IA branché à toute la plateforme — analyse en temps réel, recommandations en langage naturel, exécution d'actions.
+- [CRM](https://www.sairen.io/#/crm) : fiche contact unifiée sur tous les canaux — réconciliation d'identités, historique omnicanal, enrichissement automatique par l'IA, segments dynamiques. Se décline par secteur : PRM (patients), GRM (guests), LRM (leads).
+
+## Cas d'usage
+
+- Répondre 24/7 sur tous les canaux (standard téléphonique IA, WhatsApp, e-mail)
+- Prise de rendez-vous automatique et rappels anti no-show
+- Automatisation de workflows métier (agents IA + règles)
+- Campagnes sortantes et réengagement client
+- Gestion et sollicitation d'avis Google
+- Recouvrement d'impayés, qualification de leads, analytics conversationnels
+
+## Sécurité & conformité
+
+- Données hébergées en France ; hébergement certifié HDS pour les données de santé
+- Conformité RGPD native, AI Act par conception
+- Référentiel SecNumCloud (ANSSI) : la norme de référence en matière de sécurité cloud
+- ISO/IEC 27001, SOC 2, chiffrement de bout en bout, réversibilité
+
+## Intégrations
+
+Plus de 100 intégrations : Opera Cloud (PMS), RIS/DPI santé, Shopify, Salesforce, HubSpot, SevenRooms, Stripe, ERP — via API, MCP et A2A.
+
+## Contact
+
+- Site : https://www.sairen.io/
+- E-mail : contact@sairen.io
+- Démo : https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team
