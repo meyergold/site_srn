@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>html,body{margin:0;padding:0;background:transparent}</style></head><body>
+<!-- ============================================================
+     SAIREN · CRM — "Un seul contact, toute l'histoire."
+     GAUCHE : liste de contacts (noms fictifs).
+     DROITE : fiche contact unifiée + historique omnicanal animé.
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<section class="crm-motion">
+  <div class="stage">
+    <div class="window card">
+      <div class="win-bar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <b>CRM · Hôtel Le Meridiana</b>
+        <span class="wb-crumb">Organisation › Contacts › Tous les contacts</span>
+      </div>
+      <div class="win-body">
+
+        <!-- 1 · LISTE DE CONTACTS -->
+        <aside class="cl">
+          <div class="cl-head">Contacts <span class="cl-n">2 208</span></div>
+          <div class="cl-search"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg>Rechercher un contact…</div>
+          <div class="cl-row on" id="r0"><span class="cav" style="background:linear-gradient(135deg,#FE76C4,#6840FA)">CM</span><span class="cli"><b>Camille Moreau</b><small>+33 6 24 81 07 93</small></span><span class="cn">12</span></div>
+          <div class="cl-row" id="r1"><span class="cav" style="background:linear-gradient(135deg,#37ACFF,#6840FA)">JL</span><span class="cli"><b>Julien Lefèvre</b><small>+33 6 51 30 22 84</small></span><span class="cn">7</span></div>
+          <div class="cl-row" id="r2"><span class="cav" style="background:linear-gradient(135deg,#3DE8C0,#2E74F6)">AB</span><span class="cli"><b>Aïcha Benali</b><small>+33 7 82 46 19 05</small></span><span class="cn">23</span></div>
+          <div class="cl-row" id="r3"><span class="cav" style="background:linear-gradient(135deg,#FFD16E,#F0663A)">MR</span><span class="cli"><b>Marco Rossi</b><small>+39 342 081 5576</small></span><span class="cn">4</span></div>
+          <div class="cl-row" id="r4"><span class="cav" style="background:linear-gradient(135deg,#FF93B6,#9456F7)">ES</span><span class="cli"><b>Emma Schneider</b><small>+49 171 555 0184</small></span><span class="cn">16</span></div>
+          <div class="cl-row" id="r5"><span class="cav" style="background:linear-gradient(135deg,#9DB0FF,#3A1E9E)">TG</span><span class="cli"><b>Théo Girard</b><small>+33 6 09 74 61 28</small></span><span class="cn">9</span></div>
+          <div class="cl-row" id="r6"><span class="cav" style="background:linear-gradient(135deg,#86BBFF,#3320D6)">LZ</span><span class="cli"><b>Lin Zhang</b><small>+86 138 0013 8000</small></span><span class="cn">31</span></div>
+        </aside>
+
+        <!-- 2 · FICHE CONTACT -->
+        <section class="cf">
+          <div class="cf-id" id="cfid">
+            <span class="cf-av">CM</span>
+            <div class="cf-who"><b>Camille Moreau</b><small>Cliente Platinum · Contact international</small></div>
+            <div class="cf-pills">
+              <span class="cf-pill"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h3l1.5 5L8 9.5a11 11 0 0 0 5 5L14.5 12l5 1.5v3.5a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></svg>+33 6 24 81 07 93</span>
+              <span class="cf-pill"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 7.5 12 13l9-5.5"/></svg>camille.moreau@lumina.fr</span>
+            </div>
+          </div>
+
+          <div class="cf-sec">Historique de contact</div>
+          <div class="cf-tabs">
+            <span class="cft on">Tout</span><span class="cft">Appels</span><span class="cft">WhatsApp</span><span class="cft">Email</span><span class="cft">Instagram</span><span class="cft">Avis</span>
+          </div>
+
+          <div class="tl" id="tl">
+            <div class="tl-day" data-i="0">Aujourd'hui · 2 juillet</div>
+            <div class="tl-it" data-i="1">
+              <span class="tic" style="background:linear-gradient(135deg,#FE76C4,#B33BF6)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="#fff" stroke="none"/></svg></span>
+              <div class="tib"><span class="tit">12:12<em class="tag">Reçu</em></span><b>Message Instagram</b><p>« Merci pour votre réactivité, à très vite. »</p></div>
+            </div>
+            <div class="tl-it" data-i="2">
+              <span class="tic" style="background:linear-gradient(135deg,#74DFFE,#37ACFF)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h3l1.5 5L8 9.5a11 11 0 0 0 5 5L14.5 12l5 1.5v3.5a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></svg></span>
+              <div class="tib"><span class="tit">11:40<em class="tag">Appel</em></span><b>Appel entrant — 3ᵉ tentative</b><p>Durée 2 min 14 · pris en charge</p></div>
+            </div>
+            <div class="tl-it" data-i="3">
+              <span class="tic" style="background:linear-gradient(135deg,#74DFFE,#37ACFF)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h3l1.5 5L8 9.5a11 11 0 0 0 5 5L14.5 12l5 1.5v3.5a2 2 0 0 1-2.2 2A15.5 15.5 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></svg></span>
+              <div class="tib"><span class="tit">10:15<em class="tag miss">Manqué</em></span><b>Appel entrant — manqué</b><p>Aucune réponse · rappel programmé</p></div>
+            </div>
+
+            <div class="tl-day" data-i="4">Hier · 1 juillet</div>
+            <div class="tl-it" data-i="5">
+              <span class="tic" style="background:linear-gradient(135deg,#FFD16E,#F5A623)"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 3.6l2.5 5.2 5.7.7-4.2 3.9 1.1 5.6L12 16.2 6.9 19l1.1-5.6-4.2-3.9 5.7-.7z"/></svg></span>
+              <div class="tib"><span class="tit">18:30<em class="tag">Google</em></span><b>Avis Google publié</b><p>« Accueil impeccable, équipe très professionnelle. »</p><span class="stars">★★★★★</span></div>
+            </div>
+            <div class="tl-it" data-i="6">
+              <span class="tic" style="background:linear-gradient(135deg,#26355F,#101A3A)"><svg viewBox="0 0 24 24" fill="#fff" stroke="none"><path d="M12 3.6l2.5 5.2 5.7.7-4.2 3.9 1.1 5.6L12 16.2 6.9 19l1.1-5.6-4.2-3.9 5.7-.7z"/></svg></span>
+              <div class="tib"><span class="tit">17:10<em class="tag">Expedia</em></span><b>Avis Expedia publié</b><p>« Emplacement idéal et personnel aux petits soins. »</p><span class="stars">★★★★★</span></div>
+            </div>
+            <div class="tl-it" data-i="7">
+              <span class="tic" style="background:linear-gradient(135deg,#2B2B33,#0E0E14)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10a1 1 0 0 1 1 1v16l-6-4-6 4V5a1 1 0 0 1 1-1z"/></svg></span>
+              <div class="tib"><span class="tit">13:25<em class="tag">SevenRooms</em></span><b>Réservation restaurant confirmée</b><p>Table de 2 · 20h30 · table près de la fenêtre, sans gluten</p></div>
+            </div>
+            <div class="tl-it" data-i="8">
+              <span class="tic" style="background:linear-gradient(135deg,#B98CFF,#6840FA)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 7.5 12 13l9-5.5"/></svg></span>
+              <div class="tib"><span class="tit">09:48<em class="tag">Appel</em></span><b>Appel entrant — 1ʳᵉ prise de contact</b><p>Durée 4 min 03</p></div>
+            </div>
+
+            <div class="tl-day" data-i="9">30 juin</div>
+            <div class="tl-it" data-i="10">
+              <span class="tic" style="background:linear-gradient(135deg,#FC5C4C,#D6236B)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7"/><path d="M3 18h18M6 9V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2"/></svg></span>
+              <div class="tib"><span class="tit">15:40<em class="tag">Opera Cloud</em></span><b>Réservation séjour créée</b><p>Chambre Supérieure · 2 nuits · arrivée 15 juil. · membre Platinum</p></div>
+            </div>
+            <div class="tl-it" data-i="11">
+              <span class="tic" style="background:linear-gradient(135deg,#B98CFF,#6840FA)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 7.5 12 13l9-5.5"/></svg></span>
+              <div class="tib"><span class="tit">14:20<em class="tag">Email</em></span><b>E-mail reçu</b><p>Objet : Renseignements séjour &amp; disponibilités</p></div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+:root{
+  --ink:#15182B;--ink-soft:#4B4865;--muted:#8B88A6;--line:#ECEAF6;
+  --violet:#6840FA;
+  --grad:linear-gradient(90deg,#09cafc,#2827fc,#990bf8,#de06bb,#fc2a50,#fd4032,#ff6e23);
+}
+.crm-motion{font-family:"Geist",system-ui,sans-serif;color:var(--ink);padding:22px 18px 26px;background:transparent}
+.stage{max-width:1040px;margin:0 auto}
+.window{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 26px 60px -30px rgba(80,40,140,.35)}
+.win-bar{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);background:#FBFAFF;font-size:12.5px;font-weight:700}
+.dots{display:flex;gap:5px}.dots i{width:9px;height:9px;border-radius:50%;background:#E4E1F2}
+.wb-crumb{margin-left:auto;font-size:10.5px;font-family:"Geist Mono",monospace;color:var(--muted)}
+.win-body{display:grid;grid-template-columns:280px 1fr;min-height:540px}
+@media(max-width:760px){.win-body{grid-template-columns:1fr}.cl{display:none}}
+
+/* liste contacts */
+.cl{border-right:1px solid var(--line);background:#FDFCFF;padding:14px 12px;display:flex;flex-direction:column;gap:6px}
+.cl-head{font-size:13px;font-weight:800;padding:2px 6px 6px;display:flex;align-items:center;gap:8px}
+.cl-n{font-size:10px;font-weight:700;color:var(--muted);background:#F1EFFA;padding:2px 8px;border-radius:10px}
+.cl-search{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--muted);background:#F4F2FB;border-radius:10px;padding:8px 11px;margin-bottom:6px}
+.cl-row{display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:12px;opacity:0;transform:translateY(7px);transition:opacity .45s ease,transform .45s ease,background .3s,box-shadow .3s}
+.cl-row.in{opacity:1;transform:none}
+.cl-row.on.in{background:#fff;box-shadow:0 8px 22px -12px rgba(104,64,250,.35);border:1px solid #EAE5FB}
+.cav{flex-shrink:0;width:30px;height:30px;border-radius:50%;color:#fff;font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.cli{flex:1;min-width:0}.cli b{display:block;font-size:12px;font-weight:700}.cli small{display:block;font-size:10px;color:var(--muted);font-family:"Geist Mono",monospace}
+.cn{font-size:9.5px;font-weight:800;color:var(--violet);background:#F1EDFF;padding:2px 7px;border-radius:9px}
+
+/* fiche */
+.cf{padding:18px 22px 22px;overflow:hidden}
+.cf-id{display:flex;align-items:center;gap:13px;flex-wrap:wrap;opacity:0;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
+.cf-id.in{opacity:1;transform:none}
+.cf-av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#FE76C4,#6840FA);color:#fff;font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px -8px rgba(104,64,250,.5)}
+.cf-who b{display:block;font-size:16.5px;font-weight:800;letter-spacing:-.02em}
+.cf-who small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.cf-pills{display:flex;gap:7px;flex-wrap:wrap;margin-left:auto}
+.cf-pill{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:600;color:var(--ink-soft);background:#F6F4FC;border:1px solid var(--line);padding:6px 11px;border-radius:20px;font-family:"Geist Mono",monospace}
+.cf-sec{margin-top:18px;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cf-tabs{display:flex;gap:16px;margin-top:8px;border-bottom:1px solid var(--line);padding-bottom:0;overflow:hidden}
+.cft{font-size:12px;font-weight:600;color:var(--muted);padding:6px 1px 8px;cursor:default;position:relative;white-space:nowrap}
+.cft.on{color:var(--violet);font-weight:700}
+.cft.on::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;border-radius:2px;background:var(--violet)}
+
+/* timeline */
+.tl{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.tl-day{font-size:10.5px;font-weight:800;color:var(--muted);letter-spacing:.02em;margin-top:4px;opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
+.tl-it{display:flex;gap:11px;align-items:flex-start;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.tl-day.in,.tl-it.in{opacity:1;transform:none}
+.tic{flex-shrink:0;width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px -6px rgba(20,15,60,.3)}
+.tic svg{width:15px;height:15px}
+.tib{flex:1;min-width:0}
+.tit{display:flex;align-items:center;gap:8px;font-size:10.5px;color:var(--muted);font-family:"Geist Mono",monospace}
+.tag{font-style:normal;font-size:8.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#7A76A8;background:#F1EFFA;padding:2px 7px;border-radius:8px}
+.tag.miss{color:#C2412F;background:#FCEBE7}
+.tib b{display:block;font-size:12.5px;font-weight:700;margin-top:2px}
+.tib p{margin:2px 0 0;font-size:11px;color:var(--ink-soft);line-height:1.45}
+.stars{display:block;margin-top:3px;color:#F5A623;font-size:12px;letter-spacing:2px}
+@media(prefers-reduced-motion:reduce){.cl-row,.cf-id,.tl-day,.tl-it{transition:none;opacity:1;transform:none}}
+</style>
+
+<script>
+(function(){
+  var rows=[].slice.call(document.querySelectorAll('.cl-row'));
+  var cfid=document.getElementById('cfid');
+  var items=[].slice.call(document.querySelectorAll('.tl-day,.tl-it'));
+  items.sort(function(a,b){return (+a.dataset.i)-(+b.dataset.i);});
+  function reset(){rows.forEach(function(r){r.classList.remove('in');});cfid.classList.remove('in');items.forEach(function(i){i.classList.remove('in');});}
+  function play(){
+    rows.forEach(function(r,i){setTimeout(function(){r.classList.add('in');},120+i*90);});
+    setTimeout(function(){cfid.classList.add('in');},900);
+    items.forEach(function(it,i){setTimeout(function(){it.classList.add('in');},1250+i*260);});
+  }
+  function loop(){reset();setTimeout(play,350);}
+  play();
+  setInterval(loop,15000);
+})();
+</script>
+
+<script>
+(function(){function rz(){try{parent.postMessage({srnMotion:1,h:Math.ceil(document.body.scrollHeight)},'*');}catch(e){}}
+if(window.ResizeObserver){new ResizeObserver(rz).observe(document.body);}
+window.addEventListener('load',rz);[200,600,1200,2500].forEach(function(t){setTimeout(rz,t);});})();
+</script>
+
+<script>
+(function(){
+var T={
+  "Rechercher un contact…":{"en":"Search a contact…","de":"Kontakt suchen…"},
+  "Cliente Platinum · Contact international":{"en":"Platinum guest · International contact","de":"Platinum-Kundin · Internationaler Kontakt"},
+  "Historique de contact":{"en":"Contact history","de":"Kontaktverlauf"},
+  "Tout":{"en":"All","de":"Alle"},
+  "Appels":{"en":"Calls","de":"Anrufe"},
+  "Avis":{"en":"Reviews","de":"Bewertungen"},
+  "Aujourd'hui · 2 juillet":{"en":"Today · July 2","de":"Heute · 2. Juli"},
+  "Hier · 1 juillet":{"en":"Yesterday · July 1","de":"Gestern · 1. Juli"},
+  "30 juin":{"en":"June 30","de":"30. Juni"},
+  "Reçu":{"en":"Received","de":"Erhalten"},
+  "Message Instagram":{"en":"Instagram message","de":"Instagram-Nachricht"},
+  "« Merci pour votre réactivité, à très vite. »":{"en":"“Thanks for your responsiveness, see you soon.”","de":"„Danke für Ihre schnelle Antwort, bis bald.“"},
+  "Appel":{"en":"Call","de":"Anruf"},
+  "Appel entrant — 3ᵉ tentative":{"en":"Inbound call — 3rd attempt","de":"Eingehender Anruf — 3. Versuch"},
+  "Durée 2 min 14 · pris en charge":{"en":"Duration 2 min 14 · handled","de":"Dauer 2 Min. 14 · bearbeitet"},
+  "Manqué":{"en":"Missed","de":"Verpasst"},
+  "Appel entrant — manqué":{"en":"Inbound call — missed","de":"Eingehender Anruf — verpasst"},
+  "Aucune réponse · rappel programmé":{"en":"No answer · callback scheduled","de":"Keine Antwort · Rückruf geplant"},
+  "Avis Google publié":{"en":"Google review posted","de":"Google-Bewertung veröffentlicht"},
+  "« Accueil impeccable, équipe très professionnelle. »":{"en":"“Impeccable welcome, very professional team.”","de":"„Tadelloser Empfang, sehr professionelles Team.“"},
+  "Avis Expedia publié":{"en":"Expedia review posted","de":"Expedia-Bewertung veröffentlicht"},
+  "« Emplacement idéal et personnel aux petits soins. »":{"en":"“Ideal location and attentive staff.”","de":"„Ideale Lage und aufmerksames Personal.“"},
+  "Réservation restaurant confirmée":{"en":"Restaurant booking confirmed","de":"Restaurantreservierung bestätigt"},
+  "Table de 2 · 20h30 · table près de la fenêtre, sans gluten":{"en":"Table for 2 · 8:30 PM · window table, gluten-free","de":"Tisch für 2 · 20:30 Uhr · Fensterplatz, glutenfrei"},
+  "Appel entrant — 1ʳᵉ prise de contact":{"en":"Inbound call — first contact","de":"Eingehender Anruf — Erstkontakt"},
+  "Durée 4 min 03":{"en":"Duration 4 min 03","de":"Dauer 4 Min. 03"},
+  "Réservation séjour créée":{"en":"Stay reservation created","de":"Aufenthaltsreservierung erstellt"},
+  "Chambre Supérieure · 2 nuits · arrivée 15 juil. · membre Platinum":{"en":"Superior room · 2 nights · arrival Jul 15 · Platinum member","de":"Superior-Zimmer · 2 Nächte · Anreise 15. Juli · Platinum-Mitglied"},
+  "E-mail reçu":{"en":"Email received","de":"E-Mail erhalten"},
+  "Objet : Renseignements séjour & disponibilités":{"en":"Subject: Stay information & availability","de":"Betreff: Aufenthaltsinformationen & Verfügbarkeit"},
+  "Contacts":{"en":"Contacts","de":"Kontakte"}
+};
+function norm(s){return s.replace(/\s+/g,' ').trim();}
+var orig=typeof WeakMap!=='undefined'?new WeakMap():null;
+function walk(lang){
+  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+    if(!n.nodeValue||!n.nodeValue.trim())return NodeFilter.FILTER_REJECT;
+    var p=n.parentElement;if(!p)return NodeFilter.FILTER_REJECT;
+    var t=p.tagName;if(t==='SCRIPT'||t==='STYLE')return NodeFilter.FILTER_REJECT;
+    return NodeFilter.FILTER_ACCEPT;}});
+  var n;while(n=w.nextNode()){
+    var fr=orig&&orig.has(n)?orig.get(n):n.nodeValue;
+    var k=norm(fr),e=T[k];
+    if(e&&lang&&e[lang]){if(orig&&!orig.has(n))orig.set(n,n.nodeValue);n.nodeValue=e[lang];}
+    else if(orig&&orig.has(n)){n.nodeValue=orig.get(n);}
+  }
+}
+function apply(lang){walk(lang&&lang!=='fr'?lang:null);}
+window.addEventListener('message',function(e){var d=e.data;if(d&&d.srnLang)apply(d.srnLang);});
+try{if(window.parent&&window.parent.LANG)apply(window.parent.LANG);}catch(e){}
+})();
+</script>
+</body></html>
