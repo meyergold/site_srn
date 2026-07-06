@@ -1,6 +1,6 @@
 # Sairen
 
-> Sairen est la plateforme IA de relation client des entreprises du monde réel : agents IA vocaux et écrits disponibles 24/7, inbox omnicanale (appels, WhatsApp, e-mail, SMS, Instagram), CRM unifié par contact, workflows no-code et copilote analytique. Hébergée en France, conforme RGPD et HDS, alignée sur le référentiel SecNumCloud de l'ANSSI.
+> Sairen est la plateforme IA de relation client des entreprises du monde réel : agents IA vocaux et écrits disponibles 24/7, inbox omnicanale (appels, WhatsApp, e-mail, SMS, Instagram), CRM unifié par contact, workflows no-code et copilote analytique. Hébergée en France, conforme RGPD et HDS, alignée sur le référentiel SecNumCloud de l'ANSSI (architecture et pratiques).
 
 Sairen s'adresse aux secteurs où la relation client se joue sur le terrain : santé (cabinets, cliniques, radiologie), hôtellerie, retail & e-commerce, beauté & bien-être, immobilier, B2B & distribution.
 
@@ -25,7 +25,7 @@ Sairen s'adresse aux secteurs où la relation client se joue sur le terrain : sa
 
 - Données hébergées en France ; hébergement certifié HDS pour les données de santé
 - Conformité RGPD native, AI Act par conception
-- Référentiel SecNumCloud (ANSSI) : la norme de référence en matière de sécurité cloud
+- Alignement sur le référentiel SecNumCloud (ANSSI), la norme de référence en matière de sécurité cloud
 - ISO/IEC 27001, SOC 2, chiffrement de bout en bout, réversibilité
 
 ## Intégrations
