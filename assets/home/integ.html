@@ -11,7 +11,7 @@
   --grad:linear-gradient(115deg,#676AFE,#9456F7,#BE59D4);
   --font:'Comfortaa','Geist Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 }
-.integ{font-family:var(--font);color:var(--ink);background:var(--canvas);
+.integ{font-family:var(--font);color:var(--ink);background:transparent;
   padding:clamp(72px,9vw,128px) 0 clamp(64px,7vw,104px);position:relative;overflow:hidden}
 
 .integ .bgmesh{position:absolute;inset:0;pointer-events:none;
@@ -125,7 +125,7 @@
   --font:'Comfortaa','Geist Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--font);color:var(--ink);background:var(--canvas);overflow-x:hidden}
+body{font-family:var(--font);color:var(--ink);background:transparent;overflow-x:hidden}
 
 /* atmosphere */
 .atmo{position:absolute;inset:0;z-index:0;pointer-events:none;
@@ -224,7 +224,18 @@ html,body{background:transparent!important}
 .integ .bgmesh,.integ .grain{display:none!important}
 .integ .chip{background:rgba(255,255,255,.96)!important;border-color:rgba(255,255,255,.12)!important;
   box-shadow:0 14px 34px -18px rgba(0,0,0,.6)!important}
+
+/* srn unified multicolor background */
+.dive-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.dfb{position:absolute;border-radius:50%;filter:blur(40px);opacity:.4}
+.dfb.b1{width:46vw;height:46vw;left:-10vw;top:-6vw;background:radial-gradient(circle at 32% 30%,#74DFFE,rgba(116,223,254,0) 70%)}
+.dfb.b2{width:42vw;height:42vw;right:-12vw;top:8vh;background:radial-gradient(circle at 35% 35%,#C9B7FE,rgba(104,64,250,0) 68%)}
+.dfb.b3{width:50vw;height:50vw;left:6vw;top:52vh;background:radial-gradient(circle at 40% 35%,#FEC0E2,rgba(254,118,196,0) 70%)}
+.dfb.b4{width:38vw;height:38vw;right:-6vw;top:64vh;background:radial-gradient(circle at 35% 40%,#BFE0FF,rgba(116,180,254,0) 70%)}
+body{background:transparent!important}
 </style></head><body>
+<div class="dive-fx" aria-hidden="true"><span class="dfb b1"></span><span class="dfb b2"></span><span class="dfb b3"></span><span class="dfb b4"></span></div>
+
 <section class="integ" id="integ">
   <div class="bgmesh"></div><div class="grain"></div>
 

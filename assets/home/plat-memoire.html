@@ -20,7 +20,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--surface);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+body{font-family:'Inter',system-ui,sans-serif;background:transparent;color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
 a{color:inherit;text-decoration:none}
 
 /* NAV */
@@ -208,9 +208,20 @@ a{color:inherit;text-decoration:none}
   .recog-grid,.mem-split,.g3,.ig{grid-template-columns:1fr}
   .hero,.recog,.ls,.ds,.cta{padding-left:20px;padding-right:20px}
 }
+
+/* srn unified multicolor background */
+.dive-fx{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.dfb{position:absolute;border-radius:50%;filter:blur(40px);opacity:.4}
+.dfb.b1{width:46vw;height:46vw;left:-10vw;top:-6vw;background:radial-gradient(circle at 32% 30%,#74DFFE,rgba(116,223,254,0) 70%)}
+.dfb.b2{width:42vw;height:42vw;right:-12vw;top:8vh;background:radial-gradient(circle at 35% 35%,#C9B7FE,rgba(104,64,250,0) 68%)}
+.dfb.b3{width:50vw;height:50vw;left:6vw;top:52vh;background:radial-gradient(circle at 40% 35%,#FEC0E2,rgba(254,118,196,0) 70%)}
+.dfb.b4{width:38vw;height:38vw;right:-6vw;top:64vh;background:radial-gradient(circle at 35% 40%,#BFE0FF,rgba(116,180,254,0) 70%)}
+body{background:transparent!important}
 </style>
 </head>
 <body>
+<div class="dive-fx" aria-hidden="true"><span class="dfb b1"></span><span class="dfb b2"></span><span class="dfb b3"></span><span class="dfb b4"></span></div>
+
 
 <nav><div class="topbar"><div class="topbar-in">
   <button class="back-link" onclick="goHome()">
