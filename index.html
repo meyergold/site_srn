@@ -2076,6 +2076,97 @@ footer.rich .foot-bottom{border-top-color:rgba(40,28,80,.18)!important;color:rgb
 footer.rich .foot-bottom a{color:rgba(40,28,80,.82)!important}
 footer.rich .ai-summary span{color:rgba(48,36,92,.85)!important}
 </style>
+<style id="srn-clean">
+/* ============================================================
+   SRN CLEAN — système global unifié (réf. : bento "Une seule
+   plateforme" + tuiles "agents & workflows"). Langdock-like :
+   calme, aéré, cartes hairline, pastels doux, un seul accent.
+   ============================================================ */
+
+/* ---- 1. Étiquettes de section : mono + pastille dégradé ---- */
+.sec-tag2,.sec-eyebrow,.mod-name,.df-tag{
+  display:inline-flex!important;align-items:center;gap:8px;
+  font-family:'Geist Mono',monospace!important;font-size:11px!important;font-weight:600!important;
+  letter-spacing:.22em!important;text-transform:uppercase!important;
+  color:var(--muted)!important;background:none!important;
+  -webkit-text-fill-color:var(--muted)!important;padding:0!important;border-radius:0!important;
+}
+.sec-tag2::before,.sec-eyebrow::before,.mod-name::before,.df-tag::before{
+  content:'';width:10px;height:10px;border-radius:3px;background:var(--grad);flex:none;
+}
+.sec-hero .sec-eyebrow{justify-content:center}
+
+/* ---- 2. Titres : graisse et interlettrage identiques partout ---- */
+.sec-head2 h2,.sec-title,.final h2,.desk-feat h2,.uc-orch h2,.ind-live h2,.uc-ben h2{
+  font-weight:800!important;letter-spacing:-.03em!important;color:#15182B;
+}
+.sec-head2{max-width:820px}
+
+/* ---- 3. Le token carte unique ---- */
+.sec-uc-card,.uc-card,.ucb-card,.pj-step,.mo,.win-mini,.ucf-step,.price-card,
+.uc-note,.trg-card,.model-card,.ag-bcard{
+  background:#fff!important;border:1px solid #E9E6F2!important;border-radius:20px!important;
+  box-shadow:0 18px 44px -34px rgba(60,30,110,.22)!important;
+}
+.uc-card,.sec-uc-card{position:relative;overflow:hidden}
+.uc-card::before,.sec-uc-card::before{
+  content:'';position:absolute;left:0;right:0;top:0;height:2px;background:var(--grad);
+  opacity:0;transition:opacity .2s;
+}
+.uc-card:hover{transform:translateY(-4px);box-shadow:0 30px 60px -34px rgba(60,30,110,.35)!important;border-color:#DCD7EC!important}
+.uc-card:hover::before{opacity:1}
+
+/* ---- 4. Boutons : primaire noir (comme la home), plus de bleu ---- */
+.btn-primary{background:#15182B!important;color:#fff!important;border:1px solid #15182B!important;border-radius:14px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px -14px rgba(21,24,43,.45)}
+.btn{border-radius:14px}
+
+/* ---- 5. Respiration : rythme de sections généreux ---- */
+.msub{padding:44px 0 76px}
+.sec-hero{padding:74px 0 0}
+.desk-feat{padding:64px 0}
+.ind-parcours,.uc-ben,.ind-live,.uc-orch,.ind-integ{padding-top:26px;padding-bottom:26px}
+.sec-head2{margin-bottom:52px}
+
+/* ---- 6. CTA final : tuile pastel façon marketplace ---- */
+.final{padding:40px clamp(20px,4vw,44px) 90px}
+.final .wrap{
+  max-width:1240px;background:#EFECFF;border-radius:26px;
+  padding:72px clamp(24px,5vw,64px);
+}
+.final p{color:#4b4f66}
+
+/* ---- 7. Chips & briques : pilule unifiée ---- */
+.ii-chip,.uc-brick{border:1px solid #E9E6F2!important;box-shadow:none!important;background:#fff!important}
+
+/* ---- 8. Steps de parcours : hairline + numéro pastille sombre ---- */
+.pj-num{background:#15182B!important;color:#fff!important}
+
+/* ---- 9. Nettoyage des verres dégradés restants ---- */
+.ucb-card,.ucf-step{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+/* ---- 10. Bandes sombres -> tuiles pastel (DA unifiée) ---- */
+.vocal-call{background:#EFECFF!important;color:#15182B!important;border:1px solid #E4DEF8}
+.vocal-call p{color:#4b4f66!important}
+.vocal-call b{color:#15182B!important}
+.ps-ent{background:#EFECFF!important;border:1px solid #E4DEF8}
+.ps-ent-name,.ps-ent .ps-ent-name{color:#15182B!important}
+.ps-ent-desc{color:#4b4f66!important}
+.ps-ent-tag{color:#5b5680!important;background:#fff!important;border:1px solid #E4DEF8!important}
+.ps-ent-tier{color:#6840FA!important}
+.ps-rampup{background:#E7F1FE!important;border:1px solid #D6E6FB!important}
+.ps-rampup-h,.ps-rampup h3,.ps-rampup b{color:#15182B!important}
+.ps-rampup-sub,.ps-rampup p,.ps-rampup small{color:#4b4f66!important}
+.ps-rampup-badge{color:#5b5680!important;border:1px solid #C9DDF6!important;background:#fff!important}
+.ps-rs-num{background:#15182B!important;border:none!important;color:#fff!important}
+/* ---- 11. .sec-tag rejoint le système d'étiquettes ---- */
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-family:'Geist Mono',monospace!important;font-size:11px!important;font-weight:600!important;letter-spacing:.22em!important;text-transform:uppercase!important;color:var(--muted)!important}
+.sec-tag::before{content:'';width:10px;height:10px;border-radius:3px;background:var(--grad);flex:none}
+.meta-card{background:#E7F1FE!important;color:#15182B!important;border:1px solid #D6E6FB}
+.meta-card h2,.meta-card b{color:#15182B!important}
+.meta-card p,.meta-card li{color:#4b4f66!important}
+.meta-badge{background:#fff!important;color:#15182B!important;border:1px solid #D6E6FB!important}
+.meta-pts span{color:#3b3a47!important}
+</style>
 <style id="nav-attio">
 /* ===== NAV facon Attio : barre blanche pleine largeur, solide ===== */
 nav{position:sticky;top:0;z-index:1000;padding:0!important;background:#fff!important;border-bottom:1px solid #ECEAF4;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;display:flex;justify-content:center}
