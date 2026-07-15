@@ -2644,7 +2644,9 @@ tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(func
 </div>
 <p style="text-align:center;margin:8px auto 0"><a class="btn btn-ghost" href="#/cas-usage">Explorer tous les cas d'usage →</a></p>
 <style>
-#ag .ag-tabs{display:inline-flex;gap:4px;background:#fff;border:1px solid #E9E6F2;border-radius:999px;padding:5px;margin-bottom:18px;flex-wrap:wrap;justify-content:center}
+#ag .ag-tabs{display:flex;gap:4px;background:#fff;border:1px solid #E9E6F2;border-radius:999px;padding:5px;margin-bottom:18px;max-width:100%;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+#ag .ag-tabs::-webkit-scrollbar{display:none}
+#ag .ag-tab{flex:none;white-space:nowrap}
 #ag .ag-tab{display:inline-flex;align-items:center;gap:8px;font-family:inherit;font-size:13px;font-weight:700;color:#5a5878;background:none;border:none;border-radius:999px;padding:7px 16px 7px 8px;cursor:pointer;transition:.15s}
 #ag .ag-tab.on{background:#15182B;color:#fff}
 #ag .uct-av{display:grid;place-items:center;width:24px;height:24px;border-radius:8px;overflow:hidden;flex:none}
