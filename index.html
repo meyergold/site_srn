@@ -2299,6 +2299,152 @@ body.home-dive.nav-solid>nav,body.home-dive>nav{background:#fff!important}
   </div>
 </div>
 <div class="ps-grid" id="psGrid"></div>
+
+<!-- ===== Configurateur de devis (inspiré RevenueHero, adapté DA Sairen) ===== -->
+<style>
+.psq{margin:74px auto 10px;max-width:1120px;padding:0 4px}
+.psq-head{text-align:center;max-width:640px;margin:0 auto 38px}
+.psq-head h2{font-size:clamp(26px,3.6vw,40px);font-weight:800;letter-spacing:-.03em;margin:0 0 10px}
+.psq-head p{font-size:15.5px;color:#6f6c7e;line-height:1.6;margin:0}
+.psq-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch}
+.psq-card{background:#fff;border:1px solid #E9E6F2;border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:14px;box-shadow:0 18px 44px -30px rgba(60,30,110,.2);transition:border-color .2s,box-shadow .2s}
+.psq-card.on{border-color:#6D4AFF;box-shadow:0 22px 50px -28px rgba(109,74,255,.4)}
+.psq-card-h{display:flex;align-items:center;gap:9px}
+.psq-card-h b{font-size:16.5px;font-weight:800;color:#15161d}
+.psq-pop{font-size:9.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6D4AFF;background:#F1EDFF;border-radius:99px;padding:3px 8px;margin-left:auto}
+.psq-check{display:flex;align-items:center;gap:9px;cursor:pointer;user-select:none;font-size:13.5px;font-weight:700;color:#3b3a47}
+.psq-check input{display:none}
+.psq-box{width:20px;height:20px;border-radius:7px;border:1.5px solid #D6D2E4;background:#fff;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:800;transition:.15s;flex:none}
+.psq-check input:checked+.psq-box{background:#6D4AFF;border-color:#6D4AFF}
+.psq-price{font-size:13px;color:#8a8aa8;font-weight:600}
+.psq-price b{font-size:20px;color:#15161d;font-weight:800}
+.psq-users{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.psq-users label{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#9a97ad}
+.psq-step{display:flex;align-items:center;border:1.5px solid #E4E1F0;border-radius:12px;overflow:hidden}
+.psq-step button{font-family:inherit;width:36px;height:38px;border:0;background:#F7F5FC;color:#6D4AFF;font-size:17px;font-weight:800;cursor:pointer}
+.psq-step button:hover{background:#F1EDFF}
+.psq-step input{flex:1;width:100%;min-width:0;border:0;outline:0;text-align:center;font-family:inherit;font-size:15px;font-weight:800;color:#15161d;-moz-appearance:textfield}
+.psq-step input::-webkit-inner-spin-button{display:none}
+.psq-card.addons{background:#FBFAFF;border:1.5px dashed #CFC5F5}
+.psq-card.addons .psq-card-h b{color:#6D4AFF;font-size:13px;letter-spacing:.07em;text-transform:uppercase}
+.psq-tgl{display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;font-size:13.5px;font-weight:700;color:#3b3a47}
+.psq-tgl input{display:none}
+.psq-pill{width:38px;height:22px;border-radius:99px;background:#E4E1F0;position:relative;transition:.18s;flex:none}
+.psq-pill::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.18s;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.psq-tgl input:checked+.psq-pill{background:#6D4AFF}
+.psq-tgl input:checked+.psq-pill::after{left:19px}
+.psq-sel{font-family:inherit;font-size:13.5px;font-weight:700;color:#15161d;border:1.5px solid #E4E1F0;border-radius:12px;padding:10px 12px;background:#fff;width:100%;cursor:pointer;outline:0}
+.psq-sel:focus{border-color:#6D4AFF}
+.psq-note{font-size:11.5px;color:#9a97ad;font-weight:500;line-height:1.45}
+.psq-connect{width:2px;height:44px;margin:0 auto;background-image:linear-gradient(180deg,#CFC5F5 55%,transparent 0);background-size:2px 9px}
+.psq-total{max-width:430px;margin:0 auto;background:#15182B;border-radius:22px;padding:28px;text-align:center;box-shadow:0 40px 80px -40px rgba(21,24,43,.7)}
+.psq-total-lbl{font-family:'Geist Mono',monospace;font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8f93b3;margin:0 0 16px}
+.psq-bill{display:inline-flex;align-items:center;background:rgba(255,255,255,.08);border-radius:99px;padding:4px;margin-bottom:16px}
+.psq-bill button{font-family:inherit;font-size:12.5px;font-weight:700;color:#aab;border:0;background:none;border-radius:99px;padding:7px 16px;cursor:pointer;transition:.15s}
+.psq-bill button.on{background:#fff;color:#15182B}
+.psq-amount{font-size:clamp(38px,4.5vw,52px);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1}
+.psq-amount small{font-size:18px;font-weight:700;color:#8f93b3}
+.psq-sub{font-size:12px;color:#8f93b3;font-weight:600;margin:10px 0 20px;min-height:16px}
+.psq-total .btn-violet2{display:flex;justify-content:center;width:100%;padding:14px;border-radius:13px;font-size:14.5px}
+.psq-talk{display:inline-block;font-size:12.5px;font-weight:700;color:#aab;text-decoration:none;margin-top:12px}
+.psq-talk:hover{color:#fff}
+.psq-starter{font-size:12.5px;color:#8a8aa8;font-weight:600;text-align:center;margin:18px 0 0}
+.psq-starter a{color:#6D4AFF;font-weight:800;text-decoration:none}
+@media(max-width:1020px){.psq-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.psq-grid{grid-template-columns:1fr}}
+</style>
+<div class="psq" id="psq" data-no-count>
+  <div class="psq-head">
+    <h2>Sachez exactement ce que vous paierez.</h2>
+    <p>Cochez vos plans, ajoutez vos utilisateurs — votre devis se calcule en direct. Plusieurs sites ou équipes ? Combinez les plans.</p>
+  </div>
+  <div class="psq-grid">
+    <div class="psq-card" data-plan="essentiel" data-price="7">
+      <div class="psq-card-h"><b>Essentiel</b></div>
+      <label class="psq-check"><input type="checkbox" class="psq-on"><span class="psq-box">✓</span>Inclure ce plan</label>
+      <p class="psq-price"><b>7€</b> / utilisateur / mois</p>
+      <div class="psq-users"><label>Utilisateurs</label><div class="psq-step"><button type="button" data-d="-1">−</button><input type="number" class="psq-n" value="5" min="1" max="500"><button type="button" data-d="1">+</button></div></div>
+    </div>
+    <div class="psq-card on" data-plan="pro" data-price="12">
+      <div class="psq-card-h"><b>Pro</b><span class="psq-pop">Le plus choisi</span></div>
+      <label class="psq-check"><input type="checkbox" class="psq-on" checked><span class="psq-box">✓</span>Inclure ce plan</label>
+      <p class="psq-price"><b>12€</b> / utilisateur / mois</p>
+      <div class="psq-users"><label>Utilisateurs</label><div class="psq-step"><button type="button" data-d="-1">−</button><input type="number" class="psq-n" value="5" min="1" max="500"><button type="button" data-d="1">+</button></div></div>
+    </div>
+    <div class="psq-card" data-plan="expert" data-price="15">
+      <div class="psq-card-h"><b>Expert</b></div>
+      <label class="psq-check"><input type="checkbox" class="psq-on"><span class="psq-box">✓</span>Inclure ce plan</label>
+      <p class="psq-price"><b>15€</b> / utilisateur / mois</p>
+      <div class="psq-users"><label>Utilisateurs</label><div class="psq-step"><button type="button" data-d="-1">−</button><input type="number" class="psq-n" value="5" min="1" max="500"><button type="button" data-d="1">+</button></div></div>
+    </div>
+    <div class="psq-card addons">
+      <div class="psq-card-h"><b>Add-ons</b></div>
+      <label class="psq-tgl"><input type="checkbox" id="psqRamp"><span class="psq-pill"></span>Ramp-up : implémentation gérée</label>
+      <p class="psq-note" id="psqRampNote" hidden>Nos AI specialists intègrent Sairen à votre stack — chiffré sur devis, ajouté à la mise en relation.</p>
+      <div class="psq-users" style="margin-top:0"><label>Crédits de communication / mois</label>
+        <select class="psq-sel" id="psqCredits">
+          <option value="0">Inclus dans le plan</option>
+          <option value="10">+ 1 000 crédits · 10€</option>
+          <option value="25">+ 2 500 crédits · 25€</option>
+          <option value="50">+ 5 000 crédits · 50€</option>
+          <option value="100">+ 10 000 crédits · 100€</option>
+        </select></div>
+      <p class="psq-note">Les crédits couvrent appels, SMS et messages sortants. Chaque plan en inclut déjà.</p>
+    </div>
+  </div>
+  <div class="psq-connect"></div>
+  <div class="psq-total">
+    <p class="psq-total-lbl">Ce que vous paierez</p>
+    <div class="psq-bill"><button type="button" id="psqYear">Annuel −20%</button><button type="button" class="on" id="psqMonth">Mensuel</button></div>
+    <div class="psq-amount"><span id="psqSum">60</span>€<small>/mois</small></div>
+    <p class="psq-sub" id="psqDetail"></p>
+    <a class="btn btn-violet2" href="#/signup">Démarrer avec cette offre</a>
+    <a class="psq-talk" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_blank" rel="noopener">ou parler à l'équipe →</a>
+  </div>
+  <p class="psq-starter">Vous débutez ? <a href="#/signup">Starter reste gratuit</a> — 0€, 500 crédits offerts, sans carte bancaire.</p>
+</div>
+<script>
+(function(){
+  var root=document.getElementById('psq');if(!root)return;
+  var yearly=false;
+  function fmt(n){return n.toLocaleString('fr-FR');}
+  function calc(){
+    var total=0,parts=[];
+    root.querySelectorAll('.psq-card[data-plan]').forEach(function(c){
+      var on=c.querySelector('.psq-on').checked;
+      c.classList.toggle('on',on);
+      if(!on)return;
+      var users=Math.max(1,parseInt(c.querySelector('.psq-n').value||1,10));
+      var p=parseInt(c.getAttribute('data-price'),10)*users;
+      total+=p;parts.push(users+' util. '+c.getAttribute('data-plan').charAt(0).toUpperCase()+c.getAttribute('data-plan').slice(1));
+    });
+    var cr=parseInt(document.getElementById('psqCredits').value,10);
+    if(cr>0){total+=cr;parts.push('crédits +'+cr+'€');}
+    if(yearly)total=Math.round(total*0.8);
+    document.getElementById('psqSum').textContent=fmt(total);
+    var d=parts.length?parts.join(' · '):'Sélectionnez au moins un plan';
+    if(yearly&&parts.length)d+=' — facturé annuellement (−20%)';
+    if(document.getElementById('psqRamp').checked)d+=' · Ramp-up sur devis';
+    document.getElementById('psqDetail').textContent=d;
+  }
+  root.querySelectorAll('.psq-step button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var inp=b.parentNode.querySelector('.psq-n');
+      inp.value=Math.min(500,Math.max(1,(parseInt(inp.value||1,10)+parseInt(b.getAttribute('data-d'),10))));
+      var card=b.closest('.psq-card');card.querySelector('.psq-on').checked=true;
+      calc();
+    });
+  });
+  root.addEventListener('change',calc);
+  root.addEventListener('input',calc);
+  document.getElementById('psqRamp').addEventListener('change',function(){
+    document.getElementById('psqRampNote').hidden=!this.checked;
+  });
+  document.getElementById('psqYear').addEventListener('click',function(){yearly=true;this.classList.add('on');document.getElementById('psqMonth').classList.remove('on');calc();});
+  document.getElementById('psqMonth').addEventListener('click',function(){yearly=false;this.classList.add('on');document.getElementById('psqYear').classList.remove('on');calc();});
+  calc();
+})();
+</script>
 <div class="ps-ent">
   <div class="ps-ent-l">
     <div class="ps-ent-tier">Enterprise</div>
@@ -3482,7 +3628,7 @@ document.addEventListener("DOMContentLoaded",init);setTimeout(init,200);
       var t=(el.textContent||'').trim();
       var m=t.match(/^([+\-−~]?)(\d{2,4})(\s?%|h|x|×|\smin|\sj|\/\d{1,2})?$/);
       if(!m)return;
-      var val=parseInt(m[2],10);if(val<10)return;
+      if(el.closest('[data-no-count]'))return;var val=parseInt(m[2],10);if(val<10)return;
       if((parseFloat(getComputedStyle(el).fontSize)||0)<22)return;
       el.dataset.srnTo=val;el.dataset.srnPre=m[1]||'';el.dataset.srnSuf=m[3]||'';
       io.observe(el);
