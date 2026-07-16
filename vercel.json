@@ -1,4 +1,5 @@
 {
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD -- ':!docs' ':!.claude' ':!.vercelignore'",
   "headers": [
     {
       "source": "/(.*)\\.html",

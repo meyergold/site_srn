@@ -1,0 +1,74 @@
+---
+title: "Brancher WhatsApp"
+description: "La référence détaillée du canal WhatsApp Business : routes Meta et Twilio, prérequis et erreurs fréquentes."
+---
+
+<p class="srn-eyebrow">Canaux</p>
+
+WhatsApp Business se branche par le [parcours d'ajout unifié](/canaux/ajouter-un-canal#whatsapp) : l'assistant demande si vous avez un compte Meta Business et choisit la route adaptée. Cet article est la référence détaillée des deux routes.
+
+<Info>
+  **Prérequis communs** : rôle **Administrateur**, et un numéro dédié à WhatsApp Business (un numéro ne peut être actif que sur un seul compte WhatsApp Business à la fois).
+</Info>
+
+## Route Meta (vous avez un compte Meta Business)
+
+<span id="waba-id" />
+
+### Le WABA ID
+
+Le **WABA ID** identifie votre WhatsApp Business Account :
+
+- un identifiant de **15 à 16 chiffres** ;
+- à récupérer dans **Meta Business Suite** (paramètres du WhatsApp Business Account) ;
+- ⚠️ ce n'est **pas le numéro de téléphone**, ni l'identifiant d'une page Facebook.
+
+### Brancher la route Meta
+
+<Steps>
+  <Step title="Partager votre WABA avec Sairen">
+    Le WABA doit être **partagé avec Sairen** depuis Meta Business Suite avant le branchement.
+  </Step>
+  <Step title="Renseigner le WABA ID">
+    Dans l'assistant d'ajout, collez l'identifiant à 15-16 chiffres.
+  </Step>
+  <Step title="Valider">
+    L'assistant vérifie le partage et active le canal. Le nombre d'étapes affiché correspond au parcours réel.
+  </Step>
+</Steps>
+
+<span id="twilio" />
+
+## Route Twilio (pas de compte Meta Business)
+
+<Steps>
+  <Step title="Récupérer votre Account SID">
+    Dans la console Twilio : un identifiant commençant par **`AC`** (voir aussi [#twilio-sid](/canaux/ajouter-un-canal#twilio-sid)).
+  </Step>
+  <Step title="Préparer le numéro">
+    Le numéro doit être au **format E.164** : `+33600000000` — indicatif pays inclus, sans espaces.
+  </Step>
+  <Step title="Renseigner et valider">
+    Collez le SID et le numéro dans l'assistant, qui active le canal.
+  </Step>
+</Steps>
+
+## Erreurs fréquentes
+
+<AccordionGroup>
+  <Accordion title="« WABA ID invalide »">
+    Vérifiez la longueur (15-16 chiffres) et l'origine (paramètres du WABA dans Meta Business Suite). Le numéro de téléphone ou l'ID de page ne fonctionnent pas.
+  </Accordion>
+
+  <Accordion title="« Le WABA n'est pas partagé »">
+    Le partage avec Sairen doit être fait côté Meta Business Suite avant de relancer l'assistant.
+  </Accordion>
+
+  <Accordion title="« Numéro invalide » (route Twilio)">
+    Reformatez en E.164 : `+` puis l'indicatif pays puis le numéro, sans espaces ni tirets — ex. `+33600000000`.
+  </Accordion>
+</AccordionGroup>
+
+Une fois le canal actif, vos conversations WhatsApp arrivent dans Océan et suivent vos règles (labels, déclencheurs IA, workflows).
+
+[Ouvrir Sairen →](https://app.sairen.io)

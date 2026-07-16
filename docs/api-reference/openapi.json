@@ -1,0 +1,1721 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/leads/v2/phone-call": {
+      "post": {
+        "operationId": "LeadsController_triggerPhoneCallWithConfig",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLeadDtoV2"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Phone call triggered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean",
+                      "description": "Status of the phone call trigger",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid lead data"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Trigger a phone call",
+        "tags": [
+          "Leads"
+        ]
+      }
+    },
+    "/leads/v2/phone-call/status": {
+      "get": {
+        "operationId": "LeadsController_getPhoneCallStatusV2",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhoneDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Phone call status retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean",
+                      "description": "Whether the call was answered or not",
+                      "example": true
+                    },
+                    "reason": {
+                      "type": "string",
+                      "description": "Reason of the phone call. Example: call_transfer, user_hangup, voicemail_reached",
+                      "example": "call_transfer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid call ID"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Get status of a phone call",
+        "tags": [
+          "Leads"
+        ]
+      }
+    },
+    "/leads/v3/phone-call": {
+      "post": {
+        "description": "Triggers an outbound phone call to a contact. The call is handled asynchronously: the outcome (answered, duration, transcript, analysis) is delivered to your configured webhook (config.call_back_url) once the call ends.",
+        "operationId": "LeadsController_triggerPhoneCallV3",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLeadDtoV3"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Phone call triggered"
+          },
+          "400": {
+            "description": "Invalid lead data"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Trigger an outbound phone call (v3)",
+        "tags": [
+          "Leads"
+        ]
+      }
+    },
+    "/leads/v3/phone-call/status": {
+      "get": {
+        "operationId": "LeadsController_getPhoneCallStatusV3",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhoneDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Phone call status"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Get status of a phone call (v3)",
+        "tags": [
+          "Leads"
+        ]
+      }
+    },
+    "/config/setup": {
+      "post": {
+        "description": "Stores the PERSISTENT configuration for an agent: webhook URL (call_back_url) and bearer token (api_token) reused by default for all of its calls. These values can be overridden on a single call by passing them directly to /leads/v3/phone-call (per-call override, not persisted). With no config here and no per-call value, no webhook is delivered.",
+        "operationId": "ConfigController_createConfig",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateClientConfigDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Client API configuration created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientConfigResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid configuration data"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Set the persistent client configuration (webhook, token)",
+        "tags": [
+          "Config"
+        ]
+      }
+    },
+    "/config/setup/{agent_id}": {
+      "get": {
+        "operationId": "ConfigController_getConfig",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client API configuration retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientConfigResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid agent ID"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Configuration not found"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Get client API configuration by agent ID",
+        "tags": [
+          "Config"
+        ]
+      },
+      "put": {
+        "operationId": "ConfigController_updateConfig",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateClientConfigDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Client API configuration updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientConfigResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid agent ID or data"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Configuration not found"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Update client API configuration",
+        "tags": [
+          "Config"
+        ]
+      },
+      "delete": {
+        "operationId": "ConfigController_deleteConfig",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client API configuration deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "description": "Whether the deletion was successful",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Deletion confirmation message",
+                      "example": "Configuration for agent organization deleted successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid agent ID"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Configuration not found"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Delete client API configuration",
+        "tags": [
+          "Config"
+        ]
+      }
+    },
+    "/agents": {
+      "get": {
+        "operationId": "AgentsController_getAgents",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of agents retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AgentResponseDto"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Get all agents",
+        "tags": [
+          "Agents"
+        ]
+      }
+    },
+    "/agents/config/setup/{agent_id}/dynamic-variables": {
+      "get": {
+        "operationId": "AgentsController_getDynamicVariables",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dynamic variables retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid agent ID format"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Agent not found"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Get dynamic variables",
+        "tags": [
+          "Agents"
+        ]
+      }
+    },
+    "/agents/v3": {
+      "get": {
+        "operationId": "AgentsController_getAgentsV3",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of beta agents"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Get all agents (v3 — beta agents / agent_org_id)",
+        "tags": [
+          "Agents"
+        ]
+      }
+    },
+    "/agents/v3/{agent_id}/dynamic-variables": {
+      "get": {
+        "operationId": "AgentsController_getDynamicVariablesV3",
+        "parameters": [
+          {
+            "name": "agent_id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dynamic variables",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid agent ID format"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Agent not found"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Get dynamic variables (v3 — from beta agent prompt)",
+        "tags": [
+          "Agents"
+        ]
+      }
+    },
+    "/api/contact/send-sms": {
+      "post": {
+        "operationId": "CommunicationHistoryController_sendSmsViaApi",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendSmsApiDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "SMS message persisted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "communication_history row id",
+                      "example": "8a3f6f7a-0a2f-4af2-8a79-9a2fd2d9f4a1"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request body"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Message send failed"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Send SMS message",
+        "tags": [
+          "contact"
+        ]
+      }
+    },
+    "/api/contact/get-sms/{id}": {
+      "get": {
+        "operationId": "CommunicationHistoryController_getSmsById",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "communication_history row id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SMS retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "contact_id": {
+                      "type": "string",
+                      "nullable": true,
+                      "example": "2a6b2e7c-0a4b-4fb3-9e6d-8b1f0f95f5f0"
+                    },
+                    "org_id": {
+                      "type": "string",
+                      "example": "org_123"
+                    },
+                    "to_number": {
+                      "type": "string",
+                      "example": "+15557654321"
+                    },
+                    "from_number": {
+                      "type": "string",
+                      "example": "+15551234567"
+                    },
+                    "messages": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "channel": {
+                      "type": "string",
+                      "example": "sms"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid id"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Get SMS by id",
+        "tags": [
+          "contact"
+        ]
+      }
+    },
+    "/api/contact/webhook/sms/{org_id}": {
+      "post": {
+        "operationId": "CommunicationHistoryController_receiveSmsMessage",
+        "parameters": [
+          {
+            "name": "org_id",
+            "required": true,
+            "in": "path",
+            "description": "Organization ID for routing the webhook",
+            "schema": {
+              "example": "org_123abc",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Incoming SMS webhook payload (typically from Twilio). Supports form-encoded or JSON body depending on provider configuration.",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "From": {
+                    "type": "string",
+                    "example": "+15557654321"
+                  },
+                  "To": {
+                    "type": "string",
+                    "example": "+15551234567"
+                  },
+                  "Body": {
+                    "type": "string",
+                    "example": "Hello"
+                  },
+                  "MessageSid": {
+                    "type": "string",
+                    "example": "SMXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+                  }
+                },
+                "required": [
+                  "From",
+                  "To",
+                  "Body"
+                ]
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "From": {
+                    "type": "string",
+                    "example": "+15557654321"
+                  },
+                  "To": {
+                    "type": "string",
+                    "example": "+15551234567"
+                  },
+                  "Body": {
+                    "type": "string",
+                    "example": "Hello"
+                  },
+                  "MessageSid": {
+                    "type": "string",
+                    "example": "SMXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+                  }
+                },
+                "required": [
+                  "From",
+                  "To",
+                  "Body"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Provider acknowledgement response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "OK"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid webhook payload"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Webhook for incoming SMS messages (Twilio only)",
+        "tags": [
+          "contact"
+        ]
+      }
+    },
+    "/api/contact/{contact_id}/{channel}": {
+      "get": {
+        "operationId": "CommunicationHistoryController_getMessagesByContactAndChannel",
+        "parameters": [
+          {
+            "name": "contact_id",
+            "required": true,
+            "in": "path",
+            "description": "Contact id",
+            "schema": {
+              "example": "2a6b2e7c-0a4b-4fb3-9e6d-8b1f0f95f5f0",
+              "type": "string"
+            }
+          },
+          {
+            "name": "channel",
+            "required": true,
+            "in": "path",
+            "description": "Channel",
+            "schema": {
+              "enum": [
+                "sms",
+                "whatsapp"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Messages retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "success": 200,
+                    "data": [
+                      {
+                        "id": "a1b2c3d4-1111-2222-3333-444455556666",
+                        "agent_id": "agent_org_123",
+                        "contact_id": "2a6b2e7c-0a4b-4fb3-9e6d-8b1f0f95f5f0",
+                        "channel": "whatsapp",
+                        "messages": [
+                          {
+                            "to": "+15557654321",
+                            "from": "+15551234567",
+                            "text": "Hello on WhatsApp",
+                            "timestamp": "2025-12-12T10:33:00.000Z",
+                            "direction": "outbound"
+                          }
+                        ],
+                        "created_at": "2025-12-12T10:33:00.000Z"
+                      }
+                    ]
+                  },
+                  "properties": {
+                    "success": {
+                      "type": "number",
+                      "example": 200
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Get messages by contact and channel",
+        "tags": [
+          "contact"
+        ]
+      }
+    },
+    "/v3/reach": {
+      "post": {
+        "description": "Reaches a recipient on a given channel. You target a channel connection (channel_connection_id) — which determines the channel (voice, SMS, WhatsApp…), the agent and the sending line — and choose an action:\n- Talk: outbound voice call handled by the AI agent (same options as /leads/v3/phone-call, via `config`);\n- Send: send a message (text, media or template), via `message`;\n- Chat: outbound conversation handled by the AI agent, via `message`.\nThe recipient is always provided in `contact`.",
+        "operationId": "ReachController_reach",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReachDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Action triggered"
+          },
+          "400": {
+            "description": "Invalid payload or action/channel"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Channel connection not found"
+          }
+        },
+        "security": [
+          {
+            "x-api-key": []
+          }
+        ],
+        "summary": "Reach a contact on a channel (Talk / Send / Chat)",
+        "tags": [
+          "Reach"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Sairen API Documentation",
+    "description": "The Sairen API documentation",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [
+    {
+      "url": "https://api.sairen.io",
+      "description": "Production"
+    },
+    {
+      "url": "https://api-staging.sairen.io",
+      "description": "Staging"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "x-api-key": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "API key for authentication"
+      }
+    },
+    "schemas": {
+      "ContactV3Dto": {
+        "type": "object",
+        "properties": {
+          "phone_number": {
+            "type": "string",
+            "example": "+33612345678",
+            "description": "Contact phone number"
+          },
+          "fullname": {
+            "type": "string",
+            "example": "John Doe",
+            "description": "Contact full name"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Free-form call metadata (round-tripped in the webhook)"
+          },
+          "dynamic_variable": {
+            "type": "object",
+            "description": "Dynamic variables passed to the agent"
+          }
+        },
+        "required": [
+          "phone_number"
+        ]
+      },
+      "ConfigV3Dto": {
+        "type": "object",
+        "properties": {
+          "agent_id": {
+            "type": "string",
+            "example": "57355527-90cc-44aa-81ce-4f6f8d469fed",
+            "description": "Identifier of the agent to use for the call."
+          },
+          "call_back_url": {
+            "type": "string",
+            "description": "Optional. Webhook URL called at the end of the call (outcome, duration, transcript, analysis) for THIS call only. If omitted, the URL previously configured via POST /config/setup is used."
+          },
+          "api_token": {
+            "type": "string",
+            "description": "Optional. Bearer token sent in the webhook Authorization header (so your endpoint can authenticate Sairen). If omitted, the token configured via POST /config/setup is used."
+          },
+          "retry_attempts": {
+            "type": "number",
+            "example": 3,
+            "description": "Optional. Number of call attempts. Per-call, otherwise the value configured via /config/setup, otherwise defaults to 3."
+          },
+          "first_retry_delay": {
+            "type": "number",
+            "example": 600,
+            "description": "Optional. Delay (in seconds) before the first retry. Per-call, otherwise defaults to 600."
+          },
+          "retry_delay": {
+            "type": "number",
+            "example": 3600,
+            "description": "Optional. Delay (in seconds) between subsequent retries. Per-call, otherwise the value configured via /config/setup, otherwise defaults to 3600."
+          }
+        },
+        "required": [
+          "agent_id"
+        ]
+      },
+      "ContactDto": {
+        "type": "object",
+        "properties": {
+          "phone_number": {
+            "type": "string",
+            "example": "+33612345678",
+            "description": "Contact phone number"
+          },
+          "fullname": {
+            "type": "string",
+            "example": "John Doe",
+            "description": "Contact full name"
+          },
+          "source": {
+            "type": "string",
+            "example": "calendly",
+            "description": "Source of the lead",
+            "enum": [
+              "doctolib",
+              "calendly",
+              "zoho-sales-iq",
+              "gravity"
+            ]
+          }
+        },
+        "required": [
+          "phone_number",
+          "fullname"
+        ]
+      },
+      "ConfigDto": {
+        "type": "object",
+        "properties": {
+          "agent_id": {
+            "type": "string",
+            "example": "org_123",
+            "description": "Unique identifier of the agent"
+          },
+          "retry_attempts": {
+            "type": "object",
+            "example": 3,
+            "description": "Number of retry attempts if the lead does not answer"
+          },
+          "first_retry_delay": {
+            "type": "object",
+            "example": 600,
+            "description": "Delay in seconds before first callback when the lead does not answer"
+          },
+          "retry_delay": {
+            "type": "object",
+            "example": 3600,
+            "description": "Delay in seconds between retries when the lead does not answer"
+          }
+        },
+        "required": [
+          "agent_id"
+        ]
+      },
+      "CreateLeadDtoV2": {
+        "type": "object",
+        "properties": {
+          "contact": {
+            "$ref": "#/components/schemas/ContactDto"
+          },
+          "config": {
+            "$ref": "#/components/schemas/ConfigDto"
+          }
+        },
+        "required": [
+          "contact",
+          "config"
+        ]
+      },
+      "CreateLeadDtoV3": {
+        "type": "object",
+        "properties": {
+          "contact": {
+            "$ref": "#/components/schemas/ContactV3Dto"
+          },
+          "config": {
+            "$ref": "#/components/schemas/ConfigV3Dto"
+          }
+        },
+        "required": [
+          "contact",
+          "config"
+        ]
+      },
+      "PhoneDto": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "example": "+33612345678",
+            "description": "Phone number to check status for"
+          }
+        },
+        "required": [
+          "phone"
+        ]
+      },
+      "CreateClientConfigDto": {
+        "type": "object",
+        "properties": {
+          "call_back_url": {
+            "type": "string",
+            "example": "https://api.example.com/callback",
+            "description": "Callback URL for API notifications"
+          },
+          "retry_attempts": {
+            "type": "number",
+            "example": 3,
+            "description": "Number of retry attempts for failed requests",
+            "default": 3,
+            "minimum": 0,
+            "maximum": 10
+          },
+          "retry_delay": {
+            "type": "number",
+            "example": 1000,
+            "description": "Delay between retry attempts in milliseconds",
+            "default": 1000,
+            "minimum": 100,
+            "maximum": 30000
+          },
+          "agent_org_id": {
+            "type": "string",
+            "example": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+            "description": "Agent organization ID"
+          },
+          "api_token": {
+            "type": "string",
+            "example": "sk_1234567890abcdef",
+            "description": "API token for authentication"
+          }
+        },
+        "required": [
+          "agent_org_id"
+        ]
+      },
+      "ClientConfigResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+            "description": "Unique identifier for the configuration"
+          },
+          "call_back_url": {
+            "type": "string",
+            "example": "https://api.example.com/callback",
+            "description": "Callback URL for API notifications"
+          },
+          "retry_attempts": {
+            "type": "number",
+            "example": 3,
+            "description": "Number of retry attempts for failed requests"
+          },
+          "retry_delay": {
+            "type": "number",
+            "example": 1000,
+            "description": "Delay between retry attempts in milliseconds"
+          },
+          "agent_org_id": {
+            "type": "string",
+            "example": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+            "description": "Agent organization ID"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2024-03-15T12:00:00Z",
+            "description": "Configuration creation timestamp"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2024-03-15T12:00:00Z",
+            "description": "Configuration last update timestamp"
+          },
+          "api_token": {
+            "type": "string",
+            "example": "key_1234567890abcdef",
+            "description": "API token for authentication"
+          }
+        },
+        "required": [
+          "id",
+          "retry_attempts",
+          "retry_delay",
+          "agent_org_id",
+          "created_at",
+          "updated_at"
+        ]
+      },
+      "UpdateClientConfigDto": {
+        "type": "object",
+        "properties": {
+          "call_back_url": {
+            "type": "string",
+            "example": "https://api.example.com/callback",
+            "description": "Callback URL for API notifications"
+          },
+          "retry_attempts": {
+            "type": "number",
+            "example": 3,
+            "description": "Number of retry attempts for failed requests",
+            "minimum": 0,
+            "maximum": 10
+          },
+          "retry_delay": {
+            "type": "number",
+            "example": 1000,
+            "description": "Delay between retry attempts in milliseconds",
+            "minimum": 100,
+            "maximum": 30000
+          },
+          "api_token": {
+            "type": "string",
+            "example": "key_1234567890abcdef",
+            "description": "API token for authentication"
+          }
+        }
+      },
+      "PostCallAnalysisItemDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "qualifie",
+            "description": "Name of the analysis item"
+          },
+          "type": {
+            "oneOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "example": true,
+            "description": "Type of the analysis result, can be boolean or string"
+          },
+          "description": {
+            "type": "string",
+            "example": "La personne a-t-elle répondu à au moins une question lors de l'interaction ?",
+            "description": "Description of what this analysis item measures"
+          },
+          "examples": {
+            "type": "array",
+            "example": [
+              "Non Qualifié",
+              "Qualifié"
+            ],
+            "description": "Possible values for string type analysis items"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "description"
+        ]
+      },
+      "AgentResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "01a05cea-20c7-40cb-bcfc-81a5ead564",
+            "description": "Unique identifier for the agent response"
+          },
+          "phone_number": {
+            "type": "string",
+            "example": "+1234567890",
+            "description": "Phone number associated with the call"
+          },
+          "created_at": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2024-03-15T12:00:00Z",
+            "description": "Timestamp when the call was created"
+          },
+          "first_message": {
+            "type": "string",
+            "example": "Hello, how can I help you?",
+            "description": "First message spoken by the agent"
+          },
+          "last_message": {
+            "type": "string",
+            "example": "Goodbye, have a great day!",
+            "description": "Last message spoken by the agent"
+          },
+          "model_temperature": {
+            "type": "number",
+            "example": 0.5,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Temperature setting for the language model"
+          },
+          "voice_temperature": {
+            "type": "number",
+            "example": 0.5,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Temperature setting for voice generation"
+          },
+          "voice_speed": {
+            "type": "number",
+            "example": 0.5,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Speed of the agent's voice"
+          },
+          "volume": {
+            "type": "number",
+            "example": 0.5,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Volume level of the agent's voice"
+          },
+          "responsiveness": {
+            "type": "number",
+            "example": 0.5,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "How quickly the agent responds to user input"
+          },
+          "interruption_sensitivity": {
+            "type": "number",
+            "example": 0.5,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Sensitivity to interruptions during speech"
+          },
+          "enable_backchannel": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether backchannel responses are enabled"
+          },
+          "backchannel_words": {
+            "example": [
+              "uh-huh",
+              "mm-hmm"
+            ],
+            "description": "List of words used for backchannel responses",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reminder_trigger_ms": {
+            "type": "number",
+            "example": 5000,
+            "description": "Time in milliseconds before triggering a reminder"
+          },
+          "reminder_max_count": {
+            "type": "number",
+            "example": 3,
+            "description": "Maximum number of reminders to send"
+          },
+          "ambient_sound": {
+            "type": "string",
+            "example": "office",
+            "description": "Type of ambient background sound"
+          },
+          "ambient_sound_volume": {
+            "type": "number",
+            "example": 0.5,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Volume level of the ambient sound"
+          },
+          "name": {
+            "type": "string",
+            "example": "Agent Smith",
+            "description": "Name of the AI agent"
+          },
+          "prompt": {
+            "type": "string",
+            "example": "You are a helpful assistant...",
+            "description": "System prompt defining agent behavior"
+          },
+          "type": {
+            "type": "string",
+            "example": "outbound",
+            "enum": [
+              "outbound",
+              "inbound"
+            ],
+            "description": "Type of call - outbound or inbound"
+          },
+          "end_call_after_silence_ms": {
+            "type": "number",
+            "example": 10000,
+            "description": "Time in milliseconds of silence before ending call"
+          },
+          "max_call_duration_ms": {
+            "type": "number",
+            "example": 300000,
+            "description": "Maximum duration of the call in milliseconds"
+          },
+          "voicemail_detection_timeout_ms": {
+            "type": "number",
+            "example": 5000,
+            "description": "Timeout in milliseconds for voicemail detection"
+          },
+          "enable_voicemail_detection": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether voicemail detection is enabled"
+          },
+          "enable_speech_normalization": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether speech normalization is enabled"
+          },
+          "boosted_keywords": {
+            "example": [
+              "important",
+              "priority"
+            ],
+            "description": "Keywords that receive additional emphasis",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "updated_at": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2024-03-15T12:00:00Z",
+            "description": "Timestamp of last update"
+          },
+          "backchannel_frequency": {
+            "type": "number",
+            "example": 0.5,
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Frequency of backchannel responses"
+          },
+          "enable_transcription_formatting": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether transcription formatting is enabled"
+          },
+          "language": {
+            "type": "string",
+            "example": "en-US",
+            "enum": [
+              "fr-FR",
+              "en-US",
+              "en-GB",
+              "en-IN",
+              "es-ES",
+              "es-419",
+              "de-DE",
+              "it-IT",
+              "pt-BR",
+              "pt-PT",
+              "nl-NL",
+              "zh-CN",
+              "ja-JP",
+              "ko-KR",
+              "ru-RU",
+              "tr-TR",
+              "vi-VN",
+              "hi-IN",
+              "pl-PL"
+            ],
+            "description": "Language code for the agent's speech"
+          },
+          "normalize_for_speech": {
+            "type": "boolean",
+            "example": true,
+            "description": "Whether to normalize text for speech output"
+          },
+          "post_call_analysis": {
+            "example": [
+              {
+                "name": "qualifie",
+                "type": true,
+                "description": "La personne a-t-elle répondu à au moins une question lors de l'interaction ?"
+              },
+              {
+                "name": "qualifie",
+                "type": true,
+                "description": "L'appel a-t-il duré plus de trente secondes ?"
+              },
+              {
+                "name": "motif",
+                "type": "Qualifié",
+                "description": "L'appelé a repondu a au moins une question alors il est qualifé sinon il n'est pas qualifié",
+                "examples": [
+                  "Non Qualifié",
+                  "Qualifié"
+                ]
+              },
+              {
+                "name": "motif_category",
+                "type": true,
+                "description": "L'appelé à l'air interessé par ce qui lui est proposé"
+              }
+            ],
+            "description": "Array of analysis items generated after the call",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostCallAnalysisItemDto"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "phone_number",
+          "created_at",
+          "first_message",
+          "last_message",
+          "model_temperature",
+          "voice_temperature",
+          "voice_speed",
+          "volume",
+          "responsiveness",
+          "interruption_sensitivity",
+          "enable_backchannel",
+          "backchannel_words",
+          "reminder_trigger_ms",
+          "reminder_max_count",
+          "ambient_sound",
+          "ambient_sound_volume",
+          "name",
+          "prompt",
+          "type",
+          "end_call_after_silence_ms",
+          "max_call_duration_ms",
+          "voicemail_detection_timeout_ms",
+          "enable_voicemail_detection",
+          "enable_speech_normalization",
+          "boosted_keywords",
+          "updated_at",
+          "backchannel_frequency",
+          "enable_transcription_formatting",
+          "language",
+          "normalize_for_speech",
+          "post_call_analysis"
+        ]
+      },
+      "SendSmsApiDto": {
+        "type": "object",
+        "properties": {
+          "from_number": {
+            "type": "string",
+            "example": "+15551234567",
+            "description": "Sender phone number (E.164)."
+          },
+          "to_number": {
+            "type": "string",
+            "example": "+15557654321",
+            "description": "Recipient phone number (E.164)."
+          },
+          "agent_id": {
+            "type": "string",
+            "example": "agent_org_123",
+            "description": "Agent organization id (optional)."
+          },
+          "tag": {
+            "type": "string",
+            "example": "follow_up",
+            "description": "Optional tag associated with the outbound message."
+          },
+          "message": {
+            "type": "string",
+            "example": "Hello from the API",
+            "description": "Message text to send."
+          }
+        },
+        "required": [
+          "from_number",
+          "to_number",
+          "message"
+        ]
+      },
+      "ReachContactDto": {
+        "type": "object",
+        "properties": {
+          "phone_number": {
+            "type": "string",
+            "example": "+33612345678",
+            "description": "Targeted contact phone number / identifier"
+          },
+          "fullname": {
+            "type": "string",
+            "example": "John Doe",
+            "description": "Contact full name"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Free-form metadata (round-tripped in the webhook)"
+          },
+          "dynamic_variable": {
+            "type": "object",
+            "description": "Dynamic variables passed to the agent"
+          }
+        },
+        "required": [
+          "phone_number"
+        ]
+      },
+      "ReachConfigDto": {
+        "type": "object",
+        "properties": {
+          "call_back_url": {
+            "type": "string",
+            "description": "Optional. Webhook URL called at the end of the call for THIS call only. If omitted, the URL configured via POST /config/setup is used."
+          },
+          "api_token": {
+            "type": "string",
+            "description": "Optional. Bearer token sent in the webhook Authorization header. If omitted, the token configured via POST /config/setup is used."
+          },
+          "retry_attempts": {
+            "type": "number",
+            "example": 3,
+            "description": "Optional. Number of call attempts. Per-call, otherwise /config/setup, otherwise 3."
+          },
+          "first_retry_delay": {
+            "type": "number",
+            "example": 600,
+            "description": "Optional. Delay (seconds) before the first retry. Per-call, otherwise 600."
+          },
+          "retry_delay": {
+            "type": "number",
+            "example": 3600,
+            "description": "Optional. Delay (seconds) between subsequent retries. Per-call, otherwise /config/setup, otherwise 3600."
+          }
+        }
+      },
+      "ReachMessageDto": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "TEXT",
+              "MEDIA",
+              "TEMPLATE",
+              "AI"
+            ],
+            "example": "TEXT",
+            "description": "Type. 'AI' is only valid for the Chat action (opener generated by the agent, SMS/RCS)."
+          },
+          "text": {
+            "type": "string",
+            "description": "Text (required if type=TEXT); optional instruction if type=AI (Chat)"
+          },
+          "media_type": {
+            "type": "string",
+            "enum": [
+              "IMAGE",
+              "VIDEO",
+              "AUDIO",
+              "DOCUMENT"
+            ],
+            "description": "Required if type=MEDIA"
+          },
+          "media_url": {
+            "type": "string",
+            "description": "Media URL (required if type=MEDIA)"
+          },
+          "caption": {
+            "type": "string",
+            "description": "Media caption"
+          },
+          "template_channel_id": {
+            "type": "string",
+            "description": "Identifier of the template to use (required if type=TEMPLATE)"
+          },
+          "variables": {
+            "type": "object",
+            "description": "Template variables (keys = the template's variable names)"
+          },
+          "subject": {
+            "type": "string",
+            "description": "Subject (email)"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "ReachDto": {
+        "type": "object",
+        "properties": {
+          "channel_connection_id": {
+            "type": "string",
+            "example": "5487bf72-c7de-45cc-86a2-ef2c3732e931",
+            "description": "Channel connection id (determines the channel, the agent and the sending line)"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "Talk",
+              "Send",
+              "Chat"
+            ],
+            "example": "Talk",
+            "description": "Action to perform"
+          },
+          "contact": {
+            "description": "Targeted recipient",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReachContactDto"
+              }
+            ]
+          },
+          "config": {
+            "description": "Options for the Talk action",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReachConfigDto"
+              }
+            ]
+          },
+          "message": {
+            "description": "Message for the Send action",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReachMessageDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "channel_connection_id",
+          "action",
+          "contact"
+        ]
+      }
+    }
+  }
+}

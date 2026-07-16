@@ -1,0 +1,33 @@
+---
+title: "Registre des liens plateforme"
+description: "Registre interne des paires slug#ancre exposées à la plateforme. Ne pas renommer sans redirection."
+hidden: true
+noindex: true
+---
+
+<p class="srn-eyebrow">Interne</p>
+
+<Warning>
+  **Page interne — registre de non-régression.** Chaque entrée ci-dessous est un **contrat** : la plateforme (« Sairen Ressources », niveau 3 « Lire l'article complet → ») pointe vers ces `slug#ancre` précis. **Ne jamais renommer un slug ou une ancre existants sans ajouter une redirection 301 dans `docs.json` et conserver un alias d'ancre.** Toute PR qui touche une entrée doit le signaler.
+</Warning>
+
+## Ancres exposées par page
+
+| Slug | Ancres stables | Sujet couvert |
+| --- | --- | --- |
+| `produit/labels-groupes-colonnes` | `#labels`, `#groupes`, `#colonnes-dynamiques`, `#declencheur-ia`, `#puces-de-couleur` | Moteur d'organisation : labels/groupes/colonnes dynamiques |
+| `compte/roles` | `#roles`, `#sairen-admin` | Rôles Membre / Administrateur / Sairen Admin |
+| `compte/administration` | `#entites`, `#membres`, `#equipes`, `#mon-compte-vs-administration` | Gestion organisation : entités, membres, équipes |
+| `canaux/ajouter-un-canal` | `#whatsapp`, `#waba-id`, `#twilio-sid`, `#outlook`, `#vocal`, `#sip`, `#telnyx`, `#connexions-ia-donnees` | Parcours d'ajout unifié des canaux |
+| `canaux/whatsapp` | `#waba-id`, `#twilio` | Référence détaillée WhatsApp |
+| `produit/contacts` | `#fiche`, `#notes`, `#listes`, `#bloquer-debloquer` | Fiche contact |
+| `produit/unification-contacts` | `#fusion`, `#fusion-reversible`, `#detection-ulysse` | Unification de fiches (à venir) |
+| `produit/base-de-connaissances` | `#sources`, `#dossiers`, `#indexation` | Base de connaissances |
+| `produit/lire-l-interface` | `#theme-sombre`_(à créer à la sortie du mode sombre)_ | Conventions visuelles |
+| `produit/rainbow-agents` | `#etats-agent` | États d'agent (Brouillon/Actif/Inactif) |
+
+## Règles
+
+1. Ancres **explicites** en kebab-case via `<span id="..." />` — jamais d'ancre auto-générée depuis un titre.
+2. Renommage impossible sans **redirect 301** (`docs.json`) \+ alias d'ancre.
+3. Cette page est `hidden: true` \+ `noindex: true` : hors navigation et hors moteurs.
