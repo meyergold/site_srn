@@ -293,6 +293,36 @@ img{max-width:100%;display:block}
 .hero-vb{display:none}
 body[data-hero="b"] .hero-va{display:none}
 body[data-hero="b"] .hero-vb{display:block}
+/* ===== Capture email Hero (scaffold PLG) ===== */
+.hero-capture{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.hero-capture .hc-field{display:flex;align-items:center;background:#fff;border:1.5px solid #E4E1F0;border-radius:14px;padding:3px 3px 3px 16px;box-shadow:0 10px 30px -18px rgba(80,40,140,.28);transition:border-color .18s,box-shadow .18s}
+.hero-capture .hc-field:focus-within{border-color:#6D4AFF;box-shadow:0 12px 34px -16px rgba(109,74,255,.45)}
+.hero-capture input[type=email]{border:0;outline:0;font-family:inherit;font-size:14.5px;color:#15161d;background:transparent;min-width:230px;padding:10px 8px}
+.hero-capture input::placeholder{color:#9a97ad}
+.hero-capture .btn-violet{padding:11px 22px;font-size:14px}
+.hc-demo{display:inline-block;margin-top:13px;font-size:13.5px;font-weight:600;color:#6f6c7e;text-decoration:none}
+.hc-demo:hover{color:#6D4AFF}
+.hc-err{display:none;color:#e0455e;font-size:12.5px;font-weight:600;margin:9px 0 0}
+.hero-capture.is-error .hc-err{display:block}
+.hero-capture.is-error .hc-field{border-color:#e0455e}
+.hero-capture .btn-violet[data-loading] .hc-lbl{opacity:.55}
+/* ===== Modale "Get started" post-submit ===== */
+.srn-modal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(20,16,40,.42);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.srn-modal.open{display:flex}
+.srn-modal-card{width:100%;max-width:440px;background:#fff;border-radius:22px;padding:30px 30px 26px;box-shadow:0 40px 90px -30px rgba(40,20,80,.5);position:relative;text-align:left}
+.srn-modal-close{position:absolute;top:16px;right:16px;width:30px;height:30px;border:0;background:#f4f2fb;border-radius:9px;cursor:pointer;color:#6f6c7e;font-size:16px;line-height:1}
+.srn-modal-card h3{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:0 0 6px;color:#15161d}
+.srn-modal-card .sm-sub{font-size:14px;color:#6f6c7e;margin:0 0 20px;line-height:1.5}
+.sm-row{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.sm-row label{font-size:12.5px;font-weight:700;color:#3b3a47}
+.sm-row input{font-family:inherit;font-size:14.5px;color:#15161d;border:1.5px solid #E4E1F0;border-radius:12px;padding:11px 14px;outline:0;transition:border-color .18s}
+.sm-row input:focus{border-color:#6D4AFF}
+.sm-row.two{flex-direction:row;gap:10px}.sm-row.two>div{flex:1;display:flex;flex-direction:column;gap:6px}
+.srn-modal-card .btn-violet{width:100%;justify-content:center;padding:13px;margin-top:6px}
+.sm-note{font-size:11.5px;color:#9a97ad;text-align:center;margin:12px 0 0;line-height:1.4}
+.sm-field-err{border-color:#e0455e!important}
+.sm-success{text-align:center;padding:14px 0 4px}
+.sm-success .sm-check{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#09cafc,#6D4AFF);display:grid;place-items:center;margin:0 auto 16px;color:#fff;font-size:26px}
 
 /* LOGOS */
 .logos{padding:18px 0 56px;text-align:center;background:transparent}
@@ -806,10 +836,15 @@ body[data-hero="b"] .hero-vb{display:block}
       <p class="sub" style="margin-top:16px">Sairen combine le jugement de l'IA à des workflows déterministes. Chaque WhatsApp, appel, e-mail et ticket est traité exactement comme votre équipe le ferait — pas selon l'humeur du modèle du jour.</p>
       <p class="hero-support">Tous vos canaux de communication sur une seule plateforme.</p>
     </div>
-    <div class="cta">
-      <a class="btn btn-violet" style="padding:11px 24px;font-size:14px" href="#/signup" target="_top">Commencer gratuitement</a>
-      <a class="btn btn-ghost" style="padding:11px 24px;font-size:14px" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Voir une démo</a>
-    </div>
+    <!-- ===== Capture email PLG (scaffold — voir script #srn-capture) ===== -->
+    <form class="hero-capture" id="heroCapture" novalidate>
+      <div class="hc-field">
+        <input type="email" name="email" autocomplete="email" placeholder="Votre e-mail professionnel" aria-label="E-mail professionnel">
+        <button class="btn btn-violet" type="submit"><span class="hc-lbl">Démarrer</span></button>
+      </div>
+      <p class="hc-err" role="alert">Entrez une adresse e-mail valide.</p>
+    </form>
+    <a class="hc-demo" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">ou voir une démo →</a>
     <p class="cta-note">500 crédits offerts · sans carte bancaire</p>
     <p class="hero-trust" data-fr-only><span class="fr-flag">🇫🇷</span> Hébergé en France <span class="dot"></span> Conforme RGPD</p>
     <p class="hero-clients">+300 organisations orchestrent leur parcours client avec Sairen</p>
@@ -861,6 +896,118 @@ body[data-hero="b"] .hero-vb{display:block}
 (function(){
   var lang=(document.documentElement.lang||'fr').toLowerCase();
   if(lang.indexOf('fr')!==0){ document.querySelectorAll('[data-fr-only]').forEach(function(el){el.style.display='none';}); }
+})();
+</script>
+
+<!-- ===== Modale "Get started" (post-capture email) ===== -->
+<div class="srn-modal" id="srnGetStarted" role="dialog" aria-modal="true" aria-labelledby="smTitle">
+  <div class="srn-modal-card">
+    <button class="srn-modal-close" type="button" aria-label="Fermer" data-sm-close>&times;</button>
+    <div class="sm-body">
+      <h3 id="smTitle">Créez votre espace Sairen</h3>
+      <p class="sm-sub">500 crédits offerts, sans carte bancaire. On configure tout à votre métier en quelques minutes.</p>
+      <form id="smForm" novalidate>
+        <div class="sm-row two">
+          <div><label for="smFirst">Prénom</label><input id="smFirst" name="firstName" type="text" autocomplete="given-name"></div>
+          <div><label for="smLast">Nom</label><input id="smLast" name="lastName" type="text" autocomplete="family-name"></div>
+        </div>
+        <div class="sm-row"><label for="smEmail">E-mail professionnel</label><input id="smEmail" name="email" type="email" autocomplete="email"></div>
+        <button class="btn btn-violet" type="submit"><span class="hc-lbl">Créer mon espace</span></button>
+        <p class="sm-note">En continuant, vous acceptez nos conditions. Données hébergées en France.</p>
+      </form>
+    </div>
+    <div class="sm-success" style="display:none">
+      <div class="sm-check">✓</div>
+      <h3>C'est parti !</h3>
+      <p class="sm-sub" id="smSuccessMsg">On prépare votre espace…</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   Capture email PLG + routing — SCAFFOLD FRONT UNIQUEMENT
+   ------------------------------------------------------------
+   Ce module gère : validation email, états (idle/submitting/success/error),
+   ouverture de la modale "get started" pré-remplie, et le point de branchement
+   pour l'enrichissement + le routing PLG vs sales.
+
+   TODO(intégration) — À BRANCHER CÔTÉ BACK / OUTIL TIERS :
+   Outil pressenti : à décider (Default / Chili Piper / équivalent).
+   1. Sur submit modale → POST { firstName, lastName, email } vers l'endpoint de capture.
+   2. Enrichissement via l'e-mail corporate → en sortie attendue :
+        { companySize:number, industry:string, isPro:boolean }
+   3. Logique de routing (à confirmer le seuil) :
+        - companySize >= SEUIL_USERS (ex. 50)  → parcours SALES
+          (mise en relation / calendrier commercial, éventuellement round-robin
+           entre les calendriers des différents sales).
+        - sinon                                → parcours PLG
+          (redirection onboarding self-service #/signup, espace créé direct).
+   4. Brancher l'event analytics (exposition variante hero + conversion).
+   Tant que non branché : on redirige simplement vers l'onboarding #/signup.
+   ============================================================ */
+(function(){
+  var EMAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var modal=document.getElementById('srnGetStarted');
+  var smForm=document.getElementById('smForm');
+  var smBody=modal?modal.querySelector('.sm-body'):null;
+  var smSuccess=modal?modal.querySelector('.sm-success'):null;
+
+  function openModal(email){
+    if(!modal)return;
+    smBody.style.display='';smSuccess.style.display='none';
+    if(email){var e=document.getElementById('smEmail');if(e)e.value=email;}
+    modal.classList.add('open');document.body.style.overflow='hidden';
+    var f=document.getElementById('smFirst');if(f)f.focus();
+  }
+  function closeModal(){if(!modal)return;modal.classList.remove('open');document.body.style.overflow='';}
+
+  /* ---- Capture Hero ---- */
+  var hero=document.getElementById('heroCapture');
+  if(hero){
+    hero.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var input=hero.querySelector('input[type=email]');
+      var val=(input.value||'').trim();
+      if(!EMAIL_RE.test(val)){hero.classList.add('is-error');input.focus();return;}
+      hero.classList.remove('is-error');
+      openModal(val);
+    });
+    hero.querySelector('input').addEventListener('input',function(){hero.classList.remove('is-error');});
+  }
+
+  /* ---- Modale get started ---- */
+  if(modal){
+    modal.addEventListener('click',function(e){if(e.target===modal||e.target.hasAttribute('data-sm-close'))closeModal();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+    smForm.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var email=document.getElementById('smEmail'), first=document.getElementById('smFirst');
+      var ok=true;
+      [first,email].forEach(function(el){el.classList.remove('sm-field-err');});
+      if(!first.value.trim()){first.classList.add('sm-field-err');ok=false;}
+      if(!EMAIL_RE.test((email.value||'').trim())){email.classList.add('sm-field-err');ok=false;}
+      if(!ok){return;}
+      var btn=smForm.querySelector('button[type=submit]');
+      btn.setAttribute('data-loading','1');btn.querySelector('.hc-lbl').textContent='Un instant…';
+      var payload={
+        firstName:document.getElementById('smFirst').value.trim(),
+        lastName:document.getElementById('smLast').value.trim(),
+        email:email.value.trim()
+      };
+      /* TODO(intégration): remplacer ce setTimeout par le POST capture + enrichissement + routing.
+         Décision de routing attendue : payload.companySize >= SEUIL → sales ; sinon → PLG. */
+      setTimeout(function(){
+        smBody.style.display='none';smSuccess.style.display='';
+        document.getElementById('smSuccessMsg').textContent='Redirection vers votre onboarding…';
+        setTimeout(function(){
+          try{window.top.location.hash='#/signup';}catch(e){location.hash='#/signup';}
+          closeModal();
+          btn.removeAttribute('data-loading');btn.querySelector('.hc-lbl').textContent='Créer mon espace';
+        },900);
+      },650);
+    });
+  }
 })();
 </script>
 
