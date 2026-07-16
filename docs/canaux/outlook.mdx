@@ -1,0 +1,115 @@
+---
+title: "Brancher Outlook"
+description: "Connecter une boîte Outlook / Microsoft 365 à l'inbox omnicanale Océan : vidéo, étapes et erreurs fréquentes."
+icon: "envelope"
+---
+
+<p class="srn-eyebrow">Canaux</p>
+
+Branchez une boîte **Outlook / Microsoft 365** pour recevoir et traiter vos e-mails dans [Océan](/produit/ocean), aux côtés de vos autres canaux. L'assistant choisit la bonne route selon votre environnement.
+
+{/* ==== VIDEO_YOUTUBE : vidéo explicative globale — remplacer ce bloc par l'<iframe> ==== */}
+
+<Note>
+  🎥 **Vidéo — Brancher et utiliser Outlook** — en cours de production, l'embed YouTube arrive ici.
+</Note>
+
+<Info>
+  **Prérequis**
+
+  - Rôle **Administrateur** (voir [Comprendre les rôles](/compte/roles#roles)).
+  - Savoir si votre organisation utilise **Microsoft 365** (en cas de doute, demandez à votre administrateur IT).
+  - Accès au compte de la boîte à connecter (ex. `exemple@clinique-dupont.fr`).
+</Info>
+
+## Étapes
+
+<Steps>
+  <Step title="Ouvrir les intégrations">
+    Depuis votre espace Sairen, ouvrez la section **Intégrations** et choisissez **Outlook**.
+  </Step>
+  <Step title="Répondre à la question de routage">
+    L'assistant demande : **« Votre organisation utilise Microsoft 365 ? »**. Votre réponse choisit la route :
+
+    <Tabs>
+      <Tab title="Oui — Microsoft 365 (natif)">
+        Connexion **native Microsoft OAuth** : authentifiez-vous avec le compte Microsoft 365 de la boîte et **autorisez l'accès** demandé par Sairen.
+      </Tab>
+      <Tab title="Non — connecteur Composio">
+        Connexion via le **connecteur Composio** : suivez les étapes proposées par l'assistant pour relier la boîte Outlook.
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Choisir la boîte et les règles">
+    Sélectionnez l'adresse à centraliser et définissez les règles de traitement (agents IA, labels).
+  </Step>
+  <Step title="Vérifier dans Océan">
+    Envoyez-vous un e-mail de test : il doit apparaître comme conversation dans [Océan](/produit/ocean#conversations), qualifié automatiquement.
+  </Step>
+</Steps>
+
+## Erreurs fréquentes
+
+<AccordionGroup>
+  <Accordion title="L'autorisation Microsoft échoue ou boucle">
+    Utilisez le compte propriétaire de la boîte et acceptez toutes les autorisations. Sur Microsoft 365, un **consentement administrateur** peut être requis : rapprochez-vous de votre administrateur IT.
+  </Accordion>
+
+  <Accordion title="Je ne sais pas si nous utilisons Microsoft 365">
+    En cas de doute, choisissez « Oui » et tentez la connexion native ; si votre compte n'est pas éligible, revenez à la route Composio.
+  </Accordion>
+
+  <Accordion title="Les e-mails n'arrivent pas dans Océan">
+    Vérifiez que la boîte est bien sélectionnée et que la connexion est active. Un premier e-mail peut prendre quelques instants à remonter.
+  </Accordion>
+
+  <Accordion title="Vous utilisez Gmail ?">
+    Voir l'article dédié : [Brancher Gmail](/canaux/gmail).
+  </Accordion>
+</AccordionGroup>
+
+## Démonstrations
+
+Trois gestes clés en images, du branchement à l'usage quotidien.
+
+<Steps>
+  <Step title="Connecter Outlook">
+    {/* MOTION_1 — Supademo : Connecter Outlook */}
+
+    <div style={{position: 'relative', width: '100%', aspectRatio: '1.85', maxHeight: '80vh', margin: '8px 0'}}>
+  <iframe src="https://app.supademo.com/embed/cmrm8hmax0299qm577h62uz1e?embed_v=2" loading="lazy" title="Connecter Outlook à Sairen — démonstration interactive" allow="clipboard-write" allowFullScreen frameBorder="0" style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', borderRadius: '16px', border: '1px solid rgba(120, 110, 255, 0.25)'}} />
+</div>
+  </Step>
+  <Step title="Gérer mes mails depuis Océan">
+    {/* ==== MOTION_2 : remplacer par ![Gérer mes mails depuis Océan](/images/motion/ocean-gerer-mails.gif) ==== */}
+
+    <Note>
+      🎞️ **Motion — Gérer mes mails depuis Océan** — la démonstration arrive ici.
+    </Note>
+  </Step>
+  <Step title="Interroger Ulysse pour gérer mes mails">
+    {/* ==== MOTION_3 : remplacer par ![Interroger Ulysse](/images/motion/ulysse-gerer-mails.gif) ==== */}
+
+    <Note>
+      🎞️ **Motion — Interroger Ulysse pour gérer mes mails** — la démonstration arrive ici.
+    </Note>
+  </Step>
+</Steps>
+
+## Ressources liées
+
+<CardGroup cols={3}>
+  <Card title="Ajouter un canal" icon="plug" href="/canaux/ajouter-un-canal#outlook">
+    Le parcours d'ajout unifié, tous canaux.
+  </Card>
+
+  <Card title="Brancher Gmail" icon="envelope" href="/canaux/gmail">
+    L'autre boîte e-mail, pas à pas.
+  </Card>
+
+  <Card title="Ulysse" icon="brain" href="/produit/ulysse">
+    Le copilote qui gère vos mails en langage naturel.
+  </Card>
+</CardGroup>
+
+[Ouvrir Sairen →](https://app.sairen.io)

@@ -1,0 +1,94 @@
+---
+title: "Ajouter un canal"
+description: "Le parcours d'ajout unifié : une entrée par canal, une question métier qui choisit la route technique."
+---
+
+<p class="srn-eyebrow">Canaux</p>
+
+Tous les canaux s'ajoutent par le même parcours : une seule entrée par canal, un assistant qui pose **une question métier** pour choisir la route technique adaptée — et le nombre d'étapes affiché est le nombre réel.
+
+<Info>
+  **Prérequis** : le rôle **Administrateur** (voir [Comprendre les rôles](/compte/roles#roles)). Chaque route a ensuite ses propres prérequis, listés ci-dessous.
+</Info>
+
+<span id="whatsapp" />
+
+## WhatsApp Business
+
+L'assistant demande : **« Avez-vous un compte Meta Business ? »**
+
+<span id="waba-id" />
+
+### Oui — route Meta
+
+- **Prérequis** : un WABA (WhatsApp Business Account) **partagé avec Sairen**.
+- **WABA ID** : un identifiant de **15 à 16 chiffres**, à récupérer dans Meta Business Suite. ⚠️ Ce n'est **pas** le numéro de téléphone.
+
+<span id="twilio-sid" />
+
+### Non — route Twilio
+
+- **Prérequis** : un **Account SID** Twilio (commence par `AC`) et un numéro au **format E.164** (ex. `+33600000000`).
+
+Pour le détail complet (vérifications Meta, erreurs fréquentes), voir [Brancher WhatsApp](/canaux/whatsapp#waba-id).
+
+<span id="outlook" />
+
+## Outlook
+
+L'assistant demande : **« Votre organisation utilise Microsoft 365 ? »**
+
+- **Oui** → connexion native **Microsoft OAuth**.
+- **Non** → connexion via le connecteur **Composio**.
+
+<span id="vocal" />
+
+## Canal vocal
+
+L'assistant demande : **« Avez-vous un numéro à conserver ? »**
+
+<span id="sip" />
+
+### Oui — raccordement SIP
+
+Votre numéro existant est raccordé en **SIP/Telyo** : vous gardez votre numéro, Sairen le prend en charge.
+
+<span id="telnyx" />
+
+### Non — achat immédiat
+
+Un numéro neuf est acheté immédiatement (**Telnyx**) et prêt à l'emploi.
+
+## Autres canaux
+
+- **SMS** (Twilio)
+- **RCS**
+- **Instagram**
+- **Google Business Reviews**
+- **Slack**
+- **Email** (bientôt)
+
+<span id="connexions-ia-donnees" />
+
+## Connexions IA & données
+
+Ces connexions se gèrent au même endroit mais **ne sont pas des canaux de communication** :
+
+| Connexion | À savoir |
+| --- | --- |
+| **LLM** | Clé API Claude ou OpenAI, **stockée chiffrée**. |
+| **Widget Chat** | Déclarez les **domaines autorisés** à afficher le widget. |
+| **MCP externe** | URL se terminant par `/mcp` — **réservé aux Administrateurs**, les URLs privées sont rejetées. |
+| **SAP Business One** | Connexion via **Service Layer** (REST/OData). |
+
+## Questions fréquentes
+
+<AccordionGroup>
+  <Accordion title="Je ne sais pas si nous avons un compte Meta Business">
+    Vérifiez sur Meta Business Suite avec le compte qui gère votre page. En cas de doute, la route Twilio fonctionne sans compte Meta.
+  </Accordion>
+
+  <Accordion title="Mon WABA ID ne passe pas">
+    Vérifiez que vous avez copié l'identifiant à 15-16 chiffres du WABA dans Meta Business Suite — pas le numéro de téléphone, ni l'ID de la page.
+  </Accordion>
+</AccordionGroup>
