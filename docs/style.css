@@ -1,0 +1,98 @@
+/* =====================================================================
+   Sairen — Design system pour la doc Mintlify
+   Fichier : docs/style.css (auto-chargé par Mintlify).
+   Source de vérité : meyergold/site_srn → assets/home/dive.html
+   Règle d'or : les accents n'utilisent QUE le dégradé de marque --grad.
+   Sélecteurs vérifiés le 2026-07-14 sur le DOM rendu de docs.sairen.io :
+   - chaque <Card> porte la classe exacte `card` (sur <a> ou <div>) ;
+   - le wrapper de groupe porte `card-group` (à NE PAS matcher) ;
+   - le dark mode est `class="dark"` sur <html> ;
+   - le fond de page est un div fixe en z-index -10 (body sans fond),
+     donc body::before en z-index -1 reste visible sous le contenu.
+   ===================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap');
+
+:root{
+  --grad:linear-gradient(135deg,#09cafc,#2827fc,#990bf8,#de06bb,#fc2a50,#fd4032,#ff6e23);
+  --srn-ink:#15182B;      /* titres */
+  --srn-body:#5a5878;     /* corps  */
+  --srn-soft:#8b88a6;     /* secondaire */
+}
+
+/* ---- Typo de marque -------------------------------------------------- */
+body, .prose, h1, h2, h3, h4 { font-family:'Comfortaa', system-ui, sans-serif; }
+h1, h2, h3, h4 { color:var(--srn-ink); letter-spacing:-.02em; }
+html.dark h1, html.dark h2, html.dark h3, html.dark h4 { color:#EDEBFA; }
+
+/* ---- Fond à halos (équivalent .dive-fx), fixe derrière tout ---------
+   Le fond Mintlify est un div fixe en z-index:-10 ; ces halos en -1
+   se placent entre ce fond et le contenu. */
+body::before{
+  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(46vw 46vw at -4% -2%,  #74DFFE, transparent 70%),
+    radial-gradient(42vw 42vw at 104% 10%, #C9B7FE, transparent 68%),
+    radial-gradient(50vw 50vw at 12% 58%,  #FEC0E2, transparent 70%),
+    radial-gradient(38vw 38vw at 96% 70%,  #BFE0FF, transparent 70%),
+    radial-gradient(52vw 52vw at 40% 24%,  #DCCFFE, transparent 68%);
+  opacity:.40; filter:blur(40px);
+}
+/* Dark mode : halos plus discrets sur fond sombre */
+html.dark body::before { opacity:.22; }
+
+/* ---- Utilitaire : texte en dégradé (mot-clé) ------------------------ */
+/* Usage MDX :  <span class="srn-g">travaillent ensemble</span>          */
+.srn-g{
+  background:var(--grad);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-style:normal;font-weight:700;
+}
+
+/* ---- Eyebrow (Geist Mono, pastille dégradée) ------------------------ */
+/* Usage MDX :  <p class="srn-eyebrow">Bienvenue</p>                      */
+.srn-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Geist Mono',monospace;font-size:11px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--srn-soft);
+}
+.srn-eyebrow::before{
+  content:'';width:10px;height:10px;border-radius:3px;background:var(--grad);
+}
+
+/* ---- Cartes « glass gradient » --------------------------------------
+   Classe exacte `card` vérifiée sur le DOM rendu (jamais `card-group`).
+   a.card / div.card pour battre en spécificité les utilitaires hover
+   de Mintlify (`hover:border-primary!`). */
+a.card, div.card{
+  position:relative;
+  background:rgba(255,255,255,.72)!important;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border:2px solid transparent!important;
+  background-image:
+    linear-gradient(rgba(255,255,255,.85),rgba(255,255,255,.85)),
+    linear-gradient(135deg,rgba(9,202,252,.5),rgba(153,11,248,.4),rgba(255,110,35,.5))!important;
+  background-origin:border-box;background-clip:padding-box,border-box;
+  border-radius:22px!important;
+  transition:transform .2s cubic-bezier(.16,1,.3,1), box-shadow .25s;
+}
+a.card:hover, div.card:hover{
+  border-color:transparent!important;
+  transform:translateY(-4px);
+  box-shadow:0 30px 60px -28px rgba(104,64,250,.4)!important;
+}
+/* Dark mode cartes */
+html.dark a.card, html.dark div.card{
+  background:rgba(20,16,40,.55)!important;
+  background-image:
+    linear-gradient(rgba(20,16,40,.7),rgba(20,16,40,.7)),
+    linear-gradient(135deg,rgba(9,202,252,.5),rgba(153,11,248,.4),rgba(255,110,35,.5))!important;
+}
+html.dark a.card:hover, html.dark div.card:hover{
+  border-color:transparent!important;
+}
+
+/* ---- Réduction de mouvement ----------------------------------------- */
+@media (prefers-reduced-motion: reduce){
+  a.card, div.card{ transition:none!important; }
+}

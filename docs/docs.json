@@ -1,0 +1,288 @@
+{
+  "theme": "mint",
+  "name": "Sairen Docs",
+  "colors": {
+    "primary": "#2827FC",
+    "light": "#09CAFC",
+    "dark": "#990BF8"
+  },
+  "logo": {
+    "light": "/logo/sairenlogotransparent.png",
+    "dark": "/logo/sairen-light.png"
+  },
+  "favicon": "/logo/sairen-favicon.png",
+  "background": {
+    "decoration": "gradient",
+    "color": {
+      "light": "#F5F3FF",
+      "dark": "#0B0920"
+    }
+  },
+  "navbar": {
+    "links": [
+      {
+        "href": "mailto:contact@sairen.io",
+        "label": "Support"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://sairen.io"
+    }
+  },
+  "footer": {
+    "socials": {
+      "linkedin": "https://www.linkedin.com/company/sairen-io"
+    }
+  },
+  "fonts": {
+    "family": "Comfortaa"
+  },
+  "$schema": "https://mintlify.com/docs.json",
+  "navigation": {
+    "languages": [
+      {
+        "language": "fr",
+        "dropdowns": [
+          {
+            "dropdown": "Documentation",
+            "icon": "book-open",
+            "pages": [
+              {
+                "group": "Démarrer",
+                "icon": "rocket",
+                "pages": [
+                  "welcome",
+                  "who_and_what",
+                  "produit/lire-l-interface"
+                ]
+              },
+              {
+                "group": "Connecter vos canaux",
+                "icon": "plug",
+                "pages": [
+                  "canaux/ajouter-un-canal",
+                  "canaux/whatsapp",
+                  "canaux/gmail",
+                  "canaux/outlook"
+                ]
+              },
+              {
+                "group": "Produit",
+                "pages": [
+                  {
+                    "group": "Océan",
+                    "icon": "inbox",
+                    "pages": [
+                      "produit/ocean",
+                      "produit/contacts",
+                      "produit/unification-contacts",
+                      "produit/templates"
+                    ]
+                  },
+                  {
+                    "group": "Ulysse",
+                    "icon": "brain",
+                    "pages": [
+                      "produit/ulysse",
+                      "produit/analytics"
+                    ]
+                  },
+                  {
+                    "group": "Desk",
+                    "icon": "users",
+                    "pages": [
+                      "produit/desk",
+                      "produit/labels-groupes-colonnes"
+                    ]
+                  },
+                  {
+                    "group": "Rainbow",
+                    "icon": "wand-magic-sparkles",
+                    "pages": [
+                      "produit/rainbow",
+                      "produit/rainbow-agents",
+                      "produit/base-de-connaissances"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Compte",
+                "icon": "user-gear",
+                "pages": [
+                  "compte/roles",
+                  "compte/administration",
+                  "compte/emplois-du-temps"
+                ]
+              },
+              {
+                "group": "Intégrations",
+                "icon": "puzzle-piece",
+                "pages": [
+                  "integrations/introduction",
+                  {
+                    "group": "CRM",
+                    "pages": [
+                      "integrations/crm/hubspot",
+                      "integrations/crm/pipedrive",
+                      "integrations/crm/zoho",
+                      "integrations/crm/attio",
+                      "integrations/crm/zendesk"
+                    ]
+                  },
+                  {
+                    "group": "Santé",
+                    "pages": [
+                      "integrations/health/doctolib",
+                      "integrations/health/enovacom"
+                    ]
+                  },
+                  {
+                    "group": "ECommerce",
+                    "pages": [
+                      "integrations/ecommerce/shopify",
+                      "integrations/ecommerce/klaviyo"
+                    ]
+                  },
+                  {
+                    "group": "Communication",
+                    "pages": [
+                      "integrations/communication/gmail",
+                      "integrations/communication/sms",
+                      "integrations/communication/whatsapp",
+                      "integrations/communication/teams",
+                      "integrations/communication/calendar"
+                    ]
+                  }
+                ]
+              },
+              "liens-plateforme"
+            ]
+          },
+          {
+            "dropdown": "API Reference",
+            "icon": "terminal",
+            "groups": [
+              {
+                "group": "Endpoints",
+                "openapi": {
+                  "source": "api-reference/openapi.json",
+                  "directory": "api-reference"
+                }
+              }
+            ]
+          },
+          {
+            "dropdown": "Blog"
+          }
+        ]
+      },
+      {
+        "language": "en",
+        "groups": [
+          {
+            "group": "Getting started with Sairen",
+            "pages": [
+              "en/welcome",
+              "en/who_and_what"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "en/integrations/introduction",
+              {
+                "group": "CRM",
+                "pages": [
+                  "en/integrations/crm/hubspot",
+                  "en/integrations/crm/pipedrive",
+                  "en/integrations/crm/zoho",
+                  "en/integrations/crm/attio",
+                  "en/integrations/crm/zendesk"
+                ]
+              },
+              {
+                "group": "Health",
+                "pages": [
+                  "en/integrations/health/doctolib",
+                  "en/integrations/health/enovacom"
+                ]
+              },
+              {
+                "group": "E-commerce",
+                "pages": [
+                  "en/integrations/ecommerce/shopify",
+                  "en/integrations/ecommerce/klaviyo"
+                ]
+              },
+              {
+                "group": "Communication",
+                "pages": [
+                  "en/integrations/communication/gmail",
+                  "en/integrations/communication/sms",
+                  "en/integrations/communication/whatsapp",
+                  "en/integrations/communication/teams",
+                  "en/integrations/communication/calendar"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "language": "de",
+        "groups": [
+          {
+            "group": "Erste Schritte mit Sairen",
+            "pages": [
+              "de/welcome",
+              "de/who_and_what"
+            ]
+          },
+          {
+            "group": "Integrationen",
+            "pages": [
+              "de/integrations/introduction",
+              {
+                "group": "CRM",
+                "pages": [
+                  "de/integrations/crm/hubspot",
+                  "de/integrations/crm/pipedrive",
+                  "de/integrations/crm/zoho",
+                  "de/integrations/crm/attio",
+                  "de/integrations/crm/zendesk"
+                ]
+              },
+              {
+                "group": "Gesundheit",
+                "pages": [
+                  "de/integrations/health/doctolib",
+                  "de/integrations/health/enovacom"
+                ]
+              },
+              {
+                "group": "E-Commerce",
+                "pages": [
+                  "de/integrations/ecommerce/shopify",
+                  "de/integrations/ecommerce/klaviyo"
+                ]
+              },
+              {
+                "group": "Kommunikation",
+                "pages": [
+                  "de/integrations/communication/gmail",
+                  "de/integrations/communication/sms",
+                  "de/integrations/communication/whatsapp",
+                  "de/integrations/communication/teams",
+                  "de/integrations/communication/calendar"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
