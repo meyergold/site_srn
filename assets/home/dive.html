@@ -280,6 +280,19 @@ img{max-width:100%;display:block}
 .hero-pill:hover{transform:translateY(-2px);box-shadow:0 16px 38px -18px rgba(104,64,250,.35)}
 .hero-pill .go{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#09cafc,#6840FA,#de06bb);color:#fff;font-size:12px;line-height:1}
 @media(prefers-reduced-motion:reduce){.hero .rot .w1{opacity:1;animation:none;position:static}.hero .rot .sz,.hero .rot .w2{display:none}}
+/* PLG primary CTA — violet plateforme (#6D4AFF), action-primaire du design system */
+.btn-violet{background:#6D4AFF;color:#fff;box-shadow:0 10px 26px -10px rgba(109,74,255,.6)}
+.btn-violet:hover{background:#5b39f0;transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(109,74,255,.65)}
+/* Ligne de confiance FR (hébergement France / RGPD) */
+.hero-trust{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#5a5878;margin:16px 0 0;background:rgba(255,255,255,.6);border:1px solid #ECEAF4;border-radius:999px;padding:6px 14px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.hero-trust .fr-flag{font-size:14px;line-height:1}
+.hero-trust .dot{width:3px;height:3px;border-radius:50%;background:#c3bed4}
+/* Ligne de support canaux */
+.hero-support{font-size:clamp(14px,1.15vw,16px);font-weight:600;color:#6f6c7e;margin:14px 0 0}
+/* A/B hero — bascule via SRN_HERO_VARIANT (voir script) */
+.hero-vb{display:none}
+body[data-hero="b"] .hero-va{display:none}
+body[data-hero="b"] .hero-vb{display:block}
 
 /* LOGOS */
 .logos{padding:18px 0 56px;text-align:center;background:transparent}
@@ -781,14 +794,24 @@ img{max-width:100%;display:block}
 <div class="dive-fx" aria-hidden="true"><span class="dfb b1"></span><span class="dfb b2"></span><span class="dfb b3"></span><span class="dfb b4"></span><span class="dfb b5"></span></div>
 <header class="hero"><div class="hero-inner">
     <a class="hero-pill" href="https://www.linkedin.com/posts/angelo-kahloun-b16997229_we-won-out-of-40-finalists-at-the-paris-activity-7449836431969034241-Swc1" target="_blank" rel="noopener">🏆 Sairen remporte le concours Pitch by Deel <span class="go">→</span></a>
-    <h1>Orchestrez tout votre parcours client <span class="g">avec l'IA.</span></h1>
-    <p class="hero-punch">Depuis un seul logiciel.</p>
-    <p class="sub" style="margin-top:16px">Chaque interaction — externe comme interne — orchestrée, personnalisée et automatisée par l'IA. Une seule source de vérité sur vos clients, pour le support, le marketing et le sales. On complète votre CRM, ou on l'apporte nativement là où il manquait.</p>
+    <!-- ===== HERO A/B : variante A (actuelle) ===== -->
+    <div class="hero-va">
+      <h1>Orchestrez tout votre parcours client <span class="g">avec l'IA.</span></h1>
+      <p class="hero-punch">Depuis un seul logiciel.</p>
+      <p class="sub" style="margin-top:16px">Chaque interaction — externe comme interne — orchestrée, personnalisée et automatisée par l'IA. Une seule source de vérité sur vos clients, pour le support, le marketing et le sales. On complète votre CRM, ou on l'apporte nativement là où il manquait.</p>
+    </div>
+    <!-- ===== HERO A/B : variante B (positionnement agents + workflows) ===== -->
+    <div class="hero-vb">
+      <h1>Des agents IA qui ne sortent <span class="g">jamais du cadre.</span></h1>
+      <p class="sub" style="margin-top:16px">Sairen combine le jugement de l'IA à des workflows déterministes. Chaque WhatsApp, appel, e-mail et ticket est traité exactement comme votre équipe le ferait — pas selon l'humeur du modèle du jour.</p>
+      <p class="hero-support">Tous vos canaux de communication sur une seule plateforme.</p>
+    </div>
     <div class="cta">
-      <a class="btn btn-dark" style="padding:11px 24px;font-size:14px" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Demander une démo</a>
-      <a class="btn btn-ghost" style="padding:11px 24px;font-size:14px;border:2px solid transparent;background-image:linear-gradient(#fff,#fff),linear-gradient(90deg,#09cafc,#990bf8,#ff6e23);background-origin:border-box;background-clip:padding-box,border-box" href="#/signup" target="_top">Commencer gratuitement</a>
+      <a class="btn btn-violet" style="padding:11px 24px;font-size:14px" href="#/signup" target="_top">Commencer gratuitement</a>
+      <a class="btn btn-ghost" style="padding:11px 24px;font-size:14px" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_top" rel="noopener">Voir une démo</a>
     </div>
     <p class="cta-note">500 crédits offerts · sans carte bancaire</p>
+    <p class="hero-trust" data-fr-only><span class="fr-flag">🇫🇷</span> Hébergé en France <span class="dot"></span> Conforme RGPD</p>
     <p class="hero-clients">+300 organisations orchestrent leur parcours client avec Sairen</p>
     <div class="cl-marquee"><div class="cl-mq-track"><img loading="lazy" decoding="async" src="../img/cli-racine.png" alt="Racine"><img loading="lazy" decoding="async" src="../img/cli-lpb.png" alt="LPB"><img loading="lazy" decoding="async" src="../img/cli-lazeo.png" alt="Lazeo"><img loading="lazy" decoding="async" src="../img/cli-cmsm.png" alt="CMSM"><img loading="lazy" decoding="async" src="../img/cli-transcash.png" alt="Transcash"><img loading="lazy" decoding="async" src="../img/cli-ophtalys.png" alt="Ophtalys"><img loading="lazy" decoding="async" src="../img/cli-sofitel2.png" alt="Sofitel"><img loading="lazy" decoding="async" src="../img/cli-elsan.png" alt="Elsan"><img loading="lazy" decoding="async" src="../img/cli-dray.png" alt="Dray"><img loading="lazy" decoding="async" src="../img/cli-adelya.png" alt="Adelya"><img loading="lazy" decoding="async" src="../img/cli-bestwestern.png" alt="Best Western"><img loading="lazy" decoding="async" src="../img/cli-hep2.png" alt="HEP"><img loading="lazy" decoding="async" src="../img/cli-simago.png" alt="Simago" class="cl-xl"><img loading="lazy" decoding="async" src="../img/cli-dentagest.png" alt="Dentagest"><img loading="lazy" decoding="async" src="../img/cli-dentylis.png" alt="Dentylis"><img loading="lazy" decoding="async" src="../img/cli-pdv.svg" alt="PDV"><img loading="lazy" decoding="async" src="../img/cli-pullman.png" alt="Pullman"><img loading="lazy" decoding="async" src="../img/cli-qovetia.png" alt="Qovetia"><img loading="lazy" decoding="async" src="../img/cli-telyo.png" alt="Telyo"><img loading="lazy" decoding="async" src="../img/cli-vyv.png" alt="VYV"><img loading="lazy" decoding="async" src="../img/cli-allocasseauto.png" alt="AllocAsse Auto"><img loading="lazy" decoding="async" src="../img/cli-orange.webp" alt="Orange"><img loading="lazy" decoding="async" src="../img/cli-tresse.svg" alt="Tresse"><img loading="lazy" decoding="async" src="../img/cli-vidi2.png" alt="Vidi"><img loading="lazy" decoding="async" src="../img/cli-racine.png" alt="Racine"><img loading="lazy" decoding="async" src="../img/cli-lpb.png" alt="LPB"><img loading="lazy" decoding="async" src="../img/cli-lazeo.png" alt="Lazeo"><img loading="lazy" decoding="async" src="../img/cli-cmsm.png" alt="CMSM"><img loading="lazy" decoding="async" src="../img/cli-transcash.png" alt="Transcash"><img loading="lazy" decoding="async" src="../img/cli-ophtalys.png" alt="Ophtalys"><img loading="lazy" decoding="async" src="../img/cli-sofitel2.png" alt="Sofitel"><img loading="lazy" decoding="async" src="../img/cli-elsan.png" alt="Elsan"><img loading="lazy" decoding="async" src="../img/cli-dray.png" alt="Dray"><img loading="lazy" decoding="async" src="../img/cli-adelya.png" alt="Adelya"><img loading="lazy" decoding="async" src="../img/cli-bestwestern.png" alt="Best Western"><img loading="lazy" decoding="async" src="../img/cli-hep2.png" alt="HEP"><img loading="lazy" decoding="async" src="../img/cli-simago.png" alt="Simago" class="cl-xl"><img loading="lazy" decoding="async" src="../img/cli-dentagest.png" alt="Dentagest"><img loading="lazy" decoding="async" src="../img/cli-dentylis.png" alt="Dentylis"><img loading="lazy" decoding="async" src="../img/cli-pdv.svg" alt="PDV"><img loading="lazy" decoding="async" src="../img/cli-pullman.png" alt="Pullman"><img loading="lazy" decoding="async" src="../img/cli-qovetia.png" alt="Qovetia"><img loading="lazy" decoding="async" src="../img/cli-telyo.png" alt="Telyo"><img loading="lazy" decoding="async" src="../img/cli-vyv.png" alt="VYV"><img loading="lazy" decoding="async" src="../img/cli-allocasseauto.png" alt="AllocAsse Auto"><img loading="lazy" decoding="async" src="../img/cli-orange.webp" alt="Orange"><img loading="lazy" decoding="async" src="../img/cli-tresse.svg" alt="Tresse"><img loading="lazy" decoding="async" src="../img/cli-vidi2.png" alt="Vidi"></div></div>
     <div class="hero-video" id="heroVideo" data-video-url="">
@@ -812,6 +835,32 @@ img{max-width:100%;display:block}
     f.src=url;f.allow='autoplay; fullscreen';f.style.cssText='position:absolute;inset:0;width:100%;height:100%;border:0';
     this.innerHTML='';this.appendChild(f);
   });
+})();
+</script>
+<script>
+/* ===== Hero A/B test =====
+   Variante A (défaut) = "Orchestrez tout votre parcours client…"
+   Variante B = "Des agents IA qui ne sortent jamais du cadre."
+   Activation :
+     • forcer via URL           → ?hero=b  (ou ?hero=a)
+     • forcer via console       → localStorage.setItem('srn_hero','b')
+     • split 50/50 automatique  → mettre SRN_HERO_SPLIT = true ci-dessous
+   TODO(analytics): brancher l'event d'exposition + conversion (signup) sur la variante
+   affichée pour mesurer le lift (ex. via l'outil analytics choisi). */
+(function(){
+  var SRN_HERO_SPLIT=false;               // passer à true pour un split 50/50
+  var qs=new URLSearchParams(location.search).get('hero');
+  var v=qs||localStorage.getItem('srn_hero');
+  if(!v && SRN_HERO_SPLIT){ v=(localStorage.getItem('srn_hero_bucket')||(function(){var b=(Math.floor(new Date().getTime()/1000)%2)?'b':'a';localStorage.setItem('srn_hero_bucket',b);return b;})()); }
+  if(v==='b'){ document.body.setAttribute('data-hero','b'); }
+  if(qs){ localStorage.setItem('srn_hero',qs); }
+})();
+/* Signaux de confiance FR uniquement — masqués hors FR.
+   TODO(i18n): en EN, remplacer par les signaux de conformité du marché cible
+   (ex. "GDPR-compliant · EU-hosted") plutôt que de simplement masquer. */
+(function(){
+  var lang=(document.documentElement.lang||'fr').toLowerCase();
+  if(lang.indexOf('fr')!==0){ document.querySelectorAll('[data-fr-only]').forEach(function(el){el.style.display='none';}); }
 })();
 </script>
 
