@@ -1033,8 +1033,42 @@ body[data-hero="b"] .hero-vb{display:block}
       <span class="eyebrow" style="justify-content:center"><i></i>Ils nous font confiance</span>
       <h2 class="h2">Des résultats concrets, <em>sur le terrain.</em></h2>
     </div>
+    <!-- ===== Composant Testimonial (réutilisable — voir .srn-testi) =====
+         TODO(contenu): remplacer par de VRAIS témoignages clients validés
+         (citation exacte, nom réel, poste, entreprise + logo, chiffres audités,
+         accord de communication). Attribution actuelle = anonymisée/illustrative. -->
+    <div class="srn-testi-grid">
+      <figure class="srn-testi">
+        <blockquote>« Avant, mes équipes passaient leurs journées au téléphone à confirmer des rendez-vous. Aujourd'hui Sairen s'en charge — et on ne voit quasiment plus de no-show. »</blockquote>
+        <div class="srn-testi-metric"><span class="stm-before">18% de no-show</span><span class="stm-arr">→</span><span class="stm-after">6%</span></div>
+        <figcaption class="srn-testi-who"><img src="../img/avatar-02.png" alt="" class="srn-testi-av"><span><b>Léna M.</b><small>Coordinatrice · Groupe de cliniques dentaires</small></span></figcaption>
+      </figure>
+      <figure class="srn-testi">
+        <blockquote>« Nos réceptionnistes répondent enfin aux vrais sujets. Le répétitif et l'upsell partent en automatique, 24/7, sans jamais sortir de notre ton. »</blockquote>
+        <div class="srn-testi-metric"><span class="stm-before">4 h de délai</span><span class="stm-arr">→</span><span class="stm-after">8 min</span></div>
+        <figcaption class="srn-testi-who"><img src="../img/avatar-06.png" alt="" class="srn-testi-av"><span><b>Karim B.</b><small>Directeur d'exploitation · Groupe hôtelier 4★</small></span></figcaption>
+      </figure>
+      <figure class="srn-testi">
+        <blockquote>« WhatsApp, e-mail et téléphone centralisés au même endroit, avec une IA qui traite 3× plus de demandes sans rien lâcher sur la qualité. »</blockquote>
+        <div class="srn-testi-metric"><span class="stm-before">volume traité</span><span class="stm-arr">→</span><span class="stm-after">×3</span></div>
+        <figcaption class="srn-testi-who"><img src="../img/avatar-05.png" alt="" class="srn-testi-av"><span><b>Sofia D.</b><small>Responsable relation client · Enseigne retail</small></span></figcaption>
+      </figure>
+    </div>
   </div>
   <style>
+  /* ===== Composant Testimonial réutilisable ===== */
+  .srn-testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1120px;margin:38px auto 0;padding:0 24px}
+  .srn-testi{display:flex;flex-direction:column;gap:16px;background:#fff;border:1px solid #E9E6F2;border-radius:20px;padding:24px;box-shadow:0 18px 44px -30px rgba(60,30,110,.22);margin:0}
+  .srn-testi blockquote{margin:0;font-size:15px;line-height:1.6;color:#3b3a47;font-weight:500}
+  .srn-testi-metric{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;margin-top:auto}
+  .srn-testi-metric .stm-before{color:#9a97ad;text-decoration:line-through;text-decoration-color:#d9d5e6}
+  .srn-testi-metric .stm-arr{color:#6D4AFF}
+  .srn-testi-metric .stm-after{color:#15161d;font-size:16px;font-weight:800}
+  .srn-testi-who{display:flex;align-items:center;gap:11px;padding-top:16px;border-top:1px solid var(--line)}
+  .srn-testi-av{width:40px;height:40px;border-radius:50%;object-fit:cover;flex:none}
+  .srn-testi-who b{display:block;font-size:14px;font-weight:800;color:#15161d}
+  .srn-testi-who small{display:block;font-size:12px;color:#8a8aa8;font-weight:500}
+  @media(max-width:900px){.srn-testi-grid{grid-template-columns:1fr;max-width:520px}}
   .kpi-track-wrap{position:relative;width:100%;overflow:hidden;margin-top:40px;padding:4px 0}
   .kpi-track-wrap::before,.kpi-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
   .kpi-track-wrap::before{left:0;background:linear-gradient(90deg,var(--soft),transparent)}
