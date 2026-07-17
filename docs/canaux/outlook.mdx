@@ -6,9 +6,7 @@ icon: "envelope"
 
 <p class="srn-eyebrow">Canaux</p>
 
-Branchez une boîte **Outlook / Microsoft 365** pour recevoir et traiter vos e-mails dans [Océan](/produit/ocean), aux côtés de vos autres canaux. L'assistant choisit la bonne route selon votre environnement.
-
-{/* VIDEO_YOUTUBE globale — ajouter l'<iframe> ici quand la vidéo d'ensemble est prête */}
+Branchez une boîte **Outlook / Microsoft 365** pour recevoir et traiter vos e-mails dans [Océan](/produit/ocean), aux côtés de vos autres canaux — puis laissez [Ulysse](/produit/ulysse) les gérer pour vous.
 
 <Info>
   **Prérequis**
@@ -18,29 +16,58 @@ Branchez une boîte **Outlook / Microsoft 365** pour recevoir et traiter vos e-m
   - Accès au compte de la boîte à connecter (ex. `exemple@clinique-dupont.fr`).
 </Info>
 
-## Étapes
-
 <Steps>
-  <Step title="Ouvrir les intégrations">
-    Depuis votre espace Sairen, ouvrez la section **Intégrations** et choisissez **Outlook**.
-  </Step>
-  <Step title="Répondre à la question de routage">
-    L'assistant demande : **« Votre organisation utilise Microsoft 365 ? »**. Votre réponse choisit la route :
+  <Step title="Connecter Outlook">
+    <div style={{position: 'relative', width: '100%', aspectRatio: '16 / 9', margin: '8px 0'}}>
+  <iframe src="https://www.youtube.com/embed/YqJ0iunyk9Q" loading="lazy" title="Connecter Outlook à Sairen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen frameBorder="0" style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', borderRadius: '16px', border: '1px solid rgba(120, 110, 255, 0.25)'}} />
+</div>
+
+    Depuis **Intégrations**, choisissez **Outlook**. L'assistant demande si votre organisation utilise **Microsoft 365** :
 
     <Tabs>
       <Tab title="Oui — Microsoft 365 (natif)">
-        Connexion **native Microsoft OAuth** : authentifiez-vous avec le compte Microsoft 365 de la boîte et **autorisez l'accès** demandé par Sairen.
+        Connexion **native Microsoft OAuth** : authentifiez-vous avec le compte de la boîte et **autorisez l'accès** demandé par Sairen.
       </Tab>
       <Tab title="Non — connecteur Composio">
-        Connexion via le **connecteur Composio** : suivez les étapes proposées par l'assistant pour relier la boîte Outlook.
+        Connexion via le **connecteur Composio** : suivez les étapes proposées par l'assistant.
       </Tab>
     </Tabs>
+
+    Sélectionnez ensuite la boîte à centraliser, puis envoyez-vous un e-mail de test : il doit apparaître comme conversation dans [Océan](/produit/ocean#conversations).
   </Step>
-  <Step title="Choisir la boîte et les règles">
-    Sélectionnez l'adresse à centraliser et définissez les règles de traitement (agents IA, labels).
+  <Step title="Aller sur Océan">
+    <Frame>
+      ![Ouvrir Océan depuis le menu de gauche](/images/motion/ocean-aller-sur-ocean.png)
+    </Frame>
+
+    Depuis le menu de gauche, ouvrez **Océan** : toutes vos conversations e-mail — et vos autres canaux — arrivent dans cette inbox unifiée.
   </Step>
-  <Step title="Vérifier dans Océan">
-    Envoyez-vous un e-mail de test : il doit apparaître comme conversation dans [Océan](/produit/ocean#conversations), qualifié automatiquement.
+  <Step title="Traiter mes mails">
+    <Frame>
+      ![Traiter un mail depuis Océan](/images/motion/ocean-traiter-mails.png)
+    </Frame>
+
+    Ouvrez une conversation pour **lire, répondre, transférer ou archiver** — tout se fait depuis Océan, sans quitter Sairen.
+  </Step>
+  <Step title="Labéliser les conversations">
+    <Frame>
+      ![Labéliser une conversation dans Océan](/images/motion/ocean-labeliser.gif)
+    </Frame>
+
+    Appliquez des **labels** pour trier et prioriser (ex. _À traiter_, _Client VIP_, _Facturation_) — ils alimentent les filtres et les analyses IA.
+  </Step>
+  <Step title="Laisser Ulysse gérer mes mails">
+    [Ulysse](/produit/ulysse), le copilote IA de Sairen, traite vos mails en **langage naturel** — trier, résumer, répondre, créer des tâches. Connectez-le d'abord avec une clé API :
+
+    <Card title="Connecter Ulysse avec une clé API" icon="key" href="/produit/ulysse#connecter-cle-api">
+      La vidéo de mise en route, sur la page Ulysse.
+    </Card>
+
+    Une fois Ulysse connecté, voici comment il gère vos mails :
+
+    <div style={{position: 'relative', width: '100%', aspectRatio: '16 / 9', margin: '8px 0'}}>
+  <iframe src="https://www.youtube.com/embed/0GTlNjjA85o" loading="lazy" title="Comment Ulysse traite mes mails" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen frameBorder="0" style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', borderRadius: '16px', border: '1px solid rgba(120, 110, 255, 0.25)'}} />
+</div>
   </Step>
 </Steps>
 
@@ -63,60 +90,6 @@ Branchez une boîte **Outlook / Microsoft 365** pour recevoir et traiter vos e-m
     Voir l'article dédié : [Brancher Gmail](/canaux/gmail).
   </Accordion>
 </AccordionGroup>
-
-## Démonstrations
-
-Trois gestes clés en images, du branchement à l'usage quotidien.
-
-<Steps>
-  <Step title="Connecter Outlook">
-    {/* MOTION_1 — Vidéo YouTube : Connecter Outlook */}
-
-    <div style={{position: 'relative', width: '100%', aspectRatio: '16 / 9', margin: '8px 0'}}>
-  <iframe src="https://www.youtube.com/embed/YqJ0iunyk9Q" loading="lazy" title="Connecter Outlook à Sairen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen frameBorder="0" style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', borderRadius: '16px', border: '1px solid rgba(120, 110, 255, 0.25)'}} />
-</div>
-  </Step>
-  <Step title="Gérer mes mails depuis Océan">
-    <Steps>
-      <Step title="Aller sur Océan">
-        Depuis le menu de gauche, ouvrez **Océan** : toutes vos conversations e-mail — et vos autres canaux — arrivent dans cette inbox unifiée.
-
-        <Frame>
-          ![Ouvrir Océan depuis le menu de gauche](/images/motion/ocean-aller-sur-ocean.png)
-        </Frame>
-      </Step>
-      <Step title="Traiter mes mails">
-        Ouvrez une conversation pour **lire, répondre, transférer ou archiver** — tout se fait depuis Océan, sans quitter Sairen.
-
-        <Frame>
-          ![Traiter un mail depuis Océan](/images/motion/ocean-traiter-mails.png)
-        </Frame>
-      </Step>
-      <Step title="Labéliser les conversations">
-        Appliquez des **labels** pour trier et prioriser (ex. _À traiter_, _Client VIP_, _Facturation_) — ils alimentent les filtres et les analyses IA.
-
-        <Frame>
-          ![Labéliser une conversation dans Océan](/images/motion/ocean-labeliser.gif)
-        </Frame>
-      </Step>
-    </Steps>
-  </Step>
-  <Step title="Interroger Ulysse pour gérer mes mails">
-    [Ulysse](/produit/ulysse), le copilote IA de Sairen, traite vos mails en **langage naturel** — trier, résumer, répondre, créer des tâches. Il faut d'abord le connecter avec une clé API.
-
-    <Card title="Connecter Ulysse avec une clé API" icon="key" href="/produit/ulysse#connecter-cle-api">
-      La vidéo de mise en route, sur la page Ulysse.
-    </Card>
-
-    Une fois Ulysse connecté, voici comment il gère vos mails :
-
-    {/* VIDEO — Comment Ulysse traite mes mails */}
-
-    <div style={{position: 'relative', width: '100%', aspectRatio: '16 / 9', margin: '8px 0'}}>
-  <iframe src="https://www.youtube.com/embed/0GTlNjjA85o" loading="lazy" title="Comment Ulysse traite mes mails" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen frameBorder="0" style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', borderRadius: '16px', border: '1px solid rgba(120, 110, 255, 0.25)'}} />
-</div>
-  </Step>
-</Steps>
 
 ## Ressources liées
 
