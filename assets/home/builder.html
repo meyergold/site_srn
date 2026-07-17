@@ -3314,15 +3314,110 @@ function toast(msg) {
   toast._t = setTimeout(() => t.classList.remove('show'), 2400);
 }
 
-document.getElementById('btn-activate').addEventListener('click', () => {
-  if (isComplete()) toast('Automatisation activée');
+/* ===== i18n (piloté par le parent via postMessage {srnLang}) ===== */
+var SRN_L='fr';
+var SRN_T={"Nouvelle automatisation": ["New automation", "Neue Automatisierung"], "Annuler": ["Cancel", "Abbrechen"], "Activer": ["Activate", "Aktivieren"], "Brouillon": ["Draft", "Entwurf"], "Visible dans": ["Visible in", "Sichtbar in"], "Modifiée à l'instant": ["Edited just now", "Gerade bearbeitet"], "ajouter une condition": ["add a condition", "Bedingung hinzufügen"], "ajouter une action": ["add an action", "Aktion hinzufügen"], "Simuler": ["Simulate", "Simulieren"], "Coût / exéc": ["Cost / run", "Kosten / Lauf"], "Volume": ["Volume", "Volumen"], "Modèle": ["Model", "Modell"], "Latence": ["Latency", "Latenz"], "Quand": ["When", "Wenn"], "sur": ["on", "auf"], "alors": ["then", "dann"], "et": ["and", "und"], "puis": ["then", "danach"], "attendre": ["wait", "warten"], "attendre que": ["wait until", "warten bis"], "appliquer": ["apply", "anwenden"], "retirer": ["remove", "entfernen"], "envoyer": ["send", "senden"], "router vers": ["route to", "weiterleiten an"], "faire intervenir": ["bring in", "einschalten"], "déclencher le workflow": ["trigger the workflow", "den Workflow auslösen"], "est dans la colonne": ["is in column", "ist in Spalte"], "a le label": ["has the label", "hat das Label"], "a un label du groupe": ["has a label from group", "hat ein Label der Gruppe"], "et que le contact": ["and the contact", "und der Kontakt"], "choisir un déclencheur": ["choose a trigger", "Auslöser wählen"], "choisir un canal": ["choose a channel", "Kanal wählen"], "choisir une action": ["choose an action", "Aktion wählen"], "choisir un agent IA": ["choose an AI agent", "KI-Agent wählen"], "choisir un délai": ["choose a delay", "Verzögerung wählen"], "choisir un groupe": ["choose a group", "Gruppe wählen"], "choisir un label": ["choose a label", "Label wählen"], "choisir un label ou groupe": ["choose a label or group", "Label oder Gruppe wählen"], "choisir un mode": ["choose a mode", "Modus wählen"], "choisir un template": ["choose a template", "Template wählen"], "choisir un workflow": ["choose a workflow", "Workflow wählen"], "choisir un événement": ["choose an event", "Ereignis wählen"], "choisir une colonne": ["choose a column", "Spalte wählen"], "choisir une date": ["choose a date", "Datum wählen"], "choisir une fréquence": ["choose a frequency", "Frequenz wählen"], "choisir une équipe": ["choose a team", "Team wählen"], "un message arrive": ["a message arrives", "eine Nachricht kommt an"], "un label est appliqué": ["a label is applied", "ein Label wird angewendet"], "un label arrive": ["a label arrives", "ein Label kommt an"], "un contact entre dans une colonne": ["a contact enters a column", "ein Kontakt betritt eine Spalte"], "une conv bascule en mode": ["a conversation switches to mode", "eine Konversation wechselt in Modus"], "un appel se termine": ["a call ends", "ein Anruf endet"], "Ulysse termine son analyse": ["Ulysse finishes its analysis", "Ulysse schließt seine Analyse ab"], "à une fréquence régulière": ["on a regular schedule", "in regelmäßigen Abständen"], "à une date précise": ["on a specific date", "an einem bestimmten Datum"], "faire intervenir un agent IA": ["bring in an AI agent", "einen KI-Agenten einschalten"], "déclencher un workflow": ["trigger a workflow", "einen Workflow auslösen"], "attendre un délai": ["wait for a delay", "eine Verzögerung abwarten"], "attendre une réponse": ["wait for a reply", "auf eine Antwort warten"], "appliquer un label": ["apply a label", "ein Label anwenden"], "retirer un label": ["remove a label", "ein Label entfernen"], "router vers une équipe": ["route to a team", "an ein Team weiterleiten"], "envoyer un message": ["send a message", "eine Nachricht senden"], "10 minutes": ["10 minutes", "10 Minuten"], "2 heures": ["2 hours", "2 Stunden"], "24 heures": ["24 hours", "24 Stunden"], "3 jours": ["3 days", "3 Tage"], "7 jours": ["7 days", "7 Tage"], "30 jours": ["30 days", "30 Tage"], "Appels & Voix": ["Calls & Voice", "Anrufe & Sprache"], "Conversations": ["Conversations", "Konversationen"], "Envoyer": ["Send", "Senden"], "Intelligence (Ulysse)": ["Intelligence (Ulysse)", "Intelligenz (Ulysse)"], "Labels": ["Labels", "Labels"], "Modules Sairen": ["Sairen modules", "Sairen-Module"], "Organisation": ["Organization", "Organisation"], "Temporel": ["Time-based", "Zeitbasiert"], "Temps": ["Time", "Zeit"], "Automatisation activée": ["Automation activated", "Automatisierung aktiviert"], "Simulation lancée sur 3 conv. test…": ["Simulation running on 3 test conversations…", "Simulation läuft auf 3 Test-Konversationen…"], "Votre automatisation est prête.": ["Your automation is ready.", "Ihre Automatisierung ist bereit."], "Simulation terminée — 3 conversations test.": ["Simulation complete — 3 test conversations.", "Simulation abgeschlossen — 3 Test-Konversationen."], "✓ 2 conversations résolues automatiquement": ["✓ 2 conversations resolved automatically", "✓ 2 Konversationen automatisch gelöst"], "✓ 1 escaladée à l'équipe avec tout le contexte": ["✓ 1 escalated to the team with full context", "✓ 1 mit vollem Kontext ans Team eskaliert"], "✓ Zéro sortie de cadre — règles respectées": ["✓ Zero drift — rules respected", "✓ Keine Abweichung — Regeln eingehalten"], "Il ne reste qu'à la brancher sur vos vrais canaux, vos agendas et votre ton.": ["All that's left is plugging it into your real channels, calendars and tone.", "Jetzt nur noch mit Ihren echten Kanälen, Kalendern und Ihrem Ton verbinden."], "Voir ça personnalisé pour votre organisation — gratuit": ["See this personalized for your organization — free", "Das personalisiert für Ihre Organisation sehen — kostenlos"], "ou 20 minutes avec un expert →": ["or 20 minutes with an expert →", "oder 20 Minuten mit einem Experten →"], "Continuer à éditer": ["Keep editing", "Weiter bearbeiten"], "Votre automatisation est prête": ["Your automation is ready", "Ihre Automatisierung ist bereit"], "La tester sur la plateforme →": ["Test it on the platform →", "Auf der Plattform testen →"], "Nommez cette automatisation…": ["Name this automation…", "Diese Automatisierung benennen…"]};
+function trX(){
+  var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null);
+  var n;
+  while(n=w.nextNode()){
+    var raw=n.nodeValue,t=raw.trim();
+    if(!t)continue;
+    if(n.__fr===undefined){ if(SRN_T[t])n.__fr=t; else continue; }
+    var fr=n.__fr, out=(SRN_L==='fr')?fr:((SRN_T[fr]||[])[SRN_L==='en'?0:1]||fr);
+    var pre=raw.match(/^\s*/)[0],suf=raw.match(/\s*$/)[0];
+    if(raw!==pre+out+suf)n.nodeValue=pre+out+suf;
+  }
+  var ti=document.querySelector('.title-input');
+  if(ti){var p="Nommez cette automatisation…";ti.placeholder=(SRN_L==='fr')?p:(SRN_T[p][SRN_L==='en'?0:1]);}
+}
+var _moT;var _mo=new MutationObserver(function(){clearTimeout(_moT);_moT=setTimeout(function(){_mo.disconnect();trX();_mo.observe(document.body,{childList:true,subtree:true,characterData:true});},60);});
+_mo.observe(document.body,{childList:true,subtree:true,characterData:true});
+window.addEventListener('message',function(e){
+  if(e.data&&e.data.srnLang&&e.data.srnLang!==SRN_L){SRN_L=e.data.srnLang;trX();}
 });
-document.getElementById('btn-test').addEventListener('click', () => {
-  if (isComplete()) toast('Simulation lancée sur 3 conv. test…');
-});
+trX();
+
+/* ===== Fin de flow : overlay de complétion + bannière CTA (plus de cul-de-sac) ===== */
+(function(){
+  var ov=document.createElement('div');ov.id='rb-done';
+  ov.innerHTML='<div class="rbd-card">'
+   +'<div class="rbd-check">\u2713</div>'
+   +'<h3 id="rbd-title">Votre automatisation est pr\u00eate.</h3>'
+   +'<div class="rbd-res" id="rbd-res"></div>'
+   +'<p class="rbd-p">Il ne reste qu\u2019\u00e0 la brancher sur vos vrais canaux, vos agendas et votre ton.</p>'
+   +'<button type="button" class="rbd-cta" id="rbd-go">Voir \u00e7a personnalis\u00e9 pour votre organisation \u2014 gratuit</button>'
+   +'<a class="rbd-demo" href="https://cal.com/angelo-kahloun-m30i4i/meet-the-sairen-s-team" target="_blank" rel="noopener">ou 20 minutes avec un expert \u2192</a>'
+   +'<button type="button" class="rbd-close" id="rbd-close">Continuer \u00e0 \u00e9diter</button>'
+   +'</div>';
+  document.body.appendChild(ov);
+  var banner=document.createElement('div');banner.id='rb-cta';
+  banner.innerHTML='<span class="rbc-spark">\u2728</span><b>Votre automatisation est pr\u00eate</b>'
+   +'<button type="button" id="rbc-go">La tester sur la plateforme \u2192</button>'
+   +'<button type="button" id="rbc-x" aria-label="Fermer">\u00d7</button>';
+  document.body.appendChild(banner);
+  var st=document.createElement('style');
+  st.textContent='#rb-done{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;background:rgba(20,16,40,.45);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);padding:18px}'
+  +'#rb-done.open{display:flex}'
+  +'.rbd-card{width:100%;max-width:400px;background:#fff;border-radius:20px;padding:26px 26px 20px;box-shadow:0 40px 90px -30px rgba(40,20,80,.55);text-align:center;font-family:inherit;display:flex;flex-direction:column;gap:11px}'
+  +'.rbd-check{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#09cafc,#6D4AFF);display:flex;align-items:center;justify-content:center;margin:0 auto;color:#fff;font-size:24px;font-weight:800}'
+  +'.rbd-card h3{margin:0;font-size:19px;font-weight:800;color:#15161d;letter-spacing:-.02em}'
+  +'.rbd-res{display:flex;flex-direction:column;gap:6px}'
+  +'.rbd-res span{font-size:12.5px;font-weight:600;color:#0E7C68;background:#EDFBF6;border:1px solid #C9F0E2;border-radius:99px;padding:6px 12px;opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s}'
+  +'.rbd-res span.show{opacity:1;transform:none}'
+  +'.rbd-p{margin:0;font-size:13px;color:#6f6c7e;line-height:1.55}'
+  +'.rbd-cta{font-family:inherit;font-size:14px;font-weight:700;color:#fff;background:#6D4AFF;border:0;border-radius:12px;padding:13px 16px;cursor:pointer;transition:.18s;box-shadow:0 14px 30px -12px rgba(109,74,255,.55)}'
+  +'.rbd-cta:hover{background:#5b39f0;transform:translateY(-2px)}'
+  +'.rbd-demo{font-size:12.5px;font-weight:700;color:#6f6c7e;text-decoration:none}.rbd-demo:hover{color:#6D4AFF}'
+  +'.rbd-close{font-family:inherit;font-size:12px;font-weight:600;color:#9a97ad;background:none;border:0;cursor:pointer;padding:2px}'
+  +'#rb-cta{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(80px);z-index:998;display:flex;align-items:center;gap:12px;background:#15182B;color:#fff;border-radius:99px;padding:10px 10px 10px 18px;box-shadow:0 24px 60px -20px rgba(21,24,43,.65);opacity:0;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s;font-family:inherit}'
+  +'#rb-cta.show{transform:translateX(-50%) translateY(0);opacity:1}'
+  +'#rb-cta b{font-size:13.5px;font-weight:700}'
+  +'#rb-cta .rbc-spark{font-size:16px}'
+  +'#rbc-go{font-family:inherit;font-size:13px;font-weight:700;color:#fff;background:#6D4AFF;border:0;border-radius:99px;padding:9px 16px;cursor:pointer;transition:.18s;animation:rbcPulse 2s ease-in-out infinite}'
+  +'#rbc-go:hover{background:#5b39f0}'
+  +'@keyframes rbcPulse{0%,100%{box-shadow:0 0 0 0 rgba(109,74,255,.5)}50%{box-shadow:0 0 0 8px rgba(109,74,255,0)}}'
+  +'@media(prefers-reduced-motion:reduce){#rbc-go{animation:none}}'
+  +'#rbc-x{font-family:inherit;background:none;border:0;color:rgba(255,255,255,.5);font-size:17px;cursor:pointer;padding:0 6px 0 0}';
+  document.head.appendChild(st);
+  function openDone(title,results){
+    document.getElementById('rbd-title').textContent=title;
+    var res=document.getElementById('rbd-res');res.innerHTML='';
+    (results||[]).forEach(function(r,i){
+      var sp=document.createElement('span');sp.textContent=r;res.appendChild(sp);
+      setTimeout(function(){sp.classList.add('show')},250+i*420);
+    });
+    ov.classList.add('open');trX();
+  }
+  document.getElementById('rbd-close').addEventListener('click',function(){ov.classList.remove('open')});
+  ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.remove('open')});
+  function goPlatform(){try{parent.postMessage({srnNav:'signup'},'*')}catch(_){}}
+  document.getElementById('rbd-go').addEventListener('click',goPlatform);
+  document.getElementById('rbc-go').addEventListener('click',goPlatform);
+  var bannerDismissed=false;
+  document.getElementById('rbc-x').addEventListener('click',function(){bannerDismissed=true;banner.classList.remove('show')});
+  window.__rbMaybeBanner=function(){
+    if(bannerDismissed)return;
+    var ok=false;try{ok=isComplete()}catch(_){}
+    banner.classList.toggle('show',!!ok);
+  };
+  document.getElementById('btn-activate').addEventListener('click', function(){
+    if(!isComplete())return;
+    toast('Automatisation activ\u00e9e');
+    setTimeout(function(){openDone('Votre automatisation est pr\u00eate.',[])},700);
+  });
+  document.getElementById('btn-test').addEventListener('click', function(){
+    if(!isComplete())return;
+    toast('Simulation lanc\u00e9e sur 3 conv. test\u2026');
+    setTimeout(function(){openDone('Simulation termin\u00e9e \u2014 3 conversations test.',
+      ['\u2713 2 conversations r\u00e9solues automatiquement','\u2713 1 escalad\u00e9e \u00e0 l\u2019\u00e9quipe avec tout le contexte','\u2713 Z\u00e9ro sortie de cadre \u2014 r\u00e8gles respect\u00e9es']
+    )},1200);
+  });
+})();
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePopover(); closeAgentConfigModal(); } });
 
+var __r0=render;render=function(){__r0();if(window.__rbMaybeBanner)window.__rbMaybeBanner();};
 render();
 setTimeout(() => {
   const sl = document.querySelector('[data-slot="trigger"]');
