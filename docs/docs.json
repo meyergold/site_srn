@@ -28,7 +28,7 @@
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://sairen.io"
+      "href": "https://app.sairen.io"
     }
   },
   "footer": {
