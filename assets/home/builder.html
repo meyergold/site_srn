@@ -3352,7 +3352,7 @@ trX();
    +'</div>';
   document.body.appendChild(ov);
   var banner=document.createElement('div');banner.id='rb-cta';
-  banner.innerHTML='<span class="rbc-spark">\u2728</span><b>Votre automatisation est pr\u00eate</b>'
+  banner.innerHTML='<span class="rbc-spark">\u2728</span><span class="rbc-tx"><b>Votre automatisation est pr\u00eate</b><small>Cadr\u00e9e, testable, activable en un clic</small></span>'
    +'<button type="button" id="rbc-go">La tester sur la plateforme \u2192</button>'
    +'<button type="button" id="rbc-x" aria-label="Fermer">\u00d7</button>';
   document.body.appendChild(banner);
@@ -3370,15 +3370,7 @@ trX();
   +'.rbd-cta:hover{background:#5b39f0;transform:translateY(-2px)}'
   +'.rbd-demo{font-size:12.5px;font-weight:700;color:#6f6c7e;text-decoration:none}.rbd-demo:hover{color:#6D4AFF}'
   +'.rbd-close{font-family:inherit;font-size:12px;font-weight:600;color:#9a97ad;background:none;border:0;cursor:pointer;padding:2px}'
-  +'#rb-cta{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(80px);z-index:998;display:flex;align-items:center;gap:16px;background:#15182B;color:#fff;border-radius:99px;padding:11px 11px 11px 22px;box-shadow:0 24px 60px -20px rgba(21,24,43,.65);opacity:0;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s;font-family:inherit;white-space:nowrap;max-width:calc(100vw - 32px)}#rb-cta b{font-size:13.5px;font-weight:700;white-space:nowrap}#rbc-go{white-space:nowrap}@media(max-width:640px){#rb-cta{white-space:normal;flex-wrap:wrap;justify-content:center;border-radius:18px;padding:12px 14px}}'
-  +'#rb-cta.show{transform:translateX(-50%) translateY(0);opacity:1}'
-  +'#rb-cta b{font-size:13.5px;font-weight:700}'
-  +'#rb-cta .rbc-spark{font-size:16px}'
-  +'#rbc-go{font-family:inherit;font-size:13px;font-weight:700;color:#fff;background:#6D4AFF;border:0;border-radius:99px;padding:9px 16px;cursor:pointer;transition:.18s;animation:rbcPulse 2s ease-in-out infinite}'
-  +'#rbc-go:hover{background:#5b39f0}'
-  +'@keyframes rbcPulse{0%,100%{box-shadow:0 0 0 0 rgba(109,74,255,.5)}50%{box-shadow:0 0 0 8px rgba(109,74,255,0)}}'
-  +'@media(prefers-reduced-motion:reduce){#rbc-go{animation:none}}'
-  +'#rbc-x{font-family:inherit;background:none;border:0;color:rgba(255,255,255,.5);font-size:17px;cursor:pointer;padding:0 6px 0 0}';
+  +'#rb-cta{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(80px);z-index:998;display:flex;align-items:center;gap:13px;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#15161d;border:1px solid #E4E1F0;border-radius:18px;padding:12px 12px 12px 14px;box-shadow:0 24px 55px -24px rgba(60,30,110,.5);opacity:0;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s;font-family:inherit;white-space:nowrap;max-width:calc(100vw - 32px)}#rb-cta.show{transform:translateX(-50%) translateY(0);opacity:1}#rb-cta .rbc-spark{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#09cafc,#6D4AFF,#de06bb);font-size:15px}.rbc-tx b{display:block;font-size:13px;font-weight:700;color:#15161d;white-space:nowrap}.rbc-tx small{display:block;font-size:11px;color:#8a8aa8;font-weight:600;white-space:nowrap}#rbc-go{font-family:inherit;font-size:12.5px;font-weight:700;color:#fff;background:#6D4AFF;border:0;border-radius:12px;padding:10px 16px;cursor:pointer;transition:.18s;box-shadow:0 10px 24px -10px rgba(109,74,255,.55)}#rbc-go:hover{background:#5b39f0;transform:translateY(-1px)}@media(max-width:640px){#rb-cta{white-space:normal;flex-wrap:wrap;justify-content:center;border-radius:18px;padding:12px 14px}}#rbc-x{font-family:inherit;background:none;border:0;color:#b9b5cc;font-size:17px;cursor:pointer;padding:0 4px}';
   document.head.appendChild(st);
   function openDone(title,results){
     document.getElementById('rbd-title').textContent=title;
