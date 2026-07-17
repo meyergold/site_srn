@@ -73,7 +73,7 @@
                 "pages": [
                   {
                     "group": "Océan",
-                    "icon": "inbox",
+                    "icon": "/images/logos/ocean.png",
                     "pages": [
                       "produit/ocean",
                       "produit/contacts",
@@ -83,7 +83,7 @@
                   },
                   {
                     "group": "Ulysse",
-                    "icon": "brain",
+                    "icon": "/images/logos/ulysse.png",
                     "pages": [
                       "produit/ulysse",
                       "produit/analytics"
@@ -91,7 +91,7 @@
                   },
                   {
                     "group": "Desk",
-                    "icon": "users",
+                    "icon": "/images/logos/desk.png",
                     "pages": [
                       "produit/desk",
                       "produit/labels-groupes-colonnes"
@@ -99,7 +99,7 @@
                   },
                   {
                     "group": "Rainbow",
-                    "icon": "wand-magic-sparkles",
+                    "icon": "/images/logos/rainbow.svg",
                     "pages": [
                       "produit/rainbow",
                       "produit/rainbow-agents",
