@@ -1,0 +1,49 @@
+---
+title: "Options d'un groupe"
+description: "Régler le comportement de la classification : label obligatoire, labels multiples, création automatique."
+icon: "sliders-horizontal"
+---
+
+<p class="srn-eyebrow">Labels & classification</p>
+
+Trois options règlent la façon dont l'IA pose les labels d'un groupe. Voici ce que fait chacune — et quand l'activer.
+
+## Les trois options
+
+<AccordionGroup>
+  <Accordion title="Obligatoire">
+    L'IA doit **toujours** choisir un label du groupe, même quand l'échange est ambigu. Aucune ligne ne reste vide.
+
+    Activez-la quand le groupe doit être renseigné partout — une priorité, un statut. Laissez-la désactivée si « pas de label » est une information valable en soi.
+  </Accordion>
+
+  <Accordion title="Plusieurs labels">
+    Autorise **plus d'un label** du groupe sur la même ligne. Utile quand un échange peut cumuler plusieurs valeurs — par exemple un appel qui concerne à la fois une prise de rendez-vous et une demande de résultats.
+
+    Sans cette option, l'IA choisit le label unique le plus adapté.
+  </Accordion>
+
+  <Accordion title="Autoriser la création de labels">
+    Si aucun label existant ne correspond, l'IA **crée un nouveau label** dans le groupe au lieu de forcer un choix approximatif. Pratique au démarrage, quand vous ne connaissez pas encore tous les cas.
+
+    <Warning>
+      Cette option peut faire proliférer les labels : variantes d'orthographe, doublons, cas trop fins. Gardez la main : passez régulièrement en revue les labels créés, fusionnez les doublons, et désactivez l'option une fois le groupe stabilisé.
+    </Warning>
+  </Accordion>
+</AccordionGroup>
+
+<Frame caption="Les options de classification d'un groupe de labels.">
+  <img src="/images/labels/options-classification-1.png" alt="Options de classification d'un groupe" />
+</Frame>
+
+## Étapes suivantes
+
+<CardGroup cols={2}>
+  <Card title="La classification automatique" icon="sparkles" href="/labels/classification">
+    Comprendre comment l'IA applique la consigne du groupe.
+  </Card>
+
+  <Card title="Les groupes de labels" icon="tags" href="/labels/introduction">
+    Revoir les notions de label, groupe et type.
+  </Card>
+</CardGroup>
