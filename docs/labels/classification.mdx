@@ -1,0 +1,66 @@
+---
+title: "La classification automatique"
+description: "Comment l'IA choisit le bon label d'un groupe — et comment rédiger une consigne qui la guide bien."
+icon: "sparkles"
+---
+
+<p class="srn-eyebrow">Labels & classification</p>
+
+Vous n'avez pas à trier vos échanges à la main : l'IA lit chaque appel, message ou e-mail et pose le bon label du groupe. Tout repose sur la consigne que vous lui donnez.
+
+## Description et consigne : deux champs, deux lecteurs
+
+Un groupe de labels porte deux textes qu'il ne faut pas confondre :
+
+- La **description** est lue par un humain. Elle explique à vos collègues à quoi sert le groupe.
+- La **consigne de classification** est lue par l'IA. Elle lui dit comment choisir le bon label du groupe à partir du contenu de l'échange.
+
+Soignez la consigne comme si vous formiez un nouveau collègue : dites-lui quoi regarder et comment trancher.
+
+## Comment l'IA choisit
+
+L'IA lit le contenu de l'échange — la transcription d'un appel, le texte d'un message ou d'un e-mail — puis applique votre consigne pour choisir le label le plus adapté du groupe.
+
+La classification se lance dès qu'un workflow Rainbow contient une étape **Classifier une tâche**. Elle n'est **pas réservée aux appels** : n'importe quel déclencheur — appel terminé, message reçu, e-mail entrant — peut lancer une classification.
+
+<Frame caption="La consigne du groupe guide le choix du label.">
+  <img src="/images/labels/classification-1.png" alt="Consigne de classification d'un groupe de labels" />
+</Frame>
+
+## Rédiger une bonne consigne
+
+<Steps>
+  <Step title="Dites quoi classer">
+    Nommez ce que l'IA doit qualifier : le motif de l'appel, l'urgence de la demande, le type d'examen…
+  </Step>
+
+  <Step title="Dites sur quoi se baser">
+    Indiquez les indices à repérer dans l'échange : mots employés par le patient ou le client, demande explicite, contexte.
+  </Step>
+
+  <Step title="Tranchez les cas limites">
+    Précisez quoi faire quand plusieurs labels pourraient convenir, ou quand l'échange est flou. Exemple : « En cas de doute entre Haute et Urgent, choisir Urgent seulement si la personne demande une réponse le jour même. »
+  </Step>
+</Steps>
+
+<Tip>
+  Une bonne consigne tient en quelques phrases. Testez-la sur de vrais échanges, puis ajustez-la là où l'IA se trompe.
+</Tip>
+
+## Bon à savoir
+
+<Accordion title="Préciser un label en particulier">
+  Vous pouvez ajouter une précision propre à un label — par exemple ce qui distingue « SCANNER EPAULE » d'un autre examen. C'est optionnel : ne le faites que si l'IA hésite entre deux labels proches. Dans la plupart des cas, la consigne du groupe suffit.
+</Accordion>
+
+## Étapes suivantes
+
+<CardGroup cols={2}>
+  <Card title="Le nœud Classifier une tâche" icon="workflow" href="/rainbow/classifier-une-tache">
+    Ajouter l'étape de classification dans un workflow Rainbow.
+  </Card>
+
+  <Card title="Options d'un groupe" icon="sliders-horizontal" href="/labels/options-classification">
+    Obligatoire, plusieurs labels, création automatique de labels.
+  </Card>
+</CardGroup>

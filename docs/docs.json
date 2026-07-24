@@ -103,9 +103,20 @@
                     "pages": [
                       "produit/rainbow",
                       "produit/rainbow-agents",
-                      "produit/base-de-connaissances"
+                      "produit/base-de-connaissances",
+                      "rainbow/classifier-une-tache"
                     ]
                   }
+                ]
+              },
+              {
+                "group": "Labels & classification",
+                "icon": "tags",
+                "pages": [
+                  "labels/introduction",
+                  "labels/groupes-et-colonnes",
+                  "labels/classification",
+                  "labels/options-classification"
                 ]
               },
               {

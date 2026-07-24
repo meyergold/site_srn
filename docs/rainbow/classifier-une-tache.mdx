@@ -1,0 +1,51 @@
+---
+title: "Le nœud Classifier une tâche"
+description: "Ajouter l'étape de classification dans un workflow Rainbow pour que l'IA pose vos labels automatiquement."
+icon: "workflow"
+---
+
+<p class="srn-eyebrow">Rainbow</p>
+
+Vos groupes de labels sont prêts, mais rien ne se classe ? Il manque le nœud **Classifier une tâche** dans votre workflow : c'est lui qui déclenche la classification.
+
+## À quoi sert ce nœud
+
+Le nœud « Classifier une tâche » demande à l'IA de lire l'échange traité par le workflow et de poser les bons labels des groupes que vous avez sélectionnés. Placez-le après le déclencheur, une fois que le contenu de l'échange est disponible — après un appel terminé, un message reçu ou un e-mail entrant.
+
+Le canal n'a pas d'importance : tout déclencheur de workflow peut mener à une classification.
+
+## Ajouter le nœud
+
+<Steps>
+  <Step title="Ajoutez le nœud au workflow">
+    Dans l'éditeur Rainbow, insérez l'étape **Classifier une tâche** à l'endroit voulu du workflow.
+
+    <Frame caption="Le nœud Classifier une tâche dans un workflow Rainbow.">
+      <img src="/images/labels/classifier-une-tache-1.png" alt="Nœud Classifier une tâche dans l'éditeur de workflow" />
+    </Frame>
+  </Step>
+
+  <Step title="Sélectionnez les groupes de labels">
+    Choisissez le ou les groupes que l'IA doit appliquer à chaque passage du workflow.
+  </Step>
+
+  <Step title="Vérifiez les options héritées">
+    Le nœud reprend les options définies sur chaque groupe : Obligatoire, Plusieurs labels, Autoriser la création de labels. Vérifiez qu'elles correspondent à ce que vous attendez — elles se modifient sur le groupe, pas dans le nœud.
+  </Step>
+</Steps>
+
+<Info>
+  La **consigne de classification vient du groupe** : c'est la source unique. Vous ne la réécrivez pas dans le nœud — modifiez-la sur le groupe et tous les workflows qui l'utilisent en profitent.
+</Info>
+
+## Étapes suivantes
+
+<CardGroup cols={2}>
+  <Card title="La classification automatique" icon="sparkles" href="/labels/classification">
+    Comment l'IA choisit le label — et comment rédiger la consigne.
+  </Card>
+
+  <Card title="Rainbow : workflows" icon="/images/logos/rainbow.svg" href="/produit/rainbow">
+    Les bases des workflows Rainbow.
+  </Card>
+</CardGroup>
