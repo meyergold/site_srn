@@ -1,0 +1,70 @@
+---
+title: "Créer un workflow"
+description: "Construire pas à pas votre premier workflow Rainbow : un déclencheur, des étapes, une mise en service."
+icon: "workflow"
+---
+
+<p class="srn-eyebrow">Rainbow</p>
+
+Vous voulez qu'une règle métier s'exécute toute seule — sans y penser, sans oubli ? C'est exactement ce que fait un workflow Rainbow. Voici comment créer le vôtre.
+
+## Ce qu'est un workflow
+
+Un workflow enchaîne des étapes à partir d'un **déclencheur** : un appel terminé, un message reçu, un e-mail entrant, un label posé, un rendez-vous créé… À chaque fois que l'événement se produit, Sairen déroule vos étapes : envoyer un message, créer une tâche, classer l'échange, mettre à jour un contact, lancer un appel IA.
+
+{/* VIDEO-SLOT-1 : "Créer son premier workflow" (2-3 min, parcours complet) */}
+<Frame caption="Créer son premier workflow, de A à Z.">
+  <img src="/images/rainbow/creer-un-workflow-1.png" alt="Vue d'ensemble de l'éditeur de workflow Rainbow" />
+</Frame>
+
+## Créer votre premier workflow
+
+<Steps>
+  <Step title="Ouvrez Rainbow et créez un workflow">
+    Depuis Rainbow, cliquez sur **Créer un workflow** et donnez-lui un nom parlant — vous le retrouverez dans la liste.
+  </Step>
+
+  <Step title="Choisissez le déclencheur">
+    Sélectionnez l'événement qui lance le workflow : appel terminé, message reçu, e-mail entrant… C'est le point de départ de tout le reste.
+
+    <Frame caption="Le choix du déclencheur.">
+      <img src="/images/rainbow/creer-un-workflow-2.png" alt="Sélection du déclencheur d'un workflow" />
+    </Frame>
+  </Step>
+
+  <Step title="Ajoutez vos étapes">
+    Enchaînez les actions dans l'ordre voulu. Par exemple : **Classifier une tâche** pour poser vos labels, puis **Envoyer un message** pour accuser réception.
+  </Step>
+
+  <Step title="Testez, puis activez">
+    Vérifiez le comportement sur un cas réel, puis activez le workflow. Il s'exécute désormais à chaque déclenchement.
+  </Step>
+</Steps>
+
+<Tip>
+  Commencez par un workflow court — un déclencheur, deux étapes. Vous l'enrichirez une fois le comportement validé.
+</Tip>
+
+## Bon à savoir
+
+<AccordionGroup>
+  <Accordion title="Un workflow peut-il faire appel à l'IA ?">
+    Oui, de deux façons : une étape **Classifier une tâche** pose automatiquement vos labels, et un [agent IA](/produit/rainbow-agents) peut prendre la main quand il faut de la souplesse. Le déterministe pour la fiabilité, l'IA pour les cas nuancés.
+  </Accordion>
+
+  <Accordion title="Combien de workflows puis-je créer ?">
+    Autant que nécessaire. Préférez plusieurs workflows courts et lisibles à un seul workflow qui fait tout.
+  </Accordion>
+</AccordionGroup>
+
+## Étapes suivantes
+
+<CardGroup cols={2}>
+  <Card title="Le nœud Classifier une tâche" icon="tags" href="/rainbow/classifier-une-tache">
+    L'étape qui pose vos labels automatiquement.
+  </Card>
+
+  <Card title="Paramétrer votre agent IA" icon="robot" href="/who_and_what">
+    Donner un rôle, des connaissances et des règles à votre agent.
+  </Card>
+</CardGroup>

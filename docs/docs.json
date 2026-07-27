@@ -54,7 +54,6 @@
                 "icon": "rocket",
                 "pages": [
                   "welcome",
-                  "who_and_what",
                   "produit/lire-l-interface"
                 ]
               },
@@ -101,9 +100,11 @@
                 "icon": "/images/logos/rainbow.svg",
                 "pages": [
                   "produit/rainbow",
+                  "rainbow/creer-un-workflow",
+                  "rainbow/classifier-une-tache",
                   "produit/rainbow-agents",
-                  "produit/base-de-connaissances",
-                  "rainbow/classifier-une-tache"
+                  "who_and_what",
+                  "produit/base-de-connaissances"
                 ]
               },
               {
