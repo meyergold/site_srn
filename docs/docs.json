@@ -69,48 +69,25 @@
                 ]
               },
               {
-                "group": "Produit",
+                "group": "Gérer vos conversations",
+                "icon": "/images/logos/ocean.png",
                 "pages": [
-                  {
-                    "group": "Océan",
-                    "icon": "/images/logos/ocean.png",
-                    "pages": [
-                      "produit/ocean",
-                      "produit/contacts",
-                      "produit/unification-contacts",
-                      "produit/templates"
-                    ]
-                  },
-                  {
-                    "group": "Ulysse",
-                    "icon": "/images/logos/ulysse.png",
-                    "pages": [
-                      "produit/ulysse",
-                      "produit/analytics"
-                    ]
-                  },
-                  {
-                    "group": "Desk",
-                    "icon": "/images/logos/desk.png",
-                    "pages": [
-                      "produit/desk",
-                      "produit/labels-groupes-colonnes"
-                    ]
-                  },
-                  {
-                    "group": "Rainbow",
-                    "icon": "/images/logos/rainbow.svg",
-                    "pages": [
-                      "produit/rainbow",
-                      "produit/rainbow-agents",
-                      "produit/base-de-connaissances",
-                      "rainbow/classifier-une-tache"
-                    ]
-                  }
+                  "produit/ocean",
+                  "produit/contacts",
+                  "produit/unification-contacts",
+                  "produit/templates"
                 ]
               },
               {
-                "group": "Labels & classification",
+                "group": "Organiser vos tâches",
+                "icon": "/images/logos/desk.png",
+                "pages": [
+                  "produit/desk",
+                  "produit/labels-groupes-colonnes"
+                ]
+              },
+              {
+                "group": "Classer avec les labels",
                 "icon": "tags",
                 "pages": [
                   "labels/introduction",
@@ -120,7 +97,25 @@
                 ]
               },
               {
-                "group": "Compte",
+                "group": "Automatiser",
+                "icon": "/images/logos/rainbow.svg",
+                "pages": [
+                  "produit/rainbow",
+                  "produit/rainbow-agents",
+                  "produit/base-de-connaissances",
+                  "rainbow/classifier-une-tache"
+                ]
+              },
+              {
+                "group": "Piloter votre activité",
+                "icon": "/images/logos/ulysse.png",
+                "pages": [
+                  "produit/ulysse",
+                  "produit/analytics"
+                ]
+              },
+              {
+                "group": "Compte & équipe",
                 "icon": "user-gear",
                 "pages": [
                   "compte/roles",
