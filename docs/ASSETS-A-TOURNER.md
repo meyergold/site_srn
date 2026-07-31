@@ -81,10 +81,12 @@ La démo santé ne les couvre pas : ils demandent un second screencast.
 Page `/rainbow/creer-un-workflow` :
 
 - [ ] `images/rainbow/creer-un-workflow-1.png` — vue d'ensemble de l'éditeur.
-- [x] `images/rainbow/creer-un-workflow-2.mp4` + `.png` (image d'attente) —
-      le choix du déclencheur. **Reçu** en GIF de 12,2 Mo, converti en MP4
-      de 539 Ko (÷23) et recadré sur la fenêtre de l'app. La liste réelle
-      des déclencheurs qu'il montre est désormais documentée en tableau.
+- [x] `images/rainbow/creer-un-workflow-2.gif` — le choix du déclencheur.
+      **Reçu**, version allégée fournie par l'auteur : 5,5 Mo en 808×480.
+      La liste réelle des déclencheurs qu'il montre est documentée en
+      tableau sur la page. *(Une conversion MP4 du fichier d'origine
+      pesait 539 Ko en 1212×720 — à ressortir si le poids devient un
+      problème.)*
 - [ ] **À refaire proprement** : l'enregistrement vient de l'entité
       **CCE - DEV** et la liste de labels affiche des noms de test
       (« testt emna 4 », « yahya », « test label »…). Lisible, mais peu
