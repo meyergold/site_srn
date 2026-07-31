@@ -31,16 +31,18 @@ muet. Si vous préférez le GIF, respectez le poids cible — le GIF existant
 
 Page : `/rainbow/dicter-un-workflow`
 
-- [ ] **Vidéo complète** — la démo santé déjà tournée. À publier sur YouTube
-      en non répertorié, puis me donner l'URL : je remplace l'image par
-      l'embed maison.
-- [ ] `images/rainbow/dicter-un-workflow-1.png` — vue d'ensemble : la demande
-      en langage naturel et Ulysse en train de construire. *(Remplacé par
-      l'embed vidéo si la vidéo arrive.)*
-- [ ] `images/rainbow/dicter-un-workflow-2.png` — la question de cadrage
-      « sur quel logiciel ? » avec les choix Doctolib / Enovacom / EDL.
-- [ ] `images/rainbow/dicter-un-workflow-3.png` — le workflow généré, canvas
-      entier lisible.
+- [x] **Vidéo complète** — « Ulysse - Build a labeling workflow » intégrée
+      (`fZdHuwpjrd4`). Elle remplace l'emplacement image n° 1.
+- [x] `images/rainbow/dicter-un-workflow-2.png` — la question de cadrage
+      « Quel canal SMS utiliser pour ce workflow ? ». **Reçue.**
+- [x] `images/rainbow/dicter-un-workflow-3.png` — le workflow généré.
+      **Reçue**, recadrée pour retirer le vide du bas. Sert aussi de vue
+      d'ensemble sur `creer-un-workflow-1.png`.
+- [ ] **À refaire si possible** : la même capture en disposition
+      **Verticale** (le bouton en haut du canvas). En horizontal, le workflow
+      s'étale sur 2 460 px et les titres de nœuds sont tronqués — à la largeur
+      d'une page de doc, ils deviennent illisibles. En vertical, l'image est
+      haute et étroite : chaque nœud reste lisible.
 
 ## Lot 2 — Parcours patient (priorité haute)
 
@@ -54,7 +56,13 @@ Page : `/integrations/health/parcours-patient`
       l'analyse de réponse et l'alerte soignant.
 - [ ] `images/sante/parcours-patient-4.png` — canvas satisfaction : RDV
       terminé → satisfaction → avis + prise en charge.
-- [ ] `images/sante/parcours-patient-5.png` — l'écran de choix du canal SMS.
+- [x] `images/sante/parcours-patient-5.png` — l'écran de choix du canal SMS.
+      **Reçue** (même capture que `dicter-un-workflow-2.png`).
+- [x] `images/sante/parcours-patient-agenda.png` — « D'où viennent tes
+      rendez-vous ? » avec Doctolib / Enovacom (XploreRVE) / EDL (XploreRVE) /
+      CSV / autre système. **Reçue** — elle a servi à documenter la liste
+      exacte des sources dans la page.
+- [x] **Vidéo complète** — « Le patient autonome » intégrée (`XOGF3zfXQ6o`).
 
 ## Lot 3 — Ulysse
 

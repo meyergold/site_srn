@@ -12,10 +12,9 @@ Vous savez ce que vous voulez automatiser, mais pas comment le construire ? Déc
 
 Vous formulez votre besoin en langage naturel. Ulysse pose les questions qui manquent — sur quel logiciel s'appuyer, quel canal utiliser — puis construit le workflow dans Rainbow. Vous le retrouvez sur le canvas, étape par étape, modifiable comme s'il avait été monté à la main.
 
-{/* VIDÉO 1 — Dicter un workflow (parcours complet). Remplacer par l'<iframe> YouTube quand la vidéo est en ligne. */}
-<Frame caption="Dicter une automatisation à Ulysse, de la demande au workflow.">
-  <img src="/images/rainbow/dicter-un-workflow-1.png" alt="Ulysse construit un workflow à partir d'une demande en langage naturel" />
-</Frame>
+<div style={{position: 'relative', width: '100%', aspectRatio: '16 / 9', margin: '8px 0'}}>
+  <iframe src="https://www.youtube.com/embed/fZdHuwpjrd4" loading="lazy" title="Ulysse construit un workflow de classification" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen frameBorder="0" style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', borderRadius: '16px', border: '1px solid rgba(120, 110, 255, 0.25)'}} />
+</div>
 
 ## Dicter votre automatisation
 
@@ -33,19 +32,21 @@ Vous formulez votre besoin en langage naturel. Ulysse pose les questions qui man
   </Step>
 
   <Step title="Répondez aux questions de cadrage">
-    Ulysse demande ce qui lui manque : sur quel logiciel métier s'appuyer, par quel canal passer, quelle équipe prévenir. Chaque réponse resserre le workflow.
+    Ulysse ne devine pas : il demande ce qui lui manque, une question à la fois, avec les options déjà disponibles chez vous. Par quel canal envoyer le message ? Sur quel agenda s'appuyer ? Quelle équipe prévenir ? Chaque réponse resserre le workflow.
 
-    <Frame caption="Ulysse demande sur quel logiciel s'appuyer avant de construire.">
-      <img src="/images/rainbow/dicter-un-workflow-2.png" alt="Question de cadrage posée par Ulysse" />
+    <Frame caption="Ulysse propose les canaux déjà connectés — vous cliquez, il continue.">
+      <img src="/images/rainbow/dicter-un-workflow-2.png" alt="Ulysse demande quel canal SMS utiliser pour le workflow" />
     </Frame>
   </Step>
 
   <Step title="Relisez le workflow sur le canvas">
     Ulysse affiche l'enchaînement complet : le déclencheur, chaque étape, chaque embranchement. Vérifiez que la logique correspond à votre protocole.
 
-    <Frame caption="Le workflow généré, étape par étape sur le canvas.">
+    <Frame caption="Le workflow généré : chaque étape, chaque condition, chaque branche.">
       <img src="/images/rainbow/dicter-un-workflow-3.png" alt="Workflow généré par Ulysse sur le canvas Rainbow" />
     </Frame>
+
+    Les conditions ouvrent deux branches (**vrai** / **faux**), les attentes deux issues (**reçu** / **délai dépassé**) : vous voyez d'un coup d'œil ce qui se passe dans chaque cas.
   </Step>
 
   <Step title="Validez, puis pilotez">

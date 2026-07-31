@@ -8,17 +8,43 @@ icon: "heart-pulse"
 
 Les rendez-vous oubliés, les appels manqués au secrétariat, le suivi post-consultation qui passe à la trappe : autant de tâches qui reposent aujourd'hui sur votre équipe. Voici quatre automatisations qui les prennent en charge.
 
+<div style={{position: 'relative', width: '100%', aspectRatio: '16 / 9', margin: '8px 0'}}>
+  <iframe src="https://www.youtube.com/embed/XOGF3zfXQ6o" loading="lazy" title="Le patient autonome — automatiser le parcours patient avec Sairen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen frameBorder="0" style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', borderRadius: '16px', border: '1px solid rgba(120, 110, 255, 0.25)'}} />
+</div>
+
 ## Avant de commencer
 
 <Info>
   **Prérequis**
 
-  - Un logiciel métier connecté : [Doctolib](/integrations/health/doctolib), [Enovacom](/integrations/health/enovacom), EDL…
+  - Une source de rendez-vous connectée (voir ci-dessous).
   - Un canal **SMS** actif (voir [Ajouter un canal](/canaux/ajouter-un-canal)).
   - Le rôle **Administrateur** pour mettre une automatisation en service.
 </Info>
 
 Chacune des automatisations ci-dessous se **dicte en une phrase** à Ulysse, qui la construit dans Rainbow — voir [Dicter un workflow en langage naturel](/rainbow/dicter-un-workflow).
+
+<span id="source-rendez-vous" />
+
+### D'où viennent vos rendez-vous
+
+Avant de construire, Ulysse demande où sont vos rendez-vous — c'est ce qui détermine quels patients relancer :
+
+| Source | Pour qui |
+| --- | --- |
+| [**Doctolib**](/integrations/health/doctolib) | Cabinets et centres déjà équipés Doctolib |
+| **Enovacom (XploreRVE)** | Hôpital et clinique — voir [Enovacom](/integrations/health/enovacom) |
+| **EDL (XploreRVE)** | Établissements équipés EDL |
+| **CSV / fichier externe** | Import manuel ou planifié, sans intégration |
+| **Autre système** | API externe, webhook |
+
+<Frame caption="Ulysse demande la source des rendez-vous avant de construire l'automatisation.">
+  <img src="/images/sante/parcours-patient-agenda.png" alt="Ulysse demande d'où viennent les rendez-vous : Doctolib, Enovacom, EDL, CSV ou autre système" />
+</Frame>
+
+<Tip>
+  L'option **CSV / fichier externe** permet de démarrer sans attendre une intégration : vous testez une automatisation sur un export, puis vous branchez la source définitive.
+</Tip>
 
 <span id="rappel-rendez-vous" />
 
@@ -78,9 +104,9 @@ Une fois le rendez-vous marqué comme terminé dans votre logiciel, la satisfact
 
 ## Le choix du canal
 
-Ces automatisations passent par **SMS** dans la plupart des cas : le canal est pré-paramétré une fois, puis réutilisé par tous vos workflows.
+Ces automatisations passent par **SMS** dans la plupart des cas. Ulysse liste les canaux déjà connectés chez vous et vous laisse choisir celui à utiliser pour ce workflow.
 
-<Frame caption="Le canal SMS, choisi une fois pour toutes.">
+<Frame caption="Le choix du canal SMS, parmi ceux déjà connectés.">
   <img src="/images/sante/parcours-patient-5.png" alt="Sélection du canal SMS dans un workflow" />
 </Frame>
 
