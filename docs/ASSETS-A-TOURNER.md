@@ -68,8 +68,10 @@ Page : `/integrations/health/parcours-patient`
 
 Page : `/produit/ulysse`
 
-- [ ] `images/produit/ulysse-comparaison-modeles.png` — les propositions de
-      plusieurs IA côte à côte sur une même demande.
+- [x] `images/produit/ulysse-comparaison-modeles.png` — les réponses de deux
+      IA côte à côte, avec le sélecteur et la conso moyenne. **Reçue**,
+      recadrée. Elle a servi à documenter le geste complet (sélection →
+      envoi unique → « Choisir cette réponse »).
 
 ## Lot 4 — Workflows et labels (emplacements déjà en attente)
 
