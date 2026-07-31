@@ -107,8 +107,11 @@ Pages `/labels/*` :
       documenter les poignées, l'œil, « Obligatoire » et « Trier par ».
 - [ ] `images/labels/groupes-et-colonnes-2.png` — choix des groupes pour une
       colonne personnalisée.
-- [ ] `images/labels/classification-1.png` — la consigne de classification
-      d'un groupe.
+- [x] `images/labels/classification-1.png` — l'éditeur de groupe avec la
+      description et la consigne. **Reçue**, recadrée sur le modal. Elle a
+      appris à la doc : limite de 120 caractères sur la description, bouton
+      **Régénérer** la consigne, type de labels et visibilité au niveau du
+      groupe.
 - [ ] `images/labels/options-classification-1.png` — les trois options du
       groupe.
 - [ ] `images/labels/introduction-1.png` — schéma définir → classifier →
