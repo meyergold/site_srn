@@ -102,7 +102,9 @@ Page `/rainbow/classifier-une-tache` :
 
 Pages `/labels/*` :
 
-- [ ] `images/labels/groupes-et-colonnes-1.png` — menu « Gérer les colonnes ».
+- [x] `images/labels/groupes-et-colonnes-1.png` — la fenêtre « Gérer les
+      colonnes ». **Reçue**, recadrée sur le modal. Elle a permis de
+      documenter les poignées, l'œil, « Obligatoire » et « Trier par ».
 - [ ] `images/labels/groupes-et-colonnes-2.png` — choix des groupes pour une
       colonne personnalisée.
 - [ ] `images/labels/classification-1.png` — la consigne de classification
