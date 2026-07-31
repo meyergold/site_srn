@@ -10,7 +10,7 @@
     "light": "/logo/sairenlogotransparent.png",
     "dark": "/logo/sairen-light.png"
   },
-  "favicon": "/logo/sairen-favicon.png",
+  "favicon": "/logo/sairen-favicon-gradient.png",
   "background": {
     "decoration": "gradient",
     "color": {
