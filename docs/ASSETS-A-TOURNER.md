@@ -81,7 +81,15 @@ La démo santé ne les couvre pas : ils demandent un second screencast.
 Page `/rainbow/creer-un-workflow` :
 
 - [ ] `images/rainbow/creer-un-workflow-1.png` — vue d'ensemble de l'éditeur.
-- [ ] `images/rainbow/creer-un-workflow-2.png` — le choix du déclencheur.
+- [x] `images/rainbow/creer-un-workflow-2.mp4` + `.png` (image d'attente) —
+      le choix du déclencheur. **Reçu** en GIF de 12,2 Mo, converti en MP4
+      de 539 Ko (÷23) et recadré sur la fenêtre de l'app. La liste réelle
+      des déclencheurs qu'il montre est désormais documentée en tableau.
+- [ ] **À refaire proprement** : l'enregistrement vient de l'entité
+      **CCE - DEV** et la liste de labels affiche des noms de test
+      (« testt emna 4 », « yahya », « test label »…). Lisible, mais peu
+      présentable sur une doc publique. Une reprise sur une entité propre,
+      avec des labels plausibles (Urgent / Normale / Basse), serait mieux.
 
 Page `/rainbow/classifier-une-tache` :
 

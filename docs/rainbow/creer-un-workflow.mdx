@@ -10,7 +10,9 @@ Vous voulez qu'une règle métier s'exécute toute seule — sans y penser, sans
 
 ## Ce qu'est un workflow
 
-Un workflow enchaîne des étapes à partir d'un **déclencheur** : un appel terminé, un message reçu, un e-mail entrant, un label posé, un rendez-vous créé… À chaque fois que l'événement se produit, Sairen déroule vos étapes : envoyer un message, créer une tâche, classer l'échange, mettre à jour un contact, lancer un appel IA.
+Un workflow enchaîne des étapes à partir d'un **déclencheur** : une conversation qui arrive, un appel qui se termine, un label qui est posé… À chaque fois que l'événement se produit, Sairen déroule vos étapes : envoyer un message, créer une tâche, classer l'échange, mettre à jour un contact, lancer un appel IA.
+
+Les e-mails ne font pas exception : ils arrivent dans Océan comme des conversations, donc les mêmes déclencheurs s'appliquent.
 
 <Frame caption="L'éditeur Rainbow : la palette d'étapes à gauche, le workflow sur le canvas.">
   <img src="/images/rainbow/creer-un-workflow-1.png" alt="Vue d'ensemble de l'éditeur de workflow Rainbow" />
@@ -26,15 +28,28 @@ La palette de gauche regroupe tout ce que vous pouvez ajouter : **déclencheurs*
   </Step>
 
   <Step title="Choisissez le déclencheur">
-    Sélectionnez l'événement qui lance le workflow : appel terminé, message reçu, e-mail entrant… C'est le point de départ de tout le reste.
+    Sélectionnez l'événement qui lance le workflow. C'est le point de départ de tout le reste :
 
-    <Frame caption="Le choix du déclencheur.">
-      <img src="/images/rainbow/creer-un-workflow-2.png" alt="Sélection du déclencheur d'un workflow" />
-    </Frame>
+    | Déclencheur | Se produit quand |
+    | --- | --- |
+    | **Conversation créée** | Un nouvel échange arrive, quel que soit le canal |
+    | **Message reçu** | Un message entre dans une conversation existante |
+    | **Label appliqué** | Un label est posé — vous pouvez viser **un label précis** |
+    | **Appel terminé** | Un appel se termine, transcription disponible |
+    | **Session IA démarrée / terminée** | Un agent IA prend ou rend la main |
+    | **Message reçu par l'IA** | L'agent IA reçoit un message |
+
+    <div style={{position: 'relative', width: '100%', margin: '12px 0'}}>
+      <video src="/images/rainbow/creer-un-workflow-2.mp4" poster="/images/rainbow/creer-un-workflow-2.png" autoPlay muted loop playsInline controls style={{width: '100%', borderRadius: '16px', border: '1px solid rgba(120, 110, 255, 0.25)', display: 'block'}} />
+    </div>
+
+    Deux filtres optionnels resserrent le déclenchement : le **type de canal** (WhatsApp, SMS, RCS…) et une **connexion précise** (un numéro WhatsApp en particulier, par exemple). Sans filtre, le workflow réagit à tous.
   </Step>
 
   <Step title="Ajoutez vos étapes">
-    Enchaînez les actions dans l'ordre voulu. Par exemple : **Classifier une tâche** pour poser vos labels, puis **Envoyer un message** pour accuser réception.
+    Enchaînez les actions dans l'ordre voulu depuis la palette de gauche. Par exemple : **Classifier une tâche** pour poser vos labels, puis **Envoyer un message** pour accuser réception.
+
+    Les étapes **Logique** ouvrent deux branches selon une condition, les étapes **Attente** patientent jusqu'à une réponse ou l'expiration d'un délai.
   </Step>
 
   <Step title="Testez, puis activez">
