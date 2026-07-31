@@ -10,33 +10,47 @@ Vos groupes de labels sont prêts, mais rien ne se classe ? Il manque le nœud *
 
 ## À quoi sert ce nœud
 
-Le nœud « Classifier une tâche » demande à l'IA de lire l'échange traité par le workflow et de poser les bons labels des groupes que vous avez sélectionnés. Placez-le après le déclencheur, une fois que le contenu de l'échange est disponible — après une conversation créée, un message reçu ou un appel terminé.
+Le nœud de classification demande à l'IA de lire l'échange traité par le workflow et de poser les bons labels des groupes que vous avez sélectionnés. Placez-le après le déclencheur, une fois que le contenu de l'échange est disponible — après une conversation créée, un message reçu ou un appel terminé.
+
+Dans la palette **Actions**, l'étape à choisir est **Classifier une conversation** : elle lit l'échange et attache les labels à la conversation.
 
 Le canal n'a pas d'importance : tout déclencheur de workflow peut mener à une classification.
 
 ## Ajouter le nœud
 
 <Steps>
-  <Step title="Ajoutez le nœud au workflow">
-    Dans l'éditeur Rainbow, insérez l'étape **Classifier une tâche** à l'endroit voulu du workflow.
+  <Step title="Placez le nœud dans le workflow">
+    Depuis la palette **Actions**, insérez l'étape de classification après le déclencheur. Dans l'exemple ci-dessous, elle s'intercale entre la récupération des messages et une condition qui décide de créer une tâche.
 
-    <Frame caption="Le nœud Classifier une tâche dans un workflow Rainbow.">
-      <img src="/images/rainbow/classifier-une-tache-1.png" alt="Nœud Classifier une tâche dans l'éditeur de workflow" />
+    <Frame caption="Le nœud de classification, entre le déclencheur et la suite du workflow.">
+      <img src="/images/rainbow/classifier-une-tache-1.png" alt="Nœud de classification dans un workflow Rainbow" />
+    </Frame>
+  </Step>
+
+  <Step title="Nommez le nœud">
+    Donnez-lui un nom qui dit ce qu'il fait — « Classifier par motif » plutôt que « Action 2 ». C'est ce nom qui s'affiche sur le canvas.
+  </Step>
+
+  <Step title="Rédigez la consigne du nœud">
+    Le champ **Prompt** porte la consigne générale : comment lire l'échange et comment trancher. Une consigne par défaut est déjà en place — elle demande à l'IA de choisir les valeurs les plus pertinentes en se basant uniquement sur le contenu de l'échange, et de laisser vide si rien ne correspond.
+
+    <Frame caption="La configuration du nœud : consigne générale, puis groupes de labels.">
+      <img src="/images/rainbow/classifier-une-tache-2.png" alt="Panneau de configuration du nœud de classification" />
     </Frame>
   </Step>
 
   <Step title="Sélectionnez les groupes de labels">
-    Choisissez le ou les groupes que l'IA doit appliquer à chaque passage du workflow.
-  </Step>
-
-  <Step title="Vérifiez les options héritées">
-    Le nœud reprend les options définies sur chaque groupe : Obligatoire, Plusieurs labels, Autoriser la création de labels. Vérifiez qu'elles correspondent à ce que vous attendez — elles se modifient sur le groupe, pas dans le nœud.
+    Ce champ est **obligatoire** : choisissez au moins un groupe. Chaque groupe ajouté affiche son nombre de labels et son propre champ de description — c'est là que vous précisez, pour ce groupe seulement, comment choisir entre ses labels.
   </Step>
 </Steps>
 
 <Info>
-  La **consigne de classification vient du groupe** : c'est la source unique. Vous ne la réécrivez pas dans le nœud — modifiez-la sur le groupe et tous les workflows qui l'utilisent en profitent.
+  **Deux niveaux de consigne, et ils se complètent.** La consigne du **nœud** vaut pour toute la classification. La description de chaque **groupe** précise comment arbitrer entre les labels de ce groupe. Écrivez le général dans le nœud, le particulier dans le groupe.
 </Info>
+
+<Tip>
+  L'interrupteur **Continuer si erreur** décide de la suite si la classification échoue : activé, le workflow poursuit ses étapes ; désactivé, il s'arrête là. Activez-le quand la classification est un enrichissement, laissez-le désactivé quand la suite n'a aucun sens sans elle.
+</Tip>
 
 ## Étapes suivantes
 

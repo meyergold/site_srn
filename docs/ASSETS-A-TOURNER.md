@@ -93,7 +93,12 @@ Page `/rainbow/creer-un-workflow` :
 
 Page `/rainbow/classifier-une-tache` :
 
-- [ ] `images/rainbow/classifier-une-tache-1.png` — le nœud dans un workflow.
+- [x] `images/rainbow/classifier-une-tache-1.png` — le nœud dans un workflow
+      (disposition **verticale**, bien plus lisible). **Reçue.**
+- [x] `images/rainbow/classifier-une-tache-2.png` — le panneau de
+      configuration du nœud. **Reçue** (découpée de la même capture). Elle a
+      corrigé une erreur de la doc : le nœud porte sa propre consigne, en
+      plus de celle de chaque groupe.
 
 Pages `/labels/*` :
 
