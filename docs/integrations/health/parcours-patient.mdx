@@ -1,0 +1,117 @@
+---
+title: "Automatiser le parcours patient"
+description: "Quatre automatisations prêtes à dicter : rappels de rendez-vous, appels non aboutis, suivi post-consultation, satisfaction."
+icon: "heart-pulse"
+---
+
+<p class="srn-eyebrow">Santé</p>
+
+Les rendez-vous oubliés, les appels manqués au secrétariat, le suivi post-consultation qui passe à la trappe : autant de tâches qui reposent aujourd'hui sur votre équipe. Voici quatre automatisations qui les prennent en charge.
+
+## Avant de commencer
+
+<Info>
+  **Prérequis**
+
+  - Un logiciel métier connecté : [Doctolib](/integrations/health/doctolib), [Enovacom](/integrations/health/enovacom), EDL…
+  - Un canal **SMS** actif (voir [Ajouter un canal](/canaux/ajouter-un-canal)).
+  - Le rôle **Administrateur** pour mettre une automatisation en service.
+</Info>
+
+Chacune des automatisations ci-dessous se **dicte en une phrase** à Ulysse, qui la construit dans Rainbow — voir [Dicter un workflow en langage naturel](/rainbow/dicter-un-workflow).
+
+<span id="rappel-rendez-vous" />
+
+## 1. Rappels de rendez-vous et créneaux libérés
+
+Le patient reçoit un rappel à **J-2** puis **J-1**. S'il ne peut pas venir, il reprogramme **en un clic** — et le créneau libéré est aussitôt proposé à la liste d'attente. Un rendez-vous annulé ne devient plus un trou dans le planning.
+
+> À dicter : « Fais un rappel J-2 et J-1, laisse le patient reprogrammer en un clic et propose les créneaux libérés à la liste d'attente. »
+
+<Frame caption="Le workflow de rappel et de réattribution des créneaux.">
+  <img src="/images/sante/parcours-patient-1.png" alt="Workflow de rappel de rendez-vous à J-2 et J-1" />
+</Frame>
+
+<span id="appel-non-abouti" />
+
+## 2. Appel non abouti au secrétariat
+
+Quand un appel au secrétariat n'aboutit pas, le patient reçoit un **SMS de rappel**. L'échange qualifie son **motif**, puis l'oriente : un créneau à fixer en autonomie, des documents d'information, ou une **escalade vers le soignant** si la situation le demande.
+
+> À dicter : « Quand un appel au secrétariat n'aboutit pas, rappelle le patient par SMS, qualifie le motif, propose un créneau et escalade au soignant si besoin. »
+
+<Frame caption="Du contact récupéré à l'orientation du patient.">
+  <img src="/images/sante/parcours-patient-2.png" alt="Workflow de rappel après un appel non abouti" />
+</Frame>
+
+<span id="suivi-post-consultation" />
+
+## 3. Suivi post-consultation
+
+À **J+1** puis **J+7**, le patient reçoit un message pour prendre de ses nouvelles. Sa réponse est analysée : si elle contient un signal — douleur, fièvre, saignement — le **soignant est alerté** immédiatement. Sinon, le suivi se referme tout seul.
+
+> À dicter : « Prends des nouvelles à J+1 et J+7 après le rendez-vous, détecte une douleur, une fièvre ou un saignement, et alerte le soignant en cas de signal. »
+
+<Frame caption="Le suivi à J+1 et J+7, avec alerte du soignant sur signal.">
+  <img src="/images/sante/parcours-patient-3.png" alt="Workflow de suivi post-consultation" />
+</Frame>
+
+<Warning>
+  **Le protocole reste celui du soignant.** L'automatisation repère des signaux dans la réponse du patient et alerte selon les règles que vous avez définies. Elle ne pose aucun diagnostic et ne décide pas de l'orientation : c'est le soignant qui tranche. Prévoyez toujours un message d'urgence rappelant au patient d'appeler le 15 ou les urgences en cas de situation grave.
+</Warning>
+
+<span id="satisfaction" />
+
+## 4. Satisfaction après la visite
+
+Une fois le rendez-vous marqué comme terminé dans votre logiciel, la satisfaction du patient est mesurée. **Tous les patients** sont invités à laisser un avis Google ; en parallèle, les retours négatifs déclenchent une **prise en charge** pour comprendre la friction. L'ensemble remonte à la direction opérationnelle.
+
+> À dicter : « Après chaque visite, mesure la satisfaction du patient, invite-le à laisser un avis Google et fais remonter les retours négatifs pour prise en charge. »
+
+<Frame caption="De la mesure de satisfaction à l'avis et à la prise en charge.">
+  <img src="/images/sante/parcours-patient-4.png" alt="Workflow de satisfaction et d'avis après la visite" />
+</Frame>
+
+<Warning>
+  **Ne filtrez pas les avis selon la note.** Inviter uniquement les patients satisfaits à déposer un avis Google est contraire aux règles de Google et à la réglementation française sur les avis en ligne. Sollicitez tout le monde, et traitez le mécontentement **en parallèle** de la demande d'avis — pas à la place.
+</Warning>
+
+## Le choix du canal
+
+Ces automatisations passent par **SMS** dans la plupart des cas : le canal est pré-paramétré une fois, puis réutilisé par tous vos workflows.
+
+<Frame caption="Le canal SMS, choisi une fois pour toutes.">
+  <img src="/images/sante/parcours-patient-5.png" alt="Sélection du canal SMS dans un workflow" />
+</Frame>
+
+## Questions fréquentes
+
+<AccordionGroup>
+  <Accordion title="Faut-il tout mettre en service d'un coup ?">
+    Non — et c'est déconseillé. Commencez par une seule automatisation, mesurez son effet sur quelques semaines, puis ajoutez la suivante. Une automatisation qui ne produit rien se remplace.
+  </Accordion>
+
+  <Accordion title="Les données patient sortent-elles de l'établissement ?">
+    Non : Sairen est hébergé en France, en conformité RGPD et HDS. Voir [Doctolib](/integrations/health/doctolib) pour le détail de l'historique patient unifié.
+  </Accordion>
+
+  <Accordion title="Et si mon logiciel métier n'est pas dans la liste ?">
+    Dites-le à Ulysse au moment du cadrage : il s'appuie sur les connexions disponibles. Pour un logiciel absent du catalogue, écrivez à [contact@sairen.io](mailto:contact@sairen.io).
+  </Accordion>
+</AccordionGroup>
+
+## Étapes suivantes
+
+<CardGroup cols={3}>
+  <Card title="Dicter un workflow" icon="wand-sparkles" href="/rainbow/dicter-un-workflow">
+    Décrire l'automatisation, laisser Ulysse la construire.
+  </Card>
+
+  <Card title="Doctolib" icon="/images/doctolib.png" href="/integrations/health/doctolib">
+    Prise de rendez-vous et rappels reliés à Doctolib.
+  </Card>
+
+  <Card title="Enovacom" icon="/images/enovacom.png" href="/integrations/health/enovacom">
+    L'interopérabilité hospitalière.
+  </Card>
+</CardGroup>

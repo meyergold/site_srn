@@ -101,6 +101,7 @@
                 "pages": [
                   "produit/rainbow",
                   "rainbow/creer-un-workflow",
+                  "rainbow/dicter-un-workflow",
                   "rainbow/classifier-une-tache",
                   "produit/rainbow-agents",
                   "who_and_what",
@@ -142,6 +143,7 @@
                   {
                     "group": "Santé",
                     "pages": [
+                      "integrations/health/parcours-patient",
                       "integrations/health/doctolib",
                       "integrations/health/enovacom"
                     ]
