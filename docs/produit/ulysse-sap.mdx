@@ -1,0 +1,70 @@
+---
+title: "Ulysse & votre ERP : l'exemple SAP"
+sidebarTitle: "Ulysse & SAP"
+description: "Ulysse interroge votre ERP en langage naturel — exemple : connaître le nombre de livraisons en attente dans SAP."
+---
+
+<p class="srn-eyebrow">Produit</p>
+
+Ulysse ne s'arrête pas à [Océan](/produit/ocean), [Desk](/produit/desk) et [Rainbow](/produit/rainbow) : il peut aussi interroger vos **systèmes métier**. Dans cette démonstration, Ulysse est relié à l'ERP **SAP** et répond en langage naturel à une question logistique — *« Combien de livraisons sont en attente ? »*.
+
+<div style={{position: 'relative', width: '100%', aspectRatio: '16 / 9', margin: '8px 0'}}>
+  <iframe src="https://www.youtube.com/embed/d1uONip1e-w" loading="lazy" title="Ulysse interroge l'ERP SAP — livraisons en attente" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen frameBorder="0" style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%', borderRadius: '16px', border: '1px solid rgba(120, 110, 255, 0.25)'}} />
+</div>
+
+## Ce que montre la vidéo
+
+Vous posez une question métier en langage naturel ; Ulysse va chercher la réponse **directement dans SAP** :
+
+> « Combien de livraisons sont en attente ? »
+
+Aucune transaction SAP à ouvrir, aucune requête technique à écrire : Ulysse interprète la demande, interroge l'ERP et vous renvoie le chiffre, dans la conversation.
+
+## Pourquoi Ulysse peut répondre
+
+Ulysse raisonne sur la **donnée reliée** plutôt que sur des silos (voir [Exécuter des actions](/produit/ulysse#executer)). Une fois votre ERP branché à Sairen, il devient l'une des sources qu'Ulysse peut interroger — au même titre qu'Océan, Desk ou Rainbow.
+
+<Info>
+  **Prérequis**
+
+  - Votre ERP (ici **SAP**) relié à Sairen via vos [connexions IA & données](/canaux/ajouter-un-canal#connexions-ia-donnees).
+  - Ulysse activé avec une clé API (voir [Connecter Ulysse](/produit/ulysse#connecter-cle-api)).
+</Info>
+
+## Au-delà des livraisons
+
+Le nombre de livraisons en attente n'est qu'un exemple. Dès lors que la donnée métier est reliée, la même mécanique s'applique à d'autres questions — commandes, stocks, délais — toujours en langage naturel, et toujours avec votre validation avant la moindre action.
+
+## Questions fréquentes
+
+<AccordionGroup>
+  <Accordion title="Faut-il connaître les transactions SAP ?">
+    Non. Vous posez votre question en langage naturel ; c'est Ulysse qui traduit la demande pour l'ERP.
+  </Accordion>
+
+  <Accordion title="Ulysse modifie-t-il des données dans SAP ?">
+    Dans cette démonstration, Ulysse **lit** et répond. Comme partout dans Sairen, toute action qui écrirait dans un système est **proposée puis exécutée après votre validation**.
+  </Accordion>
+
+  <Accordion title="Est-ce limité à SAP ?">
+    Non — la démonstration porte sur SAP, mais la même logique vaut pour les autres systèmes métier reliés à Sairen.
+  </Accordion>
+</AccordionGroup>
+
+## Ressources liées
+
+<CardGroup cols={3}>
+  <Card title="Ulysse" icon="/images/logos/ulysse.png" href="/produit/ulysse">
+    Le copilote IA, en langage naturel.
+  </Card>
+
+  <Card title="Analytics" icon="chart-line" href="/produit/analytics">
+    La donnée reliée qu'Ulysse analyse.
+  </Card>
+
+  <Card title="Connexions IA & données" icon="plug" href="/canaux/ajouter-un-canal#connexions-ia-donnees">
+    Brancher vos sources métier à Sairen.
+  </Card>
+</CardGroup>
+
+[Ouvrir Sairen →](https://app.sairen.io)

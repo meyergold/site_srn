@@ -113,6 +113,7 @@
                 "icon": "/images/logos/ulysse.png",
                 "pages": [
                   "produit/ulysse",
+                  "produit/ulysse-sap",
                   "produit/analytics"
                 ]
               },
