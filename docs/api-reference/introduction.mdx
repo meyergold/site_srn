@@ -1,28 +1,79 @@
 ---
-title: "Introduction"
-description: "Example section for showcasing API endpoints"
+title: "API Sairen"
+sidebarTitle: "Introduction"
+description: "Déclencher des appels, envoyer des SMS, joindre un contact et piloter vos agents — l'API REST de Sairen."
 ---
 
+<p class="srn-eyebrow">API</p>
+
+L'API Sairen expose en **REST** ce que la plateforme fait au quotidien : déclencher des **appels sortants**, envoyer et recevoir des **SMS**, **joindre un contact** sur le bon canal et **piloter vos agents**. Requêtes et réponses en **JSON**, authentification par clé.
+
+## Les bases
+
+<CardGroup cols={2}>
+  <Card title="Production" icon="server">
+    `https://api.sairen.io`
+  </Card>
+  <Card title="Staging" icon="flask">
+    `https://api-staging.sairen.io`
+  </Card>
+</CardGroup>
+
+## Authentification
+
+Chaque requête porte votre clé dans l'en-tête **`x-api-key`**.
+
+```bash
+curl https://api.sairen.io/agents \
+  -H "x-api-key: VOTRE_CLE_API"
+```
+
+<Warning>
+  Gardez votre clé **côté serveur**. Ne l'exposez jamais dans un front public ni dans un dépôt.
+</Warning>
+
+## Les familles d'endpoints
+
+<CardGroup cols={2}>
+  <Card title="Leads — appels sortants" icon="phone-arrow-up-right">
+    Déclencher un appel téléphonique et suivre son statut.
+
+    `POST /leads/v3/phone-call` · `GET /leads/v3/phone-call/status` _(v2 disponible)_
+  </Card>
+
+  <Card title="Contact — SMS & messages" icon="comment-sms">
+    Envoyer un SMS, relire l'historique d'un contact, recevoir les SMS entrants.
+
+    `POST /api/contact/send-sms` · `GET /api/contact/{contact_id}/{channel}`
+  </Card>
+
+  <Card title="Reach — joindre un contact" icon="paper-plane">
+    Atteindre un contact sur un canal — **Talk**, **Send** ou **Chat**.
+
+    `POST /v3/reach`
+  </Card>
+
+  <Card title="Agents" icon="robot">
+    Lister vos agents et récupérer leurs variables dynamiques _(v3 / beta)_.
+
+    `GET /agents` · `GET /agents/v3`
+  </Card>
+
+  <Card title="Config" icon="gear">
+    Configuration persistante par client (webhook, token), par agent.
+
+    `POST /config/setup` · `GET·PUT·DELETE /config/setup/{agent_id}`
+  </Card>
+</CardGroup>
+
+## Réponses & erreurs
+
+Les endpoints renvoient du **JSON** et suivent les **codes HTTP standards** : `2xx` en cas de succès, `4xx` pour une requête invalide ou une clé manquante, `5xx` côté serveur. Le détail de chaque schéma se trouve sur la page de l'endpoint concerné.
+
 <Note>
-  If you're not looking to build API reference documentation, you can delete this section by removing the api-reference folder.
+  Dépliez la section **Endpoints** dans le menu de gauche pour tester chaque route directement, avec vos propres valeurs.
 </Note>
 
-## Welcome
-
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card title="Plant Store Endpoints" icon="leaf" href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json">
-  View the OpenAPI specification file
+<Card title="Connecter Ulysse & vos données" icon="brain" href="/produit/ulysse#connecter-cle-api">
+  Côté produit, c'est Ulysse qui orchestre ces capacités en langage naturel.
 </Card>
-
-## Authentication
-
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
-
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```

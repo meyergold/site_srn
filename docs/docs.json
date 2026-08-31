@@ -176,6 +176,12 @@
             "icon": "terminal",
             "groups": [
               {
+                "group": "Démarrer",
+                "pages": [
+                  "api-reference/introduction"
+                ]
+              },
+              {
                 "group": "Endpoints",
                 "openapi": {
                   "source": "api-reference/openapi.json",
