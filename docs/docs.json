@@ -63,6 +63,7 @@
                 "pages": [
                   "canaux/ajouter-un-canal",
                   "canaux/whatsapp",
+                  "canaux/instagram",
                   "canaux/gmail",
                   "canaux/outlook"
                 ]
