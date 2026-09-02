@@ -58,21 +58,21 @@
                 ]
               },
               {
-                "group": "Connecter vos canaux",
-                "icon": "plug",
-                "pages": [
-                  "canaux/ajouter-un-canal",
-                  "canaux/whatsapp",
-                  "canaux/instagram",
-                  "canaux/gmail",
-                  "canaux/outlook"
-                ]
-              },
-              {
                 "group": "Gérer vos conversations",
                 "icon": "/images/logos/ocean.png",
                 "pages": [
                   "produit/ocean",
+                  {
+                    "group": "Connecter vos canaux",
+                    "icon": "plug",
+                    "pages": [
+                      "canaux/ajouter-un-canal",
+                      "canaux/whatsapp",
+                      "canaux/instagram",
+                      "canaux/gmail",
+                      "canaux/outlook"
+                    ]
+                  },
                   "produit/contacts",
                   "produit/unification-contacts",
                   "produit/templates"
