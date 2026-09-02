@@ -1,0 +1,76 @@
+{
+  "_comment": "Mapping Monday <-> Git. Seul fichier a modifier pour brancher le flow sur un autre repo.",
+  "monday": {
+    "account": "sairen-company",
+    "workspace": {
+      "name": "Build",
+      "id": 7494912
+    },
+    "boards": {
+      "backlog": 5103238969,
+      "sprints": 5103238971,
+      "supportQa": 5103238972,
+      "features": 5103238970,
+      "roadmap": 5103241050,
+      "epics": 5103238974,
+      "tests": 5103258170,
+      "signals": 5103242794
+    },
+    "backlogColumns": {
+      "itemId": "pulse_id_mm6r75ej",
+      "status": "color_mm6rnz2n",
+      "assignee": "multiple_person_mm6r3k22",
+      "priority": "color_mm6rhacc",
+      "source": "color_mm6rwtac",
+      "epic": "board_relation_mm6r28ez",
+      "sprint": "board_relation_mm6rc6f",
+      "branch": "text_mm6trh7",
+      "pr": "link_mm6tvy5a",
+      "qaResult": "lookup_mm6tgc4q"
+    },
+    "_statusNote": "Libelles existants du board Backlog, dans l'ordre du flow. Ne pas renommer ici sans renommer sur le board.",
+    "statusLabels": {
+      "backlog": "Backlog",
+      "assigned": "Assigné",
+      "inProgress": "En dev",
+      "prOpen": "PR",
+      "inReview": "Review",
+      "reviewOk": "Validé",
+      "deployedDev": "Mise en dev",
+      "tested": "Testé ✅",
+      "prod": "En production ✅",
+      "blocked": "Bloqué",
+      "retest": "Retest 🔄"
+    },
+    "products": [
+      "Ulysse",
+      "Ocean",
+      "Desk",
+      "Rainbow",
+      "Horizon"
+    ],
+    "_boardsNote": "🐛 Liste des bugs a été archivé : Support team & QA est l'entrée unique des remontées.",
+    "existingAutomations": {
+      "_note": "Automatisations Monday deja en place sur le Backlog. Les Actions ne doivent PAS les refaire.",
+      "1718788797": "Statut -> 'Mise en dev' cree l'item de QA dans 🧪 Tests (groupe 'À tester'). C'est la passation vers Nathan : l'Action se contente du statut + du ping Slack.",
+      "1718789933": "Nouvel item -> Statut 'Backlog'.",
+      "1718785540": "Sprint renseigne -> deplace l'item dans le groupe 'En cours'.",
+      "1718785916": "Statut -> 'En production ✅' -> deplace dans '✅ Livré / Clôturé'.",
+      "1718792226": "'Source — Support team & QA' renseignee -> Source = 'Support team & QA'."
+    }
+  },
+  "git": {
+    "repo": "meyergold/site_srn",
+    "baseBranch": "main",
+    "branchPrefix": "feat"
+  },
+  "slack": {
+    "sourceChannel": "#support-team-and-q-a",
+    "flowChannel": "#build-flow",
+    "notifyOn": [
+      "deployedDev"
+    ],
+    "flowChannelId": "C0BU4F46W1M",
+    "_note": "sourceChannel = ou l'equipe remonte aujourd'hui (a remplacer par le formulaire Monday). flowChannel = notifications automatiques du flow."
+  }
+}
