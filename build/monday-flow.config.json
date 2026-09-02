@@ -1,0 +1,49 @@
+{
+  "_comment": "Mapping Monday <-> Git. Les ids null sont remplis une fois les boards créés dans l'espace Build.",
+  "monday": {
+    "account": "sairen-company",
+    "workspace": {
+      "name": "Build",
+      "id": null
+    },
+    "boards": {
+      "sprint": null,
+      "tickets": null,
+      "ideas": null,
+      "roadmap": null
+    },
+    "sprintColumns": {
+      "status": "status",
+      "dev": null,
+      "product": null,
+      "size": null,
+      "priority": null,
+      "epic": null,
+      "branch": null,
+      "pr": null,
+      "source": null
+    },
+    "statusLabels": {
+      "backlog": "Backlog",
+      "assigned": "Assigné",
+      "inProgress": "En cours",
+      "prOpen": "PR ouverte",
+      "reviewOk": "Review OK",
+      "deployedDev": "Déployé en dev",
+      "tested": "Testé",
+      "prod": "En prod"
+    }
+  },
+  "git": {
+    "repo": "meyergold/site_srn",
+    "baseBranch": "main",
+    "branchPrefix": "feat"
+  },
+  "slack": {
+    "channel": "#build-flow",
+    "notifyOn": [
+      "deployedDev",
+      "prod"
+    ]
+  }
+}

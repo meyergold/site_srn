@@ -1,0 +1,78 @@
+name: Git → Monday
+
+# Fait avancer l'item Monday au rythme de la PR.
+# L'id de l'item est lu dans le nom de la branche : feat/<itemId>-slug
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review, closed]
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: monday-sync-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      MONDAY_API_TOKEN: ${{ secrets.MONDAY_API_TOKEN }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      BRANCH: ${{ github.event.pull_request.head.ref }}
+      PR_URL: ${{ github.event.pull_request.html_url }}
+      PR_TITLE: ${{ github.event.pull_request.title }}
+      MERGED: ${{ github.event.pull_request.merged }}
+      REVIEW_STATE: ${{ github.event.review.state }}
+      EVENT: ${{ github.event_name }}:${{ github.event.action }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Retrouver l'item Monday
+        id: item
+        run: |
+          source build/scripts/monday.sh
+          ID=$(item_id_from_branch "$BRANCH")
+          if [ -z "$ID" ]; then
+            echo "Branche '$BRANCH' hors convention feat/<itemId>-slug, rien à synchroniser."
+          fi
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+
+      - name: Avancer le statut
+        if: steps.item.outputs.id != '' && env.MONDAY_API_TOKEN != ''
+        env:
+          ID: ${{ steps.item.outputs.id }}
+        run: |
+          source build/scripts/monday.sh
+          ITEM_URL="https://$(cfg '.monday.account').monday.com/boards/$(cfg '.monday.boards.sprint')/pulses/$ID"
+
+          case "$EVENT" in
+            pull_request:opened|pull_request:reopened|pull_request:ready_for_review)
+              monday_set_status "$ID" prOpen
+              monday_update "$ID" "PR ouverte : $PR_URL"
+              ;;
+
+            pull_request_review:submitted)
+              if [ "$REVIEW_STATE" = "approved" ]; then
+                monday_set_status "$ID" reviewOk
+                monday_update "$ID" "Review approuvée sur $PR_URL"
+              else
+                echo "review '$REVIEW_STATE' : pas de changement de statut"
+              fi
+              ;;
+
+            pull_request:closed)
+              if [ "$MERGED" = "true" ]; then
+                monday_set_status "$ID" deployedDev
+                monday_update "$ID" "PR mergée, déployée en dev : $PR_URL<br>À tester."
+                slack_notify "$(printf '%s\n%s\n%s\n' \
+                  ":test_tube: *À tester en dev* — $PR_TITLE" \
+                  "PR : $PR_URL" \
+                  "Item : $ITEM_URL")"
+              else
+                monday_update "$ID" "PR fermée sans merge : $PR_URL"
+              fi
+              ;;
+          esac
