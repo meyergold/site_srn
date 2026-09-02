@@ -31,6 +31,10 @@ jobs:
           # Active automatiquement GitHub Pages (source = GitHub Actions) si besoin
           enablement: true
 
+      # La plomberie du flow produit/dev n'a rien a faire sur le site public
+      - name: Exclure les fichiers internes de l'artefact
+        run: rm -rf build .claude
+
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
