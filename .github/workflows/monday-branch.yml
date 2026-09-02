@@ -53,7 +53,7 @@ jobs:
           {
             echo "base=$(cfg '.git.baseBranch')"
             echo "branch=$(cfg '.git.branchPrefix')/$ITEM_ID-$SLUG"
-            echo "item_url=https://$(cfg '.monday.account').monday.com/boards/$(cfg '.monday.boards.sprint')/pulses/$ITEM_ID"
+            echo "item_url=https://$(cfg '.monday.account').monday.com/boards/$(cfg '.monday.boards.backlog')/pulses/$ITEM_ID"
           } >> "$GITHUB_OUTPUT"
 
       - name: Créer la branche et la PR draft

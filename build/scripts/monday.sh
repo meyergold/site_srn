@@ -29,14 +29,14 @@ monday_gql() {
 monday_set_status() {
   local item_id="$1" key="$2"
   local board col label
-  board=$(cfg '.monday.boards.sprint')
-  col=$(cfg '.monday.sprintColumns.status')
+  board=$(cfg '.monday.boards.backlog')
+  col=$(cfg '.monday.backlogColumns.status')
   label=$(cfg ".monday.statusLabels.$key")
   if [ "$board" = "null" ] || [ -z "$board" ]; then
     echo "board sprint non configure dans $CFG, on saute" >&2
     return 0
   fi
-  monday_gql "mutation { change_simple_column_value(board_id: $board, item_id: $item_id, column_id: \"$col\", value: \"$label\", create_labels_if_missing: true) { id } }" >/dev/null
+  monday_gql "mutation { change_simple_column_value(board_id: $board, item_id: $item_id, column_id: \"$col\", value: \"$label\") { id } }" >/dev/null
   echo "item $item_id -> $label"
 }
 
@@ -44,8 +44,8 @@ monday_set_status() {
 monday_set_text() {
   local item_id="$1" key="$2" value="$3"
   local board col
-  board=$(cfg '.monday.boards.sprint')
-  col=$(cfg ".monday.sprintColumns.$key")
+  board=$(cfg '.monday.boards.backlog')
+  col=$(cfg ".monday.backlogColumns.$key")
   if [ "$board" = "null" ] || [ "$col" = "null" ]; then return 0; fi
   local escaped
   escaped=$(printf '%s' "$value" | jq -Rr '@json | .[1:-1]')

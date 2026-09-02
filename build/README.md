@@ -10,20 +10,47 @@ Repo de test : `meyergold/site_srn`. Espace Monday : **Build** (`7494912`).
 > Vercel en production. Les branches créées par l'automatisation ne déclenchent
 > aucun déploiement — ne merger dans `main` que volontairement.
 
+## L'architecture Monday (existante)
+
+Espace **Build** (`7494912`). Quatre boîtes d'entrée alimentent un board de
+travail unique, qui alimente le pilotage :
+
+```
+🛠️ Support team & QA  ┐
+✨ Fonctionnalités     ├──►  📋 Backlog  ──►  ⚡ Sprints  ──►  🎯 Épics  ──►  🗺️ Product Roadmap
+🐛 Liste des bugs      │     (le board de          │
+📡 Signaux produit     ┘      travail)             └──►  🧪 Tests
+```
+
+`📋 Backlog` (`5103238969`) est **le** board sur lequel branche la synchro Git.
+Il porte déjà les colonnes `Source — …` et les miroirs qui remontent contexte,
+comportement observé/attendu et captures depuis les boîtes d'entrée : une tâche
+arrive avec son contexte, sans recopie.
+
+`⚡ Sprints` n'est pas un board de tâches — c'est un item par sprint (timeline,
+objectifs, actif). Les tâches du Backlog s'y rattachent.
+
 ## Les statuts
 
-Un item de sprint passe par 8 statuts, dont **3 seulement sont bougés à la main** :
+Les 8 statuts vivent sur la colonne `Statut` du board Backlog
+(`color_mm6rnz2n`). **Seuls 3 sont bougés à la main** :
 
 | Statut | Qui / quoi le déclenche |
 |---|---|
-| `Backlog` | dépôt initial (formulaire, ou toi) |
+| `Backlog` | dépôt initial (boîte d'entrée, ou toi) |
 | `Assigné` | **manuel** — toi + Yahya, le lundi |
-| `En cours` | auto — le dev clique « Créer la branche » sur l'item |
-| `PR ouverte` | auto — ouverture de la PR |
-| `Review OK` | auto — review approuvée sur la PR |
-| `Déployé en dev` | auto — merge de la PR (+ ping Slack pour la QA) |
-| `Testé` | **manuel** — Nathan Berracasa |
-| `En prod` | **manuel** — Yahya |
+| `En dev` | auto — le dev clique « Créer la branche » sur l'item |
+| `PR` | auto — ouverture de la PR (draft incluse) |
+| `Review` | auto — la PR sort du draft |
+| `Validé` | auto — review approuvée |
+| `Mise en dev` | auto — merge de la PR (+ ping Slack pour la QA) |
+| `Testé ✅` | **manuel** — Nathan Berracasa |
+| `En production ✅` | **manuel** — Yahya |
+
+`Bloqué` et `Retest 🔄` restent manuels, hors du flow automatique.
+
+Deux colonnes ont été ajoutées au Backlog pour la synchro, à ne pas remplir à
+la main : **`Branche`** (`text_mm6trh7`) et **`PR GitHub`** (`link_mm6tvy5a`).
 
 ## Les deux automatisations
 
@@ -55,20 +82,22 @@ branche hors convention est simplement ignorée.
 
 | Événement GitHub | Effet |
 |---|---|
-| PR ouverte / réouverte / prête | statut `PR ouverte` + update sur l'item |
-| review `approved` | statut `Review OK` + update |
-| PR mergée | statut `Déployé en dev` + update + **ping Slack « à tester »** |
+| PR ouverte / réouverte | statut `PR` + update sur l'item |
+| PR sortie du draft | statut `Review` + update |
+| review `approved` | statut `Validé` + update |
+| PR mergée | statut `Mise en dev` + update + **ping Slack « à tester »** |
 | PR fermée sans merge | update seulement, pas de changement de statut |
 
 ## Configuration
 
 Tout le mapping vit dans **`monday-flow.config.json`** — board ids, colonnes,
-libellés de statut, préfixe de branche, canal Slack. C'est le seul fichier à
+libellés de statut, produits, préfixe de branche, canal Slack. C'est le seul fichier à
 toucher pour brancher le flow sur le vrai repo de Yahya en v2 : aucun id n'est
 codé en dur dans les workflows.
 
-Les libellés de statut sont créés à la volée sur le board s'ils manquent
-(`create_labels_if_missing`), donc renommer un statut dans le JSON suffit.
+Les libellés du JSON doivent correspondre **exactement** à ceux du board. Un
+libellé inconnu fait échouer le run avec la liste des valeurs valides, plutôt
+que de créer silencieusement un doublon sur le board.
 
 ## Secrets à créer sur le repo
 
@@ -106,3 +135,25 @@ build/
   monday-branch.yml          Monday -> branche + PR draft
   monday-sync.yml            Git -> Monday
 ```
+
+## Vérifié en réel le 2 septembre 2026
+
+Sur l'item jetable `3199324383` du Backlog, via l'API Monday, avec exactement
+les mutations que les workflows exécutent :
+
+- les 8 transitions de statut passent, **emoji compris** (`Testé ✅`,
+  `En production ✅`) ;
+- `Branche` et `PR GitHub` s'écrivent et se relisent correctement ;
+- `create_update` poste bien l'update sur l'item ;
+- un libellé erroné échoue avec `ColumnValueException / missingLabel` et la
+  liste des statuts valides — le run casse au lieu de polluer le board ;
+- l'item a été remis à `Backlog` et ses deux colonnes vidées.
+
+## Reste à faire
+
+- [ ] `MONDAY_API_TOKEN` et `SLACK_WEBHOOK_URL` en secrets du repo
+- [ ] PAT GitHub (scope `repo`) côté Monday, pour appeler `/dispatches`
+- [ ] bouton « Créer la branche » sur le board Backlog, câblé sur le webhook
+- [ ] canal Slack dédié + son webhook, puis renseigner `slack.flowChannel`
+- [ ] merger `monday-branch.yml` dans `main` (sinon `repository_dispatch` ne part pas)
+- [ ] nettoyer les colonnes en double du Backlog et des boîtes d'entrée

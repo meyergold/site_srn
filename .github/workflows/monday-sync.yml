@@ -46,12 +46,17 @@ jobs:
           ID: ${{ steps.item.outputs.id }}
         run: |
           source build/scripts/monday.sh
-          ITEM_URL="https://$(cfg '.monday.account').monday.com/boards/$(cfg '.monday.boards.sprint')/pulses/$ID"
+          ITEM_URL="https://$(cfg '.monday.account').monday.com/boards/$(cfg '.monday.boards.backlog')/pulses/$ID"
 
           case "$EVENT" in
-            pull_request:opened|pull_request:reopened|pull_request:ready_for_review)
+            pull_request:opened|pull_request:reopened)
               monday_set_status "$ID" prOpen
               monday_update "$ID" "PR ouverte : $PR_URL"
+              ;;
+
+            pull_request:ready_for_review)
+              monday_set_status "$ID" inReview
+              monday_update "$ID" "PR sortie du draft, en attente de review : $PR_URL"
               ;;
 
             pull_request_review:submitted)

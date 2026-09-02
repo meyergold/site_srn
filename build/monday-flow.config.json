@@ -1,38 +1,54 @@
 {
-  "_comment": "Mapping Monday <-> Git. Les ids null sont remplis une fois les boards créés dans l'espace Build.",
+  "_comment": "Mapping Monday <-> Git. Seul fichier a modifier pour brancher le flow sur un autre repo.",
   "monday": {
     "account": "sairen-company",
     "workspace": {
       "name": "Build",
-      "id": null
+      "id": 7494912
     },
     "boards": {
-      "sprint": null,
-      "tickets": null,
-      "ideas": null,
-      "roadmap": null
+      "backlog": 5103238969,
+      "sprints": 5103238971,
+      "supportQa": 5103238972,
+      "features": 5103238970,
+      "roadmap": 5103241050,
+      "epics": 5103238974,
+      "bugs": 5103238973,
+      "tests": 5103258170,
+      "signals": 5103242794
     },
-    "sprintColumns": {
-      "status": "status",
-      "dev": null,
-      "product": null,
-      "size": null,
-      "priority": null,
-      "epic": null,
-      "branch": null,
-      "pr": null,
-      "source": null
+    "backlogColumns": {
+      "itemId": "pulse_id_mm6r75ej",
+      "status": "color_mm6rnz2n",
+      "assignee": "multiple_person_mm6r3k22",
+      "priority": "color_mm6rhacc",
+      "source": "color_mm6rwtac",
+      "epic": "board_relation_mm6r28ez",
+      "sprint": "board_relation_mm6rc6f",
+      "branch": "text_mm6trh7",
+      "pr": "link_mm6tvy5a"
     },
+    "_statusNote": "Libelles existants du board Backlog, dans l'ordre du flow. Ne pas renommer ici sans renommer sur le board.",
     "statusLabels": {
       "backlog": "Backlog",
       "assigned": "Assigné",
-      "inProgress": "En cours",
-      "prOpen": "PR ouverte",
-      "reviewOk": "Review OK",
-      "deployedDev": "Déployé en dev",
-      "tested": "Testé",
-      "prod": "En prod"
-    }
+      "inProgress": "En dev",
+      "prOpen": "PR",
+      "inReview": "Review",
+      "reviewOk": "Validé",
+      "deployedDev": "Mise en dev",
+      "tested": "Testé ✅",
+      "prod": "En production ✅",
+      "blocked": "Bloqué",
+      "retest": "Retest 🔄"
+    },
+    "products": [
+      "Ulysse",
+      "Ocean",
+      "Desk",
+      "Rainbow",
+      "Horizon"
+    ]
   },
   "git": {
     "repo": "meyergold/site_srn",
@@ -40,10 +56,10 @@
     "branchPrefix": "feat"
   },
   "slack": {
-    "channel": "#build-flow",
+    "sourceChannel": "#support-team-and-q-a",
+    "flowChannel": null,
     "notifyOn": [
-      "deployedDev",
-      "prod"
+      "deployedDev"
     ]
   }
 }
