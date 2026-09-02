@@ -57,6 +57,10 @@
       "1718785540": "Sprint renseigne -> deplace l'item dans le groupe 'En cours'.",
       "1718785916": "Statut -> 'En production ✅' -> deplace dans '✅ Livré / Clôturé'.",
       "1718792226": "'Source — Support team & QA' renseignee -> Source = 'Support team & QA'."
+    },
+    "_statusIndexNote": "Index numeriques des libelles, requis par les filtres de l'API (query_params n'accepte pas les libelles texte).",
+    "statusIndexes": {
+      "assigned": 103
     }
   },
   "git": {

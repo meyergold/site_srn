@@ -1,0 +1,72 @@
+name: Monday → branche (scrutation)
+
+# Le dev se sert lui-même : il passe son item du Backlog en « Assigné » dans
+# Monday, et la branche + la PR draft sont créées au passage suivant.
+# Aucune configuration côté Monday, aucun jeton GitHub à y stocker.
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: monday-poll
+  cancel-in-progress: false
+
+jobs:
+  scruter:
+    runs-on: ubuntu-latest
+    env:
+      MONDAY_API_TOKEN: ${{ secrets.MONDAY_API_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Créer branche et PR pour chaque tâche assignée sans branche
+        run: |
+          if [ -z "${MONDAY_API_TOKEN:-}" ]; then
+            echo "MONDAY_API_TOKEN absent, rien à scruter."
+            exit 0
+          fi
+
+          source build/scripts/monday.sh
+
+          BOARD=$(cfg '.monday.boards.backlog')
+          STATUS_COL=$(cfg '.monday.backlogColumns.status')
+          BRANCH_COL=$(cfg '.monday.backlogColumns.branch')
+          DEV_COL=$(cfg '.monday.backlogColumns.assignee')
+          ASSIGNED=$(cfg '.monday.statusIndexes.assigned')
+
+          QUERY=$(printf 'query { boards(ids: [%s]) { items_page(limit: 25, query_params: {rules: [{column_id: "%s", compare_value: [%s], operator: any_of}]}) { items { id name column_values(ids: ["%s", "%s"]) { id text } } } } }' \
+            "$BOARD" "$STATUS_COL" "$ASSIGNED" "$BRANCH_COL" "$DEV_COL")
+
+          RESP=$(monday_gql "$QUERY")
+
+          # On ne garde que les items dont la colonne Branche est encore vide,
+          # pour ne pas repasser sur une tache deja lancee.
+          CANDIDATS=$(printf '%s' "$RESP" | jq -r \
+            --arg bcol "$BRANCH_COL" --arg dcol "$DEV_COL" '
+            .data.boards[0].items_page.items[]
+            | . as $it
+            | (($it.column_values[] | select(.id == $bcol) | .text) // "") as $branche
+            | select($branche == "")
+            | [ $it.id,
+                $it.name,
+                (($it.column_values[] | select(.id == $dcol) | .text) // "")
+              ] | @tsv')
+
+          if [ -z "$CANDIDATS" ]; then
+            echo "Aucune tâche « Assigné » sans branche."
+            exit 0
+          fi
+
+          echo "$CANDIDATS" | while IFS=$'\t' read -r id titre dev; do
+            [ -n "$id" ] || continue
+            echo "--- item $id : $titre"
+            build/scripts/create-branch.sh "$id" "$titre" "$dev"
+          done
