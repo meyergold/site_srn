@@ -151,11 +151,11 @@ les mutations que les workflows exécutent :
 
 ## Reste à faire
 
-- [ ] `MONDAY_API_TOKEN` et `SLACK_WEBHOOK_URL` en secrets du repo
+- [x] `MONDAY_API_TOKEN` et `SLACK_WEBHOOK_URL` en secrets du repo — **vérifiés sur runs réels**
 - [ ] PAT GitHub (scope `repo`) côté Monday, pour appeler `/dispatches`
 - [ ] bouton « Créer la branche » sur le board Backlog, câblé sur le webhook
 - [x] canal Slack dédié : **#build-flow** (`C0BU4F46W1M`, public)
-- [ ] webhook Slack entrant sur #build-flow → secret `SLACK_WEBHOOK_URL`
+- [x] webhook Slack entrant sur #build-flow → secret `SLACK_WEBHOOK_URL`
 - [ ] supprimer 2 automatisations Monday mortes (à faire dans l'UI : l'app MCP
       renvoie `USER_UNAUTHORIZED` sur `delete` comme sur `deactivate`)
       — `1718784144` « Lien github → PR » et `1718785521` « Priorité Critique
@@ -202,3 +202,54 @@ l'item de test pour Nathan, et l'Action poste le ping Slack. La passation est
 complète et aucune des deux moitiés ne duplique l'autre. Toute évolution des
 workflows doit vérifier `existingAutomations` dans la config avant d'ajouter
 une étape.
+
+## Vérification de bout en bout, 2 septembre 2026, 23h40
+
+PR jetable `feat/3199324383-verif-secrets` → PR #49, sur l'item de test
+`3199324383`. Chaque étape est un vrai run GitHub Actions, pas une simulation :
+
+| Événement | Run | Statut Monday obtenu |
+|---|---|---|
+| PR ouverte | `33686265971` | `PR` ✅ |
+| sortie du draft | `33686329038` | `Review` ✅ |
+| PR mergée | `33686379634` | `Mise en dev` ✅ |
+
+Le ping Slack est arrivé dans `#build-flow` à 23:40:14, avec le titre, le lien
+de PR et le lien de l'item. **Les deux secrets fonctionnent.**
+
+La PR de test a été mergée dans la branche de travail, pas dans `main`, pour
+exercer le chemin `merged: true` sans déclencher les déploiements de prod.
+
+### Panne trouvée au passage : la tâche de QA arrive orpheline
+
+L'automatisation `1718788797` crée bien l'item dans `🧪 Tests` (vérifié :
+item créé à 21:40:17, statut « À tester »), mais **la relation n'est peuplée
+d'aucun des deux côtés** : `board_relation_mm6rzf4j` (côté Tests) et
+`board_relation_mm6r2yf0` (côté Backlog) restent vides.
+
+Conséquences concrètes :
+- Nathan reçoit un titre nu, sans lien vers la tâche, sans description, sans PR ;
+- les miroirs `Description Backlog` et `ID Backlog` du board Tests n'affichent rien ;
+- le miroir `Résultat QA (Tests)` du Backlog ne peut rien remonter en retour.
+
+**Honnêteté sur la cause** : je ne sais pas si la suppression de
+`board_relation_mm6rkvsm` en est responsable. Cette colonne avait
+`boardIds: []`, ce qui la faisait passer pour morte, et je l'ai supprimée
+avant d'avoir jamais observé un item de QA correctement lié. La panne
+pouvait donc préexister. Le correctif est le même dans les deux cas :
+dans l'automatisation `1718788797`, faire pointer « connecter les tableaux »
+sur le couple `board_relation_mm6r2yf0` ↔ `board_relation_mm6rzf4j`.
+
+### Autre chose à corriger sur le board Tests
+
+La colonne `status` porte **deux libellés pour la même chose** : « À tester »
+et « A tester » (sans accent). L'automatisation écrit la version accentuée,
+donc les items en « A tester » n'apparaîtront jamais dans un filtre ou une
+vue basée sur le bon libellé.
+
+### Résidu
+
+La branche distante `feat/3199324383-verif-secrets` n'a pas pu être
+supprimée : les droits git de la session autorisent la création et la mise à
+jour de refs, pas leur suppression (le proxy est sain, ce n'est pas un
+incident réseau). À supprimer en un clic depuis l'interface GitHub.
