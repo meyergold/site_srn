@@ -154,9 +154,14 @@ les mutations que les workflows exécutent :
 - [ ] `MONDAY_API_TOKEN` et `SLACK_WEBHOOK_URL` en secrets du repo
 - [ ] PAT GitHub (scope `repo`) côté Monday, pour appeler `/dispatches`
 - [ ] bouton « Créer la branche » sur le board Backlog, câblé sur le webhook
-- [ ] canal Slack dédié + son webhook, puis renseigner `slack.flowChannel`
+- [x] canal Slack dédié : **#build-flow** (`C0BU4F46W1M`, public)
+- [ ] webhook Slack entrant sur #build-flow → secret `SLACK_WEBHOOK_URL`
+- [ ] supprimer 2 automatisations Monday mortes (à faire dans l'UI : l'app MCP
+      renvoie `USER_UNAUTHORIZED` sur `delete` comme sur `deactivate`)
+      — `1718784144` « Lien github → PR » et `1718785521` « Priorité Critique
+      → groupe supprimé »
 - [ ] merger `monday-branch.yml` dans `main` (sinon `repository_dispatch` ne part pas)
-- [ ] nettoyer les colonnes en double du Backlog et des boîtes d'entrée
+- [x] nettoyer les colonnes en double du Backlog et des boîtes d'entrée
 
 ## Ménage effectué le 2 septembre 2026
 

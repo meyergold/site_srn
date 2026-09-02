@@ -66,10 +66,11 @@
   },
   "slack": {
     "sourceChannel": "#support-team-and-q-a",
-    "flowChannel": null,
+    "flowChannel": "#build-flow",
     "notifyOn": [
       "deployedDev"
     ],
-    "_flowChannelNote": "A definir : canal dedie aux notifications du flow."
+    "flowChannelId": "C0BU4F46W1M",
+    "_note": "sourceChannel = ou l'equipe remonte aujourd'hui (a remplacer par le formulaire Monday). flowChannel = notifications automatiques du flow."
   }
 }
