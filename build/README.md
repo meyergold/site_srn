@@ -157,3 +157,43 @@ les mutations que les workflows exécutent :
 - [ ] canal Slack dédié + son webhook, puis renseigner `slack.flowChannel`
 - [ ] merger `monday-branch.yml` dans `main` (sinon `repository_dispatch` ne part pas)
 - [ ] nettoyer les colonnes en double du Backlog et des boîtes d'entrée
+
+## Ménage effectué le 2 septembre 2026
+
+**Colonnes supprimées** (toutes vérifiées vides au préalable) :
+
+| Board | Colonne | Pourquoi |
+|---|---|---|
+`📋 Backlog` | `long_text_mm6rrd4d` | 2ᵉ « Description ». La 1ʳᵉ (`long_text_mm6r6v98`) est gardée **parce que l'automatisation `1718788797` la lit**. |
+`📋 Backlog` | `board_relation_mm6rkvsm` | « link to Tests » avec `boardIds: []` — connectée à rien. |
+`📋 Backlog` | `lookup_mm6r7zj` | miroir « Résultat QA » branché sur la relation morte ci-dessus : il n'affichait jamais rien. |
+`📋 Backlog` | `board_relation_mm6rsfer` | relation vers `🐛 Liste des bugs`, board archivé. |
+`🛠️ Support team & QA` | `long_text8y9j5amt` | « Description » redondante avec Contexte / Observé / Attendu. |
+`🛠️ Support team & QA` | `short_textbf0vq41j` | « Lien(s) » en double de « Lien(s) utile(s) » (`linkdmxpt3fg`), qui est du bon type et **est celle que le miroir du Backlog lit**. |
+`📡 Signaux produit` | `long_text_mm6rxx29` | 2ᵉ « Description ». |
+
+**Bug corrigé** : le miroir « Résultat QA (Tests) » a été recréé
+(`lookup_mm6tgc4q`) sur la **bonne** relation (`board_relation_mm6r2yf0`). Le
+verdict de test de Nathan remonte maintenant dans le Backlog — ce n'était pas
+le cas avant.
+
+**Libellés remis en ordre** :
+- `Source` (Backlog) : retrait de « 🔴 Critique », « 🧪 QA » et « Liste des bugs » — ce ne sont pas des sources. Reste les 3 entrées, plus Backlog direct, Roadmap / Épic et 🤖 Grafana.
+- `Produit` (Fonctionnalités demandées) : retrait de « Bug ». Reste Ulysse, Ocean, Desk, Rainbow, Horizon.
+- `Statut` (Support team & QA) : remis dans l'ordre du flow Slack réel, ⚙️ → 🧪 → ✅.
+
+**Board archivé** : `🐛 Liste des bugs` (son unique item était vide). Les
+remontées passent toutes par `🛠️ Support team & QA`.
+
+## Ne pas refaire ce que Monday fait déjà
+
+Sept automatisations tournent sur le Backlog. La plus importante pour ce flow :
+
+> `1718788797` — Statut → `Mise en dev` **crée l'item de QA** dans `🧪 Tests`,
+> groupe « À tester ».
+
+Donc quand une PR est mergée : l'Action met `Mise en dev`, Monday crée
+l'item de test pour Nathan, et l'Action poste le ping Slack. La passation est
+complète et aucune des deux moitiés ne duplique l'autre. Toute évolution des
+workflows doit vérifier `existingAutomations` dans la config avant d'ajouter
+une étape.

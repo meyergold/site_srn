@@ -13,7 +13,6 @@
       "features": 5103238970,
       "roadmap": 5103241050,
       "epics": 5103238974,
-      "bugs": 5103238973,
       "tests": 5103258170,
       "signals": 5103242794
     },
@@ -26,7 +25,8 @@
       "epic": "board_relation_mm6r28ez",
       "sprint": "board_relation_mm6rc6f",
       "branch": "text_mm6trh7",
-      "pr": "link_mm6tvy5a"
+      "pr": "link_mm6tvy5a",
+      "qaResult": "lookup_mm6tgc4q"
     },
     "_statusNote": "Libelles existants du board Backlog, dans l'ordre du flow. Ne pas renommer ici sans renommer sur le board.",
     "statusLabels": {
@@ -48,7 +48,16 @@
       "Desk",
       "Rainbow",
       "Horizon"
-    ]
+    ],
+    "_boardsNote": "🐛 Liste des bugs a été archivé : Support team & QA est l'entrée unique des remontées.",
+    "existingAutomations": {
+      "_note": "Automatisations Monday deja en place sur le Backlog. Les Actions ne doivent PAS les refaire.",
+      "1718788797": "Statut -> 'Mise en dev' cree l'item de QA dans 🧪 Tests (groupe 'À tester'). C'est la passation vers Nathan : l'Action se contente du statut + du ping Slack.",
+      "1718789933": "Nouvel item -> Statut 'Backlog'.",
+      "1718785540": "Sprint renseigne -> deplace l'item dans le groupe 'En cours'.",
+      "1718785916": "Statut -> 'En production ✅' -> deplace dans '✅ Livré / Clôturé'.",
+      "1718792226": "'Source — Support team & QA' renseignee -> Source = 'Support team & QA'."
+    }
   },
   "git": {
     "repo": "meyergold/site_srn",
@@ -60,6 +69,7 @@
     "flowChannel": null,
     "notifyOn": [
       "deployedDev"
-    ]
+    ],
+    "_flowChannelNote": "A definir : canal dedie aux notifications du flow."
   }
 }
