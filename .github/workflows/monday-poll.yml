@@ -65,8 +65,20 @@ jobs:
             exit 0
           fi
 
-          echo "$CANDIDATS" | while IFS=$'\t' read -r id titre dev; do
+          # Here-string plutot qu'un pipe : la boucle ne tourne pas dans un
+          # sous-shell, donc le compteur survit et une tache en echec
+          # n'empeche pas les suivantes de partir.
+          ECHECS=0
+          while IFS=$'\t' read -r id titre dev; do
             [ -n "$id" ] || continue
             echo "--- item $id : $titre"
-            build/scripts/create-branch.sh "$id" "$titre" "$dev"
-          done
+            if ! build/scripts/create-branch.sh "$id" "$titre" "$dev"; then
+              echo "::warning title=Tâche en échec::item $id ($titre)"
+              ECHECS=$((ECHECS + 1))
+            fi
+          done <<< "$CANDIDATS"
+
+          if [ "$ECHECS" -gt 0 ]; then
+            echo "::error title=Scrutation incomplète::$ECHECS tâche(s) en échec"
+            exit 1
+          fi
