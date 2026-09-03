@@ -1,74 +1,77 @@
 ---
 title: "Brancher WhatsApp"
-description: "La référence détaillée du canal WhatsApp Business : routes Meta et Twilio, prérequis et erreurs fréquentes."
+description: "Connecter WhatsApp Business à Océan via l'inscription intégrée (Embedded Signup) de Meta — Sairen est Tech Provider."
+icon: "whatsapp"
 ---
 
 <p class="srn-eyebrow">Canaux</p>
 
-WhatsApp Business se branche par le [parcours d'ajout unifié](/canaux/ajouter-un-canal#whatsapp) : l'assistant demande si vous avez un compte Meta Business et choisit la route adaptée. Cet article est la référence détaillée des deux routes.
+Sairen est **Tech Provider** WhatsApp : vous connectez votre compte **WhatsApp Business** directement depuis Sairen, via l'**inscription intégrée (Embedded Signup)** de Meta. Tout se passe dans une fenêtre Meta sécurisée — **aucun identifiant technique à copier, aucun WABA à partager manuellement**. Vos conversations arrivent ensuite dans [Océan](/produit/ocean).
 
 <Info>
-  **Prérequis communs** : rôle **Administrateur**, et un numéro dédié à WhatsApp Business (un numéro ne peut être actif que sur un seul compte WhatsApp Business à la fois).
+  **Prérequis**
+
+  - Rôle **Administrateur** (voir [Comprendre les rôles](/compte/roles#roles)).
+  - Un compte **Facebook** rattaché à un **portefeuille Meta Business** (vous pouvez en créer un pendant le parcours).
+  - Un **numéro dédié** à WhatsApp Business, joignable par **SMS ou appel** pour la vérification et **non déjà rattaché** à un compte WhatsApp (un numéro ne peut être actif que sur un seul compte WhatsApp à la fois).
 </Info>
 
-## Route Meta (vous avez un compte Meta Business)
-
-<span id="waba-id" />
-
-### Le WABA ID
-
-Le **WABA ID** identifie votre WhatsApp Business Account :
-
-- un identifiant de **15 à 16 chiffres** ;
-- à récupérer dans **Meta Business Suite** (paramètres du WhatsApp Business Account) ;
-- ⚠️ ce n'est **pas le numéro de téléphone**, ni l'identifiant d'une page Facebook.
-
-### Brancher la route Meta
-
 <Steps>
-  <Step title="Partager votre WABA avec Sairen">
-    Le WABA doit être **partagé avec Sairen** depuis Meta Business Suite avant le branchement.
+  <Step title="Lancer l'inscription intégrée">
+    Depuis **Intégrations**, choisissez **WhatsApp** puis **Connecter WhatsApp**. Une fenêtre **Meta** s'ouvre — autorisez les pop-ups si votre navigateur les bloque.
   </Step>
-  <Step title="Renseigner le WABA ID">
-    Dans l'assistant d'ajout, collez l'identifiant à 15-16 chiffres.
+  <Step title="Se connecter à Meta">
+    Connectez-vous avec le compte **Facebook** qui gère votre entreprise et sélectionnez (ou créez) votre **portefeuille Meta Business**.
   </Step>
-  <Step title="Valider">
-    L'assistant vérifie le partage et active le canal. Le nombre d'étapes affiché correspond au parcours réel.
+  <Step title="Choisir le compte WhatsApp et le numéro">
+    Sélectionnez ou créez votre **WhatsApp Business Account**, puis renseignez le **numéro** à utiliser. Meta envoie un **code de vérification** (SMS ou appel) à saisir.
+  </Step>
+  <Step title="Autoriser Sairen">
+    Accordez les **autorisations** demandées. En tant que Tech Provider, Sairen finalise la configuration technique automatiquement — le canal s'active.
+  </Step>
+  <Step title="Vérifier dans Océan">
+    Envoyez un message de test au numéro : il doit apparaître comme conversation dans [Océan](/produit/ocean#conversations).
   </Step>
 </Steps>
 
-<span id="twilio" />
-
-## Route Twilio (pas de compte Meta Business)
-
-<Steps>
-  <Step title="Récupérer votre Account SID">
-    Dans la console Twilio : un identifiant commençant par **`AC`** (voir aussi [#twilio-sid](/canaux/ajouter-un-canal#twilio-sid)).
-  </Step>
-  <Step title="Préparer le numéro">
-    Le numéro doit être au **format E.164** : `+33600000000` — indicatif pays inclus, sans espaces.
-  </Step>
-  <Step title="Renseigner et valider">
-    Collez le SID et le numéro dans l'assistant, qui active le canal.
-  </Step>
-</Steps>
+<Note>
+  Pour écrire **à l'initiative de l'entreprise** (hors fenêtre de 24 h), WhatsApp impose des **modèles pré-approuvés** — voir [Templates](/produit/templates).
+</Note>
 
 ## Erreurs fréquentes
 
 <AccordionGroup>
-  <Accordion title="« WABA ID invalide »">
-    Vérifiez la longueur (15-16 chiffres) et l'origine (paramètres du WABA dans Meta Business Suite). Le numéro de téléphone ou l'ID de page ne fonctionnent pas.
+  <Accordion title="« Ce numéro est déjà utilisé sur WhatsApp »">
+    Un numéro ne peut être actif que sur **un seul** compte WhatsApp à la fois. Supprimez-le de l'app WhatsApp (ou de l'ancien compte) puis relancez l'inscription.
   </Accordion>
 
-  <Accordion title="« Le WABA n'est pas partagé »">
-    Le partage avec Sairen doit être fait côté Meta Business Suite avant de relancer l'assistant.
+  <Accordion title="Je n'ai pas reçu le code de vérification">
+    Vérifiez le numéro et réessayez ; basculez sur la vérification par **appel** si le SMS n'arrive pas. Un numéro fixe fonctionne avec l'option appel.
   </Accordion>
 
-  <Accordion title="« Numéro invalide » (route Twilio)">
-    Reformatez en E.164 : `+` puis l'indicatif pays puis le numéro, sans espaces ni tirets — ex. `+33600000000`.
+  <Accordion title="La fenêtre Meta ne s'ouvre pas">
+    Autorisez les **pop-ups** pour Sairen dans votre navigateur, puis relancez **Connecter WhatsApp**.
+  </Accordion>
+
+  <Accordion title="Je n'ai pas de compte Meta Business">
+    Vous pouvez en **créer un** directement pendant l'inscription intégrée, sans quitter le parcours.
   </Accordion>
 </AccordionGroup>
 
-Une fois le canal actif, vos conversations WhatsApp arrivent dans Océan et suivent vos règles (labels, déclencheurs IA, workflows).
+## Ressources liées
+
+<CardGroup cols={3}>
+  <Card title="Océan" icon="/images/logos/ocean.png" href="/produit/ocean">
+    L'inbox où arrivent vos conversations WhatsApp.
+  </Card>
+
+  <Card title="Templates" icon="comment-dots" href="/produit/templates">
+    Les modèles pré-approuvés pour écrire en premier.
+  </Card>
+
+  <Card title="Ajouter un canal" icon="plug" href="/canaux/ajouter-un-canal">
+    Le parcours d'ajout unifié, tous canaux.
+  </Card>
+</CardGroup>
 
 [Ouvrir Sairen →](https://app.sairen.io)
