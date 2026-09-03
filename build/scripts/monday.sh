@@ -5,7 +5,8 @@ set -euo pipefail
 
 CFG="${CFG:-build/monday-flow.config.json}"
 
-cfg() { jq -r "$1" "$CFG"; }
+cfg()  { jq -r "$1" "$CFG"; }
+cfgc() { jq -c "$1" "$CFG"; }
 
 # monday_gql '<query graphql>' -> reponse JSON brute
 monday_gql() {
@@ -82,4 +83,29 @@ slack_notify() {
   curl -sS -X POST "$SLACK_WEBHOOK_URL" \
     -H 'Content-Type: application/json' \
     -d "$(jq -n --arg t "$1" '{text: $t}')" >/dev/null
+}
+
+# monday_item_spec <item_id>
+# Ecrit sur stdout la spec de la tache en markdown, a partir des champs
+# listes dans metaFields / specFields de la config. Les champs vides sont
+# omis, pour que le dev ne lise que ce qui est renseigne.
+monday_item_spec() {
+  local item_id="$1" resp
+  resp=$(monday_gql "query { items(ids: [$item_id]) { name url column_values { id text ... on MirrorValue { display_value } } } }") || return 1
+
+  printf '%s' "$resp" | jq -r \
+    --argjson meta "$(cfgc '.monday.metaFields')" \
+    --argjson spec "$(cfgc '.monday.specFields')" '
+    .data.items[0] as $it
+    | ($it.column_values
+       | map({key: .id, value: ((.display_value // .text) // "")})
+       | from_entries) as $v
+    | [ "# " + $it.name, "" ]
+      + [ ($meta[] | select(($v[.column] // "") != "") | "- **" + .title + "** : " + $v[.column]) ]
+      + [ "- **Item Monday** : " + $it.url, "" ]
+      + [ ($spec[]
+           | select(($v[.column] // "") != "")
+           | "## " + .title + "\n\n" + $v[.column] + "\n") ]
+      + [ "## Critères d'\''acceptation", "", "_à compléter avec le produit si absents ci-dessus._" ]
+    | join("\n")'
 }

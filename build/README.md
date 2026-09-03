@@ -92,9 +92,16 @@ Accept: application/vnd.github+json
 ```
 
 Les deux voies appellent le même script, `build/scripts/create-branch.sh`, qui
-crée `feat/<itemId>-slug`, amorce `build/tasks/<itemId>.md` avec le lien de
-l'item, ouvre une **PR draft**, puis réécrit sur l'item Monday la branche,
-l'URL de la PR et le statut `En dev`. Rejouable sans risque : si la branche
+crée `feat/<itemId>-slug`, écrit la spec dans `build/tasks/<itemId>.md`, ouvre
+une **PR draft** portant cette même spec, puis réécrit sur l'item Monday la
+branche, l'URL de la PR et le statut `En dev`.
+
+**Le dev n'a pas à ouvrir Monday.** La spec est recopiée depuis l'item :
+priorité, source, assigné, description, contexte, comportement observé et
+attendu, liens utiles, visuels et maquette HTML, captures. Les champs vides
+sont omis — le dev ne lit que ce qui est renseigné. L'ordre et la liste des
+champs se règlent dans `metaFields` / `specFields` de la config, sans toucher
+au script. Rejouable sans risque : si la branche
 existe déjà, il récupère simplement la PR existante.
 
 Le slug translittère les accents explicitement plutôt que via

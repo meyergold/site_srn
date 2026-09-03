@@ -48,13 +48,17 @@ else
   git fetch --quiet origin "$BASE"
   git checkout -q -b "$BRANCH" "origin/$BASE"
 
+  # La spec vient de Monday : le dev n'a pas a ouvrir le board.
   mkdir -p build/tasks
-  {
-    printf '# %s\n\n' "$TITLE"
-    printf -- '- Item Monday : %s\n' "$ITEM_URL"
-    printf -- '- Dev : %s\n\n' "${DEV:-non assigné}"
-    printf "## Critères d'acceptation\n\n_à reprendre depuis l'item Monday_\n"
-  } > "build/tasks/$ITEM_ID.md"
+  SPEC=""
+  if [ -n "${MONDAY_API_TOKEN:-}" ]; then
+    SPEC=$(monday_item_spec "$ITEM_ID" || true)
+  fi
+  if [ -z "$SPEC" ]; then
+    SPEC=$(printf '# %s\n\n- **Item Monday** : %s\n- **Dev** : %s\n' \
+      "$TITLE" "$ITEM_URL" "${DEV:-non assigné}")
+  fi
+  printf '%s\n' "$SPEC" > "build/tasks/$ITEM_ID.md"
 
   git add "build/tasks/$ITEM_ID.md"
   git commit -q -m "Amorce tâche $ITEM_ID : $TITLE"
@@ -62,10 +66,7 @@ else
 
   gh pr create --draft --base "$BASE" --head "$BRANCH" \
     --title "$TITLE" \
-    --body "$(printf '%s\n\n%s\n\n%s\n' \
-        "Item Monday : $ITEM_URL" \
-        "Dev : ${DEV:-non assigné}" \
-        "<!-- monday-item: $ITEM_ID -->")" >/dev/null
+    --body "$(printf '%s\n\n---\n%s\n' "$SPEC" "<!-- monday-item: $ITEM_ID -->")" >/dev/null
 fi
 
 PR_URL=$(gh pr view "$BRANCH" --json url --jq .url)
