@@ -52,6 +52,19 @@ trois clics dans l'UI, et l'API le relit ensuite avec `type: null`.
 `duplicate_view` ne contourne rien : son argument `board_id` désigne le board
 *source*, la copie retombe sur le même board.
 
+### La carte d'une tâche
+
+La colonne `Description` (`long_text_mm6r6v98`) porte la spec au format
+**Contexte / Constaté / Attendu**, reprise du doc UX. Sans elle la carte Monday
+s'ouvre vide et le dev doit retourner au Google Doc. Les 56 tâches des sprints
+l'ont ; les 8 dont le doc ne donnait qu'un titre restent vides plutôt que
+remplies au jugé.
+
+Les deux colonnes `board_relation` s'appellent désormais `Épic — lien Monday
+(manuel)` et `Sprint — lien Monday (manuel)`, pour qu'on ne les confonde plus
+avec les dropdowns du même nom. Le suffixe dit ce qu'elles sont : remplissables
+à la main dans l'UI, jamais par un script.
+
 ### Les 4 sprints en cours
 
 Sprints d'une semaine, du lundi au lundi. Les 56 tâches restantes (sur les 175

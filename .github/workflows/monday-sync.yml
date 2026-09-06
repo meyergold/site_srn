@@ -28,7 +28,7 @@ jobs:
       REVIEW_STATE: ${{ github.event.review.state }}
       EVENT: ${{ github.event_name }}:${{ github.event.action }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Retrouver l'item Monday
         id: item
