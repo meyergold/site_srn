@@ -62,7 +62,7 @@ jobs:
               slack_notify update-dev "$(printf '%s\n%s\n%s\n' \
                 ":eyes: *Review demandée* — $PR_TITLE" \
                 "PR : $PR_URL" \
-                "Item : $ITEM_URL")"
+                "💬 Discussion et historique : $ITEM_URL")"
               ;;
 
             pull_request_review:submitted)
@@ -72,7 +72,7 @@ jobs:
                 slack_notify update-dev "$(printf '%s\n%s\n%s\n' \
                   ":white_check_mark: *Validé* — $PR_TITLE" \
                   "PR : $PR_URL" \
-                  "Item : $ITEM_URL")"
+                  "💬 Discussion et historique : $ITEM_URL")"
               else
                 echo "review '$REVIEW_STATE' : pas de changement de statut"
               fi
@@ -85,7 +85,7 @@ jobs:
                 slack_notify a-tester "$(printf '%s\n%s\n%s\n' \
                   ":test_tube: *À tester en dev* — $PR_TITLE" \
                   "PR : $PR_URL" \
-                  "Item : $ITEM_URL")"
+                  "💬 Discussion et historique : $ITEM_URL")"
               else
                 monday_update "$ID" "PR fermée sans merge : $PR_URL"
               fi

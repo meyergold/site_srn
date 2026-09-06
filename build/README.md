@@ -65,6 +65,23 @@ Les deux colonnes `board_relation` s'appellent désormais `Épic — lien Monday
 avec les dropdowns du même nom. Le suffixe dit ce qu'elles sont : remplissables
 à la main dans l'UI, jamais par un script.
 
+### Toute discussion atterrit sur la carte
+
+`monday-discussion.yml` recopie dans les mises à jour de l'item Monday chaque
+commentaire de PR, chaque commentaire de revue en ligne et chaque texte de
+review. Quelqu'un qui n'ouvre jamais GitHub — produit, support, QA — lit donc
+l'intégralité des échanges depuis la carte, avec un lien retour vers le message
+d'origine.
+
+Deux garde-fous dans le déclencheur, faute de quoi la boucle s'auto-alimente ou
+se déclenche à tort : `github.event.sender.type != 'Bot'` écarte nos propres
+écritures, et `github.event.issue.pull_request` écarte les commentaires
+d'issues, puisque `issue_comment` couvre les deux.
+
+La carte Monday est donc **le** lieu de la conversation. C'est pour ça que les
+messages Slack portent la ligne « 💬 Discussion et historique » vers l'item
+plutôt que vers la PR, et que le corps de la PR l'annonce aux devs.
+
 ### Les 4 sprints en cours
 
 Sprints d'une semaine, du lundi au lundi. Les 56 tâches restantes (sur les 175

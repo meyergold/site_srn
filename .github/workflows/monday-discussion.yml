@@ -1,0 +1,94 @@
+name: Discussions → Monday
+
+# Toute conversation tenue sur la PR est recopiée dans les mises à jour de
+# l'item Monday. Objectif : quelqu'un qui n'ouvre jamais GitHub — produit,
+# support, QA — lit quand même l'intégralité des échanges depuis la carte.
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: monday-discussion-${{ github.event.issue.number || github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  recopier:
+    runs-on: ubuntu-latest
+    # Un commentaire d'issue n'est pas un commentaire de PR : on ne garde que
+    # les seconds. Et on ignore nos propres écritures, sinon la boucle
+    # s'auto-alimente.
+    if: >-
+      (github.event_name != 'issue_comment' || github.event.issue.pull_request) &&
+      github.event.sender.type != 'Bot'
+    env:
+      MONDAY_API_TOKEN: ${{ secrets.MONDAY_API_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      EVENT: ${{ github.event_name }}
+      AUTEUR: ${{ github.event.comment.user.login || github.event.review.user.login }}
+      CORPS: ${{ github.event.comment.body || github.event.review.body }}
+      LIEN: ${{ github.event.comment.html_url || github.event.review.html_url }}
+      FICHIER: ${{ github.event.comment.path }}
+      ETAT_REVIEW: ${{ github.event.review.state }}
+      NUM_PR: ${{ github.event.issue.number || github.event.pull_request.number }}
+      BRANCHE_PR: ${{ github.event.pull_request.head.ref }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Retrouver l'item Monday
+        id: item
+        run: |
+          source build/scripts/monday.sh
+
+          BRANCHE="$BRANCHE_PR"
+          if [ -z "$BRANCHE" ]; then
+            BRANCHE=$(gh pr view "$NUM_PR" --json headRefName --jq .headRefName 2>/dev/null || true)
+          fi
+          if [ -z "$BRANCHE" ]; then
+            echo "branche introuvable pour la PR #$NUM_PR, rien à recopier"
+            exit 0
+          fi
+
+          ID=$(item_id_from_branch "$BRANCHE")
+          if [ -z "$ID" ]; then
+            echo "branche '$BRANCHE' hors convention feat/<itemId>-slug, rien à recopier"
+          fi
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+
+      - name: Recopier le message dans la carte
+        if: steps.item.outputs.id != '' && env.MONDAY_API_TOKEN != ''
+        env:
+          ID: ${{ steps.item.outputs.id }}
+        run: |
+          source build/scripts/monday.sh
+
+          # Une review approuvée sans texte n'apporte rien : monday-sync.yml
+          # annonce déjà le passage en Validé.
+          if [ -z "${CORPS//[[:space:]]/}" ]; then
+            echo "message vide, rien à recopier"
+            exit 0
+          fi
+
+          case "$EVENT" in
+            issue_comment)               ENTETE="💬 **$AUTEUR** a commenté la PR #$NUM_PR" ;;
+            pull_request_review_comment) ENTETE="💬 **$AUTEUR** a commenté \`${FICHIER:-le code}\` sur la PR #$NUM_PR" ;;
+            pull_request_review)
+              case "$ETAT_REVIEW" in
+                approved)          ENTETE="✅ **$AUTEUR** a approuvé la PR #$NUM_PR" ;;
+                changes_requested) ENTETE="🔁 **$AUTEUR** a demandé des changements sur la PR #$NUM_PR" ;;
+                *)                 ENTETE="💬 **$AUTEUR** a laissé une review sur la PR #$NUM_PR" ;;
+              esac
+              ;;
+          esac
+
+          monday_update "$ID" "$(printf '%s\n\n%s\n\n<a href="%s">Voir sur GitHub</a>' \
+            "$ENTETE" "$CORPS" "$LIEN")"
+
+          echo "message de $AUTEUR recopié sur l'item $ID"

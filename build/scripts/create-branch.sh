@@ -73,7 +73,10 @@ if [ -z "$PR_URL" ]; then
   echo "aucune PR pour $BRANCH, creation"
   gh pr create --draft --base "$BASE" --head "$BRANCH" \
     --title "$TITLE" \
-    --body "$(printf '%s\n\n---\n%s\n' "$SPEC" "<!-- monday-item: $ITEM_ID -->")" \
+    --body "$(printf '%s\n\n---\n%s\n%s\n\n%s\n' "$SPEC" \
+      "Chaque commentaire laisse ici est recopie dans les mises a jour de la carte Monday," \
+      "pour que le produit, le support et la QA suivent sans ouvrir GitHub." \
+      "<!-- monday-item: $ITEM_ID -->")" \
     >/dev/null 2>&1 || true
   PR_URL=$(gh pr view "$BRANCH" --json url --jq .url 2>/dev/null || true)
 fi
