@@ -6,15 +6,19 @@
 # ne sait pas les recreer. L'API, elle, sait lire la relation et ecrire les deux
 # statuts. On reconcilie donc depuis Git, ou le jeton vit deja.
 #
-# Regle de precedence, pour qu'aucun aller-retour ne s'installe :
-#   1. Backlog en "Retest" gagne  -> la carte de test repasse en Retest
-#   2. sinon, un verdict du testeur (Teste / Bloque) descend vers le Backlog
-# Un verdict ne redescend jamais vers Tests, et un Retest ne remonte jamais :
-# les deux sens ne peuvent pas se declencher mutuellement.
+# Arbitrage : le geste le plus recent gagne. Monday horodate chaque changement
+# de statut ; on compare les deux dates et on recopie le plus recent vers
+# l'autre board. Aucune priorite fixe entre les deux cotes, parce qu'une
+# priorite fixe cree une boucle sans sortie : si le Backlog l'emportait
+# toujours, un testeur ne pourrait jamais clore un retest qu'on lui a demande.
 #
-# Chaque ecriture est conditionnee a un ecart reel entre les deux cotes. Sans
-# ecart, rien n'est ecrit : le script peut tourner toutes les 5 minutes sans
-# repolluer les cartes ni renvoyer dix fois la meme notification Slack.
+# Seuls les trois verdicts circulent : Teste, Bloque, Retest. "A tester" cote
+# Tests et "Mise en dev" cote Backlog sont des etats d'arrivee, pas des
+# verdicts : on n'y touche jamais.
+#
+# Rien n'est ecrit quand les deux cotes disent deja la meme chose. Le script
+# peut donc tourner toutes les 5 minutes sans repolluer les cartes ni renvoyer
+# dix fois la meme notification Slack.
 set -euo pipefail
 
 ICI=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
@@ -26,26 +30,29 @@ BOARD_BACKLOG=$(cfg '.monday.boards.backlog')
 COL_TEST=$(cfg '.monday.testsColumns.status')
 COL_LIEN=$(cfg '.monday.testsColumns.backlogLink')
 COL_BACKLOG=$(cfg '.monday.backlogColumns.status')
+COMPTE=0
 
-L_TESTE=$(cfg '.monday.statusLabels.tested')
-L_BLOQUE=$(cfg '.monday.statusLabels.blocked')
-L_RETEST=$(cfg '.monday.statusLabels.retest')
-L_TEST_TESTE=$(cfg '.monday.testsLabels.tested')
-L_TEST_BLOQUE=$(cfg '.monday.testsLabels.blocked')
-L_TEST_RETEST=$(cfg '.monday.testsLabels.retest')
+# Libelle -> verdict commun aux deux boards. Une chaine vide signifie
+# "pas un verdict", donc rien a propager depuis ce cote.
+verdict_de() {
+  case "$1" in
+    "$(cfg '.monday.testsLabels.tested')"|"$(cfg '.monday.statusLabels.tested')")   echo teste ;;
+    "$(cfg '.monday.testsLabels.blocked')"|"$(cfg '.monday.statusLabels.blocked')") echo bloque ;;
+    "$(cfg '.monday.testsLabels.retest')"|"$(cfg '.monday.statusLabels.retest')")   echo retest ;;
+    *) echo "" ;;
+  esac
+}
+libelle_test()    { case "$1" in teste) cfg '.monday.testsLabels.tested' ;; bloque) cfg '.monday.testsLabels.blocked' ;; retest) cfg '.monday.testsLabels.retest' ;; esac; }
+libelle_backlog() { case "$1" in teste) cfg '.monday.statusLabels.tested' ;; bloque) cfg '.monday.statusLabels.blocked' ;; retest) cfg '.monday.statusLabels.retest' ;; esac; }
 
-compte_sync=0
-
-# --- 1. etat du board Tests : id, verdict, tache Backlog liee -----------------
-REPONSE=$(monday_gql "query {
+# --- etat du board Tests : verdict, date du verdict, tache liee --------------
+REP_TESTS=$(monday_gql "query {
   boards(ids: $BOARD_TESTS) {
     items_page(limit: 200) {
       items {
-        id
-        name
+        id name
         column_values(ids: [\"$COL_TEST\", \"$COL_LIEN\"]) {
-          id
-          text
+          id text value
           ... on BoardRelationValue { linked_item_ids }
         }
       }
@@ -53,76 +60,87 @@ REPONSE=$(monday_gql "query {
   }
 }")
 
-PAIRES=$(printf '%s' "$REPONSE" | jq -r --arg ct "$COL_TEST" --arg cl "$COL_LIEN" '
-  .data.boards[0].items_page.items[]
-  | . as $it
+PAIRES=$(printf '%s' "$REP_TESTS" | jq -r --arg ct "$COL_TEST" --arg cl "$COL_LIEN" '
+  .data.boards[0].items_page.items[] | . as $it
   | ($it.column_values[] | select(.id == $cl) | .linked_item_ids // []) as $liens
   | select(($liens | length) > 0)
+  | ($it.column_values[] | select(.id == $ct)) as $st
   | [ $it.id,
-      ($it.column_values[] | select(.id == $ct) | .text // ""),
+      ($st.text // ""),
+      (($st.value // "null") | fromjson? | .changed_at // ""),
       $liens[0],
-      $it.name
-    ] | @tsv')
+      $it.name ] | @tsv')
 
 if [ -z "$PAIRES" ]; then
   echo "aucune carte de test reliee a une tache du Backlog, rien a reconcilier"
   exit 0
 fi
 
-# --- 2. statut courant de chaque tache Backlog liee ---------------------------
-IDS=$(printf '%s\n' "$PAIRES" | cut -f3 | paste -sd, -)
-ETATS=$(monday_gql "query {
-  items(ids: [$IDS]) {
-    id
-    column_values(ids: [\"$COL_BACKLOG\"]) { text }
-  }
+# --- etat des taches Backlog liees -------------------------------------------
+IDS=$(printf '%s\n' "$PAIRES" | cut -f4 | paste -sd, -)
+REP_BACKLOG=$(monday_gql "query {
+  items(ids: [$IDS]) { id column_values(ids: [\"$COL_BACKLOG\"]) { text value } }
 }")
 
-statut_backlog() {
-  printf '%s' "$ETATS" | jq -r --arg id "$1" '
-    .data.items[] | select(.id == $id) | .column_values[0].text // ""'
+champ_backlog() {
+  printf '%s' "$REP_BACKLOG" | jq -r --arg id "$1" --arg quoi "$2" '
+    .data.items[] | select(.id == $id) | .column_values[0]
+    | if $quoi == "texte" then (.text // "")
+      else ((.value // "null") | fromjson? | .changed_at // "") end'
 }
 
-# --- 3. reconciliation --------------------------------------------------------
-while IFS=$'\t' read -r id_test verdict id_backlog titre; do
+# --- reconciliation -----------------------------------------------------------
+while IFS=$'\t' read -r id_test label_test date_test id_backlog titre; do
   [ -n "$id_test" ] || continue
-  courant=$(statut_backlog "$id_backlog")
+
+  label_backlog=$(champ_backlog "$id_backlog" texte)
+  date_backlog=$(champ_backlog "$id_backlog" date)
+  v_test=$(verdict_de "$label_test")
+  v_backlog=$(verdict_de "$label_backlog")
+
+  # Deja d'accord, ou aucun verdict d'aucun cote : on ne touche a rien.
+  [ "$v_test" = "$v_backlog" ] && continue
+  [ -z "$v_test" ] && [ -z "$v_backlog" ] && continue
+
+  # Un seul cote porte un verdict : c'est lui qui parle. Sinon, le plus recent.
+  if [ -z "$v_test" ];        then sens=descend
+  elif [ -z "$v_backlog" ];   then sens=monte
+  elif [[ "$date_test" > "$date_backlog" ]]; then sens=monte
+  else sens=descend
+  fi
+
   url_backlog="https://$(cfg '.monday.account').monday.com/boards/$BOARD_BACKLOG/pulses/$id_backlog"
 
-  # 1) Le Backlog demande un nouveau passage : la carte de test doit le refleter.
-  if [ "$courant" = "$L_RETEST" ] && [ "$verdict" != "$L_TEST_RETEST" ]; then
-    monday_gql "mutation { change_simple_column_value(board_id: $BOARD_TESTS, item_id: $id_test, column_id: \"$COL_TEST\", value: \"$L_TEST_RETEST\") { id } }" >/dev/null
-    echo "carte de test $id_test -> $L_TEST_RETEST (le Backlog demande un retest)"
-    slack_notify a-tester "$(printf '%s\n%s\n' \
-      ":arrows_counterclockwise: *A retester* — $titre" \
+  if [ "$sens" = "descend" ]; then
+    # Le Backlog est plus recent : la carte de test s'aligne.
+    cible=$(libelle_test "$v_backlog")
+    monday_gql "mutation { change_simple_column_value(board_id: $BOARD_TESTS, item_id: $id_test, column_id: \"$COL_TEST\", value: \"$cible\") { id } }" >/dev/null
+    echo "carte de test $id_test : $label_test -> $cible (le Backlog a bouge en dernier)"
+    if [ "$v_backlog" = "retest" ]; then
+      slack_notify a-tester "$(printf '%s\n%s\n' \
+        ":arrows_counterclockwise: *A retester* — $titre" \
+        "💬 Discussion et historique : $url_backlog")"
+    fi
+  else
+    # Le testeur a bouge en dernier : son verdict descend sur la tache.
+    cible=$(libelle_backlog "$v_test")
+    monday_gql "mutation { change_simple_column_value(board_id: $BOARD_BACKLOG, item_id: $id_backlog, column_id: \"$COL_BACKLOG\", value: \"$cible\") { id } }" >/dev/null
+    echo "tache $id_backlog : ${label_backlog:-vide} -> $cible (verdict rendu sur la carte $id_test)"
+    monday_update "$id_backlog" "🧪 <b>Verdict de la QA : $cible</b><br>Rendu sur la carte de test liee."
+    case "$v_test" in
+      teste)  icone=":white_check_mark:"; mot="Teste et valide" ;;
+      bloque) icone=":no_entry:";         mot="Bloque par la QA" ;;
+      retest) icone=":arrows_counterclockwise:"; mot="Renvoye en test" ;;
+    esac
+    slack_notify update-dev "$(printf '%s\n%s\n' \
+      "$icone *$mot* — $titre" \
       "💬 Discussion et historique : $url_backlog")"
-    compte_sync=$((compte_sync + 1))
-    continue
   fi
-
-  # 2) Le testeur a rendu son verdict : il descend sur la tache du Backlog.
-  case "$verdict" in
-    "$L_TEST_TESTE")  cible="$L_TESTE";  icone=":white_check_mark:"; mot="Teste et valide" ;;
-    "$L_TEST_BLOQUE") cible="$L_BLOQUE"; icone=":no_entry:";          mot="Bloque par la QA" ;;
-    *) continue ;;
-  esac
-
-  if [ "$courant" = "$cible" ]; then
-    continue
-  fi
-
-  monday_gql "mutation { change_simple_column_value(board_id: $BOARD_BACKLOG, item_id: $id_backlog, column_id: \"$COL_BACKLOG\", value: \"$cible\") { id } }" >/dev/null
-  echo "tache $id_backlog : $courant -> $cible (verdict de la QA sur la carte $id_test)"
-
-  monday_update "$id_backlog" "🧪 <b>$mot</b> — verdict rendu sur la carte de test.<br>Statut de la tache : $courant → $cible."
-  slack_notify update-dev "$(printf '%s\n%s\n' \
-    "$icone *$mot* — $titre" \
-    "💬 Discussion et historique : $url_backlog")"
-  compte_sync=$((compte_sync + 1))
+  COMPTE=$((COMPTE + 1))
 done <<< "$PAIRES"
 
-if [ "$compte_sync" -eq 0 ]; then
+if [ "$COMPTE" -eq 0 ]; then
   echo "les deux boards sont deja d'accord, rien a ecrire"
 else
-  echo "$compte_sync statut(s) reconcilie(s)"
+  echo "$COMPTE statut(s) reconcilie(s)"
 fi

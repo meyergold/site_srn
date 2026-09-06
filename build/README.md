@@ -98,10 +98,19 @@ d'une correction et le moteur d'automatisation ne sait pas les recréer : il ne
 propose pas d'action « changer le statut de l'élément lié » par API. La
 réconciliation a donc été rapatriée ici.
 
-Deux garde-fous contre l'aller-retour infini : un `Retest` venu du Backlog ne
-remonte jamais, un verdict du testeur ne redescend jamais vers Tests, et chaque
-écriture est conditionnée à un écart réel entre les deux côtés. Sans écart,
-rien n'est écrit — le script peut donc tourner en boucle sans repolluer les
+**L'arbitrage se fait à la date, pas à la priorité.** Monday horodate chaque
+changement de statut ; le script compare les deux dates et recopie le plus
+récent vers l'autre board.
+
+Une première version donnait la priorité au Backlog sur le board Tests. C'était
+faux : une fois un `Retest` demandé, le testeur ne pouvait plus jamais le clore,
+puisque son `Testé ✅` était réécrit à chaque passage. Une priorité fixe entre
+deux côtés qui parlent tous les deux crée toujours ce genre d'impasse.
+
+Seuls les trois verdicts circulent — `Testé ✅`, `Bloqué`, `Retest 🔄`.
+`À tester` et `Mise en dev` sont des états d'arrivée, pas des verdicts : le
+script n'y touche jamais. Et rien n'est écrit quand les deux côtés disent déjà
+la même chose, ce qui permet de tourner toutes les 5 minutes sans repolluer les
 cartes ni répéter les notifications Slack.
 
 Les libellés diffèrent d'un board à l'autre (`Bloqué ⚠️` côté Tests, `Bloqué`
