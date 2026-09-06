@@ -30,6 +30,23 @@ arrive avec son contexte, sans recopie.
 `⚡ Sprints` n'est pas un board de tâches — c'est un item par sprint (timeline,
 objectifs, actif). Les tâches du Backlog s'y rattachent par la colonne `Sprint`.
 
+### Les colonnes de liaison sont écrivables — correction
+
+Une note précédente affirmait ici que l'API ne savait pas écrire dans une
+colonne `board_relation`. **C'est faux.** `change_column_value` avec
+`{"item_ids":[<id>]}` écrit la relation et les miroirs se remplissent dans la
+foulée — vérifié en relisant `linked_item_ids` après écriture sur la colonne
+`Tâche Backlog` du board 🧪 Tests.
+
+Ce qui échoue, et qui avait mené à la mauvaise conclusion, c'est `update_items`
+et la forme `{"item_ids":[…]}` passée à la création de l'item : ces deux-là
+répondent « success » sans rien écrire. Le passage obligé est
+`change_column_value`, sur un item qui existe déjà.
+
+Les dropdowns `Épic` et `Sprint` décrits plus bas restent en place — ils sont
+plus simples à filtrer et à grouper qu'une relation — mais ce n'est plus une
+contrainte technique, c'est un choix.
+
 ### Le rattachement Épic / Sprint passe par des dropdowns, pas des liens
 
 Les colonnes `Épic` (`dropdown_mm6ykzsr`) et `Sprint` (`dropdown_mm6ye996`) du
@@ -64,6 +81,32 @@ Les deux colonnes `board_relation` s'appellent désormais `Épic — lien Monday
 (manuel)` et `Sprint — lien Monday (manuel)`, pour qu'on ne les confonde plus
 avec les dropdowns du même nom. Le suffixe dit ce qu'elles sont : remplissables
 à la main dans l'UI, jamais par un script.
+
+### La boucle QA vit dans Git, pas dans Monday
+
+`monday-qa-sync.yml` réconcilie toutes les 5 minutes les statuts entre 🧪 Tests
+et 📋 Backlog, dans les deux sens :
+
+| Côté Tests | Côté Backlog |
+|---|---|
+| `Testé ✅` | → `Testé ✅` |
+| `Bloqué ⚠️` | → `Bloqué` |
+| ← `Retest 🔄` | `Retest 🔄` |
+
+Les automatisations Monday qui faisaient ce travail ont été supprimées lors
+d'une correction et le moteur d'automatisation ne sait pas les recréer : il ne
+propose pas d'action « changer le statut de l'élément lié » par API. La
+réconciliation a donc été rapatriée ici.
+
+Deux garde-fous contre l'aller-retour infini : un `Retest` venu du Backlog ne
+remonte jamais, un verdict du testeur ne redescend jamais vers Tests, et chaque
+écriture est conditionnée à un écart réel entre les deux côtés. Sans écart,
+rien n'est écrit — le script peut donc tourner en boucle sans repolluer les
+cartes ni répéter les notifications Slack.
+
+Les libellés diffèrent d'un board à l'autre (`Bloqué ⚠️` côté Tests, `Bloqué`
+côté Backlog) : la correspondance est dans `testsLabels` / `statusLabels` de la
+config. Ne pas renommer un libellé d'un seul côté.
 
 ### Toute discussion atterrit sur la carte
 

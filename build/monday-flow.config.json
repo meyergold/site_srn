@@ -117,7 +117,18 @@
         "column": "lookup_mm6remes"
       }
     ],
-    "_relationNote": "Les colonnes board_relation ne sont pas ecrivables par l'API (succes annonce, aucune ecriture). Tout automatisme passe par epicDropdown / sprintDropdown."
+    "_relationNote": "Les colonnes board_relation ne sont pas ecrivables par l'API (succes annonce, aucune ecriture). Tout automatisme passe par epicDropdown / sprintDropdown.",
+    "testsColumns": {
+      "status": "status",
+      "backlogLink": "board_relation_mm6rzf4j"
+    },
+    "testsLabels": {
+      "toTest": "À tester",
+      "retest": "Retest 🔄",
+      "blocked": "Bloqué ⚠️",
+      "tested": "Testé ✅"
+    },
+    "_qaNote": "Les libelles du board Tests different de ceux du Backlog (Bloque ⚠️ vs Bloque). qa-sync.sh fait la correspondance : ne pas renommer d'un cote sans l'autre."
   },
   "git": {
     "repo": "meyergold/site_srn",
