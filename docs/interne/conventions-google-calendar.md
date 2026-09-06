@@ -14,6 +14,10 @@ Document de référence interne. Dernière mise à jour : 6 septembre 2026.
 
 ## 2. Règle des couleurs — Sales Agenda
 
+**Qui a créé l'événement n'est pas qui le traite.** Les SDR (Lucas, Roch) posent les RDV
+sur l'agenda ; l'AE à qui le RDV est assigné se lit **uniquement à la couleur**. Ne jamais
+déduire l'assignation du créateur de l'invitation ni de la liste des invités.
+
 La couleur d'un RDV porte **soit l'AE qui le tient, soit son statut**.
 
 ### Par AE
@@ -33,7 +37,17 @@ La couleur d'un RDV porte **soit l'AE qui le tient, soit son statut**.
 | Raisin (violet) | 3 | No show |
 | Graphite (gris) | 8 | Non assigné |
 
-> **Limite connue.** Un événement ne porte qu'une seule couleur : un no-show de Boulou ou un déplacement de Solal ne peut pas afficher à la fois l'AE et le statut. Les couleurs de statut écrasent la couleur d'AE.
+> **Limite connue.** Un événement ne porte qu'une seule couleur : un no-show de Boulou ou un
+> déplacement de Solal ne peut pas afficher à la fois l'AE et le statut. Les couleurs de statut
+> écrasent la couleur d'AE, donc un RDV passé en no-show perd la trace de l'AE à qui il était
+> assigné.
+
+**Un RDV sans couleur = non assigné**, au même titre que le gris. C'est un RDV posé par un SDR
+qui attend encore son AE.
+
+Le Sales Agenda ne contient que des RDV prospects. Les rituels internes, les événements
+personnels et les RDV déjà portés par un autre agenda n'y ont pas leur place : ils faussent le
+comptage du pipe.
 
 ## 3. Règle des couleurs — Shared Agenda
 
