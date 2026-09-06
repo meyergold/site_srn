@@ -78,11 +78,24 @@ item_id_from_branch() {
 }
 
 # slack_notify <texte>
+# Slack repond "ok" en clair quand il a poste, un code d'erreur sinon
+# (no_service, invalid_payload, channel_not_found...) mais toujours avec un
+# corps de reponse court. On le lit : un webhook casse doit se voir dans le
+# log, pas disparaitre en silence.
 slack_notify() {
-  [ -n "${SLACK_WEBHOOK_URL:-}" ] || return 0
-  curl -sS -X POST "$SLACK_WEBHOOK_URL" \
+  local reponse
+  if [ -z "${SLACK_WEBHOOK_URL:-}" ]; then
+    echo "::warning title=Slack non configure::SLACK_WEBHOOK_URL absent, notification non envoyee"
+    return 0
+  fi
+  reponse=$(curl -sS -X POST "$SLACK_WEBHOOK_URL" \
     -H 'Content-Type: application/json' \
-    -d "$(jq -n --arg t "$1" '{text: $t}')" >/dev/null
+    -d "$(jq -n --arg t "$1" '{text: $t}')" 2>&1) || true
+  if [ "$reponse" = "ok" ]; then
+    echo "Slack notifie"
+  else
+    echo "::warning title=Slack en echec::reponse du webhook : ${reponse:-<vide>}"
+  fi
 }
 
 # monday_item_spec <item_id>
