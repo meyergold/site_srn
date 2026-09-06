@@ -28,7 +28,45 @@ comportement observé/attendu et captures depuis les boîtes d'entrée : une tâ
 arrive avec son contexte, sans recopie.
 
 `⚡ Sprints` n'est pas un board de tâches — c'est un item par sprint (timeline,
-objectifs, actif). Les tâches du Backlog s'y rattachent.
+objectifs, actif). Les tâches du Backlog s'y rattachent par la colonne `Sprint`.
+
+### Le rattachement Épic / Sprint passe par des dropdowns, pas des liens
+
+Les colonnes `Épic` (`dropdown_mm6ykzsr`) et `Sprint` (`dropdown_mm6ye996`) du
+Backlog sont des **dropdowns**, alors que le board porte aussi des colonnes
+`board_relation` vers 🎯 Épics et ⚡ Sprints. Ce n'est pas une redondance
+décorative : **l'API Monday ne sait pas écrire dans une colonne
+`board_relation`.** `update_items` et `change_column_value` répondent
+« success » et n'écrivent rien (relecture : `null`) ; depuis l'autre board,
+`item_ids` comme `linkedPulseIds` sont rejetés avec `ColumnValueException` ; et
+même posée à la création de l'item, la relation ressort vide.
+
+Conséquence pratique : tout ce qui doit être rempli par un script ou par une
+automatisation passe par le dropdown. Les colonnes `board_relation` restent
+utilisables **à la main dans l'UI** (et c'est là que les miroirs se remplissent),
+mais aucun automatisme ne doit compter dessus.
+
+Même limite côté vues : `create_view` n'accepte que `TABLE`, `FORM`, `DASHBOARD`
+et `APP`. **Un Kanban ou un Gantt ne se crée pas par l'API** — il s'ajoute en
+trois clics dans l'UI, et l'API le relit ensuite avec `type: null`.
+`duplicate_view` ne contourne rien : son argument `board_id` désigne le board
+*source*, la copie retombe sur le même board.
+
+### Les 4 sprints en cours
+
+Sprints d'une semaine, du lundi au lundi. Les 56 tâches restantes (sur les 175
+du doc UX) sont réparties à 14 par sprint, groupées par épic pour que chaque
+semaine ait un thème :
+
+| Sprint | Dates | Contenu |
+|---|---|---|
+| Sprint 1 | 8 → 13 sept | Charte violette (4), Canaux & templates (4), Administration (3), Notifications (2), Ulysse (1) — fermer les chantiers presque bouclés |
+| Sprint 2 | 14 → 20 sept | Design system (14) — le gros morceau |
+| Sprint 3 | 21 → 27 sept | Rainbow (6), Design system (3), Notifications (3), Océan (2) |
+| Sprint 4 | 28 sept → 4 oct | Contacts (8), Océan (6) — les deux chantiers les moins entamés |
+
+Les 119 autres tâches sont déjà en `PR` et n'ont pas de sprint : elles ne sont
+pas à planifier, elles sont à relire.
 
 ## Les statuts
 

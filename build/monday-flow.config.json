@@ -26,7 +26,9 @@
       "sprint": "board_relation_mm6rc6f",
       "branch": "text_mm6trh7",
       "pr": "link_mm6tvy5a",
-      "qaResult": "lookup_mm6tgc4q"
+      "qaResult": "lookup_mm6tgc4q",
+      "epicDropdown": "dropdown_mm6ykzsr",
+      "sprintDropdown": "dropdown_mm6ye996"
     },
     "_statusNote": "Libelles existants du board Backlog, dans l'ordre du flow. Ne pas renommer ici sans renommer sur le board.",
     "statusLabels": {
@@ -114,7 +116,8 @@
         "title": "Screens — Fonctionnalités",
         "column": "lookup_mm6remes"
       }
-    ]
+    ],
+    "_relationNote": "Les colonnes board_relation ne sont pas ecrivables par l'API (succes annonce, aucune ecriture). Tout automatisme passe par epicDropdown / sprintDropdown."
   },
   "git": {
     "repo": "meyergold/site_srn",
