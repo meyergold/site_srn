@@ -27,7 +27,7 @@ jobs:
       TITLE: ${{ github.event.client_payload.title }}
       DEV: ${{ github.event.client_payload.dev }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
 

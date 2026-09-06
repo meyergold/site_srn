@@ -1,0 +1,32 @@
+name: QA ↔ Backlog
+
+# Fait circuler le verdict du testeur entre 🧪 Tests et 📋 Backlog.
+# Les automatisations Monday qui traversaient la relation entre les deux boards
+# ont été perdues et le moteur ne sait pas les recréer ; l'API, elle, sait le
+# faire. La réconciliation vit donc ici, où le jeton Monday est déjà en place.
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: monday-qa-sync
+  cancel-in-progress: false
+
+jobs:
+  reconcilier:
+    runs-on: ubuntu-latest
+    env:
+      MONDAY_API_TOKEN: ${{ secrets.MONDAY_API_TOKEN }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      SLACK_WEBHOOK_A_TESTER: ${{ secrets.SLACK_WEBHOOK_A_TESTER }}
+      SLACK_WEBHOOK_UPDATE_DEV: ${{ secrets.SLACK_WEBHOOK_UPDATE_DEV }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Réconcilier les statuts QA
+        if: env.MONDAY_API_TOKEN != ''
+        run: build/scripts/qa-sync.sh

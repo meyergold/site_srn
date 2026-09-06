@@ -28,7 +28,118 @@ comportement observé/attendu et captures depuis les boîtes d'entrée : une tâ
 arrive avec son contexte, sans recopie.
 
 `⚡ Sprints` n'est pas un board de tâches — c'est un item par sprint (timeline,
-objectifs, actif). Les tâches du Backlog s'y rattachent.
+objectifs, actif). Les tâches du Backlog s'y rattachent par la colonne `Sprint`.
+
+### Les colonnes de liaison sont écrivables — correction
+
+Une note précédente affirmait ici que l'API ne savait pas écrire dans une
+colonne `board_relation`. **C'est faux.** `change_column_value` avec
+`{"item_ids":[<id>]}` écrit la relation et les miroirs se remplissent dans la
+foulée — vérifié en relisant `linked_item_ids` après écriture sur la colonne
+`Tâche Backlog` du board 🧪 Tests.
+
+Ce qui échoue, et qui avait mené à la mauvaise conclusion, c'est `update_items`
+et la forme `{"item_ids":[…]}` passée à la création de l'item : ces deux-là
+répondent « success » sans rien écrire. Le passage obligé est
+`change_column_value`, sur un item qui existe déjà.
+
+Les dropdowns `Épic` et `Sprint` décrits plus bas restent en place — ils sont
+plus simples à filtrer et à grouper qu'une relation — mais ce n'est plus une
+contrainte technique, c'est un choix.
+
+### Le rattachement Épic / Sprint passe par des dropdowns, pas des liens
+
+Les colonnes `Épic` (`dropdown_mm6ykzsr`) et `Sprint` (`dropdown_mm6ye996`) du
+Backlog sont des **dropdowns**, alors que le board porte aussi des colonnes
+`board_relation` vers 🎯 Épics et ⚡ Sprints. Ce n'est pas une redondance
+décorative : **l'API Monday ne sait pas écrire dans une colonne
+`board_relation`.** `update_items` et `change_column_value` répondent
+« success » et n'écrivent rien (relecture : `null`) ; depuis l'autre board,
+`item_ids` comme `linkedPulseIds` sont rejetés avec `ColumnValueException` ; et
+même posée à la création de l'item, la relation ressort vide.
+
+Conséquence pratique : tout ce qui doit être rempli par un script ou par une
+automatisation passe par le dropdown. Les colonnes `board_relation` restent
+utilisables **à la main dans l'UI** (et c'est là que les miroirs se remplissent),
+mais aucun automatisme ne doit compter dessus.
+
+Même limite côté vues : `create_view` n'accepte que `TABLE`, `FORM`, `DASHBOARD`
+et `APP`. **Un Kanban ou un Gantt ne se crée pas par l'API** — il s'ajoute en
+trois clics dans l'UI, et l'API le relit ensuite avec `type: null`.
+`duplicate_view` ne contourne rien : son argument `board_id` désigne le board
+*source*, la copie retombe sur le même board.
+
+### La carte d'une tâche
+
+La colonne `Description` (`long_text_mm6r6v98`) porte la spec au format
+**Contexte / Constaté / Attendu**, reprise du doc UX. Sans elle la carte Monday
+s'ouvre vide et le dev doit retourner au Google Doc. Les 56 tâches des sprints
+l'ont ; les 8 dont le doc ne donnait qu'un titre restent vides plutôt que
+remplies au jugé.
+
+Les deux colonnes `board_relation` s'appellent désormais `Épic — lien Monday
+(manuel)` et `Sprint — lien Monday (manuel)`, pour qu'on ne les confonde plus
+avec les dropdowns du même nom. Le suffixe dit ce qu'elles sont : remplissables
+à la main dans l'UI, jamais par un script.
+
+### La boucle QA vit dans Git, pas dans Monday
+
+`monday-qa-sync.yml` réconcilie toutes les 5 minutes les statuts entre 🧪 Tests
+et 📋 Backlog, dans les deux sens :
+
+| Côté Tests | Côté Backlog |
+|---|---|
+| `Testé ✅` | → `Testé ✅` |
+| `Bloqué ⚠️` | → `Bloqué` |
+| ← `Retest 🔄` | `Retest 🔄` |
+
+Les automatisations Monday qui faisaient ce travail ont été supprimées lors
+d'une correction et le moteur d'automatisation ne sait pas les recréer : il ne
+propose pas d'action « changer le statut de l'élément lié » par API. La
+réconciliation a donc été rapatriée ici.
+
+Deux garde-fous contre l'aller-retour infini : un `Retest` venu du Backlog ne
+remonte jamais, un verdict du testeur ne redescend jamais vers Tests, et chaque
+écriture est conditionnée à un écart réel entre les deux côtés. Sans écart,
+rien n'est écrit — le script peut donc tourner en boucle sans repolluer les
+cartes ni répéter les notifications Slack.
+
+Les libellés diffèrent d'un board à l'autre (`Bloqué ⚠️` côté Tests, `Bloqué`
+côté Backlog) : la correspondance est dans `testsLabels` / `statusLabels` de la
+config. Ne pas renommer un libellé d'un seul côté.
+
+### Toute discussion atterrit sur la carte
+
+`monday-discussion.yml` recopie dans les mises à jour de l'item Monday chaque
+commentaire de PR, chaque commentaire de revue en ligne et chaque texte de
+review. Quelqu'un qui n'ouvre jamais GitHub — produit, support, QA — lit donc
+l'intégralité des échanges depuis la carte, avec un lien retour vers le message
+d'origine.
+
+Deux garde-fous dans le déclencheur, faute de quoi la boucle s'auto-alimente ou
+se déclenche à tort : `github.event.sender.type != 'Bot'` écarte nos propres
+écritures, et `github.event.issue.pull_request` écarte les commentaires
+d'issues, puisque `issue_comment` couvre les deux.
+
+La carte Monday est donc **le** lieu de la conversation. C'est pour ça que les
+messages Slack portent la ligne « 💬 Discussion et historique » vers l'item
+plutôt que vers la PR, et que le corps de la PR l'annonce aux devs.
+
+### Les 4 sprints en cours
+
+Sprints d'une semaine, du lundi au lundi. Les 56 tâches restantes (sur les 175
+du doc UX) sont réparties à 14 par sprint, groupées par épic pour que chaque
+semaine ait un thème :
+
+| Sprint | Dates | Contenu |
+|---|---|---|
+| Sprint 1 | 8 → 13 sept | Charte violette (4), Canaux & templates (4), Administration (3), Notifications (2), Ulysse (1) — fermer les chantiers presque bouclés |
+| Sprint 2 | 14 → 20 sept | Design system (14) — le gros morceau |
+| Sprint 3 | 21 → 27 sept | Rainbow (6), Design system (3), Notifications (3), Océan (2) |
+| Sprint 4 | 28 sept → 4 oct | Contacts (8), Océan (6) — les deux chantiers les moins entamés |
+
+Les 119 autres tâches sont déjà en `PR` et n'ont pas de sprint : elles ne sont
+pas à planifier, elles sont à relire.
 
 ## Les statuts
 
