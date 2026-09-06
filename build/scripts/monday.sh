@@ -77,24 +77,36 @@ item_id_from_branch() {
   esac
 }
 
-# slack_notify <texte>
+# slack_notify <canal> <texte>
+# canal : "a-tester" (ce que la QA doit prendre) ou "update-dev" (ce que les
+# devs doivent savoir). Chaque canal a son webhook, parce qu'un webhook Slack
+# est lie a un seul canal. A defaut, on retombe sur SLACK_WEBHOOK_URL pour ne
+# pas perdre la notification pendant la bascule.
+#
 # Slack repond "ok" en clair quand il a poste, un code d'erreur sinon
-# (no_service, invalid_payload, channel_not_found...) mais toujours avec un
-# corps de reponse court. On le lit : un webhook casse doit se voir dans le
-# log, pas disparaitre en silence.
+# (no_service, invalid_payload, channel_not_found...). On le lit : un webhook
+# casse doit se voir dans le log, pas disparaitre en silence.
 slack_notify() {
-  local reponse
-  if [ -z "${SLACK_WEBHOOK_URL:-}" ]; then
-    echo "::warning title=Slack non configure::SLACK_WEBHOOK_URL absent, notification non envoyee"
+  local canal="$1" texte="$2" url reponse
+  case "$canal" in
+    a-tester)   url="${SLACK_WEBHOOK_A_TESTER:-}" ;;
+    update-dev) url="${SLACK_WEBHOOK_UPDATE_DEV:-}" ;;
+    *) echo "::warning title=Canal Slack inconnu::'$canal'"; return 0 ;;
+  esac
+  [ -n "$url" ] || url="${SLACK_WEBHOOK_URL:-}"
+
+  if [ -z "$url" ]; then
+    echo "::warning title=Slack non configure::aucun webhook pour #$canal, notification non envoyee"
     return 0
   fi
-  reponse=$(curl -sS -X POST "$SLACK_WEBHOOK_URL" \
+
+  reponse=$(curl -sS -X POST "$url" \
     -H 'Content-Type: application/json' \
-    -d "$(jq -n --arg t "$1" '{text: $t}')" 2>&1) || true
+    -d "$(jq -n --arg t "$texte" '{text: $t}')" 2>&1) || true
   if [ "$reponse" = "ok" ]; then
-    echo "Slack notifie"
+    echo "Slack notifie sur #$canal"
   else
-    echo "::warning title=Slack en echec::reponse du webhook : ${reponse:-<vide>}"
+    echo "::warning title=Slack en echec::#$canal a repondu : ${reponse:-<vide>}"
   fi
 }
 

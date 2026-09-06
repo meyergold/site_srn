@@ -21,6 +21,8 @@ jobs:
     env:
       MONDAY_API_TOKEN: ${{ secrets.MONDAY_API_TOKEN }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      SLACK_WEBHOOK_A_TESTER: ${{ secrets.SLACK_WEBHOOK_A_TESTER }}
+      SLACK_WEBHOOK_UPDATE_DEV: ${{ secrets.SLACK_WEBHOOK_UPDATE_DEV }}
       BRANCH: ${{ github.event.pull_request.head.ref }}
       PR_URL: ${{ github.event.pull_request.html_url }}
       PR_TITLE: ${{ github.event.pull_request.title }}
@@ -57,12 +59,20 @@ jobs:
             pull_request:ready_for_review)
               monday_set_status "$ID" inReview
               monday_update "$ID" "PR sortie du draft, en attente de review : $PR_URL"
+              slack_notify update-dev "$(printf '%s\n%s\n%s\n' \
+                ":eyes: *Review demandée* — $PR_TITLE" \
+                "PR : $PR_URL" \
+                "Item : $ITEM_URL")"
               ;;
 
             pull_request_review:submitted)
               if [ "$REVIEW_STATE" = "approved" ]; then
                 monday_set_status "$ID" reviewOk
                 monday_update "$ID" "Review approuvée sur $PR_URL"
+                slack_notify update-dev "$(printf '%s\n%s\n%s\n' \
+                  ":white_check_mark: *Validé* — $PR_TITLE" \
+                  "PR : $PR_URL" \
+                  "Item : $ITEM_URL")"
               else
                 echo "review '$REVIEW_STATE' : pas de changement de statut"
               fi
@@ -72,7 +82,7 @@ jobs:
               if [ "$MERGED" = "true" ]; then
                 monday_set_status "$ID" deployedDev
                 monday_update "$ID" "PR mergée, déployée en dev : $PR_URL<br>À tester."
-                slack_notify "$(printf '%s\n%s\n%s\n' \
+                slack_notify a-tester "$(printf '%s\n%s\n%s\n' \
                   ":test_tube: *À tester en dev* — $PR_TITLE" \
                   "PR : $PR_URL" \
                   "Item : $ITEM_URL")"

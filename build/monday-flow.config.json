@@ -125,12 +125,27 @@
     "branchPrefix": "feat"
   },
   "slack": {
-    "sourceChannel": "#support-team-and-q-a",
-    "flowChannel": "#build-flow",
-    "notifyOn": [
-      "deployedDev"
-    ],
-    "flowChannelId": "C0BU4F46W1M",
-    "_note": "sourceChannel = ou l'equipe remonte aujourd'hui (a remplacer par le formulaire Monday). flowChannel = notifications automatiques du flow."
+    "workspace": "sairengroupe",
+    "canaux": {
+      "aTester": {
+        "nom": "a-tester",
+        "id": "C0BVCD4MQ4A",
+        "secret": "SLACK_WEBHOOK_A_TESTER",
+        "recoit": "Mise en dev (merge) et Retest — ce que la QA doit prendre"
+      },
+      "updateDev": {
+        "nom": "update-dev",
+        "id": "C0C00B82HFT",
+        "secret": "SLACK_WEBHOOK_UPDATE_DEV",
+        "recoit": "Review demandee, Valide, Bloque, Teste — ce que les devs doivent savoir"
+      },
+      "supportQa": {
+        "nom": "support-team-and-q-a",
+        "id": "C07ULNPSPQE",
+        "prive": true,
+        "recoit": "les remontees brutes, alimente le board Support team & QA"
+      }
+    },
+    "_note": "Un webhook Slack est lie a un seul canal : un secret par canal. A defaut de secret dedie, slack_notify retombe sur SLACK_WEBHOOK_URL."
   }
 }
