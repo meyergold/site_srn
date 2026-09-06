@@ -57,7 +57,64 @@
       "1718785540": "Sprint renseigne -> deplace l'item dans le groupe 'En cours'.",
       "1718785916": "Statut -> 'En production ✅' -> deplace dans '✅ Livré / Clôturé'.",
       "1718792226": "'Source — Support team & QA' renseignee -> Source = 'Support team & QA'."
-    }
+    },
+    "_statusIndexNote": "Index numeriques des libelles, requis par les filtres de l'API (query_params n'accepte pas les libelles texte).",
+    "statusIndexes": {
+      "assigned": 103
+    },
+    "_specNote": "Champs recopies dans le fichier de tache et le corps de la PR, dans cet ordre. Les champs vides sont omis.",
+    "metaFields": [
+      {
+        "title": "Priorité",
+        "column": "color_mm6rhacc"
+      },
+      {
+        "title": "Source",
+        "column": "color_mm6rwtac"
+      },
+      {
+        "title": "Assigné",
+        "column": "multiple_person_mm6r3k22"
+      }
+    ],
+    "specFields": [
+      {
+        "title": "Description",
+        "column": "long_text_mm6r6v98"
+      },
+      {
+        "title": "Contexte",
+        "column": "lookup_mm6r1rzd"
+      },
+      {
+        "title": "Comportement observé",
+        "column": "lookup_mm6r65et"
+      },
+      {
+        "title": "Comportement attendu",
+        "column": "lookup_mm6rnaje"
+      },
+      {
+        "title": "Liens utiles",
+        "column": "lookup_mm6r7c9h"
+      },
+      {
+        "title": "Visuels & maquette HTML",
+        "column": "file_mm6rbn5s"
+      },
+      {
+        "title": "Spec PDF",
+        "column": "file_mm6rytx0"
+      },
+      {
+        "title": "Captures — Support team & QA",
+        "column": "lookup_mm6rqpcm"
+      },
+      {
+        "title": "Screens — Fonctionnalités",
+        "column": "lookup_mm6remes"
+      }
+    ]
   },
   "git": {
     "repo": "meyergold/site_srn",

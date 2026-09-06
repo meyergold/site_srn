@@ -54,7 +54,29 @@ la main : **`Branche`** (`text_mm6trh7`) et **`PR GitHub`** (`link_mm6tvy5a`).
 
 ## Les deux automatisations
 
-### 1. Monday → branche + PR (`.github/workflows/monday-branch.yml`)
+### 1a. Monday → branche + PR, par scrutation (`.github/workflows/monday-poll.yml`)
+
+**C'est la voie retenue.** Toutes les 5 minutes, le workflow demande à Monday
+les tâches du Backlog en statut `Assigné` dont la colonne `Branche` est encore
+vide, et crée pour chacune la branche + la PR draft.
+
+Le dev se sert donc lui-même, depuis Monday, en passant son item en `Assigné` —
+sans qu'aucun jeton GitHub n'ait à être stocké côté Monday, sans webhook et
+sans relais à héberger. C'est ce qui a fait écarter la voie « bouton +
+webhook » : l'action webhook native de Monday n'autorise pas l'en-tête
+`Authorization` qu'exige l'API GitHub.
+
+Contrepartie : jusqu'à 5 minutes de latence, et les workflows planifiés de
+GitHub sont souvent servis en retard aux heures chargées — compter plutôt 5 à
+15 minutes en pratique. `workflow_dispatch` est activé pour déclencher un
+passage immédiat au besoin.
+
+### 1b. Monday → branche + PR, par webhook (`.github/workflows/monday-branch.yml`)
+
+Conservé pour le jour où un déclenchement instantané est souhaité. Même script,
+même résultat, mais il faut alors un PAT GitHub côté Monday.
+
+#### Détail commun
 
 Le dev clique un bouton sur son item Monday. Monday appelle :
 
@@ -69,10 +91,22 @@ Accept: application/vnd.github+json
 }
 ```
 
-Le workflow crée `feat/<itemId>-slug`, amorce `build/tasks/<itemId>.md` avec le
-lien de l'item, ouvre une **PR draft**, puis réécrit sur l'item Monday la
-branche, l'URL de la PR et le statut `En cours`. Rejouable sans risque : si la
-branche existe déjà, il récupère simplement la PR existante.
+Les deux voies appellent le même script, `build/scripts/create-branch.sh`, qui
+crée `feat/<itemId>-slug`, écrit la spec dans `build/tasks/<itemId>.md`, ouvre
+une **PR draft** portant cette même spec, puis réécrit sur l'item Monday la
+branche, l'URL de la PR et le statut `En dev`.
+
+**Le dev n'a pas à ouvrir Monday.** La spec est recopiée depuis l'item :
+priorité, source, assigné, description, contexte, comportement observé et
+attendu, liens utiles, visuels et maquette HTML, captures. Les champs vides
+sont omis — le dev ne lit que ce qui est renseigné. L'ordre et la liste des
+champs se règlent dans `metaFields` / `specFields` de la config, sans toucher
+au script. Rejouable sans risque : si la branche
+existe déjà, il récupère simplement la PR existante.
+
+Le slug translittère les accents explicitement plutôt que via
+`iconv //TRANSLIT`, qui en glibc rend « é » par « ? » et produisait des
+branches du genre `feat/123-oc-an-secr-taire`.
 
 ### 2. Git → Monday (`.github/workflows/monday-sync.yml`)
 
@@ -130,9 +164,11 @@ build/
   README.md                  ce document
   monday-flow.config.json    tout le mapping Monday <-> Git
   scripts/monday.sh          appels API Monday + parsing de branche + Slack
+  scripts/create-branch.sh   branche + PR draft + renvoi vers Monday
   tasks/<itemId>.md          amorce créée par l'automatisation (une par tâche)
 .github/workflows/
-  monday-branch.yml          Monday -> branche + PR draft
+  monday-poll.yml            scrutation Monday -> branche + PR draft
+  monday-branch.yml          idem, sur webhook (voie alternative)
   monday-sync.yml            Git -> Monday
 ```
 
@@ -152,15 +188,16 @@ les mutations que les workflows exécutent :
 ## Reste à faire
 
 - [x] `MONDAY_API_TOKEN` et `SLACK_WEBHOOK_URL` en secrets du repo — **vérifiés sur runs réels**
-- [ ] PAT GitHub (scope `repo`) côté Monday, pour appeler `/dispatches`
-- [ ] bouton « Créer la branche » sur le board Backlog, câblé sur le webhook
+- [x] ~~PAT GitHub côté Monday~~ — remplacé par la scrutation, plus rien à configurer côté Monday
+- [x] ~~bouton « Créer la branche »~~ — le passage en `Assigné` suffit
 - [x] canal Slack dédié : **#build-flow** (`C0BU4F46W1M`, public)
 - [x] webhook Slack entrant sur #build-flow → secret `SLACK_WEBHOOK_URL`
 - [ ] supprimer 2 automatisations Monday mortes (à faire dans l'UI : l'app MCP
       renvoie `USER_UNAUTHORIZED` sur `delete` comme sur `deactivate`)
       — `1718784144` « Lien github → PR » et `1718785521` « Priorité Critique
       → groupe supprimé »
-- [ ] merger `monday-branch.yml` dans `main` (sinon `repository_dispatch` ne part pas)
+- [x] `monday-branch.yml` mergé dans `main` (PR #48)
+- [ ] merger `monday-poll.yml` dans `main` (sinon le `schedule` ne part pas)
 - [x] nettoyer les colonnes en double du Backlog et des boîtes d'entrée
 
 ## Ménage effectué le 2 septembre 2026
