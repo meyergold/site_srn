@@ -57,9 +57,20 @@ comptage du pipe.
 | Graphite | 8 | Plages horaires — AUDIT |
 | Couleur d'agenda par défaut | — | Rituels récurrents |
 
-## 4. Nommage des absences et du télétravail
+## 4. Absences et télétravail — le formulaire est la seule porte d'entrée
 
-Journée entière sur le **Shared Agenda**, en flamant rose (ID 4) :
+**On n'écrit plus les absences dans l'agenda.** On remplit le formulaire Monday
+*Déclarer une absence / du TT*, sur le board **Absences & TT** (id `5090252900`,
+workspace Sairen).
+
+Le flux :
+
+1. Le collaborateur remplit le formulaire : Qui, Type (ABS ou TT), Période, Motif.
+2. L'item arrive sur le board, où les directeurs et la RH valident.
+3. Une synchronisation automatique crée l'événement dans le Shared Agenda et repasse
+   la colonne **Mis dans agenda** à *Oui* — ce qui empêche les doublons.
+
+Format de l'événement généré, en journée entière et en flamant rose (ID 4) :
 
 - `ABS — Prénom`
 - `TT — Prénom`
@@ -68,6 +79,7 @@ Règles :
 
 - Une absence de plusieurs jours = **un seul événement** couvrant toute la période, jamais un événement par jour.
 - Trois Nathan dans l'équipe : utiliser `ABS — Boulou`, `ABS — Nathan Attias`, `ABS — Nathan Berracasa` pour lever l'ambiguïté.
+- La colonne *Mis dans agenda* est le drapeau de synchronisation : ne pas la modifier à la main.
 
 ## 5. Nommage des autres événements
 
