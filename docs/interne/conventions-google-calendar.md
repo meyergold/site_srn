@@ -60,8 +60,19 @@ comptage du pipe.
 ## 4. Absences et télétravail — le formulaire est la seule porte d'entrée
 
 **On n'écrit plus les absences dans l'agenda.** On remplit le formulaire Monday
-*Déclarer une absence / du TT*, sur le board **Absences & TT** (id `5090252900`,
-workspace Sairen).
+*Déclarer une absence / du TT*, sur le board **Absences & TT 2027** (id `5103669161`,
+workspace **People & Organisation**).
+
+Identifiants des colonnes, pour la synchronisation :
+
+| Colonne | id |
+|---|---|
+| Qui | `person` |
+| Période | `timerange_mkzn9s89` |
+| Type (ABS / TT) | `color_mm6zyr8z` |
+| Mis dans agenda | `color_mm6z63mw` |
+| Validé par Directeur | `color_mm6zsgr5` |
+| Validé par RH | `color_mm6z20e3` |
 
 Le flux :
 
