@@ -59,27 +59,31 @@ comptage du pipe.
 
 ## 4. Absences et télétravail — le formulaire est la seule porte d'entrée
 
-**On n'écrit plus les absences dans l'agenda.** On remplit le formulaire Monday
-*Déclarer une absence / du TT*, sur le board **Absences & TT 2027** (id `5103669161`,
-workspace **Sairen**).
+**On n'écrit plus les absences dans l'agenda.** On remplit le formulaire :
+
+**https://wkf.ms/4xBnVcG**
+
+Quatre questions, rien de plus : **Qui** (liste des collaborateurs Monday) · **Absence ou
+télétravail ?** · **Dates** · **Motif**.
+
+Les réponses arrivent sur le board **Absences & TT — déclarations** (id `5103669592`,
+workspace Sairen), où les directeurs et la RH valident.
+
+Une synchronisation automatique tourne chaque matin à 8h en semaine : elle crée
+l'événement dans le Shared Agenda et repasse la colonne **Mis dans agenda** à *Oui*,
+ce qui empêche les doublons.
 
 Identifiants des colonnes, pour la synchronisation :
 
 | Colonne | id |
 |---|---|
-| Qui | `person` |
-| Période | `timerange_mkzn9s89` |
-| Type (ABS / TT) | `color_mm6zyr8z` |
-| Mis dans agenda | `color_mm6z63mw` |
-| Validé par Directeur | `color_mm6zsgr5` |
-| Validé par RH | `color_mm6z20e3` |
-
-Le flux :
-
-1. Le collaborateur remplit le formulaire : Qui, Type (ABS ou TT), Période, Motif.
-2. L'item arrive sur le board, où les directeurs et la RH valident.
-3. Une synchronisation automatique crée l'événement dans le Shared Agenda et repasse
-   la colonne **Mis dans agenda** à *Oui* — ce qui empêche les doublons.
+| Motif | `name` |
+| Qui | `peopleu3zrrqfs` |
+| Absence ou télétravail ? | `single_selectrr18v6p` (labels `Absence` / `Télétravail`) |
+| Dates | `date_range5xnbnvra` |
+| Mis dans agenda | `color_mm6zp840` |
+| Validé par Directeur | `color_mm6zkkfe` |
+| Validé par RH | `color_mm6zk2dh` |
 
 Format de l'événement généré, en journée entière et en flamant rose (ID 4) :
 
@@ -91,6 +95,7 @@ Règles :
 - Une absence de plusieurs jours = **un seul événement** couvrant toute la période, jamais un événement par jour.
 - Trois Nathan dans l'équipe : utiliser `ABS — Boulou`, `ABS — Nathan Attias`, `ABS — Nathan Berracasa` pour lever l'ambiguïté.
 - La colonne *Mis dans agenda* est le drapeau de synchronisation : ne pas la modifier à la main.
+- Le groupe **Historique 2026** contient les 26 déclarations de janvier à septembre 2026, toutes verrouillées à *Oui* : elles ne repartiront jamais dans l'agenda.
 
 ## 5. Nommage des autres événements
 
