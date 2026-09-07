@@ -2,7 +2,7 @@
 
 À envoyer sur Slack (#general) ou par mail à toute l'équipe.
 Remplacer `[LIEN DU FORMULAIRE]` par le lien récupéré dans Monday :
-board *Absences & TT 2027* (workspace People & Organisation) → vue **Déclarer une absence / du TT** → *Partager le formulaire* → copier le lien.
+board *Absences & TT 2027* (workspace Sairen) → vue **Déclarer une absence / du TT** → *Partager le formulaire* → copier le lien.
 
 ---
 

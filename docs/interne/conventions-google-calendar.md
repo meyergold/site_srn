@@ -61,7 +61,7 @@ comptage du pipe.
 
 **On n'écrit plus les absences dans l'agenda.** On remplit le formulaire Monday
 *Déclarer une absence / du TT*, sur le board **Absences & TT 2027** (id `5103669161`,
-workspace **People & Organisation**).
+workspace **Sairen**).
 
 Identifiants des colonnes, pour la synchronisation :
 
