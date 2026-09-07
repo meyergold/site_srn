@@ -410,3 +410,85 @@ La branche distante `feat/3199324383-verif-secrets` n'a pas pu être
 supprimée : les droits git de la session autorisent la création et la mise à
 jour de refs, pas leur suppression (le proxy est sain, ce n'est pas un
 incident réseau). À supprimer en un clic depuis l'interface GitHub.
+
+---
+
+## 7 septembre — deux symptômes signalés, deux causes différentes
+
+### 1. Un ticket du formulaire arrive en double dans le Backlog
+
+**Cause : deux automatisations font le même travail.** Le board
+`🛠️ Support team & QA` en porte deux, toutes deux « quand un élément est créé
+→ créer un élément dans 📋 Backlog (groupe 📥 en attente) et connecter les
+tableaux » :
+
+| Id | Créée | Ce qu'elle recopie |
+|---|---|---|
+| `1718879089` | 06/09 23:52 | Source ← **Priorité** support, Statut ← **Priorité** support |
+| `1718879092` | 06/09 23:55 | Priorité ← Priorité support ✅, Source ← **Priorité** support, Statut ← **Statut** support |
+
+Chaque ticket déclenche les deux : d'où les deux cartes.
+
+**Correctif : supprimer `1718879089`, garder `1718879092`** — c'est la seule
+des deux qui mappe correctement la Priorité et qui recopie Contexte /
+Observé / Attendu.
+
+Puis, dans `1718879092`, **retirer deux recopies** :
+- `Source` ← Priorité support. Le Backlog reçoit « Critique » ou « Élevée »
+  comme *source*, ce qui n'a aucun sens ; l'automatisation `1718792226` pose
+  déjà `Source = Support team & QA` quand la relation se remplit.
+- `Statut` ← Statut support. Les libellés du support (`⚙️`, `🧪`, `✅`,
+  `En attente`) n'existent pas dans le Statut du Backlog.
+
+**Preuve que la fuite a déjà eu lieu** : les colonnes `Source` et `Statut` du
+Backlog contiennent aujourd'hui les libellés `Faible`, `Moyenne`, `Critique`,
+`Élevée`. Ce sont des valeurs de *priorité*, arrivées là par ces recopies.
+Elles pourront être supprimées de la liste des libellés une fois les
+automatisations corrigées.
+
+### 2. « Bloqué » côté Tests ne remonte pas dans le Backlog
+
+**Ce n'est pas un problème d'aiguillage, c'est un problème de délai.** Vérifié
+à la main sur les 8 paires reliées : les deux boards sont **d'accord**.
+
+| Carte de test | Statut Tests | Tâche Backlog | Statut Backlog |
+|---|---|---|---|
+| `3208653396` | Bloqué ⚠️ | `3208653038` | **Bloqué** ✅ |
+| `3208653254` | Bloqué ⚠️ | `3208649436` | **Bloqué** ✅ |
+| `3196550532` | Testé ✅ | `3208616960` | **Testé ✅** ✅ |
+| les 5 autres | À tester | — | Mise en dev ✅ |
+
+La remontée fonctionne donc. Ce qui ne fonctionne pas, c'est le rythme :
+`monday-qa-sync.yml` déclare `*/5 * * * *`, mais GitHub ne l'exécute pas à ce
+rythme. Exécutions planifiées réellement observées : **01:54, 07:07, 13:30**
+— soit toutes les 5 à 6 heures. GitHub déprioritise fortement les tâches
+planifiées des dépôts peu actifs. Le testeur change le statut, regarde le
+Backlog, ne voit rien : c'est normal, ça arrive quelques heures plus tard.
+
+**L'hypothèse du miroir est écartée** : la colonne miroir
+`Résultat QA (Tests)` (`lookup_mm6tgc4q`) est **vide sur les 8 tâches**. Elle
+ne porte donc rien du tout — c'est la relation orpheline décrite plus haut
+(`board_relation_mm6r2yf0` jamais peuplée), pas elle qui capte le verdict.
+Le verdict arrive bien dans `Statut`, la colonne qu'affiche le Kanban.
+
+**Correctif pour avoir l'instantané** : trois automatisations Monday, à créer
+dans l'interface sur le board `🧪 Tests` —
+
+```
+Quand Statut Test passe à Testé ✅   → passer le statut de l'élément connecté à Testé ✅
+Quand Statut Test passe à Bloqué ⚠️  → passer le statut de l'élément connecté à Bloqué
+Quand Statut Test passe à Retest 🔄  → passer le statut de l'élément connecté à Retest 🔄
+```
+
+La recette Monday à choisir est **« changer le statut de l'élément des
+tableaux connectés »**, via la colonne de connexion « link to 📋 Backlog ».
+`qa-sync.sh` reste en place comme filet : il ne réécrit rien quand les deux
+côtés sont déjà d'accord.
+
+**Ces trois automatisations ne sont pas créables par l'API.** `create_automation`
+ne sait produire que le bloc « changer le statut » sur le *même* tableau : deux
+tentatives ont donné une automatisation sans effet (`1718892912` et
+`1718892944` sur le board Tests, déclencheurs `Testé ✅` et `Bloqué ⚠️`, action
+qui réécrit la carte de test avec la valeur qu'elle a déjà). Elles sont inertes
+mais à supprimer à la main : le jeton de la session n'a pas le droit de
+supprimer une automatisation (`USER_UNAUTHORIZED`).
