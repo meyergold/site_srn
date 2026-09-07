@@ -1,15 +1,17 @@
 # Brancher le flow Monday ↔ Git sur le vrai dépôt
 
-Document de passation. À lire par la personne qui a les droits sur l'organisation
-GitHub `saireninc` et sur les secrets du dépôt de production.
+Document de passation, à l'attention de **Walid**, admin GitHub et admin Monday.
+Il couvre les deux chantiers : les trois corrections à faire dans Monday, puis
+le branchement du flow sur le vrai dépôt.
 
 Tout ce qui est décrit ici a été construit et testé sur `meyergold/site_srn`, un
 dépôt bac à sable. Rien n'a été poussé sur le vrai code. Cette page dit
 exactement ce qu'il faut copier, ce qu'il ne faut pas copier, et comment
 vérifier que ça marche.
 
-Durée totale : **environ une heure**, dont 45 minutes de manipulations et
-15 minutes de vérification sur une vraie PR.
+Durée totale : **un peu plus d'une heure**, dont 10 minutes de corrections
+dans Monday, 45 minutes de manipulations côté dépôt et 15 minutes de
+vérification sur une vraie PR.
 
 ---
 
@@ -33,8 +35,9 @@ n'a besoin d'ouvrir GitHub pour lire ce qui s'est dit.
 |---|---|---|
 | Un jeton API Monday (compte `sairen-company`, espace *Build*) | secret de dépôt `MONDAY_API_TOKEN` | Meyer |
 | Deux webhooks Slack entrants, un par canal | secrets `SLACK_WEBHOOK_A_TESTER`, `SLACK_WEBHOOK_UPDATE_DEV` | Meyer |
-| Droits d'admin sur l'organisation `saireninc` côté GitHub | claude.ai / GitHub | Yahya |
-| Droits d'écriture sur le dépôt cible | GitHub | Yahya |
+| Droits d'admin sur l'organisation `saireninc` côté GitHub | claude.ai / GitHub | Walid |
+| Droits d'écriture sur le dépôt cible | GitHub | Walid |
+| Droits d'admin sur le compte Monday `sairen-company` | Monday | Walid |
 
 Un webhook Slack est lié à **un seul** canal : il faut donc bien deux secrets
 distincts, un pour `#a-tester`, un pour `#update-dev`. Si l'un des deux manque,
@@ -44,6 +47,75 @@ dans le mauvais canal.
 
 **Aucun secret ne doit circuler par message, ni par ce document.** Ils se
 collent directement dans *Settings → Secrets and variables → Actions* du dépôt.
+
+---
+
+## Étape 0 — Trois corrections dans Monday
+
+Indépendantes de la migration, mais à faire d'abord : sans elles, le flow
+fonctionne sur des données faussées. Elles demandent les droits admin Monday,
+que personne d'autre n'a aujourd'hui.
+
+### a. Supprimer l'automatisation en doublon
+
+Board **🛠️ Support team & QA** → *Automatisations*. Deux automatisations y font
+exactement le même travail, créées à trois minutes d'écart :
+
+| Id | Créée | Ce qu'elle recopie vers le Backlog |
+|---|---|---|
+| `1718879089` | 06/09 23:52 | Source ← Priorité, Statut ← Priorité |
+| `1718879092` | 06/09 23:55 | **Priorité ← Priorité** ✅, Source ← Priorité, Statut ← Statut |
+
+Chaque ticket du formulaire déclenche les deux, donc **chaque ticket crée deux
+cartes** dans le Backlog.
+
+→ **Supprimer `1718879089`.** Garder `1718879092` : c'est la seule des deux qui
+mappe correctement la Priorité et qui recopie Contexte / Observé / Attendu.
+
+### b. Retirer deux recopies de l'automatisation qu'on garde
+
+Toujours dans `1718879092`, enlever ces deux lignes de mapping :
+
+- **Source ← Priorité du support.** Le Backlog reçoit « Critique » ou
+  « Élevée » comme *source* du ticket, ce qui n'a pas de sens. L'automatisation
+  `1718792226` pose déjà `Source = Support team & QA` quand la relation entre
+  les deux boards se remplit.
+- **Statut ← Statut du support.** Les libellés du support (`⚙️`, `🧪`, `✅`,
+  `En attente`) n'existent pas dans le Statut du Backlog.
+
+Ces deux recopies ont déjà laissé des traces : les colonnes `Source` **et**
+`Statut` du Backlog contiennent aujourd'hui les libellés `Faible`, `Moyenne`,
+`Critique`, `Élevée`. Ce sont des valeurs de priorité, arrivées là par ces
+mappings. Une fois les automatisations propres, ces libellés parasites peuvent
+être retirés des deux colonnes.
+
+### c. Créer les trois automatisations qui font remonter le verdict de la QA
+
+Board **🧪 Tests**. D'abord supprimer `1718892912` et `1718892944` : deux
+automatisations sans effet, qui réécrivent la carte de test avec la valeur
+qu'elle porte déjà. Puis créer les trois vraies, avec la recette Monday
+**« changer le statut de l'élément des tableaux connectés »**, via la colonne
+de connexion « link to 📋 Backlog » :
+
+| Quand *Statut Test* passe à | Passer le Statut de la tâche Backlog à |
+|---|---|
+| `Testé ✅` | `Testé ✅` |
+| `Bloqué ⚠️` | `Bloqué` |
+| `Retest 🔄` | `Retest 🔄` |
+
+**Pourquoi c'est nécessaire.** La remontée existe déjà, portée par
+`qa-sync.sh` côté GitHub, et elle est correcte — mais lente. Le workflow
+déclare « toutes les 5 minutes » et GitHub l'exécute en réalité toutes les 5 à
+6 heures (passages observés : 01:54, 07:07, 13:30), parce que GitHub
+déprioritise les tâches planifiées des dépôts peu actifs. Un testeur qui pose
+un verdict et regarde le Backlog ne voit donc rien avant la nuit. Les trois
+automatisations Monday rendent la remontée instantanée ; `qa-sync.sh` reste en
+place comme filet de sécurité et ne réécrit rien quand les deux boards sont
+déjà d'accord.
+
+Ces trois automatisations **ne sont pas créables par l'API** : le générateur ne
+sait produire que le bloc « changer le statut » sur le même tableau. Elles se
+créent à la main, en trois fois quatre clics.
 
 ---
 
@@ -225,11 +297,12 @@ exécution d'un nouveau cron ne part souvent pas du tout. En attendant, le bouto
 
 | # | Action | Qui | Durée |
 |---|---|---|---|
-| 1 | Autoriser Claude sur `saireninc` | Yahya | 5 min |
-| 2 | Ouvrir une nouvelle session avec le dépôt cible | Yahya | 2 min |
-| 3 | Copier les six fichiers | Yahya (ou Claude dans la nouvelle session) | 10 min |
+| 0 | Les trois corrections Monday | Walid | 10 min |
+| 1 | Autoriser Claude sur `saireninc` | Walid | 5 min |
+| 2 | Ouvrir une nouvelle session avec le dépôt cible | Walid | 2 min |
+| 3 | Copier les six fichiers | Walid (ou Claude dans la nouvelle session) | 10 min |
 | 4 | Déposer les trois secrets | Meyer | 5 min |
-| 5 | Adapter les deux lignes de config | Yahya | 2 min |
+| 5 | Adapter les deux lignes de config | Walid | 2 min |
 | 6 | Désactiver le doublon sur `site_srn` | Meyer | 2 min |
 | 7 | Premier test sur une vraie PR | ensemble | 15 min |
 
